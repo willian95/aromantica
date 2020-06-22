@@ -16,7 +16,7 @@ class SocialAuthGoogleController extends Controller
     }
 
 
-    public function callback()
+    public function callback(Request $request)
     {
         try {
             
