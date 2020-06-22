@@ -17,16 +17,34 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Register</a>
-                    </li>
+                    @if(\Auth::guest())
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Register</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                        </li>
+                    @else
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ \Auth::user()->name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/shopping/index') }}">Compras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
+                        </li>
+
+                    @endif
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+                        <a class="nav-link" href="{{ url('/cart/index') }}">Carrito</a>
                     </li>
                 
                 
@@ -106,7 +124,10 @@
                             <label for="passwordLogin">Clave</label>
                             <input type="password" class="form-control" v-model="passwordLogin">
                         </div>
-  
+
+                        <a href="{{ url('/google/redirect') }}" class="btn btn-primary">Login With Google</a>
+                        <a href="{{ url('/facebook/redirect') }}" class="btn btn-primary">Login With Facebook</a>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -177,6 +198,7 @@
 
                         if(res.data.success == true){
                             alert(res.data.msg)
+                            window.location.href="{{ url('/') }}"
                         }else{
                             alert(res.data.msg)
                         }
@@ -190,6 +212,7 @@
         })
     </script>
 
+    @stack("scripts")
 
     </body>
 </html>

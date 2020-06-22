@@ -24,6 +24,16 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
+    'google' => [
+        'client_id' => '270786535137-tc6hofsn5ijmicm7dkdfihni8ta8j20g.apps.googleusercontent.com',
+        'client_secret' => 'nkdylfOeY0dOCerNoDn3fJ3p',
+        'redirect' => 'http://localhost:8000/google/login/callback'],
+    
+    'facebook' => [
+        'client_id' => '1398681316992199',
+        'client_secret' => 'ed7d196af7c133152a45d1863baacaaa',
+        'redirect' => 'http://localhost:8000/facebook/login/callback'],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
