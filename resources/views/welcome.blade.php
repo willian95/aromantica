@@ -34,7 +34,7 @@
                 
                 fetch(){
 
-                    axios.get("/home/fetch").then(res => {
+                    axios.get("{{ url('/home/fetch') }}").then(res => {
 
                         if(res.data.success == true){
                             
