@@ -27,7 +27,7 @@ return [
     'google' => [
         'client_id' => '270786535137-tc6hofsn5ijmicm7dkdfihni8ta8j20g.apps.googleusercontent.com',
         'client_secret' => 'nkdylfOeY0dOCerNoDn3fJ3p',
-        'redirect' => 'http://localhost:8000/google/login/callback'],
+        'redirect' => 'http://servertest.sytes.net/perfumesFront/google/login/callback'],
     
     'facebook' => [
         'client_id' => '1398681316992199',
