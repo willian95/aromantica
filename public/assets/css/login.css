@@ -1,0 +1,98 @@
+.main-login__item{
+
+    display: flex;
+
+    justify-content: center;
+    flex-direction: column;
+    height: 85vh;
+}
+
+.bg-login{
+    background: #0c4572;
+    color: #fff;
+}
+.login .modal-body {
+
+    padding: 0;
+}
+.form-control {
+    padding-left: 30px;
+    color: #495057;
+    background-color: #0000000f;
+    border: 0;
+}
+.form-group{
+    position: relative;
+}
+.icon_form{
+    position: absolute;
+    top: 60%;
+    left: 10px;
+    color: #0c4572;
+}
+.login .form-control:focus {
+  
+    box-shadow:none; 
+    border: 1px solid #0c4572;
+}
+.title__general2 {
+    font-size: 25px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: start;
+    position: relative;
+    margin-top: 30px;
+    color: #0c4572;
+}
+.texto{
+
+    margin: 0;
+    color: #00000078;
+    font-size: 15px;
+    margin-bottom: 32px;
+}
+.main-login .card{
+    border: 0;
+}
+.register{
+    color: #0c4572;
+}
+.login button.close {
+    position: absolute;
+    right: 20px;
+    top: 7px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 1;
+    font-weight: 300;
+    font-size: 40px;
+}
+.main-login::before {
+    background-image: url(../img/banner_pattern.png);
+    content: "";
+    position: absolute;
+    background-size: cover;
+    width: 200px;
+    height: 100px;
+    bottom: 20px;
+    right: 37%;
+    z-index: 1;
+}
+
+.txt{
+    color: #fff;
+    font-weight: 200;
+}
+.btn-login{
+    background: #fff;
+    padding: 8px 30px 8px;
+    box-shadow: 0px 0px 10px #00000040;
+    border-radius: 10px;
+    color: black;
+}
+
+.btn-login2{
+    background: #45639E;
+    color: #fff;
+    font-weight: 300;
+}

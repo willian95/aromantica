@@ -2,6 +2,9 @@
 
 @section("content")
 
+    @include('partials.banner')
+    @include('partials.categories')
+
     <div class="container" id="dev-area">
         <div class="row">
             <div class="col-lg-3 col-md-4" v-for="perfume in perfumes">
