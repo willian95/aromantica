@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::post("/register", "RegisterController@register");
-Route::get("/email/check/{hash}", "RegisterController@validate");
+Route::get("/email/check/{hash}", "RegisterController@check");
 Route::post("/login", "LoginController@login");
 Route::get("/logout", "LoginController@logout");
 
