@@ -38,22 +38,30 @@
                 
                 forgot(){
 
-                    axios.post("{{ url('/forgot-password') }}", {email: email})
-                    .then(res => {
+                    if(this.email != ""){
 
-                        if(res.data.success == true){
-                            alert(res.data.msg)
-                            this.email  = ""
-                        }else{
-                            alert(res.data.msg)
-                        }
+                        axios.post("{{ url('/forgot-password') }}", {email: email})
+                        .then(res => {
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value) {
-                            alert(value)
-                        });
-                    })
+                            if(res.data.success == true){
+                                alert(res.data.msg)
+                                this.email  = ""
+                            }else{
+                                alert(res.data.msg)
+                            }
+
+                        })
+                        .catch(err => {
+                            $.each(err.response.data.errors, function(key, value) {
+                                alert(value)
+                            });
+                        })
+
+                    }else{
+
+                        alert("Email es requerido")
+
+                    }
 
                 }
 
