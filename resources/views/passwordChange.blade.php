@@ -40,7 +40,7 @@
                 
                 update(){
 
-                    axios.post("{{ url('/password/update') }}", id: this.userId, password: this.password, passwordConfirmation: this.password_confirmation)
+                    axios.post("{{ url('/password/update') }}", {id: this.userId, password: this.password, passwordConfirmation: this.password_confirmation})
                     .then(res => {
 
                         if(res.data.success == true){
