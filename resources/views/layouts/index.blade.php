@@ -128,6 +128,8 @@
                         <a href="{{ url('/google/redirect') }}" class="btn btn-primary">Login With Google</a>
                         <a href="{{ url('/facebook/redirect') }}" class="btn btn-primary">Login With Facebook</a>
 
+                        <a href="{{ url('/forgot-password') }}">Olvidé mi contraseña</a>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

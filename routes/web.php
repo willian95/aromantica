@@ -17,8 +17,14 @@ Route::get('/', function () {
 
 Route::post("/register", "RegisterController@register");
 Route::get("/email/check/{hash}", "RegisterController@check");
+
 Route::post("/login", "LoginController@login");
 Route::get("/logout", "LoginController@logout");
+
+Route::get("/forgot-password", "ForgotPasswordController@index");
+Route::post("/forgot-password", "ForgotPasswordController@forgot");
+Route::get("/forgot-password/check/{hash}", "ForgotPasswordController@check");
+Route::post("/password/update", "ForgotPasswordController@update");
 
 Route::get('/google/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/google/login/callback', 'SocialAuthGoogleController@callback');
