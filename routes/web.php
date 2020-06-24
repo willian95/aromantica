@@ -35,3 +35,17 @@ Route::delete("/cart/delete", "CartController@delete");
 
 Route::get("/shopping/index", "ShoppingController@index");
 Route::get("/shopping/fetch/{page}", "ShoppingController@fetch");
+
+Route::get("/test/mail", function(){
+
+    $to_name = "Willian";
+    $to_email = "rodriguezwillian95@gmail.com";
+
+    \Mail::send("emails.register", [], function($message) use ($to_name, $to_email) {
+
+        $message->to($to_email, $to_name)->subject("¡Solo falta un paso tu registro!");
+        $message->from("ventas@aromantica.co","Aromantica");
+
+    });
+
+});
