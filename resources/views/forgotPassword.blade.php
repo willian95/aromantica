@@ -40,7 +40,7 @@
 
                     if(this.email != ""){
 
-                        axios.post("{{ url('/forgot-password') }}", {email: email})
+                        axios.post("{{ url('/forgot-password') }}", {email: this.email})
                         .then(res => {
 
                             if(res.data.success == true){
