@@ -44,7 +44,7 @@ Route::get("/test/mail", function(){
     \Mail::send("emails.register", [], function($message) use ($to_name, $to_email) {
 
         $message->to($to_email, $to_name)->subject("¡Solo falta un paso tu registro!");
-        $message->from("rodriguezwillian95@gmail.com","Aromantica");
+        $message->from("ventas@aromantica.co","Aromantica");
 
     });
 
