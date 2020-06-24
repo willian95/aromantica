@@ -14,7 +14,7 @@
                     <input type="text" class="form-control" v-model="password_confirmation">
                 </div>
                 <p class="text-center">
-                    <button class="btn btn-success">Actualizar</button>
+                    <button class="btn btn-success" @click="update()">Actualizar</button>
                 </p>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 return{
                     authCheck:"{{ \Auth::check() }}",
                     password:"",
-                    password_confirmation:""
+                    password_confirmation:"",
                     userId:"{{ $user->id }}"
                 }
             },
