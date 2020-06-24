@@ -33,7 +33,7 @@ class UpdatePasswordRequest extends FormRequest
         return[
             "password.required" => "Contraseña es requerida",
             "password.confirmed" => "Contraseñas no coinciden"
-        ]
+        ];
 
     }
 
