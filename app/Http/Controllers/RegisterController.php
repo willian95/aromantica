@@ -32,12 +32,12 @@ class RegisterController extends Controller
             $to_email = $user->email;
             $data = ["user" => $user, "hash" => $hash];
 
-            \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
+           /* \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
 
                 $message->to($to_email, $to_name)->subject("¡Solo falta un paso tu registro!");
                 $message->from("ventas@aromantica.co","Aromantica");
 
-            });
+            });*/
 
             return response()->json(["success" => true, "msg" => "Te has registrado exitosamente, verifica tu correo para validar tu email"]);
 

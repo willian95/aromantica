@@ -10,6 +10,7 @@
 .bg-login{
     background: #0c4572;
     color: #fff;
+    border-radius: 3px;
 }
 .login .modal-body {
 

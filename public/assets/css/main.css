@@ -1289,3 +1289,28 @@ tab detalles
 .img_social{
   width: 16px;
 }
+
+.grid__formulario{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal_w{
+  max-width: 1050px;
+}
+
+.presentaciones{
+  display: flex;
+}
+.presentaciones p{
+  margin-right: 20px;
+}
+.presentaciones_card p {
+  margin-right: 20px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.terminos{
+  cursor: pointer;
+}
