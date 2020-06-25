@@ -11,8 +11,16 @@
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    echo "<h3>Coming soon</h3>";
+});
+
+Route::get('/front-test', function () {
+    //return view('welcome');
+    return view("welcome");
 });
 
 Route::post("/register", "RegisterController@register");

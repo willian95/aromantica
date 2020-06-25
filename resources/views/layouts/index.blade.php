@@ -10,14 +10,14 @@
         <!--  <link rel="icon" type="image/jpg" href="assets/img/logo-blanco.png" style="width: 30px; height: 30px;">-->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;700;800&display=swap" rel="stylesheet">
 
-        <link href='{{ asset('assets/css/bootstrap.min.css') }}' rel='stylesheet'>
-        <link href='{{ asset('assets/css/slick.css') }}' rel='stylesheet'>
-        <link href='{{ asset('assets/css/slick-theme.css') }}' rel='stylesheet'>
-        <link href='{{ asset('assets/css/font-awesome.css') }}' rel='stylesheet'>
-        <link href='{{ asset('assets/css/animate.css') }}' rel='stylesheet'>
-        <link href='{{ asset('assets/css/main.css') }}' rel='stylesheet'>
-        <link href='{{ asset('assets/css/login.css') }}' rel='stylesheet'>
-        <link href='{{ asset('/css/responsive.css') }}' rel='stylesheet'>
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/slick.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/slick-theme.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/font-awesome.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/animate.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/main.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/login.css') }}" rel='stylesheet'>
+        <link href="{{ asset('/css/responsive.css') }}" rel='stylesheet'>
         <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
         <title>Aromantica</title>
     </head>
@@ -571,14 +571,14 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <script src={{ asset('assets/js/jquery.min.js') }}></script>
-        <script src={{ asset('assets/js/bootstrap.min.js') }}></script>
-        <script src={{ asset('assets/js/slick.min.js') }}></script>
-        <script src={{ asset('assets/js/setting-slick.js') }}></script>
-        <script src={{ asset('assets/js/wow.min.js') }}></script>
-        <script src={{ asset('assets/js/wow-settings.js') }}></script>
-        <script src={{ asset('assets/js/main.js') }}></script>
-        <script src={{ asset('/js/app.js') }}></script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/js/setting-slick.js') }}"></script>
+        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+        <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('/js/app.js') }}"></script>
 
         <script>
         const navbar = new Vue({
@@ -632,7 +632,7 @@
 
                         if(res.data.success == true){
                             alert(res.data.msg)
-                            window.location.href="{{ url('/') }}"
+                            window.location.href="{{ url('/front-test') }}"
                         }else{
                             alert(res.data.msg)
                         }
