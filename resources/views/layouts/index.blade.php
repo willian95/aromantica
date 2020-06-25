@@ -65,7 +65,7 @@
 
 
                       <li class='nav-item dropdown dowms'>
-                        <a href='#' @if(url()->current() == url('/')) class='nav-link dropdown-toggle' @else   @endif aria-expanded='false' aria-haspopup='true'
+                        <a href='#' @if(url()->current() == url('/front-test')) class='nav-link dropdown-toggle' @else   @endif aria-expanded='false' aria-haspopup='true'
                           data-toggle='dropdown'>
                           Caballeros
                         </a>
