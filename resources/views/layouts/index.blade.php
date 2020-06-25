@@ -298,7 +298,7 @@
 
                         if(res.data.success == true){
                             alert(res.data.msg)
-                            window.location.href="{{ url('/') }}"
+                            window.location.href="{{ url('/front-test') }}"
                         }else{
                             alert(res.data.msg)
                         }
