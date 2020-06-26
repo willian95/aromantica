@@ -72,12 +72,13 @@
                         <p>@{{ title }}</p>
                       </div>
                       <div class="main-top__price">
-                        <p> @{{ amount }}</p>
+                        <p> @{{ price }}</p>
+
                       </div>
                       <div class="barra mb-3">
                         <p class="details__txt">Tamaño : 1.7 oz / 50ml</p>
                        <div>
-                        <p>Cantidades disponibles: <span>28</span></p>
+                        <p>Cantidades disponibles: <span>@{{ amount }}</span></p>
                         <div class="progress">
                           <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
                             aria-valuemin="0" aria-valuemax="10"></div>
@@ -100,9 +101,9 @@
                     </div>
                       
                        
-                    <div>
+                    <div class="ml-4 mt-3">
                        
-                        <button class="btn btn-success" v-for="size in sizes" @click="selectSize(size)"  style="margin-right: 5px; margin-top: 5px;">@{{ size.name }} Oz - @{{ size.ml }} ml</button> 
+                        <div class="btn radios " v-for="size in sizes" @click="selectSize(size)"  style="margin-right: 5px; margin-top: 5px;">@{{ size.name }} Oz - @{{ size.ml }} ml</div> 
                     </div>
 
      
