@@ -35,7 +35,7 @@ class ForgotPasswordController extends Controller
                 \Mail::send("emails.forgotPassword", $data, function($message) use ($to_name, $to_email) {
 
                     $message->to($to_email, $to_name)->subject("¡Recuperar contraseña!");
-                    $message->from("ventas@aromantica.co","Aromantica");
+                    $message->from("ventas@aromantica.co", env("MAIL_FROM_NAME"));
     
                 });
 

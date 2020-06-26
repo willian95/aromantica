@@ -228,7 +228,7 @@
                                 <div class="form-group">
                                     <label for="identification">Cédula</label>
                 
-                                    <input type="text" class="form-control" v-model="identification" id="identification">
+                                    <input type="text" class="form-control" v-model="identification" id="identification" @keypress="isNumber($event)" style="padding-left: 35px;">
                                     <i class="fa fa-id-card icon_form"></i>
                                 </div>
                                 </div>
@@ -236,7 +236,7 @@
                                     
                                     <div class="form-group">
                                         <label for="phone">Teléfono</label>
-                                        <input type="text" class="form-control" v-model="phone" id="phone">
+                                        <input type="text" class="form-control" v-model="phone" id="phone" @keypress="isNumber($event)">
                                         <i class="fa fa-phone icon_form"></i>
                                     </div>
                           
@@ -271,17 +271,10 @@
                           </div>
                                 </div>
                             </div>
-                       
-                          
-        
-                         
-        
-                        
-        
                       
-                          <div class="form-group  text-lg-right">
+                          <!--<div class="form-group  text-lg-right">
                             <a href="" class="texto">¿Has olvidado tu contraseña?</a>
-                          </div>
+                          </div>-->
                           <div class=" form-group mt-4 text-center">
                             <button class="btn btn-primary btn-custom " @click="register()">Registrarse</button>
         
@@ -292,9 +285,9 @@
                     <div class=" main-login__item bg-login">
                       <div class="mb-5 text-center">
                         <p>Inicia sesion con</p>
-                        <a class="btn-login btn-login2 mr-2" href=""> <img class=img_social src="assets/img/facebook.png"
+                        <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}"> <img class=img_social src="assets/img/facebook.png"
                             alt=""> Facebook</a>
-                        <a class="btn-login" href=""> <img class="img_social" src="assets/img/google.png" alt="">
+                        <a class="btn-login" href="{{ url('/google/redirect') }}"> <img class="img_social" src="assets/img/google.png" alt="">
                           Google</a>
                       </div>
         
@@ -387,7 +380,7 @@
                                 <i class="fa fa-lock icon_form"></i>
                             </div>
                             <div class="form-group  text-lg-right">
-                                <a href="{{ url('/forgot-password') }}" class="texto">¿Has olvidado tu contraseña?</a>
+                                <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu contraseña?</a>
                             </div>
                             <div class=" form-group mt-4 text-center">
                                 <button class="btn btn-primary btn-custom " @click="login()">Ingresar</button>
@@ -604,7 +597,16 @@
                 }
             },
             methods:{
-                
+
+                isNumber: function(evt) {
+                  evt = (evt) ? evt : window.event;
+                  var charCode = (evt.which) ? evt.which : evt.keyCode;
+                  if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+                    evt.preventDefault();;
+                  } else {
+                    return true;
+                  }
+                },
                 register(){
 
                     axios.post("{{ url('/register') }}", {name: this.name, email:this.email, password: this.password, password_confirmation: this.password_confirmation, phone: this.phone, identification: this.identification, address: this.address}).then(res => {

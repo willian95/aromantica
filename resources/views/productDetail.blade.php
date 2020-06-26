@@ -45,11 +45,11 @@
            
             <div class="slider slider-for__details">
               <div>
-                <img src="assets/img/productos/perfume1.png" alt="">
+                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
               </div>
-              <div>
+              <!--<div>
                 <img src="assets/img/productos/perfume1.png" alt="">
-              </div>
+              </div>-->
             </div>
             <!---mini---->
             <div class="slider slider-nav__details">
@@ -72,7 +72,7 @@
                         <p>@{{ title }}</p>
                       </div>
                       <div class="main-top__price justify-content-between">
-                        <p> @{{ price }}</p>
+                        <p>$ @{{ price }}</p>
 
                
                         <div class="cantidad_btn">
@@ -86,9 +86,9 @@
 
                       </div>
                       <div class="barra mb-3">
-                        <p class="details__txt">Tamaño : 1.7 oz / 50ml</p>
+                        <p class="details__txt">Tamaño : @{{ size.name }} oz / @{{ size.ml }} ml</p>
                        <div>
-                        <p>Cantidades disponibles: <span>10</span></p>
+                        <p>Cantidades disponibles: <span>@{{ stock }}</span></p>
                         <div class="progress">
                           <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
                             aria-valuemin="0" aria-valuemax="10"></div>
@@ -204,6 +204,7 @@
                     title:"{{ $product->name }}",
                     category:"{{ $product->category->name }}",
                     brand:"{{ $product->brand->name }}",
+                    image:"{{ $product->image }}",
                     productTypeSizes:JSON.parse('{!! json_encode($product->productTypeSizes) !!}'),
                     types:[],
                     sizes:[],
@@ -221,6 +222,7 @@
                     this.type = type
 
                     this.sizes = []
+                    this.size = ""
                     this.productTypeSizes.forEach((data, index) => {
 
                         if(data.type == type){
@@ -301,12 +303,19 @@
             },
             mounted(){
 
-                this.productTypeSizes.forEach((data, index) => {
+              this.productTypeSizes.forEach((data, index) => {
 
-                    this.types.push(data.type)
-                    
+                this.types.push(data.type)
+                if(index == 0){
+                  this.type = this.types[0]
+                  this.selectType(this.type)
+                  this.selectSize(this.sizes[0])
+                }
+                
 
-                })
+              })
+
+              
 
 
             }
