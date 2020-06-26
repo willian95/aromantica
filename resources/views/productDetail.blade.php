@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="container" id="dev-area">
+   <!--- <div class="container" id="dev-area">
         <div class="row">
             <div class="col-lg-4">
                 <h3 class="text-center">@{{ title }}</h3>
@@ -25,7 +25,159 @@
 
             </div>  
         </div>
-    </div>
+    </div>--->
+    <section class="container mt-5" id="dev-area">
+        <div class="main main-details__product">
+          <div class="grid__detail row">
+            <div class="col-md-6">
+              <div class="video">
+        
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+    
+                </div>
+                <div class="col-md-8">
+    
+                </div>
+              </div>
+    
+           
+            <div class="slider slider-for__details">
+              <div>
+                <img src="assets/img/productos/perfume1.png" alt="">
+              </div>
+              <div>
+                <img src="assets/img/productos/perfume1.png" alt="">
+              </div>
+            </div>
+            <!---mini---->
+            <div class="slider slider-nav__details">
+              <div>
+                <img src="assets/img/productos/perfume1.png" alt="">
+              </div>
+              <div>
+                <img src="assets/img/productos/perfume1.png" alt="">
+              </div>
+            </div>
+         
+            </div>
+            <div class="col-md-6">
+    
+              <div class="slider_details--text">
+                <div class="">
+                  <div class="main-top__item">
+                    <div class="main-top__text">
+                      <div class="main-top__title">
+                        <p>@{{ title }}</p>
+                      </div>
+                      <div class="main-top__price">
+                        <p> @{{ amount }}</p>
+                      </div>
+                      <div class="barra mb-3">
+                        <p class="details__txt">Tamaño : 1.7 oz / 50ml</p>
+                       <div>
+                        <p>Cantidades disponibles: <span>28</span></p>
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="10"></div>
+                        </div>
+                       </div>
+                      </div>
+                      
+                      
+    
+                      <div class="main-top__description">
+                        <p>CH Men Privé es una fragancia refinada y un tributo a la masculinidad extremadamente
+                          cautivador. Una firma sensual, al mismo tiempo rica, con textura y misteriosa. CH Men Privé es
+                          cálida y lujosa, con notas de whisky y de cuero, provocativa, moderna y rica.</p>
+                      </div>
+                      
+                      <p>Presentaciones</p>
+                      <div class="presentaciones">
+                    <div>
+                        <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">@{{ type.name }}</button>
+                    </div>
+                      
+                       
+                    <div>
+                       
+                        <button class="btn btn-success" v-for="size in sizes" @click="selectSize(size)"  style="margin-right: 5px; margin-top: 5px;">@{{ size.name }} Oz - @{{ size.ml }} ml</button> 
+                    </div>
+
+     
+
+                      <!---  <div class="tabset">
+                      
+                          <input type="radio" name="tabset" id="tab1" checked>
+                          <label for="tab1">Parfum</label>
+                      
+                          <input type="radio" name="tabset" id="tab2">
+                          <label for="tab2">Eau de toilete</label>
+                        
+                          <input type="radio" name="tabset" id="tab3">
+                          <label for="tab3">Eau deperfum</label>
+    
+                          <div class="tab-panels">
+                    
+                            <div class="tab-panel">
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">1.7 OZ</label>
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">3.4 OZ</label>
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">4.2 OZ</label>
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">1.7 OZ</label>
+                            </div>
+                         
+    
+                            <div class="tab-panel">
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">3.4 OZ</label>
+    
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">4.2 OZ</label>
+    
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">1.7 OZ</label>
+                            </div>
+                            <section class="tab-panel">
+    
+                              <input class="" type="radio">
+                              <label class="mr-4" for="">1.7 OZ</label>
+                            </section>
+                          </div>
+    
+                        </div>--->
+    
+                      </div>
+    
+                      <div class="float-left main-top__btn ">
+                        <a style="color:#fff" class="btn-custom mr-4" @click="addToCart()">
+                          Añadir >
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+    
+                </div>
+              </div>
+            </div>
+    
+          </div>
+    
+    
+        </div>
+      </section>
+    
 
 @endsection
 

@@ -101,15 +101,7 @@
                       </li>
                   @else
 
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">{{ \Auth::user()->name }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ url('/shopping/index') }}">Compras</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
-                      </li>
+                   
 
                   @endif
 
@@ -121,9 +113,24 @@
                   <li class="nav-item">
                       <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
                   </li>
-              @else
+              @else <li class='nav-item dropdown dowms'>
+                <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  '
+                  data-toggle='dropdown'>
+                  <i class="flaticon-user"></i>
+                  {{ \Auth::user()->name }}
+                </a>
+                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                  <div class='content-drop'>
+                    <a class='dropdown-item' href='#'>
+                      <a class="nav-link" href="{{ url('/shopping/index') }}">Compras</a>
 
-                  <li class="nav-item">
+                      <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+                 <!-- <li class="nav-item">
                       <a class="nav-link" href="#">{{ \Auth::user()->name }}</a>
                   </li>
                   <li class="nav-item">
@@ -131,7 +138,7 @@
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
-                  </li>
+                  </li>--->
 
               @endif
               

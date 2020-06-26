@@ -1299,9 +1299,7 @@ tab detalles
   max-width: 1050px;
 }
 
-.presentaciones{
-  display: flex;
-}
+
 .presentaciones p{
   margin-right: 20px;
 }
@@ -1313,4 +1311,19 @@ tab detalles
 
 .terminos{
   cursor: pointer;
+}
+
+.optiones{
+  border: 1px solid #a2266f;
+  z-index: 111;
+  color: #a2266f;
+  background: transparent;
+}
+.presentaciones{
+  display: grid;
+}
+.presentaciones .btn-primary:hover {
+  color: #fff;
+  background-color: #0c4572;
+  border-color: #0c4572;
 }
