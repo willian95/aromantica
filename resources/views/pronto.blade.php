@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <div class="soon">
-    <img class="soon-img" src="https://images.unsplash.com/photo-1557827983-012eb6ea8dc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=755&q=80" alt="">
+    <img class="soon-img" src="https://images.unsplash.com/photo-1557827999-c0bb00bbee13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=755&q=80" alt="">
 
     <div class="mask">
         <img class="logo" src="{{ asset('assets/img/Logo.png') }}" alt="">
@@ -28,9 +28,10 @@
         font-family: 'Varela Round', sans-serif;
     position: relative;
     margin: 0px 30px;
-    color: #000000;
+    color: #ffffff;
     text-transform: uppercase;
     margin-top: 3px;
+    text-shadow: 0px 0px 10px black;
     }
     .line{
  
