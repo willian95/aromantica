@@ -222,6 +222,7 @@
                     this.type = type
 
                     this.sizes = []
+                    this.size = ""
                     this.productTypeSizes.forEach((data, index) => {
 
                         if(data.type == type){
