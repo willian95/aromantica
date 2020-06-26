@@ -639,7 +639,7 @@
 
                         if(res.data.success == true){
                             alert(res.data.msg)
-                            window.location.href="{{ url('/front-test') }}"
+                            window.location.href="{{ url('/') }}"
                         }else{
                             alert(res.data.msg)
                         }
