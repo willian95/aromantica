@@ -1357,3 +1357,15 @@ tab detalles
   left: -7px;
   top: 15px;
 }
+.cantidad_btn{
+  border: 1px solid #0000007a;
+  border-radius: 10px;
+  height: 33px;
+}
+.cantidad_btn .btn-success {
+  color: #000000a1;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0px 10px;
+  line-height: 1.9;
+}

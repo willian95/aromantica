@@ -71,14 +71,24 @@
                       <div class="main-top__title">
                         <p>@{{ title }}</p>
                       </div>
-                      <div class="main-top__price">
+                      <div class="main-top__price justify-content-between">
                         <p> @{{ price }}</p>
+
+               
+                        <div class="cantidad_btn">
+                           
+                       
+                        <button class="btn btn-success" @click="substractAmount()">-</button>
+                        @{{ amount }}
+                        <button class="btn btn-success" @click="addAmount()">+</button>
+                        </div>
+        
 
                       </div>
                       <div class="barra mb-3">
                         <p class="details__txt">Tamaño : 1.7 oz / 50ml</p>
                        <div>
-                        <p>Cantidades disponibles: <span>@{{ amount }}</span></p>
+                        <p>Cantidades disponibles: <span>10</span></p>
                         <div class="progress">
                           <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
                             aria-valuemin="0" aria-valuemax="10"></div>
