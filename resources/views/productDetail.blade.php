@@ -45,11 +45,11 @@
            
             <div class="slider slider-for__details">
               <div>
-                <img src="assets/img/productos/perfume1.png" alt="">
+                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.image }}" alt="">
               </div>
-              <div>
+              <!--<div>
                 <img src="assets/img/productos/perfume1.png" alt="">
-              </div>
+              </div>-->
             </div>
             <!---mini---->
             <div class="slider slider-nav__details">
