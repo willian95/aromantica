@@ -86,9 +86,9 @@
 
                       </div>
                       <div class="barra mb-3">
-                        <p class="details__txt">Tamaño : 1.7 oz / 50ml</p>
+                        <p class="details__txt">Tamaño : @{{ size.name }} oz / @{{ size.ml }} ml</p>
                        <div>
-                        <p>Cantidades disponibles: <span>10</span></p>
+                        <p>Cantidades disponibles: <span>@{{ stock }}</span></p>
                         <div class="progress">
                           <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
                             aria-valuemin="0" aria-valuemax="10"></div>
