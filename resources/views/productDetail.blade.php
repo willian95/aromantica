@@ -45,7 +45,7 @@
            
             <div class="slider slider-for__details">
               <div>
-                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.image" alt="">
+                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
               </div>
               <!--<div>
                 <img src="assets/img/productos/perfume1.png" alt="">
@@ -204,6 +204,7 @@
                     title:"{{ $product->name }}",
                     category:"{{ $product->category->name }}",
                     brand:"{{ $product->brand->name }}",
+                    image:"{{ $product->image }}",
                     productTypeSizes:JSON.parse('{!! json_encode($product->productTypeSizes) !!}'),
                     types:[],
                     sizes:[],
