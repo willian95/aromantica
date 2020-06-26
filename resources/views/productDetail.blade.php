@@ -45,7 +45,7 @@
            
             <div class="slider slider-for__details">
               <div>
-                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.image }}" alt="">
+                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.image" alt="">
               </div>
               <!--<div>
                 <img src="assets/img/productos/perfume1.png" alt="">
