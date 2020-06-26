@@ -303,8 +303,8 @@
 
                 this.productTypeSizes.forEach((data, index) => {
 
-                    this.types.push(data.type)
-                    
+                  this.types.push(data.type)
+                  this.type = this.types[0]
 
                 })
 
