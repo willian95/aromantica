@@ -72,7 +72,7 @@
                         <p>@{{ title }}</p>
                       </div>
                       <div class="main-top__price justify-content-between">
-                        <p> @{{ price }}</p>
+                        <p>$ @{{ price }}</p>
 
                
                         <div class="cantidad_btn">
@@ -301,12 +301,19 @@
             },
             mounted(){
 
-                this.productTypeSizes.forEach((data, index) => {
+              this.productTypeSizes.forEach((data, index) => {
 
-                  this.types.push(data.type)
+                this.types.push(data.type)
+                if(index == 0){
                   this.type = this.types[0]
+                  this.selectType(this.type)
+                  this.selectSize(this.sizes[0])
+                }
+                
 
-                })
+              })
+
+              
 
 
             }
