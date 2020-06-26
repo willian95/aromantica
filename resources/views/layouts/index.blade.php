@@ -271,13 +271,6 @@
                           </div>
                                 </div>
                             </div>
-                       
-                          
-        
-                         
-        
-                        
-        
                       
                           <!--<div class="form-group  text-lg-right">
                             <a href="" class="texto">¿Has olvidado tu contraseña?</a>
