@@ -15,7 +15,8 @@
 
 Route::get('/', function () {
     //return view('welcome');
-    echo "<h3>Coming soon</h3>";
+  //  echo "<h3>Coming soon</h3>";
+    return view("pronto");
 });
 
 Route::get('/front-test', function () {
