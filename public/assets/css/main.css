@@ -1299,9 +1299,7 @@ tab detalles
   max-width: 1050px;
 }
 
-.presentaciones{
-  display: flex;
-}
+
 .presentaciones p{
   margin-right: 20px;
 }
@@ -1313,4 +1311,61 @@ tab detalles
 
 .terminos{
   cursor: pointer;
+}
+
+.optiones{
+  border: 1px solid #a2266f;
+  z-index: 111;
+  color: #a2266f;
+  background: transparent;
+}
+.presentaciones{
+  display: grid;
+}
+.presentaciones .btn-primary:hover {
+  color: #fff;
+  background-color: #0c4572;
+  border-color: #0c4572;
+}
+.presentaciones .btn-primary.focus, .btn-primary:focus {
+  color: #fff;
+  background-color: #0c4572;
+  border-color: #0c4572;
+  box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+}
+.radios{
+  position: relative;
+}
+
+.radios::before{
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #a2266f;
+  left: -12px;
+  top: 10px;
+}
+.radios::after{
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #a2266f;
+  border-radius: 50%;
+  left: -7px;
+  top: 15px;
+}
+.cantidad_btn{
+  border: 1px solid #0000007a;
+  border-radius: 10px;
+  height: 33px;
+}
+.cantidad_btn .btn-success {
+  color: #000000a1;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0px 10px;
+  line-height: 1.9;
 }
