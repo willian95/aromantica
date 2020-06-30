@@ -43,7 +43,7 @@
                       </div>
                       <div>
                         <p>Presentaciones:</p>
-                       <div class="presentaciones">
+                       <div class="presentaciones d-flex">
 
                         <p>50ml</p>
                         <p>100ml</p>

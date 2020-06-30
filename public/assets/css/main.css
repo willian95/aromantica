@@ -424,7 +424,8 @@ body.offcanvas-expanded {
   font-weight: 300;
   border: none;
   display: inline-block;
-  padding: 0 25px;
+  padding: 0 50px;
+  cursor: pointer;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1370,3 +1371,14 @@ tab detalles
   line-height: 1.9;
 }
 
+.pepe{
+  box-shadow: 0px 0px 10px #00000047;
+}
+.pepe  .nav-link {
+  color: #0c4572!important;
+}
+
+.border-blue{
+  border: 1px solid #0c4572;
+  border-radius: 10px;
+}

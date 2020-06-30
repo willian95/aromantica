@@ -17,7 +17,7 @@
         <link href="{{ asset('assets/css/animate.css') }}" rel='stylesheet'>
         <link href="{{ asset('assets/css/main.css') }}" rel='stylesheet'>
         <link href="{{ asset('assets/css/login.css') }}" rel='stylesheet'>
-        <link href="{{ asset('/css/responsive.css') }}" rel='stylesheet'>
+        <link href="{{ asset('assets/css/responsive.css') }}" rel='stylesheet'>
         <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
         <title>Aromantica</title>
     </head>
@@ -29,10 +29,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>--->
 
-            <nav class='navbar navbar-expand-md navbar-fixed-js' id="navbarSupportedContent">
+            <nav  @if(url()->current() == url('/front-test')) class='navbar navbar-expand-md navbar-fixed-js container-fluid '  @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid'   @endif id="navbarSupportedContent">
                 <div class='container-fluid'>
-                  <a class='navbar-brand' href='#'>
-                    <img alt='' src='assets/img/logo.png'>
+                  <a class='navbar-brand' href='{{ url('/') }}'>
+                    <img alt='' src='{{ asset('assets/img/logo.png') }}'>
                   </a>
                   <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg' data-toggle='offcanvas'
                     type='button'>
@@ -41,9 +41,9 @@
                     </span>
                   </button>
                   <div class='offcanvas-collapse fil' id='navbarNav'>
-                    <ul class='navbar-nav'>
+                    <ul class='navbar-nav'>  
                       <li class='nav-item active'>
-                        <a class='nav-link active nav-link-black ' href='index.html'>Inicio</a>
+                        <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
                       </li>
                       <!--<li class='nav-item'>
                         <a class='nav-link nav-link-black ' href='filtro.html'>Tienda</a>
@@ -65,8 +65,8 @@
 
 
                       <li class='nav-item dropdown dowms'>
-                        <a href='#' @if(url()->current() == url('/front-test')) class='nav-link dropdown-toggle' @else   @endif aria-expanded='false' aria-haspopup='true'
-                          data-toggle='dropdown'>
+                        <a href='#' aria-expanded='false' aria-haspopup='true'
+                          data-toggle='dropdown' class='nav-link dropdown-toggle nav-link-black '>
                           Caballeros
                         </a>
                         <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
@@ -96,9 +96,9 @@
                           border-radius: 10px;" class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
                       </li>
 
-              <li class="nav-item">
+                    <!--- <li class="nav-item">
                           <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                      </li>
+                      </li>--->
                   @else
 
                    
@@ -114,17 +114,18 @@
                       <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
                   </li>
               @else <li class='nav-item dropdown dowms'>
-                <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  '
+                <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle border-blue '
                   data-toggle='dropdown'>
                   <i class="flaticon-user"></i>
                   {{ \Auth::user()->name }}
                 </a>
+
                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
                   <div class='content-drop'>
-                    <a class='dropdown-item' href='#'>
-                      <a class="nav-link" href="{{ url('/shopping/index') }}">Compras</a>
+                    <a class='dropdown-item nav-link-black' href='#'>
+                      <a class="nav-link nav-link-black" href="{{ url('/shopping/index') }}">Compras</a>
 
-                      <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
+                      <a class="nav-link nav-link-black" href="{{ url('/logout') }}">Cerrar sesión</a>
                     </a>
                   </div>
                 </div>
@@ -446,7 +447,9 @@
         <footer class="container-fluid">
           <div class="main-footer">
             <div class="main-footer__item">
-              <img class="logo_footer" src="assets/img/Logo.png" alt="">
+              <a href="{{ url('/') }}">
+                <img class="logo_footer" src="{{ asset('assets/img/logo.png') }}" alt="">
+              </a>
             </div>
             <div class="main-footer__item">
               <p class="ml-4 mb-2">Categorias</p>
