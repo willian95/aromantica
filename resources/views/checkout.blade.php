@@ -76,7 +76,7 @@
                     identification:"{{ Auth::check() ? Auth::user()->identification : '' }}",
                     address:"{{ Auth::check() ? Auth::user()->address : '' }}",
                     phone:"{{ Auth::check() ? Auth::user()->phone : '' }}",
-                    readonly:"{{ Auth::check() ? true : false }}",
+                    readonly:"{!! Auth::check() ? true : false !!}",
                     total:0
                 }
             },
