@@ -76,7 +76,7 @@
                     identification:"{{ Auth::check() ? Auth::user()->identification : '' }}",
                     address:"{{ Auth::check() ? Auth::user()->address : '' }}",
                     phone:"{{ Auth::check() ? Auth::user()->phone : '' }}",
-                    readonly:"{!! Auth::check() ? true : false !!}",
+                    readonly:"false",
                     total:0
                 }
             },
@@ -135,6 +135,11 @@
 
                 this.fetch()
                 this.guestFetch()
+
+                this.readonly = "{{ Auth::check() }}"
+                if(this.readonly == ""){
+                    this.readonly = false
+                }
 
             }
 
