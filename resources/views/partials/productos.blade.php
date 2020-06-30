@@ -8,10 +8,10 @@
       @foreach(App\Product::inRandomOrder()->take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes", "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
       <div class="main-products__item">
         <div class="main-products__box" >
-          <div class="views">
+          <!--<div class="views">
             <span data-toggle="modal" data-target="#producto_modal"><i class="flaticon-view"></i></span>
             <span href=""><i class="flaticon-shopping-cart"></i></span>
-          </div>
+          </div>-->
           <div class="main-products__img">
             <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" class="card-img-top" alt="...">
           </div>

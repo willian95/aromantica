@@ -3,21 +3,27 @@
     <!---  <div class="title__general">
         <h2>Categorías</h2>
       </div>--->
+     
+
       <div class="main-categories">
+        @foreach(App\Category::all() as $category)
         <div class="main-categories__item">
           <a href="categorias.html">
             <div class="main-categories__content categories-transition"
-              style="background-image: url('assets/img/categorias/dama.jpg');">
+              style="background-image: url('{{ env('CMS_URL').'/images/categories/'.$category->image }}');">
               <div class="mask_deg">
                 <div class="titulo">
-                  Damas
+                  {{$category->name}}
                   <i class="fa fa-arrow"></i>
                 </div>
               </div>
             </div>
           </a>
         </div>
-        <div class="main-categories__item">
+        @endforeach
+      </div>
+
+        <!--<div class="main-categories__item">
           <a href="categorias.html">
             <div class="main-categories__content categories-transition"
               style="background-image: url('assets/img/categorias/caballero.jpg');">
@@ -55,7 +61,7 @@
               </div>
             </div>
           </a>
-        </div>
+        </div>-->
       </div>
     </section>
   

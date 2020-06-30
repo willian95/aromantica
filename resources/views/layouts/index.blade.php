@@ -466,6 +466,9 @@
                 <li class='nav-item'>
                   <a class='' href='#tienda'>Cremas</a>
                 </li>
+                <li class='nav-item' style='color: #000 !important'>
+                  <a style='color: #000 !important' href="{{ url('/cart/index') }}">Carrito</a>
+                </li>
               </ul>
       
             </div>

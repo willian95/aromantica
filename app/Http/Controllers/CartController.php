@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\ProductTypeSize;
 
 class CartController extends Controller
 {
@@ -47,6 +48,30 @@ class CartController extends Controller
 
             $cart = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.size", "productTypeSize.type")->get();
             return response()->json(["success" => true, "products" => $cart]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]); 
+        }
+
+    }
+
+    function guestFetch(Request $request){
+
+        try{
+
+            $guestProducts = [];
+            foreach($request->cart as $cart){
+
+                $product = ProductTypeSize::with("product", "size", "type")->where("id", $cart['productTypeSizeId'])->first();
+
+                $guestProducts[] = [
+                    "product" => $product,
+                    "amount" => $cart['amount'] 
+                ];
+
+            }
+
+            return response()->json(["success" => true, "guestProducts" => $guestProducts]);
 
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]); 

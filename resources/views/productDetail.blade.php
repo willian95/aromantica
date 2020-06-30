@@ -30,9 +30,9 @@
         <div class="main main-details__product">
           <div class="grid__detail row">
             <div class="col-md-6">
-              <div class="video">
+              <!--<div class="video">
         
-              </div>
+              </div>-->
               <div class="row">
                 <div class="col-md-3">
     
@@ -52,14 +52,14 @@
               </div>-->
             </div>
             <!---mini---->
-            <div class="slider slider-nav__details">
+            <!--<div class="slider slider-nav__details">
               <div>
                 <img src="assets/img/productos/perfume1.png" alt="">
               </div>
               <div>
                 <img src="assets/img/productos/perfume1.png" alt="">
               </div>
-            </div>
+            </div>-->
          
             </div>
             <div class="col-md-6">
@@ -99,9 +99,7 @@
                       
     
                       <div class="main-top__description">
-                        <p>CH Men Privé es una fragancia refinada y un tributo a la masculinidad extremadamente
-                          cautivador. Una firma sensual, al mismo tiempo rica, con textura y misteriosa. CH Men Privé es
-                          cálida y lujosa, con notas de whisky y de cuero, provocativa, moderna y rica.</p>
+                        <p>@{{ description }}</p>
                       </div>
                       
                       <p>Presentaciones</p>
@@ -205,6 +203,7 @@
                     category:"{{ $product->category->name }}",
                     brand:"{{ $product->brand->name }}",
                     image:"{{ $product->image }}",
+                    description:"{{ $product->description }}",
                     productTypeSizes:JSON.parse('{!! json_encode($product->productTypeSizes) !!}'),
                     types:[],
                     sizes:[],
@@ -289,6 +288,8 @@
 
                             })
 
+                        }else{
+                          this.guestCart()
                         }
 
                     }else{
@@ -296,6 +297,35 @@
                         alert("Debe seleccionar una cantidad")
 
                     }
+
+                },
+                guestCart(){
+
+                  let cart = []
+                  if(window.localStorage.getItem('cartAromantica') != null){
+                      cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+                  }
+                  
+                  var exists = false
+
+                  cart.forEach((data, index)=>{
+
+                      if(data.productTypeSizeId == this.productTypeSize.id){
+                          data.amount = data.amount + this.amount
+                          exists = true
+                      }
+
+                  })
+                  
+
+                  if(exists == false){
+                      cart.push({productTypeSizeId: this.productTypeSize.id, amount: this.amount})
+                  }
+                  
+                  window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+
+                  alert("Producto añadido al carrito")
+
 
                 }
 
