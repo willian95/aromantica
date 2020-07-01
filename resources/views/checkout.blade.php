@@ -5,56 +5,63 @@
     <div class="container" id="dev-area">
         <div class="row">
             <div class="col-12">
-                <h3 class="text-center">Checkout</h3>
+                <div class="title__general text-left">
+                    <h2>Checkout</h2>
+                  </div>
+               
             </div>
-            <div class="col-md-6">
+          <div class="col-md-6">
+            <div class="">
                 <div class="form-group">
-                    <label for="name">Nombre</label>
+                    <label for="name"><i class="fa fa-user icon_form"></i></i> Nombre</label>
                     <input type="text" class="form-control" v-model="name" id="name" :readonly="readonly">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="">
 
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email"><i class="fa fa-envelope icon_form"></i>Email</label>
                     <input type="text" class="form-control" v-model="email" id="email" :readonly="readonly">
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="">
 
                 <div class="form-group">
-                    <label for="phone">Teléfono</label>
+                    <label for="phone"><i class="fa fa-phone icon_form"></i>Teléfono</label>
                     <input type="text" class="form-control" v-model="phone" id="phone">
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="">
 
                 <div class="form-group">
-                    <label for="identification">Cédula</label>
+                    <label for="identification"><i class="fa fa-id-card icon_form"></i>Cédula</label>
                     <input type="text" class="form-control" v-model="identification" id="identification">
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="">
 
                 <div class="form-group">
-                    <label for="dirección">Dirección</label>
+                    <label for="dirección"><i class="fa fa-globe icon_form"></i>Dirección</label>
                     <input type="text" class="form-control" v-model="address" id="dirección">
                 </div>
 
             </div>
+           
+          </div>
             <div class="col-md-6">
+                <div class="card-pay text-center">
 
-                <div class="form-group">
-                    <label>Total: @{{ total }}</label>
-                </div>
-
+                    <div class="form-group">
+                        <label class="total">Total: @{{ total }}</label>
+                    </div>
+    
+            
+    
+                <button class="btn btn-custom " @click="payment()">Pagar</button>
             </div>
-
-            <div class="col-md-12">
-                <button class="btn btn-success" @click="payment()">Pagar</button>
             </div>
 
 

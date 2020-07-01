@@ -11,11 +11,12 @@
           <!--<div class="views">
             <span data-toggle="modal" data-target="#producto_modal"><i class="flaticon-view"></i></span>
             <span href=""><i class="flaticon-shopping-cart"></i></span>
-          </div>-->
+          </div>--> 
+        <a href="{{ url('/product/'.$product->slug) }}" >
           <div class="main-products__img">
             <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" class="card-img-top" alt="...">
           </div>
-          <a href="{{ url('/product/'.$product->slug) }}" >
+       
             <div class="main-products__text">
               <div class="main-products__title_cat">
                 <p> {{ $product->brand->name }}</p>
@@ -37,7 +38,7 @@
             </div>
           </a>
         </div>
-
+   
       </div>
       @endforeach
 
