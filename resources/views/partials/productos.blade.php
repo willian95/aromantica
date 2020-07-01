@@ -29,9 +29,9 @@
               </div>-->
               <div class="presentaciones presentaciones_card ">
              
-                @foreach($product->productTypeSizes as $productTypeSize)
+                @foreach(App\ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get() as $productTypeSize)
 
-                <p>{{ $productTypeSize->type->name }} {{ $productTypeSize->size->ml }}ml</p>
+                <p>{{ $productTypeSize->type->name }}</p>
 
                 @endforeach
                </div>
