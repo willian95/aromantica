@@ -34,8 +34,6 @@
                   <a class='navbar-brand d-flex align-items-center' href='{{ url('/') }}'>
                     <img alt='' src='{{ asset('assets/img/logo.png') }}'>
                     <input class="form-control" autocomplete="false" id="myInput" type="text" placeholder="Buscar..">
-
-
                   </a>
 
                   
