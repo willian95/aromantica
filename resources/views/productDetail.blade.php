@@ -223,10 +223,10 @@
                     this.sizes = []
                     this.size = ""
                     this.productTypeSizes.forEach((data, index) => {
-
-                        if(data.type == type){
+                      
+                      if(data.type_id == type.id){
                             this.sizes.push(data.size)
-                        }
+                      }
 
                     })
 
@@ -240,7 +240,7 @@
 
                         this.productTypeSizes.forEach((data, index) => {
 
-                            if(data.type == this.type && data.size == this.size){
+                            if(data.type_id == this.type.id && data.size_id == this.size.id){
                                 
                                 this.productTypeSize = data
                                 this.price = data.price
@@ -334,8 +334,19 @@
             mounted(){
 
               this.productTypeSizes.forEach((data, index) => {
+                var typeExists = false
+                this.types.forEach((type, index) => {
+                  
+                  if(type.id == data.type.id){
+                    typeExists = true
+                  }
 
-                this.types.push(data.type)
+                })
+
+                if(typeExists == false){
+                  this.types.push(data.type)
+                }
+
                 if(index == 0){
                   this.type = this.types[0]
                   this.selectType(this.type)

@@ -37,12 +37,20 @@
     
                                             </td>
                                             <td class="text-center">@{{ product.amount }}</td>
-                                              <td></td>
-                                            <td class="text-center"><div class="btn "><p class="delete" href=""><span>x</span></p></div></td>
+                                            <td></td>
+                                            <td class="text-center"><div class="btn "><p class="delete" href="#" @click="erase(product.id)"><span>x</span></p></div></td>
                                       
     
     
                                         </tr>
+                                        <tr v-for="(product, index) in guestProducts">
+                                            <td class="text-center w-150">@{{ product.product.product.name }} - @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
+                                            <td class="text-center">@{{ product.amount }}</td>
+                                            <td class="text-center">$ @{{ parseFloat(product.product.price) }}</td>
+                                            <td class="text-center">$ @{{ parseFloat(product.product.price) * parseInt(product.amount) }}</td>
+                                            <td class="text-center"><div class="btn "><p class="delete" href="#" @click="guestDelete(index)"><span>x</span></p></div></td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
     

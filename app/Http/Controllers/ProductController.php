@@ -14,6 +14,9 @@ class ProductController extends Controller
         try{
 
             $product = Product::where("slug", $slug)->with("productTypeSizes.size", "productTypeSizes.type", "productTypeSizes", "category", "brand")->first();
+            //$types = ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get();
+            //$sizes = ProductTypeSize::where("product_id", $product->id)->groupBy("size_id")->get();
+
             return view("productDetail", ["product" => $product]);
 
         }catch(\Exception $e){
