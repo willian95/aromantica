@@ -31,9 +31,14 @@
 
             <nav  @if(url()->current() == url('/front-test')) class='navbar navbar-expand-md navbar-fixed-js container-fluid '  @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid'   @endif id="navbarSupportedContent">
                 <div class='container-fluid'>
-                  <a class='navbar-brand' href='{{ url('/') }}'>
+                  <a class='navbar-brand d-flex align-items-center' href='{{ url('/') }}'>
                     <img alt='' src='{{ asset('assets/img/logo.png') }}'>
+                    <input class="form-control" autocomplete="false" id="myInput" type="text" placeholder="Buscar..">
+
+
                   </a>
+
+                  
                   <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg' data-toggle='offcanvas'
                     type='button'>
                     <span class='hamburger-box'>
