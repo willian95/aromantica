@@ -79,6 +79,12 @@ class CartController extends Controller
 
     }
 
+    function updateCartAmount(Request $request){
+
+        Cart::where("product_type_size_id", $request->productTypeSizeId)->where("user_id", \Auth::user()->id)->update(["amount" => $request->amount]);        
+
+    }
+
     function delete(Request $request){
 
         try{
