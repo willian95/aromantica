@@ -24,7 +24,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="product in products">
+                                        <tr v-for="(product, index) in products">
                                             <td class="text-center w-150">@{{ product.product_type_size.product.name }} - @{{ product.product_type_size.type.name }} - @{{ product.product_type_size.size.name }} Oz
                                             </td>
 
@@ -33,11 +33,11 @@
                                                 <p>CH MEN PRIVÉ</p>
                                             </td>-->
                                             <td class="text-center">
-                                                <span>$ @{{ parseFloat(product.product_type_size.price) * parseInt(product.amount) }}</span>
+                                                <span>$ @{{ parseFloat(product.product_type_size.price)  }}</span>
     
                                             </td>
-                                            <td class="text-center">@{{ product.amount }}</td>
-                                            <td></td>
+                                            <td class="text-center"><button class="btn btn-success" @click="substractAmountProduct(product, index)">-</button> @{{ product.amount }} <button class="btn btn-success" @click="addAmountProduct(product, index)">+</button></td>
+                                            <td>$ @{{ parseFloat(product.product_type_size.price) * parseInt(product.amount) }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="erase(product.id)"><span>x</span></p></div></td>
                                       
     
@@ -45,8 +45,9 @@
                                         </tr>
                                         <tr v-for="(product, index) in guestProducts">
                                             <td class="text-center w-150">@{{ product.product.product.name }} - @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
-                                            <td class="text-center">@{{ product.amount }}</td>
                                             <td class="text-center">$ @{{ parseFloat(product.product.price) }}</td>
+                                            <td class="text-center"> <button class="btn btn-success" @click="substractAmountGuestProduct(index)">-</button> @{{ product.amount }} <button class="btn btn-success" @click="addAmountGuestProduct(index)">+</button></td>
+                                            
                                             <td class="text-center">$ @{{ parseFloat(product.product.price) * parseInt(product.amount) }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="guestDelete(index)"><span>x</span></p></div></td>
                                         </tr>
@@ -143,6 +144,73 @@
             },
             methods:{
                 
+                addAmountProduct(product, index){
+                    
+                    if(this.products[index].amount + 1 <= this.products[index].product_type_size.stock)
+                    {
+                        this.products[index].amount++
+                        this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].amount)
+                    }
+
+                },
+                substractAmountProduct(product, index){
+                    if(this.products[index].amount - 1 > 0)
+                    {
+                        this.products[index].amount--
+                        this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].amount)
+                    }
+                },
+                addAmountGuestProduct(index){
+                    if(this.guestProducts[index].amount + 1 <= this.guestProducts[index].product.stock){
+                        
+                        this.guestProducts[index].amount++
+
+                        if(window.localStorage.getItem('cartAromantica') != null){
+                            cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+                        }
+
+                        cart.forEach((data)=>{
+
+                            if(data.productTypeSizeId == this.guestProducts[index].product.id){
+                                data.amount = this.guestProducts[index].amount
+                                exists = true
+                            }
+
+                        })
+                        
+                        window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+
+                        this.total = 0
+                        this.fetch()
+                        this.guestFetch()
+                    }
+                    
+                },
+                substractAmountGuestProduct(index){
+                    if(this.guestProducts[index].amount - 1 > 0){
+                        
+                        this.guestProducts[index].amount--
+
+                        if(window.localStorage.getItem('cartAromantica') != null){
+                            cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+                        }
+
+                        cart.forEach((data)=>{
+
+                            if(data.productTypeSizeId == this.guestProducts[index].product.id){
+                                data.amount = this.guestProducts[index].amount
+                                exists = true
+                            }
+
+                        })
+                        
+                        window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+
+                        this.total = 0
+                        this.fetch()
+                        this.guestFetch()
+                    }
+                },
                 fetch(){
 
                     axios.get("{{ url('/cart/fetch') }}")
@@ -160,6 +228,18 @@
                             })
 
                         }
+
+                    })
+
+                },
+                updateCartAmount(product_type_size_id, amount){
+
+                    axios.post("{{ url('/cart/amount/update') }}", {productTypeSizeId: product_type_size_id, amount: amount})
+                    .then(res => {
+
+                        this.total = 0
+                        this.fetch()
+                        this.guestFetch()
 
                     })
 
