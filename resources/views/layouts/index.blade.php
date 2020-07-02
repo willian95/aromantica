@@ -517,65 +517,6 @@
           </div>
         </div>
         
-  <!-- modal producto views -->
-  <div class="modal fade" id="producto_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-
-        <div class="content_modal">
-          <div class="content_modal-item">
-            <p class="titulo">CH MEN PRIVÉ</p>
-            <span>CH Men Privé es una fragancia refinada y un tributo a la masculinidad extremadamente
-              cautivador. Una firma sensual, al mismo tiempo rica, con textura y misteriosa. CH Men Privé es
-              cálida y lujosa, con notas de whisky y de cuero, provocativa, moderna y rica.</span>
-
-
-            <div class="main-top__price">
-              <p><span> $85,000</span> </p>
-
-            </div>
-
-
-          </div>
-          <div class="content_modal-item center">
-            <img src="assets/img/productos/perfume1.png" alt="">
-          </div>
-
-
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="barra">
-              <p> Vendidos:<span> 12</span></p>
-              <p>Disponible: <span>28</span></p>
-            </div>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                aria-valuemax="10"></div>
-            </div>
-          </div>
-          <div class="col-md-6 text-center">
-            <div class=" main-top__btn ">
-              <a class="btn-custom" href="detalle-producto.html">
-                Ordene ya >
-              </a>
-            </div>
-          </div>
-
-
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
