@@ -49,6 +49,7 @@ Route::post("/cart/store", "CartController@store");
 Route::get("/cart/fetch", "CartController@fetch");
 Route::post("/cart/guest/fetch", "CartController@guestFetch");
 Route::post("/cart/delete", "CartController@delete");
+Route::post("/cart/amount/update", "CartController@updateCartAmount");
 
 Route::get("checkout", "CheckoutController@index");
 
