@@ -92,7 +92,7 @@
                                 <p>@{{ shopping.tracking }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Status tracing</label>
+                                <label>Status tracñing</label>
                                 <p>@{{ shopping.status_shipping }}</p>
                             </div>
                             <div class="col-md-6">
