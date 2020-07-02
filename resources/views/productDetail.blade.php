@@ -103,9 +103,27 @@
                       </div>
                       
                       <p>Presentaciones</p>
+                      <div class="control-group">
+           
+                        <label class="control control--radio">uno
+                          <input type="radio" name="radio" checked="checked"/>
+                          <div class="control__indicator"></div>
+                        </label>
+                        <label class="control control--radio">do
+                          <input type="radio" name="radio"/>
+                          <div class="control__indicator"></div>
+                        </label>
+                   
+                    
+                      </div>
+
+
+
                       <div class="presentaciones">
                     <div>
-                        <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">@{{ type.name }}</button>
+                        <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
+                          
+                          @{{ type.name }}</button>
                     </div>
                       
                        
