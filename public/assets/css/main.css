@@ -1476,3 +1476,14 @@ tab detalles
 .control--radio input:disabled ~ .control__indicator:after {
   background: #7b7b7b;
 }
+.page-item:last-child .page-link {
+  font-size: 16px;
+}
+
+.informacion .col-md-6{
+  display: flex;
+}
+.informacion label{
+  margin-right: 10px;
+  font-weight: 700;
+}

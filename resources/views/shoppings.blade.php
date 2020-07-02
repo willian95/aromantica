@@ -4,12 +4,32 @@
 
     <div class="container mt-3" id="dev-area">
         <div class="row">
-            <div class="title__general text-justify">
+            <div class="title__general text-justify d-flex justify-content-between" style="    width: 100%;">
                 <h2>Mis compras</h2>
+
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item" v-if="page > 1">
+                                    <a class="page-link" href="#" aria-label="Previous" @click="fetch(page - 1)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" v-for="index in pages" v-if="index >= page - 3 &&  index < page + 3"><a class="page-link" href="#" @click="fetch(index)" >@{{ index }}</a></li>
+                                <li class="page-item" v-if="page < pages">
+                                <a class="page-link" href="#" aria-label="Next"  @click="fetch(page + 1)">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
             <div class="col-12">
 
-                <table class="table">
+                <table class="table  table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -37,25 +57,7 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-12">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item" v-if="page > 1">
-                            <a class="page-link" href="#" aria-label="Previous" @click="fetch(page - 1)">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item" v-for="index in pages" v-if="index >= page - 3 &&  index < page + 3"><a class="page-link" href="#" @click="fetch(index)" >@{{ index }}</a></li>
-                        <li class="page-item" v-if="page < pages">
-                        <a class="page-link" href="#" aria-label="Next"  @click="fetch(page + 1)">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+    
 
         <!-- Modal-->
         <div class="modal fade" id="shoppingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -67,38 +69,39 @@
                             <i aria-hidden="true" class="ki ki-close"></i>
                         </button>
                     </div>
-                    <div class="modal-body" v-if="shopping != ''">
+                    <div class="modal-body informacion" v-if="shopping != ''">
+                      <div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Cliente</label>
+                                <label>Cliente: </label>
                                 <p>@{{ shopping.user.name }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Email</label>
+                                <label>Email: </label>
                                 <p>@{{ shopping.user.email }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Costo productos</label>
+                                <label>Costo productos: </label>
                                 <p>@{{ shopping.total_products }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Costo envío</label>
+                                <label>Costo envío: </label>
                                 <p>@{{ shopping.shipping_cost }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Total</label>
+                                <label>Total: </label>
                                 <p>@{{ shopping.total }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Tracking</label>
+                                <label>Tracking: </label>
                                 <p>@{{ shopping.tracking }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Status tracñing</label>
+                                <label>Status tracking: </label>
                                 <p>@{{ shopping.status_shipping }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Dirección</label>
+                                <label>Dirección: </label>
                                 <p>@{{ shopping.address }}</p>
                             </div>
                             <div class="col-md-12">
@@ -127,6 +130,7 @@
                                 </table>
                             </div>
                         </div>
+                      </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
