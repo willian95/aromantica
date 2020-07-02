@@ -127,6 +127,7 @@
                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
                   <div class='content-drop'>
                     <a class='dropdown-item nav-link-black' href='#'>
+                      <a class="nav-link nav-link-black" href="{{ url('/profile') }}">Perfil</a>
                       <a class="nav-link nav-link-black" href="{{ url('/shopping/index') }}">Compras</a>
 
                       <a class="nav-link nav-link-black" href="{{ url('/logout') }}">Cerrar sesión</a>
