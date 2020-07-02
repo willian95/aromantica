@@ -1397,7 +1397,18 @@ tab detalles
 }
 
 
-
+.cantidad_btn .btn-success:not(:disabled):not(.disabled).active:focus, .btn-success:not(:disabled):not(.disabled):active:focus, .show>.btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0);
+}
+.cantidad_btn .btn-success:not(:disabled):not(.disabled).active, .btn-success:not(:disabled):not(.disabled):active, .show>.btn-success.dropdown-toggle {
+  color: #0c4572;
+  background-color: #1e7e3400;
+  border-color: #1c743000;
+}
+.cantidad_btn .btn-success.focus, .btn-success:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0);
+}
 
 .control-group {
   display: flex;
