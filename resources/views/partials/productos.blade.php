@@ -27,7 +27,7 @@
               <!--<div class="main-products__details">
                 <span>$85,000</span>
               </div>-->
-              <div class="presentaciones presentaciones_card ">
+              <div class=" presentaciones_card d-flex">
              
                 @foreach(App\ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get() as $productTypeSize)
 

@@ -36,7 +36,15 @@
                                                 <span>$ @{{ parseFloat(product.product_type_size.price)  }}</span>
     
                                             </td>
-                                            <td class="text-center "><button class="btn btn-success" @click="substractAmountProduct(product, index)">-</button> @{{ product.amount }} <button class="btn btn-success" @click="addAmountProduct(product, index)">+</button></td>
+                                            <td class="text-center ">
+                                                <div style="    text-align: center;
+                                                display: flex;
+                                                justify-content: center;">
+                                                    <div class="cantidad_btn" style="width: 55%;" >
+                                                        <button class="btn btn-success p-0 " @click="substractAmountProduct(product, index)">-</button> @{{ product.amount }} <button class="btn btn-success p-0" @click="addAmountProduct(product, index)">+</button></td>
+    
+                                                    </div>
+                                                </div>
 
                                             <td>$ @{{ parseFloat(product.product_type_size.price) * parseInt(product.amount) }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="erase(product.id)"><span>x</span></p></div></td>
@@ -47,8 +55,15 @@
                                         <tr v-for="(product, index) in guestProducts">
                                             <td class="text-center w-150">@{{ product.product.product.name }} - @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
                                             <td class="text-center">$ @{{ parseFloat(product.product.price) }}</td>
-                                            <td class="text-center"> <div class=" cantidad_btn">
-                                                <button class="btn btn-success" @click="substractAmountGuestProduct(index)">-</button> @{{ product.amount }} <button class="btn btn-success" @click="addAmountGuestProduct(index)">+</button></div></td>
+                                            <td class="text-center"> 
+                                                <div style="    text-align: center;
+                                                display: flex;
+                                                justify-content: center;">
+                                                                
+                                                <div class=" cantidad_btn" style="width: 55%;">
+                                                    <button class="btn btn-success p-0" @click="substractAmountGuestProduct(index)">-</button> @{{ product.amount }} <button class="btn btn-success p-0" @click="addAmountGuestProduct(index)">+</button></div></td>
+                                                </div>
+                                    
                                             
                                             <td class="text-center">$ @{{ parseFloat(product.product.price) * parseInt(product.amount) }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="guestDelete(index)"><span>x</span></p></div></td>

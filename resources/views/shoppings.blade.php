@@ -2,9 +2,11 @@
 
 @section("content")
 
-    <div class="container" id="dev-area">
+    <div class="container mt-3" id="dev-area">
         <div class="row">
-
+            <div class="title__general text-justify">
+                <h2>Mis compras</h2>
+            </div>
             <div class="col-12">
 
                 <table class="table">
