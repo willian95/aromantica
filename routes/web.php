@@ -30,6 +30,9 @@ Route::get("/email/check/{hash}", "RegisterController@check");
 Route::post("/login", "LoginController@login");
 Route::get("/logout", "LoginController@logout");
 
+Route::get("/profile", "ProfileController@index");
+Route::post("/profile/update", "ProfileController@update");
+
 Route::get("/forgot-password", "ForgotPasswordController@index");
 Route::post("/forgot-password", "ForgotPasswordController@forgot");
 Route::get("/forgot-password/check/{hash}", "ForgotPasswordController@check");

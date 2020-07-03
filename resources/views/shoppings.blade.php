@@ -73,35 +73,35 @@
                       <div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Cliente: </label>
+                                <label><strong>Cliente</strong></label>
                                 <p>@{{ shopping.user.name }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Email: </label>
+                                <label><strong>Email</strong></label>
                                 <p>@{{ shopping.user.email }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Costo productos: </label>
-                                <p>@{{ shopping.total_products }}</p>
+                                <label><strong>Costo productos</strong></label>
+                                <p>$ @{{ parseInt(shopping.total_products).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Costo envío: </label>
-                                <p>@{{ shopping.shipping_cost }}</p>
+                                <label><strong>Costo envío</strong></label>
+                                <p>$ @{{ parseInt(shopping.shipping_cost).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Total: </label>
-                                <p>@{{ shopping.total }}</p>
+                                <label><strong>Total</strong></label>
+                                <p>$ @{{ parseInt(shopping.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Tracking: </label>
+                                <label><strong>Tracking</strong></label>
                                 <p>@{{ shopping.tracking }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Status tracking: </label>
+                                <label><strong>Status tracking</strong></label>
                                 <p>@{{ shopping.status_shipping }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label>Dirección: </label>
+                                <label><strong>Dirección</strong></label>
                                 <p>@{{ shopping.address }}</p>
                             </div>
                             <div class="col-md-12">

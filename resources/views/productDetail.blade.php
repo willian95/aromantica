@@ -103,22 +103,6 @@
                       </div>
                       
                       <p>Presentaciones</p>
-                      <div class="control-group">
-           
-                        <label class="control control--radio">uno
-                          <input type="radio" name="radio" checked="checked"/>
-                          <div class="control__indicator"></div>
-                        </label>
-                        <label class="control control--radio">do
-                          <input type="radio" name="radio"/>
-                          <div class="control__indicator"></div>
-                        </label>
-                   
-                    
-                      </div>
-
-
-
                       <div class="presentaciones">
                     <div>
                         <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
@@ -129,7 +113,22 @@
                        
                     <div class="ml-4 mt-3">
                        
-                        <div class="btn radios " v-for="size in sizes" @click="selectSize(size)"  style="margin-right: 5px; margin-top: 5px;">@{{ size.name }} Oz - @{{ size.ml }} ml</div> 
+                      <div class="control-group">
+           
+                        <label class="control control--radio" v-for="(size, index) in sizes" @click="selectSize(size)">@{{ size.name }} Oz - @{{ size.ml }} ml
+                          <input type="radio" name="radio" v-if="index == 0" checked/>
+                          <input type="radio" name="radio" v-else/>
+                          <div class="control__indicator"></div>
+                        </label>
+                        <!--<label class="control control--radio">do
+                          <input type="radio" name="radio"/>
+                          <div class="control__indicator"></div>
+                        </label>-->
+                    
+                    
+                      </div>
+
+                        <!--<div class="btn radios "   style="margin-right: 5px; margin-top: 5px;">@{{ size.name }} Oz - @{{ size.ml }} ml</div>-->
                     </div>
 
      
@@ -247,6 +246,7 @@
                       }
 
                     })
+                    this.selectSize(this.sizes[0])
 
                 },
                 selectSize(size){   
