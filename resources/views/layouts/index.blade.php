@@ -34,8 +34,9 @@
                 <div class='container-fluid'>
                   <a class='navbar-brand d-flex align-items-center' href='{{ url('/') }}'>
                     <img alt='' src='{{ asset('assets/img/logo.png') }}'>
-                    <input class="form-control" autocomplete="false" id="myInput" type="text" placeholder="Buscar..">
+                  
                   </a>
+                    <input class="form-control"type="text" placeholder="Buscar.." autocomplete="off">
 
                   
                   <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg' data-toggle='offcanvas'
