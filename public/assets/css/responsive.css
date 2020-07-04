@@ -57,6 +57,28 @@
      
         display: none;
     }
+    .name_list {
+        display: block;
+    }
+    .list_search {
+        width: 100%;
+        left: 0; 
+    }
+    .nav-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .search{
+        display: none;
+    }
+    .slick-slide img {
+       
+        width: 100%;
+       
+      
+    }
+    .mask{
+        display: block;
+      }
     
 }
 @media (min-width: 992px) and (max-width: 1199px) {

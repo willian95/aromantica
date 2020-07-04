@@ -31,13 +31,100 @@
             </button>--->
 
             <nav  @if(url()->current() == url('/front-test')) class='navbar navbar-expand-md navbar-fixed-js container-fluid '  @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid'   @endif id="navbarSupportedContent">
-                <div class='container-fluid'>
+                <div class='container-fluid nav-grid'>
                   <a class='navbar-brand d-flex align-items-center' href='{{ url('/') }}'>
                     <img alt='' src='{{ asset('assets/img/logo.png') }}'>
                   
                   </a>
-                    <input class="form-control"type="text" placeholder="Buscar.." autocomplete="off">
 
+                  <div class="search">
+                    <input class="form-control"type="text" placeholder="Buscar..." autocomplete="off">
+                    <div class="list_search">
+                      <!--por nomnbre-->
+                      <ul class="name_list">
+                        <li><a href="">Carolina herrera</a></li>
+                        <li><a href="">Paco robanne</a></li>
+                        <li><a href="">Lacosste</a></li>
+                        <li><a href="">Versace</a></li>
+                        <li><a href="">Chanel</a></li>
+                      </ul>
+
+                       <!--presentaciones-->
+                      <div class="bg-search">
+                        <span>Presentaciones</span>
+                        <ul class="name_list name_list2">
+                          <li>
+                            1.7 OZ
+                            <label class="control control--radio">
+                              <input type="radio" name="radio"/>
+                              <input type="radio" name="radio"/>
+                              <div class="control__indicator"></div>
+                            </label>
+                          </li>
+                          <li>
+                            2.5 OZ
+                            <label class="control control--radio">
+                              <input type="radio" name="radio"/>
+                              <input type="radio" name="radio"/>
+                              <div class="control__indicator"></div>
+                            </label>
+                          </li>
+                          <li>
+                            4.2 OZ
+                            <label class="control control--radio">
+                              <input type="radio" name="radio"/>
+                              <input type="radio" name="radio"/>
+                              <div class="control__indicator"></div>
+                            </label>
+                          </li>
+                          <li>
+                            4.2 OZ
+                            <label class="control control--radio">
+                              <input type="radio" name="radio"/>
+                              <input type="radio" name="radio"/>
+                              <div class="control__indicator"></div>
+                            </label>
+                          </li>
+                        </ul>
+
+
+
+                        <!--caracteristicas--->
+                        <div class="bg-search">
+                          <span>caracteristicas</span>
+                          <ul class="name_list name_list2">
+                            <li>
+                              1.7 OZ
+                              <label class="control control--radio">
+                                <input type="radio" name="radio"/>
+                                <input type="radio" name="radio"/>
+                                <div class="control__indicator"></div>
+                              </label>
+                            </li>
+                            <li>
+                              2.5 OZ
+                              <label class="control control--radio">
+                                <input type="radio" name="radio"/>
+                                <input type="radio" name="radio"/>
+                                <div class="control__indicator"></div>
+                              </label>
+                            </li>
+                            <li>
+                              4.2 OZ
+                              <label class="control control--radio">
+                                <input type="radio" name="radio"/>
+                                <input type="radio" name="radio"/>
+                                <div class="control__indicator"></div>
+                              </label>
+                            </li>
+                          </ul>
+   
+                        </div>
+                      </div>
+                       <!--caracteristicas-->
+
+                    </div>
+                  </div>
                   
                   <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg' data-toggle='offcanvas'
                     type='button'>
@@ -45,7 +132,7 @@
                       <span class='hamburger-inner'></span>
                     </span>
                   </button>
-                  <div class='offcanvas-collapse fil' id='navbarNav'>
+                  <div class='offcanvas-collapse fil ml-auto' id='navbarNav'>
                     <ul class='navbar-nav'>  
                       <li class='nav-item active'>
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
@@ -54,7 +141,7 @@
                         <a class='nav-link nav-link-black ' href='filtro.html'>Tienda</a>
                       </li>-->
                       <li class='nav-item dropdown dowms'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link-black '
+                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link '
                           data-toggle='dropdown'>
                           Damas
                         </a>
@@ -71,7 +158,7 @@
 
                       <li class='nav-item dropdown dowms'>
                         <a href='#' aria-expanded='false' aria-haspopup='true'
-                          data-toggle='dropdown' class='nav-link dropdown-toggle nav-link-black '>
+                          data-toggle='dropdown' class='nav-link dropdown-toggle nav-link '>
                           Caballeros
                         </a>
                         <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
@@ -110,7 +197,8 @@
 
                   @endif
 
-                  <li class="nav-item">
+                  <li class="nav-item position-relative mr-3">
+                    <span class="add_btn">1</span>
                       <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
                   </li>
                   @if(\Auth::guest())
@@ -118,7 +206,7 @@
                   <li class="nav-item">
                       <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
                   </li>
-              @else <li class='nav-item dropdown dowms'>
+              @else <li class='nav-item dropdown dowms succss'>
                 <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle border-blue '
                   data-toggle='dropdown'>
                   <i class="flaticon-user"></i>

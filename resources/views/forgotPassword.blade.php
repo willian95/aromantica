@@ -2,19 +2,23 @@
 
 @section("content")
 
-    <div class="container" id="dev-area">
+    <div class="container fleex" id="dev-area">
+        <div class="title__general text-center  justify-content-between" style="    width: 100%;">
+            <h2>Recuperar mi contraseña</h2>
+        </div>
+
         <div class="row">
             <div class="col-12">
 
-                <div class="form-group">
+                <div class="form-group mb-4" style="    width: 320px;">
                     
-                    <label for="">Email</label>
+                    <label for="">Correo electrónico</label>
                     <input type="text" class="form-control" v-model="email">
 
                 </div>
 
                 <p class="text-center">
-                    <button class="btn btn-success" @click="forgot()">Recuperar mi contraseña</button>
+                    <button class="btn  btn-custom " @click="forgot()">Recuperar</button>
                 </p>
             
             </div>

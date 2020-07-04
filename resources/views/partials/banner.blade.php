@@ -15,6 +15,7 @@
         </div>
         <div class="main-banner__img">
           <img src="assets/img/banner.jpg">
+          <div class="mask"></div>
         </div>
       </div>
 
