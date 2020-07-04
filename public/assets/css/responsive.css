@@ -20,7 +20,7 @@
     .slick-slide img {
       
         box-shadow: none;
-        border-radius: 10px;
+        border-radius: 0px;
     }
     .main-categories,.content_modal {
 
@@ -78,6 +78,22 @@
     }
     .mask{
         display: block;
+        background: #00a2de38;
+        width: 100%;
+        position: absolute;
+        height: 100vh;
+        z-index: 111;
+        left: 0;
+        top: 0;
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+      }
+      .main-banner{
+        padding: 0;
+        margin: 0;
+        width: 100%;
       }
     
 }

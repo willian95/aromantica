@@ -4,6 +4,7 @@
     <div class="main-banner__content">
       <div class="main-banner__item">
         <div class="main-banner__text">
+         <div class="mask">
           <div class="main-banner__title animated fadeIn wow">
             <p class="subtitulo">Las fragancias más populares del</p>
             <p class="titulo">Mundo de la perfumería </p>
@@ -15,8 +16,9 @@
         </div>
         <div class="main-banner__img">
           <img src="assets/img/banner.jpg">
-          <div class="mask"></div>
+        
         </div>
+         </div>
       </div>
 
       <div class="main-banner__item">
