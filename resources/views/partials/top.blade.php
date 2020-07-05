@@ -72,7 +72,7 @@
                     </div>
                   </div>
                   <div class="main-top__item">
-                    <div class="main-top__img">
+                    <div class="main-top__img top2">
                       <img src="assets/img/productos/perfume1.png">
                     </div>
                   </div>

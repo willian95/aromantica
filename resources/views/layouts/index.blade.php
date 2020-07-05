@@ -140,7 +140,7 @@
                       <!--<li class='nav-item'>
                         <a class='nav-link nav-link-black ' href='filtro.html'>Tienda</a>
                       </li>-->
-                      <li class='nav-item dropdown dowms'>
+                      <li class='nav-item dropdown dowms down-md'>
                         <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link '
                           data-toggle='dropdown'>
                           Damas
@@ -153,10 +153,7 @@
                           </div>
                         </div>
                       </li>
-
-
-
-                      <li class='nav-item dropdown dowms'>
+                      <li class='nav-item dropdown dowms down-md'>
                         <a href='#' aria-expanded='false' aria-haspopup='true'
                           data-toggle='dropdown' class='nav-link dropdown-toggle nav-link '>
                           Caballeros
@@ -169,7 +166,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class='nav-item dropdown dowms'>
+                      <li class='nav-item dropdown dowms down-md'>
                         <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  '
                           data-toggle='dropdown'>
                           Estuches
@@ -182,11 +179,35 @@
                           </div>
                         </div>
                       </li>
+                        <!--menu tablet--->
+                        <li class='nav-item dropdown down-md-v'>
+                          <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  '
+                            data-toggle='dropdown'>
+                            Categorias
+                          </a>
+                          <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                            <div class='content-drop'>
+                              <a class='dropdown-item' href='#'>
+                                <p> Damas</p>
+                              </a>
+                              <a class='dropdown-item' href='#'>
+                                <p> Caballeros</p>
+                              </a>
+                              <a class='dropdown-item' href='#'>
+                                <p> Ninos</p>
+                              </a>
+                            </div>
+                          </div>
+                          
+                        </li>
+
+                      <!--menu tablet--->
                       @if(\Auth::guest())
                       <li class="nav-item">
                           <a  style="    border: 1px solid white;
                           border-radius: 10px;" class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
                       </li>
+
 
                     <!--- <li class="nav-item">
                           <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
@@ -294,7 +315,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
         
-                  <div class="main-login">
+                  <div class="main-login main-registro">
                     <div class="main-login__item">
                       <div class="card">
                         <div class="title__general title__general2 fadeInUp wow animated">
