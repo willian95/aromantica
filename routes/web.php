@@ -57,7 +57,7 @@ Route::post("/cart/amount/update", "CartController@updateCartAmount");
 Route::get("/test/register/mail", function(){
 
   $hash = Str::random(32).uniqid();
-  $user = App\User::where("id", 6)->first();
+  $user = App\User::where("role_id", 2)->first();
 
   $to_name = "Yively";
   $to_email = "yively.pa@gmail.com";
@@ -66,7 +66,7 @@ Route::get("/test/register/mail", function(){
   \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
 
       $message->to($to_email, $to_name)->subject("Bienvenido! Solo falta un paso para tu registro en Aromantica!");
-      $message->from("ventas@aromantica.co", env("MAIL_FROM_NAME"));
+      $message->from("ventas@aromantica.co", "Aromantica");
 
   });
 
@@ -76,7 +76,7 @@ Route::get("/test/register/mail", function(){
 Route::get("/test/forget/mail", function(){
 
   $hash = Str::random(32).uniqid();
-  $user = App\User::where("id", 6)->first();
+  $user = App\User::where("role_id", 2)->first();
 
   $data = ["user" => $user, "hash" => $hash];
   $to_name = $user->name;
@@ -85,7 +85,7 @@ Route::get("/test/forget/mail", function(){
   \Mail::send("emails.forgotPassword", $data, function($message) use ($to_name, $to_email) {
 
       $message->to($to_email, $to_name)->subject("¡Recuperar contraseña!");
-      $message->from("ventas@aromantica.co", env("MAIL_FROM_NAME"));
+      $message->from("ventas@aromantica.co", "Aromantica");
 
   });
 
