@@ -59,8 +59,8 @@ Route::get("/test/register/mail", function(){
   $hash = Str::random(32).uniqid();
   $user = App\User::where("role_id", 2)->first();
 
-  $to_name = "Yively";
-  $to_email = "yively.pa@gmail.com";
+  $to_name = "Willian";
+  $to_email = "rodriguezwillian95@gmail.com";
   $data = ["user" => $user, "hash" => $hash];
 
   \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
