@@ -54,6 +54,43 @@ Route::post("/cart/guest/fetch", "CartController@guestFetch");
 Route::post("/cart/delete", "CartController@delete");
 Route::post("/cart/amount/update", "CartController@updateCartAmount");
 
+Route::get("/test/register/mail", function(){
+
+  $hash = Str::random(32).uniqid();
+  $user = App\User::where("id", 6)->first();
+
+  $to_name = "Yively";
+  $to_email = "yively.pa@gmail.com";
+  $data = ["user" => $user, "hash" => $hash];
+
+  \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
+
+      $message->to($to_email, $to_name)->subject("Bienvenido! Solo falta un paso para tu registro en Aromantica!");
+      $message->from("ventas@aromantica.co", env("MAIL_FROM_NAME"));
+
+  });
+
+});
+
+
+Route::get("/test/forget/mail", function(){
+
+  $hash = Str::random(32).uniqid();
+  $user = App\User::where("id", 6)->first();
+
+  $data = ["user" => $user, "hash" => $hash];
+  $to_name = $user->name;
+  $to_email = $user->email;
+
+  \Mail::send("emails.forgotPassword", $data, function($message) use ($to_name, $to_email) {
+
+      $message->to($to_email, $to_name)->subject("¡Recuperar contraseña!");
+      $message->from("ventas@aromantica.co", env("MAIL_FROM_NAME"));
+
+  });
+
+});
+
 Route::get("checkout", "CheckoutController@index");
 
 Route::get("/shopping/index", "ShoppingController@index");
