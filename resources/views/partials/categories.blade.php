@@ -8,7 +8,7 @@
       <div class="main-categories">
         @foreach(App\Category::all() as $category)
         <div class="main-categories__item">
-          <a href="categorias.html">
+          <a href="{{ url('/category/'.$category->slug) }}">
             <div class="main-categories__content categories-transition"
               style="background-image: url('{{ env('CMS_URL').'/images/categories/'.$category->image }}');">
               <div class="mask_deg">

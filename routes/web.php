@@ -58,3 +58,6 @@ Route::get("checkout", "CheckoutController@index");
 
 Route::get("/shopping/index", "ShoppingController@index");
 Route::get("/shopping/fetch/{page}", "ShoppingController@fetch");
+
+Route::get("/category/{slug}", "CategoryController@show");
+Route::get("/category/products/{page}/category/{id}", "CategoryController@productsCategory");
