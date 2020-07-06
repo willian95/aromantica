@@ -140,45 +140,24 @@
                       <!--<li class='nav-item'>
                         <a class='nav-link nav-link-black ' href='filtro.html'>Tienda</a>
                       </li>-->
-                      <li class='nav-item dropdown dowms down-md'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link '
+                      @foreach(App\Category::all() as $category)
+
+                      <li class='nav-item dropdown dowms down-md' >
+                        <a href="{{ url('/category/'.$category->slug) }}" aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link '
                           data-toggle='dropdown'>
-                          Damas
+                          @{{ $category->name }}
                         </a>
-                        <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                        <!--<div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
                           <div class='content-drop'>
                             <a class='dropdown-item' href='#'>
                               <p> Categoria 1</p>
                             </a>
                           </div>
-                        </div>
+                        </div>-->
                       </li>
-                      <li class='nav-item dropdown dowms down-md'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true'
-                          data-toggle='dropdown' class='nav-link dropdown-toggle nav-link '>
-                          Caballeros
-                        </a>
-                        <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
-                          <div class='content-drop'>
-                            <a class='dropdown-item' href='#'>
-                              <p> Categoria 1</p>
-                            </a>
-                          </div>
-                        </div>
-                      </li>
-                      <li class='nav-item dropdown dowms down-md'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  '
-                          data-toggle='dropdown'>
-                          Estuches
-                        </a>
-                        <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
-                          <div class='content-drop'>
-                            <a class='dropdown-item' href='#'>
-                              <p> Categoria 1</p>
-                            </a>
-                          </div>
-                        </div>
-                      </li>
+
+                      @endforeach
+                      
                         <!--menu tablet--->
                         <li class='nav-item dropdown down-md-v'>
                           <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  '
