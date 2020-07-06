@@ -145,7 +145,7 @@
                       <li class='nav-item dropdown dowms down-md' >
                         <a href="{{ url('/category/'.$category->slug) }}" aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link '
                           data-toggle='dropdown'>
-                          @{{ $category->name }}
+                          {{ $category->name }}
                         </a>
                         <!--<div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
                           <div class='content-drop'>
