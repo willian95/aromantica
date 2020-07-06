@@ -34,7 +34,7 @@ class RegisterController extends Controller
 
             \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
 
-                $message->to($to_email, $to_name)->subject("Bienvenido! Solo falta un paso para tu registro en Aromantica!");
+                $message->to($to_email, $to_name)->subject("Bienvenido/a! Solo falta un paso para tu registro en Aromantica!");
                 $message->from("ventas@aromantica.co", env("MAIL_FROM_NAME"));
 
             });
