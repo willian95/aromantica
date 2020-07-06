@@ -1716,3 +1716,8 @@ tab detalles
 .mask, .down-md-v{
   display: none;
 }
+
+.main-products__box .presentaciones_card p {
+    margin-right: 9px!important;
+ 
+}
