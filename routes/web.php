@@ -63,7 +63,7 @@ Route::post("/search", "SearchController@search");
 Route::get("/test/purchase/mail", function(){
 
   $to_name = "Felipe";
-  $to_email = "info@myass.com";
+  $to_email = "info@myass.co";
   //$data = ["user" => $user, "hash" => $hash];
 
   \Mail::send("emails.purchase", [], function($message) use ($to_name, $to_email) {
@@ -78,7 +78,7 @@ Route::get("/test/purchase/mail", function(){
 Route::get("/test/admin/mail", function(){
 
   $to_name = "Felipe";
-  $to_email = "info@myass.com";
+  $to_email = "info@myass.co";
   //$data = ["user" => $user, "hash" => $hash];
 
   \Mail::send("emails.admin", [], function($message) use ($to_name, $to_email) {
