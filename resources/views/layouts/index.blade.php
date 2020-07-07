@@ -32,68 +32,45 @@
 
             <nav  @if(url()->current() == url('/front-test')) class='navbar navbar-expand-md navbar-fixed-js container-fluid '  @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid'   @endif id="navbarSupportedContent">
                 <div class='container-fluid nav-grid'>
-                  <a class='navbar-brand d-flex align-items-center' href='{{ url('/') }}'>
-                    <img alt='' src='{{ asset('assets/img/logo.png') }}'>
+                  <a class='navbar-brand d-flex align-items-center' href="{{ url('/') }}">
+                    <img alt='' src="{{ asset('assets/img/logo.png') }}">
                   
                   </a>
 
                   <div class="search">
-                    <input class="form-control"type="text" placeholder="Buscar..." autocomplete="off">
-                    <div class="list_search">
-                      <!--por nomnbre-->
-                      <ul class="name_list">
-                        <li><a href="">Carolina herrera</a></li>
-                        <li><a href="">Paco robanne</a></li>
-                        <li><a href="">Lacosste</a></li>
-                        <li><a href="">Versace</a></li>
-                        <li><a href="">Chanel</a></li>
-                      </ul>
+                    <div id="search">
+                      <form v-on:submit.prevent="lookFor()">
+                        <input v-model="searchText" class="form-control"type="text" placeholder="Buscar..." autocomplete="off">
+                      </form>
+                      
+                      <div class="list_search">
+                        <!--por nomnbre-->
+                        <!--<ul class="name_list">
+                          <li><a href="">Carolina herrera</a></li>
+                          <li><a href="">Paco robanne</a></li>
+                          <li><a href="">Lacosste</a></li>
+                          <li><a href="">Versace</a></li>
+                          <li><a href="">Chanel</a></li>
+                        </ul>-->
 
-                       <!--presentaciones-->
-                      <div class="bg-search">
-                        <span>Presentaciones</span>
-                        <ul class="name_list name_list2">
-                          <li>
-                            1.7 OZ
-                            <label class="control control--radio">
-                              <input type="radio" name="radio"/>
-                              <input type="radio" name="radio"/>
-                              <div class="control__indicator"></div>
-                            </label>
-                          </li>
-                          <li>
-                            2.5 OZ
-                            <label class="control control--radio">
-                              <input type="radio" name="radio"/>
-                              <input type="radio" name="radio"/>
-                              <div class="control__indicator"></div>
-                            </label>
-                          </li>
-                          <li>
-                            4.2 OZ
-                            <label class="control control--radio">
-                              <input type="radio" name="radio"/>
-                              <input type="radio" name="radio"/>
-                              <div class="control__indicator"></div>
-                            </label>
-                          </li>
-                          <li>
-                            4.2 OZ
-                            <label class="control control--radio">
-                              <input type="radio" name="radio"/>
-                              <input type="radio" name="radio"/>
-                              <div class="control__indicator"></div>
-                            </label>
-                          </li>
-                        </ul>
-
-
-
-                        <!--caracteristicas--->
+                        <!--presentaciones-->
                         <div class="bg-search">
-                          <span>caracteristicas</span>
+                          <span>Presentaciones</span>
                           <ul class="name_list name_list2">
-                            <li>
+
+                            @foreach(App\Type::all() as $type)
+
+                              <li @click="selectType('{{ $type }}')">
+                                {{ $type->name }}
+                                <label class="control control--radio">
+                                  <input type="radio" name="type"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </li>
+
+                            @endforeach
+
+                            <!--<li>
                               1.7 OZ
                               <label class="control control--radio">
                                 <input type="radio" name="radio"/>
@@ -117,12 +94,66 @@
                                 <div class="control__indicator"></div>
                               </label>
                             </li>
+                            <li>
+                              4.2 OZ
+                              <label class="control control--radio">
+                                <input type="radio" name="radio"/>
+                                <input type="radio" name="radio"/>
+                                <div class="control__indicator"></div>
+                              </label>
+                            </li>-->
                           </ul>
-   
-                        </div>
-                      </div>
-                       <!--caracteristicas-->
 
+
+
+                          <!--caracteristicas--->
+                          <div class="bg-search">
+                            <span>Tamaños</span>
+                            <ul class="name_list name_list2">
+
+                              @foreach(App\Size::all() as $size)
+                                
+                              <li @click="selectSize('{{ $size }}')">
+                                {{ $size->name }}oz / {{ $size->ml }}ml
+                                <label class="control control--radio">
+                                  <input type="radio" name="size"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </li>
+
+                              @endforeach
+
+                              <!--<li>
+                                1.7 OZ
+                                <label class="control control--radio">
+                                  <input type="radio" name="radio"/>
+                                  <input type="radio" name="radio"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </li>
+                              <li>
+                                2.5 OZ
+                                <label class="control control--radio">
+                                  <input type="radio" name="radio"/>
+                                  <input type="radio" name="radio"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </li>
+                              <li>
+                                4.2 OZ
+                                <label class="control control--radio">
+                                  <input type="radio" name="radio"/>
+                                  <input type="radio" name="radio"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </li>-->
+                            </ul>
+    
+                          </div>
+                        </div>
+                        <!--caracteristicas-->
+
+                      </div>
                     </div>
                   </div>
                   
@@ -622,79 +653,120 @@
         <script src="{{ asset('/js/app.js') }}"></script>
 
         <script>
-        const navbar = new Vue({
-            el: '#authModal',
-            data(){
-                return{
-                    name:"",
-                    email:"",
-                    password:"",
-                    password_confirmation:"",
-                    phone:"",
-                    identification:"",
-                    address:"",
-                    emailLogin:"",
-                    passwordLogin:""
-                }
-            },
-            methods:{
-
-                isNumber: function(evt) {
-                  evt = (evt) ? evt : window.event;
-                  var charCode = (evt.which) ? evt.which : evt.keyCode;
-                  if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
-                    evt.preventDefault();;
-                  } else {
-                    return true;
+          const navbar = new Vue({
+              el: '#authModal',
+              data(){
+                  return{
+                      name:"",
+                      email:"",
+                      password:"",
+                      password_confirmation:"",
+                      phone:"",
+                      identification:"",
+                      address:"",
+                      emailLogin:"",
+                      passwordLogin:""
                   }
+              },
+              methods:{
+
+                  isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+                      evt.preventDefault();;
+                    } else {
+                      return true;
+                    }
+                  },
+                  register(){
+
+                      axios.post("{{ url('/register') }}", {name: this.name, email:this.email, password: this.password, password_confirmation: this.password_confirmation, phone: this.phone, identification: this.identification, address: this.address}).then(res => {
+
+                          if(res.data.success == true){
+                              alert(res.data.msg)
+                              this.name = ""
+                              this.email = ""
+                              this.password = ""
+                              this.password_confirmation = ""
+                              this.phone = ""
+                              this.identification = ""
+                              this.address = ""
+                          }else{
+                              alert(res.data.msg)
+                          }
+
+                      })
+                      .catch(err => {
+                          $.each(err.response.data.errors, function(key, value) {
+                              alert(value)
+                              //alertify.error(value);
+                              //alertify.alert('Basic: true').set('basic', true); 
+                          });
+                      })
+
+                  },
+                  login(){
+
+                      axios.post("{{ url('/login') }}", {email: this.emailLogin, password: this.passwordLogin})
+                      .then(res => {
+
+                          if(res.data.success == true){
+                              alert(res.data.msg)
+                              window.location.href="{{ url('/') }}"
+                          }else{
+                              alert(res.data.msg)
+                          }
+
+                      })
+
+                  }
+
+              }
+
+          })
+
+          const search = new Vue({
+              el: '#search',
+              data(){
+                  return{
+                    type:"",
+                    size:"",
+                    searchText:""
+                  }
+              },
+              methods:{
+
+                selectType(type){
+                  
+                  this.type = JSON.parse(type)
                 },
-                register(){
-
-                    axios.post("{{ url('/register') }}", {name: this.name, email:this.email, password: this.password, password_confirmation: this.password_confirmation, phone: this.phone, identification: this.identification, address: this.address}).then(res => {
-
-                        if(res.data.success == true){
-                            alert(res.data.msg)
-                            this.name = ""
-                            this.email = ""
-                            this.password = ""
-                            this.password_confirmation = ""
-                            this.phone = ""
-                            this.identification = ""
-                            this.address = ""
-                        }else{
-                            alert(res.data.msg)
-                        }
-
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value) {
-                            alert(value)
-                            //alertify.error(value);
-                            //alertify.alert('Basic: true').set('basic', true); 
-                        });
-                    })
-
+                selectSize(size){
+                  this.size = JSON.parse(size)
                 },
-                login(){
-
-                    axios.post("{{ url('/login') }}", {email: this.emailLogin, password: this.passwordLogin})
-                    .then(res => {
-
-                        if(res.data.success == true){
-                            alert(res.data.msg)
-                            window.location.href="{{ url('/') }}"
-                        }else{
-                            alert(res.data.msg)
-                        }
-
-                    })
-
+                lookFor(){
+                  if(this.searchText != ""){
+                      localStorage.setItem("searchAromantica", this.searchText)
+                      if(this.type != ""){
+                        localStorage.setItem("typeAromantica", this.type.id)
+                      }
+                      if(this.size != ""){
+                        localStorage.setItem("sizeAromantica", this.size.id)
+                      }
+                      window.location.href="{{ url('/search') }}"
+                  }
                 }
 
-            }
 
-        })
-    </script>
+              },
+              mounted(){
+
+                this.searchText = localStorage.getItem("searchAromantica")
+
+              }
+
+          })
+        </script>
 
     @stack("scripts")
 
