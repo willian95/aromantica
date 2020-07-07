@@ -54,18 +54,36 @@ Route::post("/cart/guest/fetch", "CartController@guestFetch");
 Route::post("/cart/delete", "CartController@delete");
 Route::post("/cart/amount/update", "CartController@updateCartAmount");
 
-Route::get("/test/register/mail", function(){
+Route::get("/type/fetchAll", "TypeController@fetchAll");
+Route::get("/size/fetchAll", "SizeController@fetchAll");
 
-  $hash = Str::random(32).uniqid();
-  $user = App\User::where("role_id", 2)->first();
+Route::get("/search", "SearchController@index");
+Route::post("/search", "SearchController@search");
+
+Route::get("/test/purchase/mail", function(){
 
   $to_name = "Willian";
   $to_email = "rodriguezwillian95@gmail.com";
   $data = ["user" => $user, "hash" => $hash];
 
-  \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
+  \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
 
-      $message->to($to_email, $to_name)->subject("Bienvenido! Solo falta un paso para tu registro en Aromantica!");
+      $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
+      $message->from("ventas@aromantica.co", "Aromantica");
+
+  });
+
+});
+
+Route::get("/test/admin/mail", function(){
+
+  $to_name = "Willian";
+  $to_email = "rodriguezwillian95@gmail.com";
+  $data = ["user" => $user, "hash" => $hash];
+
+  \Mail::send("emails.admin", $data, function($message) use ($to_name, $to_email) {
+
+      $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
       $message->from("ventas@aromantica.co", "Aromantica");
 
   });
