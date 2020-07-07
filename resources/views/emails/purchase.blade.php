@@ -125,15 +125,15 @@ td .es-button-border-2:hover {
                       <td style="border: 1px solid black; border-collapse:collapse">1</td>
                       <td style="border: 1px solid black; border-collapse:collapse">Hugo boss </td>
                       <td style="border: 1px solid black; border-collapse:collapse">2</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">15000</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">30000</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">$ 15.000</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">$ 30.000</td>
                   </tr>
                   <tr style="border: 1px solid black; border-collapse:collapse">
                       <td style="border: 1px solid black; border-collapse:collapse">2</td>
                       <td style="border: 1px solid black; border-collapse:collapse">Invictus </td>
                       <td style="border: 1px solid black; border-collapse:collapse">1</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">20000</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">20000</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">$ 20.000</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">$ 20.000</td>
                   </tr>
                 
                 </table>
