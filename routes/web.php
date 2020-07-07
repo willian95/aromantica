@@ -66,7 +66,7 @@ Route::get("/test/purchase/mail", function(){
   $to_email = "rodriguezwillian95@gmail.com";
   //$data = ["user" => $user, "hash" => $hash];
 
-  \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
+  \Mail::send("emails.purchase", [], function($message) use ($to_name, $to_email) {
 
       $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
       $message->from("ventas@aromantica.co", "Aromantica");
@@ -81,7 +81,7 @@ Route::get("/test/admin/mail", function(){
   $to_email = "rodriguezwillian95@gmail.com";
   //$data = ["user" => $user, "hash" => $hash];
 
-  \Mail::send("emails.admin", $data, function($message) use ($to_name, $to_email) {
+  \Mail::send("emails.admin", [], function($message) use ($to_name, $to_email) {
 
       $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
       $message->from("ventas@aromantica.co", "Aromantica");
