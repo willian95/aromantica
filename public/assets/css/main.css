@@ -1631,25 +1631,27 @@ tab detalles
  opacity: 1;
  z-index: 999;
 }
-.name_list{
-  display: flex;
-    padding: 0;
-
+.name_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .name_list a{
   font-size: 14px;
 }
-.name_list li{
-  margin-left: 40px;
+.name_list li {
+    margin-left: 32px;
 }
 .name_list2{
   list-style: none;
   margin-top: 15px;
     font-size: 14px;
 }
-.name_list2 li{
-  display: flex;
-  
+.name_list2 li {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    display: grid;
+    grid-template-columns: 76% 23%;
+    margin-bottom: 15px;
 }
 .name_list2 .control__indicator {
 
