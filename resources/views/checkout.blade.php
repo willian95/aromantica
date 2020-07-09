@@ -60,7 +60,23 @@
     
             
     
-                <button class="btn btn-custom " @click="payment()">Pagar</button>
+                <!--<button class="btn btn-custom " @click="payment()">Pagar</button>-->
+                <form>
+                    <script
+                        src="https://checkout.epayco.co/checkout.js"
+                        class="epayco-button"
+                        data-epayco-key="1d321ba074d13cb580da34031bc7192331a73fed"
+                        data-epayco-amount="50000"
+                        data-epayco-name="Vestido Mujer Primavera"
+                        data-epayco-description="Vestido Mujer Primavera"
+                        data-epayco-currency="cop"
+                        data-epayco-country="co"
+                        data-epayco-test="true"
+                        data-epayco-external="false"
+                        data-epayco-response="https://ejemplo.com/respuesta.html"
+                        data-epayco-confirmation="https://ejemplo.com/confirmacion">
+                    </script>
+                </form>
             </div>
             </div>
 
@@ -72,8 +88,10 @@
 
 @push("scripts")
 
-    <script>
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
 
+    <script>
+    
         const devArea = new Vue({
             el: '#dev-area',
             data(){
@@ -84,7 +102,9 @@
                     address:"{{ Auth::check() ? Auth::user()->address : '' }}",
                     phone:"{{ Auth::check() ? Auth::user()->phone : '' }}",
                     readonly:"false",
-                    total:0
+                    total:0,
+                    nameProduts:"",
+                    billingNumber:""
                 }
             },
             methods:{
@@ -133,6 +153,48 @@
                 },
                 payment(){
 
+                    var handler = ePayco.checkout.configure({
+                        key: '1d321ba074d13cb580da34031bc7192331a73fed',
+                        test: true
+                    })
+
+                    axios.get("{{ url('/checkout/billing') }}").then(res => {
+
+                        
+
+                    })
+
+                    var data={
+                        //Parametros compra (obligatorio)
+                        name: "Vestido Mujer Primavera",
+                        description: "Vestido Mujer Primavera",
+                        invoice: "1234",
+                        currency: "cop",
+                        amount: this.total,
+                        tax_base: "0",
+                        tax: "0",
+                        country: "co",
+                        lang: "es",
+
+                        //Onpage="false" - Standard="true"
+                        external: "true",
+
+
+                        //Atributos opcionales
+                        confirmation: "http://secure2.payco.co/prueba_curl.php",
+                        response: "http://secure2.payco.co/prueba_curl.php",
+
+                        //Atributos cliente
+                        name_billing: this.name,
+                        address_billing: this.address,
+                        type_doc_billing: "cc",
+                        mobilephone_billing: this.phone,
+                        number_doc_billing: ""
+
+                        //atributo deshabilitación metodo de pago
+                        methodsDisable: ["TDC", "PSE","SP","CASH","DP"]
+
+                    }
 
 
                 }

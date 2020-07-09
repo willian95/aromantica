@@ -40,18 +40,15 @@
                   <div class="search">
                     <div id="search">
                       <form v-on:submit.prevent="lookFor()">
-                        <input v-model="searchText" class="form-control"type="text" placeholder="Buscar..." autocomplete="off">
+                        <input v-model="searchText" class="form-control"type="text" placeholder="Buscar..." autocomplete="off" @keyup="search()">
                       </form>
                       
                       <div class="list_search">
                         <!--por nomnbre-->
-                        <!--<ul class="name_list">
-                          <li><a href="">Carolina herrera</a></li>
-                          <li><a href="">Paco robanne</a></li>
-                          <li><a href="">Lacosste</a></li>
-                          <li><a href="">Versace</a></li>
-                          <li><a href="">Chanel</a></li>
-                        </ul>-->
+                        <ul class="name_list">
+                          <li v-for="brandtitle in brandTitles"><a href="#" @click="setText(brandtitle.name)">@{{ brandtitle.name }}</a></li>
+                          <li v-for="producttitle in productTitles"><a href="#" @click="setText(producttitle.name)">@{{ producttitle.name }}</a></li>
+                        </ul>
 
                         <!--presentaciones-->
                         <div class="bg-search">
@@ -229,7 +226,7 @@
                   @endif
 
                   <li class="nav-item position-relative mr-3">
-                    <span class="add_btn">1</span>
+                    <span class="add_btn" id="cart-notification"></span>
                       <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
                   </li>
                   @if(\Auth::guest())
@@ -665,7 +662,9 @@
                       identification:"",
                       address:"",
                       emailLogin:"",
-                      passwordLogin:""
+                      passwordLogin:"",
+                      products:[],
+                      total:0
                   }
               },
               methods:{
@@ -712,16 +711,65 @@
                       .then(res => {
 
                           if(res.data.success == true){
-                              alert(res.data.msg)
-                              window.location.href="{{ url('/') }}"
+
+                            alert(res.data.msg)
+                            this.cartInfo()
+                            window.location.href="{{ url('/') }}"
+
                           }else{
                               alert(res.data.msg)
                           }
-
                       })
 
+                        
+                  },
+                  cartInfo(){
+                    var totalGuest = 0;
+                    var totalCheck = 0;
+
+                    let cart = []
+                    if(window.localStorage.getItem('cartAromantica') != null){
+                        cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+                    }
+
+                    cart.forEach((data, index)=>{
+                        
+                      totalGuest = data.amount + totalGuest
+
+                    })
+                    
+                    if("{{ Auth::check() }}" == true){
+                      
+                      axios.get("{{ url('/cart/fetch') }}")
+                      .then(res => {
+
+                          if(res.data.success == true){
+                              
+                              this.products = res.data.products
+
+                              this.products.forEach((data, index) => {
+
+                                totalCheck = totalCheck + (data.amount * data.product_type_size.price)
+
+                              })
+
+                          }
+
+                      })     
+
+                    }
+                    
+                    let cartTotal = totalGuest + totalCheck
+                    $("#cart-notification").html(cartTotal+"")
                   }
 
+              },
+              mounted(){
+                
+                this.cartInfo()
+                
+
+                
               }
 
           })
@@ -732,7 +780,9 @@
                   return{
                     type:"",
                     size:"",
-                    searchText:""
+                    searchText:"",
+                    brandTitles:[],
+                    productTitles:[],
                   }
               },
               methods:{
@@ -743,6 +793,12 @@
                 },
                 selectSize(size){
                   this.size = JSON.parse(size)
+                },
+                setText(string){
+
+                  this.searchText = string
+                  this.search()
+
                 },
                 lookFor(){
                   if(this.searchText != ""){
@@ -755,6 +811,22 @@
                       }
                       window.location.href="{{ url('/search') }}"
                   }
+                },
+                search(){
+
+                  if(this.searchText != ""){
+                    axios.post("{{ url('/words') }}", {search: this.searchText}).then(res => {
+
+                      if(res.data.success == true){
+
+                        this.brandTitles = res.data.brandTitles
+                        this.productTitles = res.data.productTitles
+
+                      }
+
+                    })
+                  }
+
                 }
 
 

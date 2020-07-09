@@ -295,6 +295,7 @@
                             .then(res => {
 
                                 if(res.data.success == true){
+                                  this.cartInfo()
                                     alert(res.data.msg)
                                     this.amount = 0;
                                     this.type = ""
@@ -319,6 +320,7 @@
                 },
                 guestCart(){
 
+                  var total = 0
                   let cart = []
                   if(window.localStorage.getItem('cartAromantica') != null){
                       cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
@@ -327,7 +329,7 @@
                   var exists = false
 
                   cart.forEach((data, index)=>{
-
+                     
                       if(data.productTypeSizeId == this.productTypeSize.id){
                           data.amount = data.amount + this.amount
                           exists = true
@@ -335,16 +337,59 @@
 
                   })
                   
-
                   if(exists == false){
                       cart.push({productTypeSizeId: this.productTypeSize.id, amount: this.amount})
                   }
-                  
-                  window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
 
+                  cart.forEach((data, index)=>{
+                     
+                    total = data.amount + total
+
+                 })
+
+                 this.cartInfo()
                   alert("Producto añadido al carrito")
 
 
+                },
+                cartInfo(){
+                  var totalGuest = 0;
+                  var totalCheck = 0;
+
+                  let cart = []
+                  if(window.localStorage.getItem('cartAromantica') != null){
+                      cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+                  }
+
+                  cart.forEach((data, index)=>{
+                      
+                    totalGuest = data.amount + totalGuest
+
+                  })
+                  
+                  if("{{ Auth::check() }}" == true){
+                    
+                    axios.get("{{ url('/cart/fetch') }}")
+                    .then(res => {
+
+                        if(res.data.success == true){
+                            
+                            this.products = res.data.products
+
+                            this.products.forEach((data, index) => {
+
+                              totalCheck = totalCheck + (data.amount * data.product_type_size.price)
+
+                            })
+
+                        }
+
+                    })     
+
+                  }
+                  
+                  let cartTotal = totalGuest + totalCheck
+                  $("#cart-notification").html(cartTotal+"")
                 }
 
 
@@ -373,6 +418,8 @@
                 
 
               })
+
+              this.cartInfo()
 
               
 

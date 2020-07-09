@@ -59,6 +59,7 @@ Route::get("/size/fetchAll", "SizeController@fetchAll");
 
 Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
+Route::post("/words", "SearchController@words");
 
 Route::get("/test/purchase/mail", function(){
 
@@ -110,6 +111,7 @@ Route::get("/test/forget/mail", function(){
 });
 
 Route::get("checkout", "CheckoutController@index");
+Route::get("checkout/billing", "CheckoutController@billingNumber");
 
 Route::get("/shopping/index", "ShoppingController@index");
 Route::get("/shopping/fetch/{page}", "ShoppingController@fetch");

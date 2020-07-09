@@ -131,4 +131,21 @@ class SearchController extends Controller
 
     }
 
+    function words(Request $request){
+
+        $productTitles = [];
+        $brandTitles = Brand::where("name", "like", "%".$request->search."%")->take(3)->get();
+        
+        if(count($brandTitles) == 0){
+            $productTitles = Product::where("name", "like", "%".$request->search."%")->take(5)->get();
+        }else{
+
+            $productTitles = Product::where("name", "like", "%".$request->search."%")->take(5 - count($brandTitles))->get();
+
+        }
+
+        return response()->json(["success" => true, "brandTitles" => $brandTitles, "productTitles" => $productTitles]);
+
+    }
+
 }
