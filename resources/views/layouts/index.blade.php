@@ -747,7 +747,7 @@
                     $("#cart-notification").html(cartTotal+"")
                     
                     if(this.authCheck == "1"){
-                      
+                      alert("hey")
                       axios.get("{{ url('/cart/fetch') }}")
                       .then(res => {
 
