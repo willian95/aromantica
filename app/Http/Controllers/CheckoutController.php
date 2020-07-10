@@ -43,9 +43,9 @@ class CheckoutController extends Controller
 
         try{    
 
-            /*if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
+            if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
-            }*/
+            }
 
             $total= 0;
             $client = new \GuzzleHttp\Client();
@@ -190,6 +190,17 @@ class CheckoutController extends Controller
 
             $to_name = "Felipe";
             $to_email = "rodriguezwillian95@gmail.com";
+            //$data = ["user" => $user, "hash" => $hash];
+
+            \Mail::send("emails.admin", $data, function($message) use ($to_name, $to_email) {
+
+                $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
+                $message->from("ventas@aromantica.co", "Aromantica");
+
+            });
+
+            $to_name = "Felipe";
+            $to_email = "info@myass.co";
             //$data = ["user" => $user, "hash" => $hash];
 
             \Mail::send("emails.admin", $data, function($message) use ($to_name, $to_email) {
