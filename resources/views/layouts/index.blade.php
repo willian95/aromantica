@@ -747,7 +747,7 @@
                     $("#cart-notification").html(cartTotal+"")
                     
                     if(this.authCheck == "1"){
-                      alert("hey")
+                    
                       axios.get("{{ url('/cart/fetch') }}")
                       .then(res => {
 
@@ -758,9 +758,11 @@
                               this.products.forEach((data, index) => {
 
                                 totalCheck = totalCheck + (data.amount * data.product_type_size.price)
-                                let cartTotal = totalGuest + totalCheck
-                                $("#cart-notification").html(cartTotal+"")
+                                
                               })
+
+                              let cartTotal = totalGuest + totalCheck
+                              $("#cart-notification").html(cartTotal+"")
 
                           }
 
