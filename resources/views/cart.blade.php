@@ -33,7 +33,7 @@
                                                 <p>CH MEN PRIVÉ</p>
                                             </td>-->
                                             <td class="text-center">
-                                                <span>$ @{{ parseFloat(product.product_type_size.price)  }}</span>
+                                                <span>$ @{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
     
                                             </td>
                                             <td class="text-center ">
@@ -46,7 +46,7 @@
                                                     </div>
                                                 </div>
 
-                                            <td>$ @{{ parseFloat(product.product_type_size.price) * parseInt(product.amount) }}</td>
+                                            <td>$ @{{ parseInt(parseFloat(product.product_type_size.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="erase(product.id)"><span>x</span></p></div></td>
                                       
     
@@ -54,7 +54,7 @@
                                         </tr>
                                         <tr v-for="(product, index) in guestProducts">
                                             <td class="text-center w-150">@{{ product.product.product.name }} - @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
-                                            <td class="text-center">$ @{{ parseFloat(product.product.price) }}</td>
+                                            <td class="text-center">$ @{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                                             <td class="text-center"> 
                                                 <div style="    text-align: center;
                                                 display: flex;
@@ -65,7 +65,7 @@
                                                 </div>
                                     
                                             
-                                            <td class="text-center">$ @{{ parseFloat(product.product.price) * parseInt(product.amount) }}</td>
+                                            <td class="text-center">$ @{{ parseInt(parseFloat(product.product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="guestDelete(index)"><span>x</span></p></div></td>
                                         </tr>
 
@@ -78,8 +78,8 @@
     
                                     <h5>Total de tu compra</h5>
                             
-                                    <p class="space">Total: <span>$@{{ total }}</span> </p>
-                                    <p class="space">Subtotal: <span>$@{{ total }}</span> </p>
+                                    <p class="space">Total: <span>$@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span> </p>
+                                    <!--<p class="space">Subtotal: <span>$@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span> </p>-->
     
                                  <div class="text-center">
                                     <a href="{{ url('/checkout') }}"><button class="btn-custom">Finalizar compra ></button></a>
