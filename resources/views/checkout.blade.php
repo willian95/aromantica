@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                     <label for="phone"><i class="fa fa-phone icon_form"></i>Teléfono</label>
-                    <input type="text" class="form-control" v-model="phone" id="phone">
+                    <input type="text" class="form-control" v-model="phone" id="phone" @keypress="isNumber($event)">
                 </div>
 
             </div>
@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                     <label for="identification"><i class="fa fa-id-card icon_form"></i>Cédula</label>
-                    <input type="text" class="form-control" v-model="identification" id="identification">
+                    <input type="text" class="form-control" v-model="identification" id="identification" @keypress="isNumber($event)">
                 </div>
 
             </div>
@@ -149,6 +149,15 @@
 
                     })
 
+                },
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+                        evt.preventDefault();;
+                    } else {
+                        return true;
+                    }
                 },
                 signature(){
 

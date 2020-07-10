@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label for="telephone">Teléfono</label>
 
-                            <input placeholder="+1234567" type="text" class="form-control  " id="telephone" v-model="telephone">
+                            <input placeholder="+1234567" type="text" class="form-control  " id="telephone" v-model="telephone" @keypress="isNumber($event)">
                             <i class="fa fa-phone icon_form"></i>
                         </div>
                     </div>
@@ -97,7 +97,16 @@
                         });
                     })
 
-                }
+                },
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+                        evt.preventDefault();;
+                    } else {
+                        return true;
+                    }
+                },
                 
 
             },
