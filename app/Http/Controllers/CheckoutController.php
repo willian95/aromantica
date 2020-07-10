@@ -43,9 +43,9 @@ class CheckoutController extends Controller
 
         try{    
 
-            /*sif(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
+            if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
-            }*/
+            }
 
             $total= 0;
             $client = new \GuzzleHttp\Client();
