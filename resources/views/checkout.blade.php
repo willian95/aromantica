@@ -55,25 +55,51 @@
                 <div class="card-pay text-center">
 
                     <div class="form-group">
-                        <label class="total">Total: @{{ total }}</label>
+                        <label class="total">Total: $ @{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</label>
                     </div>
+
+                    <form id="frm_botonePayco" name="frm_botonePayco" method="post" action="https://secure.payco.co/checkout.php" target="_blank" v-if="total > 0">
+                        <input name="p_cust_id_cliente" type="hidden" value="82433">
+                        <input name="p_key" type="hidden" value="1d321ba074d13cb580da34031bc7192331a73fed">
+                        <input name="p_id_invoice" id="p_id_invoice" type="hidden" value="">
+                        <input name="p_description" type="hidden" value="Compra Aromantica">
+                        <input name="p_currency_code" type="hidden" value="COP">
+                        <input name="p_amount" id="p_amount" type="hidden" v-model="total">
+                        <input name="p_tax" id="p_tax" type="hidden" value="0">
+                        <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
+                        <input name="p_test_request" type="hidden" value="TRUE">
+                        <input name="p_email" type="hidden" value="rodriguezwillian95@gmail.com">
+                        <input name="p_url_response" type="hidden" value="http://localhost:8000/checkout/response">
+                        <input name="p_url_confirmation" type="hidden" value="http://localhost:8000/checkout/confirmation">
+                        <input name="p_confirm_method" type="hidden" value="POST">
+                        <input name="p_signature" type="hidden" id="signature" value="" />
+                        <input name="p_billing_document" type="hidden" id="p_billing_document" v-model="identification" />
+                        <input name="p_billing_name" type="hidden" id="p_billing_name" v-model="name" />
+                        <!--<input name="p_billing_lastname" type="hidden" id="p_billing_lastname" value="" />-->
+                        <input name="p_billing_address" type="hidden" id="p_billing_address" v-model="address" />
+                        <input name="p_billing_country" type="hidden" id="p_billing_country" value="CO" />
+                        <input name="p_billing_email" type="hidden" id="p_billing_email" v-model="email" />
+                        <input name="p_billing_phone" type="hidden" id="p_billing_phone" v-model="phone" />
+                        <input name="p_billing_cellphone" type="hidden" id="p_billing_cellphone" v-model="phone" />
+                        <input type="image" id="imagen" src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" />
+                    </form>
     
-            
-    
-                <button class="btn btn-custom " @click="payment()">Pagar</button>
-            </div>
+                </div>
             </div>
 
 
         </div>
+        
     </div>
 
 @endsection
 
 @push("scripts")
 
-    <script>
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
 
+    <script>
+    
         const devArea = new Vue({
             el: '#dev-area',
             data(){
@@ -84,7 +110,10 @@
                     address:"{{ Auth::check() ? Auth::user()->address : '' }}",
                     phone:"{{ Auth::check() ? Auth::user()->phone : '' }}",
                     readonly:"false",
-                    total:0
+                    authCheck:"{{Auth::check()}}",
+                    total:0,
+                    nameProduts:"",
+                    billingNumber:""
                 }
             },
             methods:{
@@ -99,10 +128,26 @@
                             res.data.products.forEach((data, index) => {
 
                                 this.total = this.total + (data.amount * data.product_type_size.price)
+                                
 
                             })
+                            
+                            $("#p_amount_base").val(this.total)
+                            $("#p_amount").val(this.total)
+                            this.signature()
 
                         }
+
+                    })
+
+                },
+                signature(){
+
+                    axios.post("{{ url('checkout/signature') }}", {total: this.total}).then(res => {
+
+                        console.log(res)
+                        $("#signature").val(res.data.hash)
+                        $("#p_id_invoice").val(res.data.billingNumber)
 
                     })
 
@@ -121,8 +166,16 @@
                             res.data.guestProducts.forEach((data, index) => {
 
                                 this.total = this.total + (parseFloat(data.product.price) * parseInt(data.amount))
+                                
 
                             })
+
+                            $("#p_amount_base").val(this.total)
+                            $("#p_amount").val(this.total)
+                            this.signature()
+                            if(this.authCheck != ''){
+                                this.fetch()
+                            }
 
                         }else{
                             alert(res.data.msg)
@@ -130,18 +183,13 @@
 
                     })
 
-                },
-                payment(){
-
-
-
                 }
+
 
             },
             mounted(){
-
-                this.fetch()
                 this.guestFetch()
+                //this.storeSessionProducts()
 
                 this.readonly = "{{ Auth::check() }}"
                 if(this.readonly == ""){

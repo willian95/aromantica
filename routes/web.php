@@ -59,6 +59,7 @@ Route::get("/size/fetchAll", "SizeController@fetchAll");
 
 Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
+Route::post("/words", "SearchController@words");
 
 Route::get("/test/purchase/mail", function(){
 
@@ -91,7 +92,7 @@ Route::get("/test/admin/mail", function(){
 });
 
 
-Route::get("/test/forget/mail", function(){
+/*Route::get("/test/forget/mail", function(){
 
   $hash = Str::random(32).uniqid();
   $user = App\User::where("role_id", 2)->first();
@@ -107,9 +108,12 @@ Route::get("/test/forget/mail", function(){
 
   });
 
-});
+});*/
 
 Route::get("checkout", "CheckoutController@index");
+Route::post("checkout/signature", "CheckoutController@signature");
+Route::get("checkout/response", "CheckoutController@response");
+Route::post("checkout/confirm/payment", "CheckoutController@confirmation");
 
 Route::get("/shopping/index", "ShoppingController@index");
 Route::get("/shopping/fetch/{page}", "ShoppingController@fetch");
