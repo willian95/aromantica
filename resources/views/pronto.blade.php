@@ -6,7 +6,7 @@
     <img class="soon-img" src="https://images.unsplash.com/photo-1557827999-c0bb00bbee13?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=755&q=80" alt="">
 
     <div class="mask">
-        <img class="logo" src="{{ asset('assets/img/Logo.png') }}" alt="">
+        <img class="logo" src="{{ asset('assets/img/logo.png') }}" alt="">
        <div class="lines">
         <div class="line"></div>
         <h1> Muy pronto! </h1>
