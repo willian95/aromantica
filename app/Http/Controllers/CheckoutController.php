@@ -43,7 +43,7 @@ class CheckoutController extends Controller
 
         try{    
 
-            /*if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
+            /*sif(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
             }*/
 
