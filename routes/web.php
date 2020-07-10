@@ -64,7 +64,7 @@ Route::post("/words", "SearchController@words");
 Route::get("/test/purchase/mail", function(){
 
   $to_name = "Felipe";
-  $to_email = "rodriguezwillian95@gmail.com";
+  $to_email = "info@myass.co";
   //$data = ["user" => $user, "hash" => $hash];
 
   \Mail::send("emails.purchase", [], function($message) use ($to_name, $to_email) {
