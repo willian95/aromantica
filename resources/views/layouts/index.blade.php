@@ -39,7 +39,7 @@
 
                   <div class="search">
                     <div id="search">
-                      <form v-on:submit.prevent="lookFor()">
+                      <form >
                         <input v-model="searchText" class="form-control"type="text" placeholder="Buscar..." autocomplete="off" @keyup="search()">
                       </form>
                       
@@ -149,7 +149,7 @@
                           </div>
 
                          <div class="text-center">
-                          <a href="" class="btn-custom btn-custom-1">Buscar</a>
+                          <a href="#" type="button" class="btn-custom btn-custom-1" @click="lookFor()">Buscar</a>
                          </div>
                         </div>
                         <!--caracteristicas-->
