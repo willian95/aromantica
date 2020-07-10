@@ -147,6 +147,10 @@
                             </ul>
     
                           </div>
+
+                         <div class="text-center">
+                          <a href="" class="btn-custom btn-custom-1">Buscar</a>
+                         </div>
                         </div>
                         <!--caracteristicas-->
 
