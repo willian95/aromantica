@@ -174,7 +174,7 @@ class CheckoutController extends Controller
                 
 
             }else{
-                $guestUser = GuestUser::where("id", $payment->guest_id)->first()
+                $guestUser = GuestUser::where("id", $payment->guest_id)->first();
                 $to_name = $guestUser->name;
                 $to_email = $guestUser->email;
                 $data = ["user" => GuestUser::where("id", $guestUser->id)->first(), "products" => $productPurchased];
