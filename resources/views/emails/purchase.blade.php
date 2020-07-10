@@ -125,7 +125,7 @@ td .es-button-border-2:hover {
                 </tr>
 
                 @foreach($products as $product)
-                  {{ $product }}
+                 
                   <tr style="border: 1px solid black; border-collapse:collapse">
                       <td style="border: 1px solid black; border-collapse:collapse">{{ $loop->index + 1 }}</td>
                       <td style="border: 1px solid black; border-collapse:collapse">{{ $product["productTypeSize"]["product"]["name"] }} {{ $product["productTypeSize"]["type"]["name"] }} {{ $product["productTypeSize"]["size"]["name"] }}oz / {{ $product["productTypeSize"]["size"]["ml"] }}ml</td>
