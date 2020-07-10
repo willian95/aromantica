@@ -189,7 +189,7 @@ class CheckoutController extends Controller
             });
 
             $to_name = "Felipe";
-            $to_email = "info@myass.co";
+            $to_email = "rodriguezwillian95@gmail.com";
             //$data = ["user" => $user, "hash" => $hash];
 
             \Mail::send("emails.admin", $data, function($message) use ($to_name, $to_email) {
