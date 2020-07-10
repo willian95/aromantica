@@ -760,9 +760,10 @@
                                 totalCheck = totalCheck + data.amount
                                 
                               })
-                              console.log("test-cartTotal", totalGuest, totalCheck)
-                              let cartTotal = totalGuest + totalCheck
-                              $("#cart-notification").html(cartTotal+"")
+                              
+                              let cartTotalCheck = totalGuest + totalCheck
+                              console.log("test-cartTotal", totalGuest, totalCheck, cartTotalCheck)
+                              $("#cart-notification").html(cartTotalCheck+"")
 
                           }
 
