@@ -16,12 +16,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email">Nombre y apellido</label>
+                            <label for="email">Nombre</label>
                             <input placeholder="pedro perez" type="text" v-model="name" autocomplete="off" class="form-control" id="email" aria-describedby="emailHelp">
                             <i class="fa fa-user icon_form"></i>
                         </div>
                         <div class="form-group">
-                            <label for="email">Correo electrónico</label>
+                            <label for="email">Email</label>
                             <input placeholder="pedroperez@gmail.com" type="email" autocomplete="off"
                                 class="form-control" id="text" aria-describedby="emailHelp" v-model="email" :readonly="true">
                             <i class="fa fa-envelope icon_form"></i>
@@ -36,7 +36,7 @@
                             <i class="fa fa-globe icon_form"></i>
                         </div>
                         <div class="form-group">
-                            <label for="telephone">Telefono</label>
+                            <label for="telephone">Teléfono</label>
 
                             <input placeholder="+1234567" type="text" class="form-control  " id="telephone" v-model="telephone">
                             <i class="fa fa-phone icon_form"></i>
