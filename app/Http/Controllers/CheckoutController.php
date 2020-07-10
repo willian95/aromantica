@@ -8,6 +8,7 @@ use App\Payment;
 use App\ProductTypeSize;
 use App\ProductPurchase;
 use App\GuestUser;
+use App\User;
 use App\Cart;
 use Illuminate\Support\Str;
 
