@@ -742,7 +742,7 @@
 
                     })
                     
-                    if("{{ Auth::check() }}" == true){
+                    if("{{ Auth::check() }}" == "1"){
                       
                       axios.get("{{ url('/cart/fetch') }}")
                       .then(res => {
