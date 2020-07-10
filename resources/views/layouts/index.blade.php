@@ -46,7 +46,7 @@
                       <div class="list_search">
                         <!--por nomnbre-->
                         <ul class="name_list">
-                          <li v-for="brandtitle in brandTitles"><a href="#" @click="setText(brandtitle.name)">@{{ brandtitle.name }}</a></li>
+                          <li v-for="brandtitle in brandTitles"><a href="#" @click="setText(brandtitle.name)">@{{ brandtitle.name }} <img style="width: 20px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image"></a></li>
                           <li v-for="producttitle in productTitles"><a href="#" @click="setText(producttitle.name)">@{{ producttitle.name }}</a></li>
                         </ul>
 

@@ -64,7 +64,7 @@ Route::post("/words", "SearchController@words");
 Route::get("/test/purchase/mail", function(){
 
   $to_name = "Felipe";
-  $to_email = "info@myass.co";
+  $to_email = "rodriguezwillian95@gmail.com";
   //$data = ["user" => $user, "hash" => $hash];
 
   \Mail::send("emails.purchase", [], function($message) use ($to_name, $to_email) {
@@ -92,7 +92,7 @@ Route::get("/test/admin/mail", function(){
 });
 
 
-Route::get("/test/forget/mail", function(){
+/*Route::get("/test/forget/mail", function(){
 
   $hash = Str::random(32).uniqid();
   $user = App\User::where("role_id", 2)->first();
@@ -108,10 +108,12 @@ Route::get("/test/forget/mail", function(){
 
   });
 
-});
+});*/
 
 Route::get("checkout", "CheckoutController@index");
-Route::get("checkout/billing", "CheckoutController@billingNumber");
+Route::post("checkout/signature", "CheckoutController@signature");
+Route::get("checkout/response", "CheckoutController@response");
+Route::post("checkout/confirm/payment", "CheckoutController@confirmation");
 
 Route::get("/shopping/index", "ShoppingController@index");
 Route::get("/shopping/fetch/{page}", "ShoppingController@fetch");
