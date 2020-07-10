@@ -268,7 +268,7 @@
 
                   })
                   
-                  if("{{ Auth::check() }}" == true){
+                  if(this.authCheck == "1"){
                     
                     axios.get("{{ url('/cart/fetch') }}")
                     .then(res => {
@@ -279,9 +279,13 @@
 
                             this.products.forEach((data, index) => {
 
-                              totalCheck = totalCheck + (data.amount * data.product_type_size.price)
+                                totalCheck = totalCheck + data.amount
 
                             })
+
+                            let cartTotalCheck = totalGuest + totalCheck
+                            console.log("test-cartTotal", totalGuest, totalCheck, cartTotalCheck)
+                            $("#cart-notification").html(cartTotalCheck+"")
 
                         }
 
@@ -384,7 +388,7 @@
                 }
 
                 this.guestFetch()
-                this.cartInfo()
+                //this.cartInfo()
 
             }
 
