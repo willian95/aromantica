@@ -757,7 +757,7 @@
 
                               this.products.forEach((data, index) => {
 
-                                totalCheck = totalCheck + (data.amount * data.product_type_size.price)
+                                totalCheck = totalCheck + data.amount
                                 
                               })
                               console.log("test-cartTotal", totalGuest, totalCheck)
