@@ -103,7 +103,7 @@ td .es-button-border-2:hover {
                       <td align="center" style="padding:0;Margin:0;"><h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#0c4572;">¡Tienes una nueva venta!</h1></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#010101;">Hola </span>admin!<br> <span style="font-size:15px;"> El cliente XYZ a realizado la siguiente compra.</span><br></p></td> 
+                      <td align="center" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#010101;">Hola </span>admin!<br> <span style="font-size:15px;"> El cliente {{ $user['name'] }} a realizado la siguiente compra.</span><br></p></td> 
                      </tr> 
                      
                    </table></td> 
@@ -120,21 +120,17 @@ td .es-button-border-2:hover {
                   <th style="border: 1px solid black;border-collapse:collapse">Precio unitario</th>
                   <th style="border: 1px solid black;border-collapse:collapse">Precio total</th>
                 </tr>
-               
-                  <tr style="border: 1px solid black; border-collapse:collapse">
-                      <td style="border: 1px solid black; border-collapse:collapse">1</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">Hugo boss </td>
-                      <td style="border: 1px solid black; border-collapse:collapse">2</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">$ 15.000</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">$ 30.000</td>
-                  </tr>
-                  <tr style="border: 1px solid black; border-collapse:collapse">
-                      <td style="border: 1px solid black; border-collapse:collapse">2</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">Invictus </td>
-                      <td style="border: 1px solid black; border-collapse:collapse">1</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">$ 20.000</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">$ 20.000</td>
-                  </tr>
+
+                  @foreach($products as $product)
+                    <tr style="border: 1px solid black; border-collapse:collapse">
+                        <td style="border: 1px solid black; border-collapse:collapse">{{ $loop->index + 1 }}</td>
+                        <td style="border: 1px solid black; border-collapse:collapse">{{ $product->productTypeSize->product->name }}}</td>
+                        <td style="border: 1px solid black; border-collapse:collapse">{{ $product->amount }}</td>
+                        <td style="border: 1px solid black; border-collapse:collapse">{{ number_format($product->price, 0, ",", ".") }}</td>
+                        <td style="border: 1px solid black; border-collapse:collapse">{{ number_format(($product->price * $product->amount), 0, ",", ".")   }}</td>
+                    </tr>
+                  @endforeach
+                  
                 
                 </table>
               </td>

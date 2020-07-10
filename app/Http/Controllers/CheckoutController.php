@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Payment;
 use App\ProductTypeSize;
 use App\ProductPurchase;
+use App\GuestUser;
 use App\Cart;
 use Illuminate\Support\Str;
 
@@ -40,11 +41,11 @@ class CheckoutController extends Controller
 
     function confirmation(Request $request){
 
-        try{
+        try{    
 
-            if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
+            /*if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
-            }
+            }*/
 
             $total= 0;
             $client = new \GuzzleHttp\Client();
@@ -87,6 +88,23 @@ class CheckoutController extends Controller
             $payment->order_id = $data->data->x_id_factura;
             if(\Auth::check()){
                 $payment->user_id = \Auth::user()->id;
+            }else{
+                
+                $guestUser = $request->guestUser;
+
+                $guest = GuestUser::where("email", $guestUser["email"])->first();
+
+                if(!$guest){
+                    $guest = new GuestUser;
+                    $guest->name = $guestUser["name"];
+                    $guest->email = $guestUser["email"];
+                    $guest->address = $guestUser["address"];
+                    $guest->address = $guestUser["address"];
+                    $guest->phone = $guestUser["phone"];
+                    $guest->save();
+                }
+
+                $payment->guest_id = $guest->id;
             }
             $payment->tracking = 0;
             if(\Auth::check()){
@@ -145,7 +163,43 @@ class CheckoutController extends Controller
                 }
 
             }            
-            
+
+            $productsPurchased = ProductPurchase::where("payment_id", $payment->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.type", "productTypeSize.size")->first();
+
+            if(\Auth::check()){
+
+                $to_name = \Auth::user()->name;
+                $to_email = \Auth::user()->email;
+                $data = ["user" => User::where("id", \Auth::user()->id)->first(), "products" => $productsPurchased];
+                
+
+            }else{
+
+                $to_name = $guestUser->name;
+                $to_email = $guestUser->email;
+                $data = ["user" => GuestUser::where("id", $guestUser->id)->first(), "products" => $productPurchased];
+
+            }
+
+            \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
+
+                $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
+                $message->from("ventas@aromantica.co", "Aromantica");
+
+            });
+
+            $to_name = "Felipe";
+            $to_email = "info@myass.co";
+            //$data = ["user" => $user, "hash" => $hash];
+
+            \Mail::send("emails.admin", $data, function($message) use ($to_name, $to_email) {
+
+                $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
+                $message->from("ventas@aromantica.co", "Aromantica");
+
+            });
+
+
             return response()->json(["success" => true, "payment" => $payment]);
         }catch(\Exception $e){
             Log::info($e->getMessage());

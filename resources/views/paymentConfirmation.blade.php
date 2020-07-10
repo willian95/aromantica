@@ -34,10 +34,13 @@
                 
                 storePayment(){
 
-                    axios.post("{{ url('checkout/confirm/payment') }}", {guestCart: JSON.parse(window.localStorage.getItem('cartAromantica')), refPayco: this.refPayco}).then(res => {
+                    let guestUser = JSON.parse(window.localStorage.getItem("guestUserAromantica"))
+
+                    axios.post("{{ url('checkout/confirm/payment') }}", {guestCart: JSON.parse(window.localStorage.getItem('cartAromantica')), refPayco: this.refPayco, guestUser: guestUser}).then(res => {
                         if(res.data.success == true){
                             this.payment = res.data.payment
-                            localStorage.removeItem("cartAromantica")
+                            //localStorage.removeItem("cartAromantica")
+                            //localStorage.removeItem("guestUserAromantica")
                             $("#cart-notification").html("0")
                         }else{
                             alert(res.data.msg)

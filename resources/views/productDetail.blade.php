@@ -186,10 +186,13 @@
     
                       </div>
     
-                      <div class="float-left main-top__btn ">
+                      <div class="float-left main-top__btn " v-if="stock > 0">
                         <a style="color:#fff" class="btn-custom mr-4" @click="addToCart()">
                           Añadir >
                         </a>
+                      </div>
+                      <div v-else>
+                        <p>Producto sin stock</p>
                       </div>
                     </div>
                   </div>
@@ -289,7 +292,7 @@
 
                     if(this.amount > 0){
 
-                        if(this.authCheck == true){
+                        if(this.authCheck == "1"){
                             
                             axios.post("{{ url('/cart/store') }}", {productTypeSizeId: this.productTypeSize.id, amount: this.amount})
                             .then(res => {
@@ -347,6 +350,8 @@
 
                  })
 
+                 window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+
                  this.cartInfo()
                   alert("Producto añadido al carrito")
 
@@ -366,6 +371,9 @@
                     totalGuest = data.amount + totalGuest
 
                   })
+
+                  let cartTotal = totalGuest + totalCheck
+                  $("#cart-notification").html(cartTotal+"")
                   
                   if(this.authCheck == "1"){
                   
