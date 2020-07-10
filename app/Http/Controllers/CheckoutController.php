@@ -164,7 +164,7 @@ class CheckoutController extends Controller
 
             }            
 
-            $productsPurchased = ProductPurchase::where("payment_id", $payment->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.type", "productTypeSize.size")->first();
+            $productsPurchased = ProductPurchase::where("payment_id", $payment->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.type", "productTypeSize.size")->get();
 
             if(\Auth::check()){
 
