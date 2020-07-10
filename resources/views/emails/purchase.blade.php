@@ -127,10 +127,10 @@ td .es-button-border-2:hover {
                 @foreach($products as $product)
                   <tr style="border: 1px solid black; border-collapse:collapse">
                       <td style="border: 1px solid black; border-collapse:collapse">{{ $loop->index + 1 }}</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">{{ $product["productTypeSize"]["product"]["name"] }}}</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">{{ $product->amount }}</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">{{ number_format($product->price, 0, ",", ".") }}</td>
-                      <td style="border: 1px solid black; border-collapse:collapse">{{ number_format(($product->price * $product->amount), 0, ",", ".")   }}</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">{{ $product["productTypeSize"]["product"]["name"] }} {{ $product["productTypeSize"]["type"]["name"] }} {{ $product["productTypeSize"]["size"]["name"] }}oz / {{ $product["productTypeSize"]["size"]["ml"] }}ml</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">{{ $product["amount"] }}</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">{{ number_format($product["price"], 0, ",", ".") }}</td>
+                      <td style="border: 1px solid black; border-collapse:collapse">{{ number_format(($product["price"] * $product["amount"]), 0, ",", ".")   }}</td>
                   </tr>
                 @endforeach
                 
