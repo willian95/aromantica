@@ -69,8 +69,8 @@
                         <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
                         <input name="p_test_request" type="hidden" value="TRUE">
                         <input name="p_email" type="hidden" value="rodriguezwillian95@gmail.com">
-                        <input name="p_url_response" type="hidden" value="http://localhost:8000/checkout/response">
-                        <input name="p_url_confirmation" type="hidden" value="http://localhost:8000/checkout/confirmation">
+                        <input name="p_url_response" type="hidden" value="{{ url('checkout/response') }}">
+                        <input name="p_url_confirmation" type="hidden" value="{{ url('checkout/confirmation') }}">
                         <input name="p_confirm_method" type="hidden" value="POST">
                         <input name="p_signature" type="hidden" id="signature" v-model="signatureHash"/>
                         <input name="p_billing_document" type="hidden" id="p_billing_document" v-model="identification" />
