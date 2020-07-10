@@ -741,6 +741,9 @@
                       totalGuest = data.amount + totalGuest
 
                     })
+
+                    let cartTotal = totalGuest + totalCheck
+                    $("#cart-notification").html(cartTotal+"")
                     
                     if("{{ Auth::check() }}" == "1"){
                       
@@ -754,7 +757,8 @@
                               this.products.forEach((data, index) => {
 
                                 totalCheck = totalCheck + (data.amount * data.product_type_size.price)
-
+                                let cartTotal = totalGuest + totalCheck
+                                $("#cart-notification").html(cartTotal+"")
                               })
 
                           }
@@ -763,8 +767,7 @@
 
                     }
                     
-                    let cartTotal = totalGuest + totalCheck
-                    $("#cart-notification").html(cartTotal+"")
+                    
                   }
 
               },
