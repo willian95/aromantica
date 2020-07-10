@@ -760,7 +760,7 @@
                                 totalCheck = totalCheck + (data.amount * data.product_type_size.price)
                                 
                               })
-
+                              console.log("test-cartTotal", totalGuest, totalCheck)
                               let cartTotal = totalGuest + totalCheck
                               $("#cart-notification").html(cartTotal+"")
 
