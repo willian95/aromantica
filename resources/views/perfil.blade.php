@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="identification">Identificación</label>
 
-                            <input placeholder="Dirección" type="text" class="form-control  " id="identification" v-model="identification">
+                            <input placeholder="Dirección" type="text" class="form-control  " id="identification" v-model="identification" @keypress="isNumber($event)">
                             <i class="fa fa-globe icon_form"></i>
                         </div>
                     </div>
