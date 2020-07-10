@@ -668,6 +668,7 @@
                       emailLogin:"",
                       passwordLogin:"",
                       products:[],
+                      authCheck:"{{ Auth::check() }}",
                       total:0
                   }
               },
@@ -745,7 +746,7 @@
                     let cartTotal = totalGuest + totalCheck
                     $("#cart-notification").html(cartTotal+"")
                     
-                    if("{{ Auth::check() }}" == "1"){
+                    if(this.authCheck == "1"){
                       
                       axios.get("{{ url('/cart/fetch') }}")
                       .then(res => {
