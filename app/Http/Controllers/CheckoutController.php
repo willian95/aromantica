@@ -180,7 +180,7 @@ class CheckoutController extends Controller
                 $data = ["user" => GuestUser::where("id", $guestUser->id)->first(), "products" => $productsPurchased];
 
             }
-
+            dd($productsPurchased->productTypeSize);
             \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
 
                 $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
