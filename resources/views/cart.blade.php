@@ -19,13 +19,13 @@
                                             <td class="text-center">Precio</td>
                                             <td class="text-center">Cantidad</td>
                                             <td class="text-center">Total</td>
-                                            <td class="text-center">Acciones</td>
+                                            <td class="text-center">Eliminar</td>
     
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(product, index) in products">
-                                            <td class="text-center w-150">@{{ product.product_type_size.product.name }} - @{{ product.product_type_size.type.name }} - @{{ product.product_type_size.size.name }} Oz
+                                            <td class="text-center w-150 text-center">@{{ product.product_type_size.product.name }} - @{{ product.product_type_size.type.name }} - @{{ product.product_type_size.size.name }} Oz
                                             </td>
 
                                            <!--- <td class="text-center w-150">

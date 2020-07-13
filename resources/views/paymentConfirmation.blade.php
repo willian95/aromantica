@@ -6,7 +6,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3>@{{ payment.status }}</h3>
+                    <h3 v-if="payment.status == 'aprobado'" class="text-center" style="margin-top: 20px;">Muchas gracias! Tu pago ha sido aprobado! Revisa tu email para seguir el proceso de tu compra!</h3>
+                    <h3 v-else class="text-center" style="margin-top: 20px;">@{{ payment.status }}</h3>
                 </div>
                 <div class="col-12">
                     <p>Total: @{{ payment.total }}</p>
