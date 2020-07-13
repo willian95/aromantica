@@ -46,7 +46,7 @@
                                                     </div>
                                                 </div>
 
-                                            <td>$ @{{ parseInt(parseFloat(product.product_type_size.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                                            <td class="text-center">$ @{{ parseInt(parseFloat(product.product_type_size.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                                             <td class="text-center"><div class="btn "><p class="delete" href="#" @click="erase(product.id)"><span>x</span></p></div></td>
                                       
     
