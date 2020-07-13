@@ -118,6 +118,7 @@ td .es-button-border-2:hover {
                 <table ellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                 <tr style="border: 1px solid black; border-collapse:collapse">
                   <th style="border: 1px solid black;border-collapse:collapse">#</th>
+                  <th style="border: 1px solid black;border-collapse:collapse">Imagen</th>
                   <th style="border: 1px solid black;border-collapse:collapse">Producto</th>
                   <th style="border: 1px solid black;border-collapse:collapse">Cantidad</th>
                   <th style="border: 1px solid black;border-collapse:collapse">Precio unitario</th>
@@ -127,8 +128,9 @@ td .es-button-border-2:hover {
                 @foreach($products as $product)
                  
                   <tr style="border: 1px solid black; border-collapse:collapse">
-                      <td style="border: 1px solid black; border-collapse:collapse text-align:center">{{ $loop->index + 1 }}</td>
-                      <td style="border: 1px solid black; border-collapse:collapse; text-align:center"> <img src="{{ env('CMS_URL').'/images/products/'.$product['productTypeSize']['product']['image'] }}" style="width: 60px;">  <span style="margin-top: -10px;">{{ $product["productTypeSize"]["product"]["name"] }} {{ $product["productTypeSize"]["type"]["name"] }} {{ $product["productTypeSize"]["size"]["name"] }}oz / {{ $product["productTypeSize"]["size"]["ml"] }}ml </span></td>
+                      <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $loop->index + 1 }}</td>
+                      <td style="border: 1px solid black; border-collapse:collapse; text-align:center"><img src="{{ env('CMS_URL').'/images/products/'.$product['productTypeSize']['product']['image'] }}" style="width: 60px;"></td>
+                      <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["productTypeSize"]["product"]["name"] }} {{ $product["productTypeSize"]["type"]["name"] }} {{ $product["productTypeSize"]["size"]["name"] }}oz / {{ $product["productTypeSize"]["size"]["ml"] }}ml </td>
                       <td style="border: 1px solid black; border-collapse:collapse;text-align:center ">{{ $product["amount"] }}</td>
                       <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format($product["price"], 0, ",", ".") }}</td>
                       <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format(($product["price"] * $product["amount"]), 0, ",", ".")   }}</td>
