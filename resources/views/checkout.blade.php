@@ -195,8 +195,9 @@
 
                             })
                             
-                            $("#p_amount_base").val(this.total)
-                            $("#p_amount").val(this.total)
+                            //$("#p_amount_base").val(this.total)
+                            //$("#p_amount").val(this.total)
+                            alert("entre 2")
                             this.signature()
 
                         }
@@ -246,8 +247,9 @@
 
                             })
 
-                            $("#p_amount_base").val(this.total)
-                            $("#p_amount").val(this.total)
+                            //$("#p_amount_base").val(this.total)
+                            //$("#p_amount").val(this.total)
+                            alert("entre 1")
                             this.signature()
                             if(this.authCheck != ''){
                                 this.fetch()
