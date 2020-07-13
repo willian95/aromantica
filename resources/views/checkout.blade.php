@@ -136,7 +136,7 @@
                         <p>Debe iniciar sesión o llenar todos los campos del formulario</p>
                     </div>
 
-                    <button class="btn btn-success" @click="calculateCarrier()">Calular envío</button>
+                    <!--<button class="btn btn-success" @click="calculateCarrier()">Calular envío</button>-->
     
                 </div>
             </div>
