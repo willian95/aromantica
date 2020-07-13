@@ -200,7 +200,7 @@ class CheckoutController extends Controller
 
             });
 
-            /*$to_name = "Felipe";
+            $to_name = "Felipe";
             $to_email = "info@myass.co";
             //$data = ["user" => $user, "hash" => $hash];
 
@@ -209,7 +209,7 @@ class CheckoutController extends Controller
                 $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
                 $message->from("ventas@aromantica.co", "Aromantica");
 
-            });*/
+            });
 
 
             return response()->json(["success" => true, "payment" => $payment]);
