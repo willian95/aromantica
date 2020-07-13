@@ -10,9 +10,9 @@
                     <h3 v-else class="text-center" style="margin-top: 20px;">@{{ payment.status }}</h3>
                 </div>
                 <div class="col-12">
-                    <p>Total: @{{ payment.total }}</p>
-                    <p>Referencia ePayco: @{{ payment.epayco_reference }}</p>
-                    <p>Referencia de comercio: @{{ payment.order_id }}</p>
+                    <p><strong>Total:</strong> $ @{{ parseFloat(payment.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                    <p><strong>Referencia ePayco:</strong> @{{ payment.epayco_reference }}</p>
+                    <p><strong>Referencia de comercio:</strong> @{{ payment.order_id }}</p>
                 </div>
             </div>
         </div>
