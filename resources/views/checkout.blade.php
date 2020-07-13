@@ -191,7 +191,7 @@
 
                                 this.total = this.total + (data.amount * data.product_type_size.price)
                                 
-                                this.packages.push({"content": data.product.product.name, "amount": data.amount, type: "box", "dimensions": {"length": "3.20", "width": "8", "height": "12.80"}, "weight": "0.20","insurance":0, "declaredValue": (parseFloat(data.product.price) * parseInt(data.amount)), "weightUnit": "KG", "lengthUnit": "CM"})
+                                this.packages.push({"content": data.product_type_size.product.name, "amount": data.amount, type: "box", "dimensions": {"length": "3.20", "width": "8", "height": "12.80"}, "weight": "0.20","insurance":0, "declaredValue": (parseFloat(data.product.price) * parseInt(data.amount)), "weightUnit": "KG", "lengthUnit": "CM"})
 
                             })
                             
