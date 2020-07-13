@@ -136,7 +136,7 @@
                         <p>Debe iniciar sesión o llenar todos los campos del formulario</p>
                     </div>
 
-                    <!--<button class="btn btn-success" @click="calculateCarrier()">Calular envío</button>-->
+                    <button class="btn btn-success" @click="calculateCarrier()">Calular envío</button>
     
                 </div>
             </div>
@@ -270,7 +270,7 @@
                 },
                 calculateCarrier(){
 
-                    var data = {
+                    /*var data = {
                         "origin": {
                             "name": "Aromantica",
                             "company": "Aromantica",
@@ -304,7 +304,74 @@
                             "carrier": "fedex",
                             "type": 1
                         }
-                    }
+                    }*/
+
+                    var data = {
+                                "origin": {
+                                    "name": "Willian CO",
+                                    "company": "Aromantica",
+                                    "email": "rodriguezwillian95@gmail.com",
+                                    "phone": "8116300800",
+                                    "street": "Cra. 68g",
+                                    "number": "65-02",
+                                    "district": "Cundinamarca",
+                                    "city": "Bogota",
+                                    "state": "DE",
+                                    "country": "CO",
+                                    "postalCode": "110111",
+                                    "reference": ""
+                                },
+                                "destination": {
+                                    "name": "Felipe CO",
+                                    "company": "MyAss",
+                                    "email": "felipe@gmail.com",
+                                    "phone": "8116300800",
+                                    "street": "Cra. 66",
+                                    "number": "49B-20",
+                                    "district": "Medellin",
+                                    "city": "Medellin",
+                                    "state": "AN",
+                                    "country": "CO",
+                                    "postalCode": "050001",
+                                    "reference": ""
+                                },
+                                "packages": [
+                                    {
+                                        "content": "Perfumes Luis Vutton",
+                                        "amount": 3,
+                                        "type": "box",
+                                        "dimensions": {
+                                            "length": 2,
+                                            "width": 5,
+                                            "height": 5
+                                        },
+                                        "weight": 1,
+                                        "insurance": 0,
+                                        "declaredValue": 200000,
+                                        "weightUnit": "KG",
+                                        "lengthUnit": "CM"
+                                    },
+                                    {
+                                        "content": "Perfumes Gucci",
+                                        "amount": 2,
+                                        "type": "box",
+                                        "dimensions": {
+                                            "length": 1,
+                                            "width": 17,
+                                            "height": 2
+                                        },
+                                        "weight": 1,
+                                        "insurance": 400,
+                                        "declaredValue": 450000,
+                                        "weightUnit": "KG",
+                                        "lengthUnit": "CM"
+                                    }
+                                ],
+                                "shipment": {
+                                    "carrier": "fedex",
+                                    "type": 1
+                                }
+                            }
 
                     axios.post("https://api-test.envia.com/ship/rate/", data, {
                         headers: {

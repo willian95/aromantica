@@ -128,7 +128,7 @@ td .es-button-border-2:hover {
                  
                   <tr style="border: 1px solid black; border-collapse:collapse">
                       <td style="border: 1px solid black; border-collapse:collapse text-align:center">{{ $loop->index + 1 }}</td>
-                      <td style="border: 1px solid black; border-collapse:collapse; text-align:center"> <img src="{{ env('CMS_URL').'/images/products/'.$product['productTypeSize']['product']['image'] }}" style="width: 60px;">  {{ $product["productTypeSize"]["product"]["name"] }} {{ $product["productTypeSize"]["type"]["name"] }} {{ $product["productTypeSize"]["size"]["name"] }}oz / {{ $product["productTypeSize"]["size"]["ml"] }}ml</td>
+                      <td style="border: 1px solid black; border-collapse:collapse; text-align:center"> <img src="{{ env('CMS_URL').'/images/products/'.$product['productTypeSize']['product']['image'] }}" style="width: 60px;">  <span style="margin-top: -10px;">{{ $product["productTypeSize"]["product"]["name"] }} {{ $product["productTypeSize"]["type"]["name"] }} {{ $product["productTypeSize"]["size"]["name"] }}oz / {{ $product["productTypeSize"]["size"]["ml"] }}ml </span></td>
                       <td style="border: 1px solid black; border-collapse:collapse;text-align:center ">{{ $product["amount"] }}</td>
                       <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format($product["price"], 0, ",", ".") }}</td>
                       <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format(($product["price"] * $product["amount"]), 0, ",", ".")   }}</td>
