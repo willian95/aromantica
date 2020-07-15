@@ -258,6 +258,7 @@
                     axios.post("{{ url('checkout/signature') }}", {total: this.total}).then(res => {
 
                         console.log(res)
+                        this.shippingCalculated = true
                         //$("#signature").val(res.data.hash)
                         this.billingNumber = res.data.billingNumber
                         this.signatureHash = res.data.hash
@@ -387,7 +388,6 @@
                 },
                 setService(service){
 
-                    this.shippingCalculated = true
                     this.choosenService = service
                     this.total = this.baseTotal + service.totalPrice
                     this.signature()
