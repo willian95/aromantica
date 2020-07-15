@@ -97,7 +97,7 @@ class CheckoutController extends Controller
                 $payment->shipping_cost = 0;
             }
             $payment->total_products = $total;
-            $payment->total = $total;
+            $payment->total = $total + $payment->shipping_cost;
             $payment->epayco_reference = $request->refPayco;
             $payment->order_id = $data->data->x_id_factura;
             if(\Auth::check()){
