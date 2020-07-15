@@ -9,10 +9,11 @@
                     <h3 v-if="payment.status == 'aprobado'" class="text-center" style="margin-top: 20px;">Muchas gracias! Tu pago ha sido aprobado! Revisa tu email para seguir el proceso de tu compra!</h3>
                     <h3 v-else class="text-center" style="margin-top: 20px;">@{{ payment.status }}</h3>
                 </div>
-                <div class="col-12">
+                <div class="col-12" v-if="payment.status == 'aprobado'">
                     <p><strong>Total:</strong> $ @{{ parseFloat(payment.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                     <p><strong>Referencia ePayco:</strong> @{{ payment.epayco_reference }}</p>
                     <p><strong>Referencia de comercio:</strong> @{{ payment.order_id }}</p>
+                    <p><a :href="payment.tracking_url" target="_blank">Seguimiento: @{{ payment.tracking }}</a></p>
                 </div>
             </div>
         </div>
@@ -36,13 +37,16 @@
                 storePayment(){
 
                     let guestUser = JSON.parse(window.localStorage.getItem("guestUserAromantica"))
+                    let service = JSON.parse(window.localStorage.getItem("service"))
+                    let shippingData = JSON.parse(window.localStorage.getItem("shipping_data"))
 
-                    axios.post("{{ url('checkout/confirm/payment') }}", {guestCart: JSON.parse(window.localStorage.getItem('cartAromantica')), refPayco: this.refPayco, guestUser: guestUser}).then(res => {
+                    axios.post("{{ url('checkout/confirm/payment') }}", {guestCart: JSON.parse(window.localStorage.getItem('cartAromantica')), refPayco: this.refPayco, guestUser: guestUser, service: service, shippingData: shippingData}).then(res => {
                         if(res.data.success == true){
                             this.payment = res.data.payment
                             localStorage.removeItem("cartAromantica")
                             localStorage.removeItem("guestUserAromantica")
                             $("#cart-notification").html("0")
+
                         }else{
                             alert(res.data.msg)
                         }
