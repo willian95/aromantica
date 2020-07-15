@@ -183,7 +183,7 @@ class CheckoutController extends Controller
 
                 $to_name = \Auth::user()->name;
                 $to_email = \Auth::user()->email;
-                $data = ["user" => User::where("id", \Auth::user()->id)->first(), "products" => $productsPurchased];
+                $data = ["user" => User::where("id", \Auth::user()->id)->first(), "products" => $productsPurchased, "tracking_url" => $payment->tracking_url];
                 
 
             }else{
