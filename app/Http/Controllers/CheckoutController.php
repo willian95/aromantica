@@ -90,13 +90,14 @@ class CheckoutController extends Controller
                 $payment->tracking_url = $envia->data[0]->trackUrl;
                 $payment->tracking = $envia->data[0]->trackingNumber;
                 $payment->label = $envia->data[0]->label;
+                $payment->shipping_cost = $envia->data[0]->totalPrice;
 
             }else{
                 $payment->status = "rechazado";
+                $payment->shipping_cost = 0;
             }
             $payment->total_products = $total;
-            $payment->shipping_cost = 0;
-            $payment->total = $total;
+            $payment->total = $total + $payment->shipping_cost;
             $payment->epayco_reference = $request->refPayco;
             $payment->order_id = $data->data->x_id_factura;
             if(\Auth::check()){
@@ -183,7 +184,7 @@ class CheckoutController extends Controller
 
                 $to_name = \Auth::user()->name;
                 $to_email = \Auth::user()->email;
-                $data = ["user" => User::where("id", \Auth::user()->id)->first(), "products" => $productsPurchased];
+                $data = ["user" => User::where("id", \Auth::user()->id)->first(), "products" => $productsPurchased, "tracking_url" => $payment->tracking_url];
                 
 
             }else{

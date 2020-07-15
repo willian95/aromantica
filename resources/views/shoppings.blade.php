@@ -35,7 +35,7 @@
                             <th>#</th>
                             <th>Fecha</th>
                             <th>Tracking</th>
-                            <th>Status de envío</th>
+                        
                             <th>Total</th>
                             <th>Acciones</th>
                         </tr>
@@ -44,8 +44,7 @@
                         <tr v-for="shopping in shoppings">
                             <td>@{{ shopping.order_id }}</td>
                             <td>@{{ shopping.created_at.toString().substr(0, 10) }}</td>
-                            <td>@{{ shopping.tracking }}</td>
-                            <td>@{{ shopping.status_shipping }}</td>
+                            <td><a :href="shopping.tracking_url" target="_blank">@{{ shopping.tracking }}</a></td>
                             <td>$ @{{ parseInt(shopping.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                             <td>
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingModal" @click="show(shopping)">Ver</button>
@@ -113,7 +112,6 @@
                                         <tr>
                                             <th>Producto</th>
                                             <th>Precio</th>
-                                            <th>Costo envío</th>
                                             <th>Tipo</th>
                                             <th>Tamaño</th>
                                         </tr>
@@ -122,7 +120,6 @@
                                         <tr v-for="(shoppingPurchase, index) in shopping.product_purchases">
                                             <td>@{{ shoppingPurchase.product_type_size.product.brand.name }} - @{{ shoppingPurchase.product_type_size.product.name }}</td>
                                             <td>$ @{{ parseInt(shoppingPurchase.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
-                                            <td>$ @{{ parseInt(shoppingPurchase.shipping_cost).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                                             <td>@{{ shoppingPurchase.product_type_size.type.name }}</td>
                                             <td>@{{ shoppingPurchase.product_type_size.size.name }} Oz</td>
                                         </tr>
