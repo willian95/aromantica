@@ -79,6 +79,18 @@ class CheckoutController extends Controller
             $payment = new Payment;
             if($data->data->x_response == "Aceptada"){
                 $payment->status = "aprobado";
+
+                $shipping = $request->shippingData;
+                $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
+                $response = $client->post("https://api-test.envia.com/ship/generate", [
+                    "json" => $shipping
+                ]);
+                $envia = json_decode($response->getBody());
+       
+                $payment->tracking_url = $envia->data[0]->trackUrl;
+                $payment->tracking = $envia->data[0]->trackingNumber;
+                $payment->label = $envia->data[0]->label;
+
             }else{
                 $payment->status = "rechazado";
             }
@@ -107,7 +119,7 @@ class CheckoutController extends Controller
 
                 $payment->guest_id = $guest->id;
             }
-            $payment->tracking = 0;
+
             if(\Auth::check()){
                 $payment->address = \Auth::user()->address;
             } 
@@ -178,7 +190,7 @@ class CheckoutController extends Controller
                 $guestUser = GuestUser::where("id", $payment->guest_id)->first();
                 $to_name = $guestUser->name;
                 $to_email = $guestUser->email;
-                $data = ["user" => GuestUser::where("id", $guestUser->id)->first(), "products" => $productsPurchased];
+                $data = ["user" => GuestUser::where("id", $guestUser->id)->first(), "products" => $productsPurchased, "tracking_url" => $payment->tracking_url];
 
             }
             //dd($productsPurchased->productTypeSize);
