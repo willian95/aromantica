@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="title__general text-left">
-                    <h2>Checkout</h2>
+                    <h2>Checkout @if(\Auth::guest())<span style="font-weight: normal; font-size: 20px;">(como invitado)</span>@endif</h2>
                   </div>
                
             </div>
