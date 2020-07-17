@@ -55,7 +55,7 @@
     
                                         </tr>
                                         <tr v-for="(product, index) in guestProducts">
-                                            <td class="text-center w-150">@{{ product.product.product.name }} - @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
+                                            <td class="text-center w-150"><img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt="" style="width: 100%">@{{ product.product.product.name }} - @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
                                             <td class="text-center">$ @{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                                             <td class="text-center"> 
                                                 <div style="    text-align: center;
