@@ -59,7 +59,7 @@
                         <h3 class=text-center>Datos de envío</h3>
 
                         <div class="form-group">
-                            <label for="state"><i class="fa fa-id-card icon_form"></i>Estado</label>
+                            <label for="state"><i class="fa fa-id-card icon_form"></i>Departamento</label>
                             <select class="form-control" v-model="state" id="state" @change="setShippingCalculatedFalse()">
                                 <option v-for="state in states.data" :value="state.code_2_digits">@{{ state.name }}</option>
                             </select>
@@ -77,8 +77,8 @@
                     <div class="">
 
                         <div class="form-group">
-                            <label for="district"><i class="fa fa-id-card icon_form"></i>Distrito</label>
-                            <input type="text" class="form-control" v-model="district" id="district" @keyup="setShippingCalculatedFalse()">
+                            <label for="dirección"><i class="fa fa-globe icon_form"></i>Dirección de envío</label>
+                            <input placeholder="opcional" type="text" class="form-control" v-model="street" id="dirección" @keyup="setShippingCalculatedFalse()">
                         </div>
 
                     </div>
@@ -87,22 +87,6 @@
                         <div class="form-group">
                             <label for="postalCode"><i class="fa fa-id-card icon_form"></i>Código postal</label>
                             <input type="text" class="form-control" v-model="postalCode" id="postalCode" @keypress="isNumber($event)" @keyup="setShippingCalculatedFalse()">
-                        </div>
-
-                    </div>
-                    <div class="">
-
-                        <div class="form-group">
-                            <label for="dirección"><i class="fa fa-globe icon_form"></i>Calle</label>
-                            <input type="text" class="form-control" v-model="street" id="dirección" @keyup="setShippingCalculatedFalse()">
-                        </div>
-
-                    </div>
-                    <div class="">
-
-                        <div class="form-group">
-                            <label for="streetNumber"><i class="fa fa-id-card icon_form"></i>Número de calle</label>
-                            <input type="text" class="form-control" v-model="streetNumber" id="streetNumber" @keyup="setShippingCalculatedFalse()">
                         </div>
 
                     </div>
@@ -120,11 +104,13 @@
 
                     <button class="btn btn-success" @click="calculateCarrier()">Calular envío</button>
 
-                    <h4 class="text-center" v-if="availableServices.length > 0">Servicios</h4>
+                    <h4 class="text-center" v-if="availableServices.length > 0">Courier</h4>
                     <div class="card" v-for="availableService in availableServices" style="margin-top: 5px; cursor:pointer" @click="setService(availableService)">
                         <div class="card-body">
-                            <h4 class="text-center">@{{ availableService.carrier }}</h4>
-                            <p>@{{ availableService.totalPrice }} COP</p>
+                            <h4 class="text-center carrier-name"> 
+                                <img style="width: 50px;" src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/logos/carriers/fedex.png" alt="" v-if="availableService.carrier == 'fedex'">
+                                @{{ availableService.carrier }}</h4>
+                            <p>$ @{{ parseFloat(availableService.totalPrice).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }} COP</p>
                             <small>@{{ availableService.service }} - @{{ availableService.deliveryEstimate }}</small>
                         </div>
                     </div>
@@ -198,7 +184,6 @@
                     states:"",
                     state:"AN",
                     city:"medellin",
-                    district:"medellin",
                     postalCode:"050001",
                     streetNumber:"49B-20",
                     authCheck:"{{Auth::check()}}",
@@ -339,8 +324,8 @@
                             "email": this.email,
                             "phone": this.phone,
                             "street": this.street,
-                            "number": this.streetNumber,
-                            "district": this.district,
+                            "number": "",
+                            "district": "",
                             "city": this.city,
                             "state": this.state,
                             "country": "CO",
@@ -439,8 +424,8 @@
                             "email": this.email,
                             "phone": this.phone,
                             "street": this.street,
-                            "number": this.streetNumber,
-                            "district": this.district,
+                            "number": "",
+                            "district": "",
                             "city": this.city,
                             "state": this.state,
                             "country": "CO",
