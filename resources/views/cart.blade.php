@@ -25,7 +25,9 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(product, index) in products">
-                                            <td class="text-center w-150 text-center">@{{ product.product_type_size.product.name }} - @{{ product.product_type_size.type.name }} - @{{ product.product_type_size.size.name }} Oz
+                                            <td class="text-center w-150 text-center">
+                                            <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="" style="width: 100%">
+                                            @{{ product.product_type_size.product.name }} - @{{ product.product_type_size.type.name }} - @{{ product.product_type_size.size.name }} Oz
                                             </td>
 
                                            <!--- <td class="text-center w-150">
