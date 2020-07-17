@@ -9,7 +9,7 @@
       <div class="main-products__item">
         <div class="main-products__box" >
           <div class="views">
-            <span data-toggle="modal" data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
+            <span data-toggle="modal" onclick="setStock('{{ $product->productTypeSizes[0]->stock }}', '{{ $product->productTypeSizes[0]->price }}', '{{ $product->productTypeSizes[0]->id }}')" data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
             <!--<span href=""><i class="flaticon-shopping-cart"></i></span>-->
           </div>
         <a href="{{ url('/product/'.$product->slug) }}" >
@@ -81,7 +81,15 @@
                 <div class="col-md-6">
                   <div class="barra">
                     <!--<p> Vendidos:<span> 12</span></p>-->
+                    {{ App\ProductTypeSize::where("product_id", $product->id)->first()->type->name }} - {{ App\ProductTypeSize::where("product_id", $product->id)->first()->size->name }}ml
                     <p>Disponible: <span>{{ App\ProductTypeSize::where("product_id", $product->id)->first()->stock }}</span></p>
+                  </div>
+                  <div>
+                    <button class="btn btn-success" onclick="substractAmount()">-</button>
+                    <div id="amountProductModal"></div>
+                    <button class="btn btn-success" onclick="addAmount()">+</button>
+
+                    <button class="btn btn-success" onclick="addToCart()">Añadir al carrito</button>
                   </div>
                   <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
@@ -106,11 +114,157 @@
       </div>
 
     @endforeach
+
+    <script>
+
+      var productStock = 0;
+      var productPrice = 0
+      var productTypeSizeId = 0
+      var amount = 0;
+      var authCheck = "{{ \Auth::check() }}"
+
+      function setStock(stock, price, id){
+        amount = 0
+        productStock = stock
+        productPrice = price
+        productTypeSizeId = id
+        $("#amountProductModal").html(amount)
+      }
+
+      function addAmount(){
+
+        if(amount + 1 <= productStock){
+          amount++
+          $("#amountProductModal").html(amount)
+        }
+
+      }
+      function substractAmount(){
+        
+        if(amount - 1 >= 0){
+          amount--
+          $("#amountProductModal").html(amount)
+        }
+
+      }
+
+      function guestCart(){
+
+        var total = 0
+        let cart = []
+        if(window.localStorage.getItem('cartAromantica') != null){
+            cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+        }
+        
+        var exists = false
+
+        cart.forEach((data, index)=>{
+            
+            if(data.productTypeSizeId == productTypeSizeId){
+                data.amount = data.amount + amount
+                exists = true
+            }
+
+        })
+        
+        if(exists == false){
+            cart.push({productTypeSizeId: productTypeSizeId, amount: amount})
+        }
+
+        cart.forEach((data, index)=>{
+            
+          total = data.amount + total
+
+        })
+        
+        window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+        cartInfo()
+        amount = 0
+        $("#amountProductModal").html("0")
+        alert("Producto añadido al carrito")
+      }
+
+      function cartInfo(){
+        var totalGuest = 0;
+        var totalCheck = 0;
+
+        let cart = []
+        if(window.localStorage.getItem('cartAromantica') != null){
+            cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+        }
+
+        cart.forEach((data, index)=>{
+            
+          totalGuest = data.amount + totalGuest
+
+        })
+
+        let cartTotal = totalGuest + totalCheck
+        $("#cart-notification").html(cartTotal+"")
+        
+        if(authCheck == "1"){
+        
+          $.get("{{ url('/cart/fetch') }}", function(res){
+
+            if(res.success == true){
+                  
+                let products = res.products
+
+                products.forEach((data, index) => {
+
+                  totalCheck = totalCheck + data.amount
+
+                })
+
+                console.log(totalGuest, totalCheck)
+                let cartTotal = totalGuest + totalCheck
+                $("#cart-notification").html(cartTotal+"")
+
+            }
+
+          })    
+
+        }
+        
+      }
+
+      function addToCart(){
+
+        if(amount > 0){
+
+          if(authCheck == "1"){
+
+            $.post("{{ url('/cart/store') }}", {productTypeSizeId: productTypeSizeId, amount: amount, _token: "{{ csrf_token() }}"}, function(data){
+              
+              if(data.success == true){
+                alert(data.msg)
+                cartInfo()
+                $("#amountProductModal").html("0")
+              }else{
+                alert(data.msg)
+              }
+
+            });
+
+          }else{
+            guestCart()
+          }
+
+          }else{
+
+          alert("Debe seleccionar una cantidad")
+
+          }
+
+      }
+
+
+
+    </script>
     
-
-
-
   </section>
+
+  
 
 
   
