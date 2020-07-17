@@ -86,7 +86,7 @@
                   </div>
                   <div>
                     <button class="btn btn-success" onclick="substractAmount()">-</button>
-                    <div id="amountProductModal"></div>
+                    <div class="amountProductModal"></div>
                     <button class="btn btn-success" onclick="addAmount()">+</button>
 
                     <button class="btn btn-success" onclick="addToCart()">Añadir al carrito</button>
@@ -128,14 +128,14 @@
         productStock = stock
         productPrice = price
         productTypeSizeId = id
-        $("#amountProductModal").html(amount)
+        $(".amountProductModal").html(amount)
       }
 
       function addAmount(){
 
         if(amount + 1 <= productStock){
           amount++
-          $("#amountProductModal").html(amount)
+          $(".amountProductModal").html(amount)
         }
 
       }
@@ -143,7 +143,7 @@
         
         if(amount - 1 >= 0){
           amount--
-          $("#amountProductModal").html(amount)
+          $(".amountProductModal").html(amount)
         }
 
       }
@@ -180,7 +180,7 @@
         window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
         cartInfo()
         amount = 0
-        $("#amountProductModal").html("0")
+        $(".amountProductModal").html("0")
         alert("Producto añadido al carrito")
       }
 
@@ -239,7 +239,7 @@
               if(data.success == true){
                 alert(data.msg)
                 cartInfo()
-                $("#amountProductModal").html("0")
+                $(".amountProductModal").html("0")
               }else{
                 alert(data.msg)
               }
