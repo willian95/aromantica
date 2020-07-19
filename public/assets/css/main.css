@@ -185,7 +185,7 @@ body.offcanvas-expanded {
 
 /*navbar*/
 .navbar-brand img {
-    width: 80%;
+    width: 60%;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
@@ -1739,8 +1739,6 @@ tab detalles
 }
 
 .rs-range {
-    margin-top: 29px;
-
     width: 230px;
 
     -webkit-appearance: none;
@@ -1755,9 +1753,9 @@ tab detalles
     height: 1px;
     cursor: pointer;
     box-shadow: none;
-    background: #000;
+    background: #0491c5;
     border-radius: 0px;
-    border: 0px solid #010101;
+    border: 0px solid #0491c5;
 }
 
 .rs-range::-moz-range-track {
@@ -1765,7 +1763,7 @@ tab detalles
     height: 1px;
     cursor: pointer;
     box-shadow: none;
-    background: #000;
+    background: #0491c5;
     border-radius: 0px;
     border: 0px solid #010101;
 }
@@ -1774,13 +1772,13 @@ tab detalles
     box-shadow: none;
     border: 0px solid #000;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-    height: 42px;
-    width: 22px;
-    border-radius: 22px;
-    background: #000;
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    background: #0491c5;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -20px;
+    margin-top: -10px;
 }
 
 .rs-range::-moz-range-thumb {
@@ -1795,12 +1793,27 @@ tab detalles
     -webkit-appearance: none;
     margin-top: -20px;
 }
-
+.btn-filtro {
+    position: relative;
+    z-index: 1;
+    height: 30px;
+    line-height: 31px;
+    font-size: 12px;
+    padding: 0 31px;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.price-range {
+    font-size: 17px;
+    margin-bottom: 13px;
+    font-style: italic;
+}
 .rs-range::-moz-focus-outer {
     border: 0;
 }
 
-.rs-label {
+/*.rs-label {
     position: relative;
     transform-origin: center center;
     display: block;
@@ -1822,7 +1835,7 @@ tab detalles
     font-weight: normal;
     line-height: normal;
     font-size: 36px;
-}
+}*/
 
 .rs-label::after {
     content: "kg";
@@ -1842,7 +1855,8 @@ tab detalles
 }
 
 .controls .active {
-    background: #68b8c4;
+    /* background: #68b8c4; */
+    color: #0491c5 !important;
 }
 
 button:focus {

@@ -181,7 +181,8 @@
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link nav-link-black ' href='{{ url('/tienda') }}'>Tienda</a>
+                        <a class='nav-link nav-link-black ' style="    margin-right: 10px;"
+                            href='{{ url('/tienda') }}'>Tienda</a>
                     </li>
                     @foreach(App\Category::all() as $category)
 
