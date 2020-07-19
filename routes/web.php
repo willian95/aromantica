@@ -14,14 +14,19 @@
 
 
 Route::get('/', function () {
-    //return view('welcome');
+  //return view('welcome');
   //  echo "<h3>Coming soon</h3>";
-    return view("pronto");
+  return view("pronto");
 });
 
 Route::get('/front-test', function () {
-    //return view('welcome');
-    return view("welcome");
+  //return view('welcome');
+  return view("welcome");
+});
+
+Route::get('/tienda', function () {
+  //return view('welcome');
+  return view("tienda");
 });
 
 Route::post("/register", "RegisterController@register");
@@ -61,34 +66,30 @@ Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
 Route::post("/words", "SearchController@words");
 
-Route::get("/test/purchase/mail", function(){
+Route::get("/test/purchase/mail", function () {
 
   $to_name = "Felipe";
   $to_email = "info@myass.co";
   //$data = ["user" => $user, "hash" => $hash];
 
-  \Mail::send("emails.purchase", [], function($message) use ($to_name, $to_email) {
+  \Mail::send("emails.purchase", [], function ($message) use ($to_name, $to_email) {
 
-      $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
-      $message->from("ventas@aromantica.co", "Aromantica");
-
+    $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
+    $message->from("ventas@aromantica.co", "Aromantica");
   });
-
 });
 
-Route::get("/test/admin/mail", function(){
+Route::get("/test/admin/mail", function () {
 
   $to_name = "Felipe";
   $to_email = "info@myass.co";
   //$data = ["user" => $user, "hash" => $hash];
 
-  \Mail::send("emails.admin", [], function($message) use ($to_name, $to_email) {
+  \Mail::send("emails.admin", [], function ($message) use ($to_name, $to_email) {
 
-      $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
-      $message->from("ventas@aromantica.co", "Aromantica");
-
+    $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
+    $message->from("ventas@aromantica.co", "Aromantica");
   });
-
 });
 
 
