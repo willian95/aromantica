@@ -36,22 +36,6 @@ $(function () {
     $("#product-grid").mixItUp();
 });
 
-$(function () {
-    var $sortSelect = $("#SortSelect"),
-        $container = $("#product-grid");
-
-    $container.mixItUp();
-
-    $sortSelect.on("change", function () {
-        $container.mixItUp("sort", this.value);
-    });
-});
-
-$("#area_filter, #rating_filter").on("change", function () {
-    $("#product-grid").mixItUp("filter", this.value);
-
-    // <-- removed from here
-});
 /*slider precio*/
 var rangeSlider = document.getElementById("rs-range-line");
 var rangeBullet = document.getElementById("rs-bullet");
