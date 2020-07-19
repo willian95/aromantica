@@ -72,7 +72,7 @@
                         <p>@{{ title }}</p>
                       </div>
                       <div class="main-top__price justify-content-between">
-                        <p>$ @{{ price }}</p>
+                        <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
 
                
                         <div class="cantidad_btn">

@@ -215,7 +215,7 @@
                       <!--menu tablet--->
                       @if(\Auth::guest())
                       <li class="nav-item">
-                          <a  style="    border: 1px solid white;
+                          <a id="openRegisterModal"  style="border: 1px solid white;
                           border-radius: 10px;" class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
                       </li>
 
@@ -236,7 +236,7 @@
                   @if(\Auth::guest())
           
                   <li class="nav-item">
-                      <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
+                      <a id="openLoginModal" class="nav-link" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
                   </li>
               @else <li class='nav-item dropdown dowms succss'>
                 <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle border-blue '
@@ -322,7 +322,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg modal_w">
               <div class="modal-content login">
                 <div class="modal-body">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <button id="registerModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
         
@@ -420,7 +420,7 @@
         
                       <div class="text-center">
                         <p>¿Ya tienes cuenta?</p>
-                        <a class="txt" href="">Inicia sesión</a>
+                        <a class="txt" href="#" @click="openLoginModal()">Inicia sesión</a>
                       </div>
                     </div>
                   </div>
@@ -482,7 +482,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content login">
                     <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button id="loginModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
 
@@ -526,7 +526,7 @@
 
                         <div class="text-center">
                             <p>¿Aún no tienes cuenta?</p>
-                            <a class="txt" href="">¡Registrate facíl!</a>
+                            <a class="txt" href="#" @click="openRegisterModal()">¡Registrate facíl!</a>
                         </div>
                         </div>
                     </div>
@@ -708,6 +708,26 @@
                               //alertify.alert('Basic: true').set('basic', true); 
                           });
                       })
+
+                  },
+                  openRegisterModal(){
+                    
+                    $("#loginModalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
+
+                    $("#openRegisterModal").click()
+
+                  },
+                  openLoginModal(){
+                    
+                    $("#registerModalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
+
+                    $("#openLoginModal").click()
 
                   },
                   login(){
