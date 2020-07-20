@@ -1,7 +1,7 @@
  @extends("layouts.index")
 
  @section("content")
- <div class="container mt-5">
+ <div class="container mt-5" id="store-area">
      <div class="row">
          <div class="col-md-3">
              <div class="controls">
@@ -11,22 +11,15 @@
                              Categorias
                          </h3>
                          <ul class="list-unstyled mb-0">
-                             <li class="mb-1">
-                                 <a class="d-flex filter" data-filter="all"><span>Todas</span>
-                                     <span class="text-black ml-auto">(2,220)</span></a>
-                             </li>
-                             <li class="mb-1">
-                                 <a class="d-flex filter" data-filter=".category-1"><span>Caballeros</span>
-                                     <span class="text-black ml-auto">(2,220)</span></a>
-                             </li>
-                             <li class="mb-1 ">
-                                 <a class="d-flex filter" data-filter=".category-4"><span>Damas</span>
-                                     <span class="text-black ml-auto">(2,550)</span></a>
-                             </li>
-                             <li class="mb-1">
-                                 <a class="d-flex filter" data-filter=".category-2"><span>Niños</span>
-                                     <span class="text-black ml-auto">(2,124)</span></a>
-                             </li>
+                            <li class="mb-1">
+                                <a class="d-flex filter" data-filter="all"><span>Todas</span>
+                                <span class="text-black ml-auto">{{ App\Product::count() }}</span></a>
+                            </li>
+                            <li class="mb-1" v-for="category in categories">
+                                <a class="d-flex filter" data-filter=".category-1"><span>@{{ category.name }}</span>
+                                <span class="text-black ml-auto">(@{{ category.productsAmount }})</span></a>
+                            </li>
+                             
                          </ul>
                      </div>
                  </div>
@@ -253,8 +246,43 @@
 
  @endsection
 
+ @push("scripts")
 
+<script>
 
- <script>
+        const devArea = new Vue({
+            el: '#store-area',
+            data(){
+                return{
+                    categories:[]
+                }
+            },
+            methods:{
+                
+                
+                fetchCategories(){
 
- </script>
+                    axios.get("{{ url('/tienda/fetch/categories') }}").then(res =>{
+
+                        if(res.data.success == true){
+
+                            this.categories = res.data.categories
+
+                        }
+
+                    })
+
+                }
+
+            },
+            mounted(){
+
+                this.fetchCategories()
+
+            }
+
+        })
+
+    </script>
+
+@endpush

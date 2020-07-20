@@ -1,32 +1,5 @@
 <!doctype html>
 <html lang="en">
-<<<<<<< HEAD
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/png" href="{{ url('/assets/img/logo.png') }}"/>
-
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <!--  <link rel="icon" type="image/jpg" href="assets/img/logo-blanco.png" style="width: 30px; height: 30px;">-->
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;700;800&display=swap" rel="stylesheet">
-
-        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/slick.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/slick-theme.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/font-awesome.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/animate.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/main.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/login.css') }}" rel='stylesheet'>
-        <link href="{{ asset('assets/css/responsive.css') }}" rel='stylesheet'>
-        <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
-        <title>Aromantica</title>
-    </head>
-    <body>
-
-     <!---   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-=======
 
 <head>
     <!-- Required meta tags -->
@@ -56,7 +29,6 @@
 <body>
 
     <!---   <nav class="navbar navbar-expand-lg navbar-light bg-light">
->>>>>>> 97bcd430760f5a5c701620b77664d2bb2ba13dfa
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
