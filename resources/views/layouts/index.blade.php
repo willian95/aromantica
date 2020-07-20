@@ -180,9 +180,9 @@
                     <li class='nav-item active'>
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
                     </li>
-                    <!--<li class='nav-item'>
-                        <a class='nav-link nav-link-black ' href='filtro.html'>Tienda</a>
-                      </li>-->
+                    <li class='nav-item'>
+                        <a class='nav-link nav-link-black ' href='{{ url('/tienda') }}'>Tienda</a>
+                      </li>
                     @foreach(App\Category::all() as $category)
 
                     <li class='nav-item dropdown dowms down-md'>
@@ -695,6 +695,7 @@
     <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
+     <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
 
     <script>
     const navbar = new Vue({
