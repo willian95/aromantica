@@ -38,33 +38,16 @@
 
                                  </div>
                              </li>
-                             <li class="mb-1">
+                             <li class="mb-1" v-for="brand in brands">
                                  <div class="form-check d-flex filter" data-filter=".category-1">
                                      <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                     <label class="form-check-label" for="exampleCheck2"><span>Carolina</span></label>
+                                     <label class="form-check-label" for="exampleCheck2"><span>@{{ brand.name }}</span></label>
 
                                  </div>
 
 
                              </li>
-                             <li class="mb-1 ">
-                                 <div class="form-check d-flex filter" data-filter=".category-4">
-                                     <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                                     <label class="form-check-label" for="exampleCheck3"><span>Hugo</span></label>
-
-                                 </div>
-
-                             </li>
-
-
-                             <li class="mb-1">
-                                 <div class="form-check d-flex filter" data-filter=".category-2">
-                                     <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                                     <label class="form-check-label" for="exampleCheck4"><span>Lady</span></label>
-
-                                 </div>
-
-                             </li>
+                             
                          </ul>
                      </div>
                  </div>
@@ -113,10 +96,10 @@
                          <div class="views">
                              <span data-toggle="modal" data-target="#producto_modal"><i
                                      class="flaticon-view"></i></span>
-                             <span href=""><i class="flaticon-shopping-cart"></i></span>
+                             <span href="#"><i class="flaticon-shopping-cart"></i></span>
                          </div>
                          <div class="main-products__img">
-                             <img src="assets/img/productos/perfume1.png" />
+                             <img src="{{ url('assets/img/productos/perfume1.png') }}" />
                          </div>
                          <a href="detalle-producto.html">
                              <div class="main-products__text">
@@ -138,10 +121,10 @@
                          <div class="views">
                              <span data-toggle="modal" data-target="#producto_modal"><i
                                      class="flaticon-view"></i></span>
-                             <span href=""><i class="flaticon-shopping-cart"></i></span>
+                             <span href="#"><i class="flaticon-shopping-cart"></i></span>
                          </div>
                          <div class="main-products__img">
-                             <img src="assets/img/productos/perfume1.png" />
+                             <img src="{{ url('assets/img/productos/perfume1.png') }}" />
                          </div>
                          <a href="detalle-producto.html">
                              <div class="main-products__text">
@@ -164,10 +147,10 @@
                          <div class="views">
                              <span data-toggle="modal" data-target="#producto_modal"><i
                                      class="flaticon-view"></i></span>
-                             <span href=""><i class="flaticon-shopping-cart"></i></span>
+                             <span href="#"><i class="flaticon-shopping-cart"></i></span>
                          </div>
                          <div class="main-products__img">
-                             <img src="assets/img/productos/perfume1.png" />
+                             <img src="{{ url('assets/img/productos/perfume1.png') }}" />
                          </div>
                          <a href="detalle-producto.html">
                              <div class="main-products__text">
@@ -189,10 +172,10 @@
                          <div class="views">
                              <span data-toggle="modal" data-target="#producto_modal"><i
                                      class="flaticon-view"></i></span>
-                             <span href=""><i class="flaticon-shopping-cart"></i></span>
+                             <span href="#"><i class="flaticon-shopping-cart"></i></span>
                          </div>
                          <div class="main-products__img">
-                             <img src="assets/img/productos/perfume1.png" />
+                             <img src="{{ url('assets/img/productos/perfume1.png') }}" />
                          </div>
                          <a href="detalle-producto.html">
                              <div class="main-products__text">
@@ -214,10 +197,10 @@
                          <div class="views">
                              <span data-toggle="modal" data-target="#producto_modal"><i
                                      class="flaticon-view"></i></span>
-                             <span href=""><i class="flaticon-shopping-cart"></i></span>
+                             <span href="#"><i class="flaticon-shopping-cart"></i></span>
                          </div>
                          <div class="main-products__img">
-                             <img src="assets/img/productos/perfume1.png" />
+                             <img src="{{ url('assets/img/productos/perfume1.png') }}" />
                          </div>
                          <a href="detalle-producto.html">
                              <div class="main-products__text">
@@ -254,7 +237,8 @@
             el: '#store-area',
             data(){
                 return{
-                    categories:[]
+                    categories:[],
+                    brands:[]
                 }
             },
             methods:{
@@ -272,12 +256,26 @@
 
                     })
 
+                },
+                fetchBrands(){
+
+                    axios.get("{{ url('/tienda/fetch/brands') }}").then(res =>{
+
+                        if(res.data.success == true){
+
+                            this.brands = res.data.brands
+
+                        }
+
+                    })
+
                 }
 
             },
             mounted(){
 
                 this.fetchCategories()
+                this.fetchBrands()
 
             }
 

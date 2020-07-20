@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\Brand;
 
 class StoreSiteController extends Controller
 {
@@ -46,6 +47,19 @@ class StoreSiteController extends Controller
 
             return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine()]);
 
+        }
+
+    }
+
+    function fetchBrands(){
+
+        try{
+
+            $brands = Brand::all();
+            return response()->json(["success" => true, "brands" => $brands]);
+
+        }catch(\Exception $e){
+            return response()->json(["success" => false, "err" => $e->getMessage(), "ln" => $e->getLine()]);
         }
 
     }

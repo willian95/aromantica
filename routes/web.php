@@ -24,10 +24,10 @@ Route::get('/front-test', function () {
   return view("welcome");
 });
 
-Route::get('/tienda', function () {
-  //return view('welcome');
-  return view("tienda");
-});
+Route::get('/tienda', "StoreSiteController@index");
+Route::post('/tienda/fetch', "StoreSiteController@fetch");
+Route::get('/tienda/fetch/categories', "StoreSiteController@fetchCategoriesCount");
+Route::get('/tienda/fetch/brands', "StoreSiteController@fetchBrands");
 
 Route::post("/register", "RegisterController@register");
 Route::get("/email/check/{hash}", "RegisterController@check");
@@ -66,7 +66,7 @@ Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
 Route::post("/words", "SearchController@words");
 
-Route::get("/test/purchase/mail", function () {
+/*Route::get("/test/purchase/mail", function () {
 
   $to_name = "Felipe";
   $to_email = "info@myass.co";
@@ -90,7 +90,7 @@ Route::get("/test/admin/mail", function () {
     $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
     $message->from("ventas@aromantica.co", "Aromantica");
   });
-});
+});*/
 
 
 /*Route::get("/test/forget/mail", function(){
