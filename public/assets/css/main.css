@@ -1938,3 +1938,57 @@ button:focus {
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 }
+.btn-custom2 {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 100px;
+}
+.inicia {
+    text-align: center;
+    color: #0000008c;
+    font-size: 13px;
+    font-style: italic;
+    position: relative;
+}
+
+.inicia:before {
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 1px;
+    background: black;
+    left: 21%;
+    top: 44%;
+    opacity: 0.1;
+}
+.inicia:after {
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 1px;
+    background: black;
+    right: 21%;
+    top: 44%;
+    opacity: 0.1;
+}
+.goo {
+    background: #e44134 !important;
+    color: #fff !important;
+}
+.facil {
+    background: white;
+    padding: 7px 15px;
+    border-radius: 10px;
+    color: #0c4572 !important;
+    text-transform: uppercase;
+    transition: 0.6s;
+}
+.facil:hover {
+    background: #0c4572;
+    padding: 7px 30px;
+    border-radius: 10px;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    transition: 0.6s;
+    border: 1px solid white;
+}

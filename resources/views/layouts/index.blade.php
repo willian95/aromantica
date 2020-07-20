@@ -539,25 +539,33 @@
                                                 contraseña?</a>
                                         </div>
                                         <div class=" form-group mt-4 text-center">
-                                            <button class="btn btn-primary btn-custom "
+                                            <button class="btn btn-primary btn-custom btn-custom2 "
                                                 @click="login()">Ingresar</button>
 
+
+
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="inicia">o inicia con:</p>
+                                            <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
+                                                <i class="fa fa-facebook"></i> Facebook</a>
+                                            <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
+                                                    class="fa fa-google"></i> Google</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class=" main-login__item bg-login">
-                                <div class="mb-5 text-center">
+                                <!--<div class="mb-5 text-center">
                                     <p>¡Registrate facíl!</p>
-                                    <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}"> <img
-                                            class=img_social src="assets/img/facebook.png" alt=""> Facebook</a>
-                                    <a class="btn-login" href="{{ url('/google/redirect') }}"> <img class="img_social"
-                                            src="assets/img/google.png" alt=""> Google</a>
-                                </div>
+
+                                </div>-->
 
                                 <div class="text-center">
-                                    <p>¿Aún no tienes cuenta?</p>
-                                    <a class="txt" href="">¡Registrate facíl!</a>
+                                    <a class="txt facil" data-toggle="modal" data-target="#registerModal">¡Registrate
+                                        facíl!</a>
+                                    <p class="mt-3">¿Aún no tienes cuenta?</p>
+
                                 </div>
                             </div>
                         </div>
