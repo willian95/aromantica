@@ -199,4 +199,12 @@ class StoreSiteController extends Controller
 
     }
 
+    function showProductDetail($productTypeSizeId){
+
+        $product = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->where("id", $productTypeSizeId)->first();
+        
+        return view("storeProductDetail", ["product" => $product]);
+
+    }
+
 }

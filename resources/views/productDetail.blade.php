@@ -102,13 +102,13 @@
                         <p>@{{ description }}</p>
                       </div>
                       
-                      <p>Presentaciones</p>
+                      <!--<p>Presentaciones</p>
                       <div class="presentaciones">
                     <div>
                         <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
                           
                           @{{ type.name }}</button>
-                    </div>
+                    </div>-->
                       
                        
                     <div class="ml-2 mt-3">
@@ -352,6 +352,7 @@
 
                  window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
 
+                 this.amount = 0
                  this.cartInfo()
                   alert("Producto añadido al carrito")
 

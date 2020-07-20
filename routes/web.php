@@ -28,6 +28,7 @@ Route::get('/tienda', "StoreSiteController@index");
 Route::post('/tienda/fetch', "StoreSiteController@fetch");
 Route::get('/tienda/fetch/categories', "StoreSiteController@fetchCategoriesCount");
 Route::get('/tienda/fetch/brands', "StoreSiteController@fetchBrands");
+Route::get("/tienda/producto/{id}", "StoreSiteController@showProductDetail");
 
 Route::post("/register", "RegisterController@register");
 Route::get("/email/check/{hash}", "RegisterController@check");

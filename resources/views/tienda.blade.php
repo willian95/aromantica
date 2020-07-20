@@ -90,7 +90,7 @@
                             <div class="main-products__img">
                                 <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.image" />
                             </div>
-                            <a href="detalle-producto.html">
+                            <a :href="'{{ url('/') }}'+'/tienda/producto/'+product.id">
                                 <div class="main-products__text">
                                     <div class="main-products__title_cat">
                                         <p>@{{ product.product.category.name }}</p>
