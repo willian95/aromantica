@@ -52,10 +52,10 @@
                     <div class="list_search">
                         <!--por nomnbre-->
                         <ul class="name_list">
-                            <li v-for="brandtitle in brandTitles"><a class="img-s" href="#"
+                            <li v-for="brandtitle in brandTitles"><a href="#"
                                     @click="setText(brandtitle.name)">@{{ brandtitle.name }} <img style="width: 20px;"
                                         :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image"></a></li>
-                            <li v-for="producttitle in productTitles"><a class="img-s" href="#"
+                            <li v-for="producttitle in productTitles"><a href="#"
                                     @click="setText(producttitle.name)">@{{ producttitle.name }} <img
                                         style="width: 20px;"
                                         :src="'{{ env('CMS_URL') }}'+'/images/products/'+producttitle.image"></a></li>
@@ -180,10 +180,9 @@
                     <li class='nav-item active'>
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
                     </li>
-                    <li class='nav-item'>
-                        <a class='nav-link nav-link-black ' style="    margin-right: 10px;"
-                            href='{{ url('/tienda') }}'>Tienda</a>
-                    </li>
+                    <!--<li class='nav-item'>
+                        <a class='nav-link nav-link-black ' href='filtro.html'>Tienda</a>
+                      </li>-->
                     @foreach(App\Category::all() as $category)
 
                     <li class='nav-item dropdown dowms down-md'>
@@ -227,7 +226,7 @@
                     <!--menu tablet--->
                     @if(\Auth::guest())
                     <li class="nav-item">
-                        <a style="    border: 1px solid white;
+                        <a id="openRegisterModal" style="border: 1px solid white;
                           border-radius: 10px;" class="nav-link" href="#" data-toggle="modal"
                             data-target="#registerModal">Registrate</a>
                     </li>
@@ -249,8 +248,8 @@
                     @if(\Auth::guest())
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal"><i
-                                class="flaticon-user"></i></a>
+                        <a id="openLoginModal" class="nav-link" href="#" data-toggle="modal"
+                            data-target="#loginModal"><i class="flaticon-user"></i></a>
                     </li>
                     @else <li class='nav-item dropdown dowms succss'>
                         <a href='#' aria-expanded='false' aria-haspopup='true'
@@ -336,7 +335,8 @@
             <div class="modal-dialog modal-dialog-centered modal-lg modal_w">
                 <div class="modal-content login">
                     <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button id="registerModalClose" type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
 
@@ -435,16 +435,15 @@
                             <div class=" main-login__item bg-login">
                                 <div class="mb-5 text-center">
                                     <p>Inicia sesion con</p>
-                                    <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}"> <img
-                                            class=img_social src="assets/img/facebook.png" alt=""> Facebook</a>
-                                    <a class="btn-login" href="{{ url('/google/redirect') }}"> <img class="img_social"
-                                            src="assets/img/google.png" alt="">
-                                        Google</a>
+                                    <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
+                                        <i class="fa fa-facebook"></i> Facebook</a>
+                                    <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
+                                            class="fa fa-google"></i> Google</a>
                                 </div>
 
                                 <div class="text-center">
                                     <p>¿Ya tienes cuenta?</p>
-                                    <a class="txt" href="">Inicia sesión</a>
+                                    <a class="txt facil" href="#" @click="openLoginModal()">Inicia sesión</a>
                                 </div>
                             </div>
                         </div>
@@ -507,7 +506,8 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content login">
                     <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button id="loginModalClose" type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
 
@@ -539,10 +539,8 @@
                                                 contraseña?</a>
                                         </div>
                                         <div class=" form-group mt-4 text-center">
-                                            <button class="btn btn-primary btn-custom btn-custom2 "
+                                            <button class="btn btn-primary btn-custom "
                                                 @click="login()">Ingresar</button>
-
-
 
                                         </div>
                                         <div class="text-center">
@@ -556,14 +554,13 @@
                                 </div>
                             </div>
                             <div class=" main-login__item bg-login">
-                                <!--<div class="mb-5 text-center">
+                                <!-- <div class="mb-5 text-center">
                                     <p>¡Registrate facíl!</p>
 
                                 </div>-->
 
                                 <div class="text-center">
-                                    <a class="txt facil" data-toggle="modal" data-target="#registerModal">¡Registrate
-                                        facíl!</a>
+                                    <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate facíl!</a>
                                     <p class="mt-3">¿Aún no tienes cuenta?</p>
 
                                 </div>
@@ -698,7 +695,6 @@
     <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
 
     <script>
     const navbar = new Vue({
@@ -763,6 +759,26 @@
                             //alertify.alert('Basic: true').set('basic', true); 
                         });
                     })
+
+            },
+            openRegisterModal() {
+
+                $("#loginModalClose").click();
+                $('body').removeClass('modal-open');
+                $('body').css('padding-right', '0px');
+                $('.modal-backdrop').remove();
+
+                $("#openRegisterModal").click()
+
+            },
+            openLoginModal() {
+
+                $("#registerModalClose").click();
+                $('body').removeClass('modal-open');
+                $('body').css('padding-right', '0px');
+                $('.modal-backdrop').remove();
+
+                $("#openLoginModal").click()
 
             },
             login() {
