@@ -1,270 +1,294 @@
-
-  <section class="container" >
+<section class="container">
     <div class="title__general">
-      <h2>Fragancias recomendadas</h2>
+        <h2>Fragancias recomendadas</h2>
     </div>
 
     <div class="main-productos__content ">
-      @foreach(App\Product::take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes", "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
-      <div class="main-products__item">
-        <div class="main-products__box" >
-          <div class="views">
-            <span data-toggle="modal" onclick="setStock('{{ $product->productTypeSizes[0]->stock }}', '{{ $product->productTypeSizes[0]->price }}', '{{ $product->productTypeSizes[0]->id }}')" data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
-            <!--<span href=""><i class="flaticon-shopping-cart"></i></span>-->
-          </div>
-        <a href="{{ url('/product/'.$product->slug) }}" >
-          <div class="main-products__img">
-            <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" class="card-img-top" alt="...">
-          </div>
-       
-            <div class="main-products__text">
-              <div class="main-products__title_cat">
-                <p> {{ $product->brand->name }}</p>
-              </div>
-              <div class="main-products__title">
-                <p>{{ $product->name }} </p>
-              </div>
-              <!--<div class="main-products__details">
+        @foreach(App\Product::take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes",
+        "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
+        <div class="main-products__item">
+            <div class="main-products__box">
+                <div class="views">
+                    <span data-toggle="modal"
+                        onclick="setStock('{{ $product->productTypeSizes[0]->stock }}', '{{ $product->productTypeSizes[0]->price }}', '{{ $product->productTypeSizes[0]->id }}')"
+                        data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
+                    <!--<span href=""><i class="flaticon-shopping-cart"></i></span>-->
+                </div>
+                <a href="{{ url('/product/'.$product->slug) }}">
+                    <div class="main-products__img">
+                        <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" class="card-img-top"
+                            alt="...">
+                    </div>
+
+                    <div class="main-products__text">
+                        <div class="main-products__title_cat">
+                            <p> {{ $product->brand->name }}</p>
+                        </div>
+                        <div class="main-products__title">
+                            <p>{{ $product->name }} </p>
+                        </div>
+                        <!--<div class="main-products__details">
                 <span>$85,000</span>
               </div>-->
-              <div class=" presentaciones_card d-flex">
-             
-                @foreach(App\ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get() as $productTypeSize)
+                        <div class=" presentaciones_card d-flex">
 
-                <p>{{ $productTypeSize->type->name }}</p>
+                            @foreach(App\ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get()
+                            as $productTypeSize)
 
-                @endforeach
-               </div>
+                            <p>{{ $productTypeSize->type->name }}</p>
+
+                            @endforeach
+                        </div>
+                    </div>
+                </a>
             </div>
-          </a>
-        </div>
-   
-      </div>
 
-      @endforeach
+        </div>
+
+        @endforeach
 
     </div>
 
-    @foreach(App\Product::take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes", "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
+    @foreach(App\Product::take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes",
+    "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
 
-      <!-- modal producto views -->
-    <div class="modal fade" id="producto_modal-{{ $loop->index + 1 }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <!-- modal producto views -->
+    <div class="modal fade" id="producto_modal-{{ $loop->index + 1 }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-body">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-              <div class="content_modal">
-                <div class="content_modal-item">
-                  <p class="titulo">{{ $product->name }}</p>
-                  <span>{{ $product->description }}</span>
+                    <div class="content_modal">
+                        <div class="content_modal-item">
+                            <p class="titulo">{{ $product->name }}</p>
+                            <span>{{ $product->description }}</span>
+                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ea inventore maxime
+                                harum odio, suscipit enim voluptate saepe incidunt veritatis sed? Deleniti pariatur
+                                dignissimos ratione nisi blanditiis expedita velit assumenda!</span>
 
 
-                  <div class="main-top__price">
-                    <p><span>$ {{ App\ProductTypeSize::where("product_id", $product->id)->first()->price }}</span> </p>
+                            <div class="main-top__price">
+                                <p><span>$
+                                        {{ App\ProductTypeSize::where("product_id", $product->id)->first()->price }}</span>
+                                </p>
 
-                  </div>
 
+                            </div>
+
+
+                        </div>
+                        <div class="content_modal-item center">
+                            <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" alt="">
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="barra">
+                                <!--<p> Vendidos:<span> 12</span></p>-->
+                                <p> {{ App\ProductTypeSize::where("product_id", $product->id)->first()->type->name }} -
+                                    {{ App\ProductTypeSize::where("product_id", $product->id)->first()->size->name }}ml
+                                </p>
+                                <p>Disponible:
+                                    <span>{{ App\ProductTypeSize::where("product_id", $product->id)->first()->stock }}</span>
+                                </p>
+                            </div>
+
+                            <!--<div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                    aria-valuemin="0" aria-valuemax="10"></div>
+                            </div>--->
+
+
+                            <div class=" main-top__btn d-flex">
+
+
+                                <div class="d-flex mt-2">
+                                    <button class="btn btn-success mass mr-2" onclick="substractAmount()">-</button>
+                                    <div class="amountProductModal"></div>
+                                    <button class="btn btn-success mass ml-2" onclick="addAmount()">+</button>
+
+
+                                </div>
+                                <button class="btn-custom custom2" onclick="addToCart()">Añadir al carrito</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <div class=" main-top__btn d-flex justify-content-center">
+
+
+                                <a class="btn-custom " href="{{ url('/product/'.$product->slug) }}">
+                                    vER MÁS >
+                                </a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
 
                 </div>
-                <div class="content_modal-item center">
-                  <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" alt="">
-                </div>
-
-
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="barra">
-                    <!--<p> Vendidos:<span> 12</span></p>-->
-                    {{ App\ProductTypeSize::where("product_id", $product->id)->first()->type->name }} - {{ App\ProductTypeSize::where("product_id", $product->id)->first()->size->name }}ml
-                    <p>Disponible: <span>{{ App\ProductTypeSize::where("product_id", $product->id)->first()->stock }}</span></p>
-                  </div>
-                  <div>
-                    <button class="btn btn-success" onclick="substractAmount()">-</button>
-                    <div class="amountProductModal"></div>
-                    <button class="btn btn-success" onclick="addAmount()">+</button>
-
-                    <button class="btn btn-success" onclick="addToCart()">Añadir al carrito</button>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                      aria-valuemax="10"></div>
-                  </div>
-                </div>
-                <div class="col-md-6 text-center">
-                  <div class=" main-top__btn ">
-                    <a class="btn-custom" href="{{ url('/product/'.$product->slug) }}">
-                      Ordene ya >
-                    </a>
-                  </div>
-                </div>
-
-
-
-              </div>
-
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     @endforeach
 
     <script>
+    var productStock = 0;
+    var productPrice = 0
+    var productTypeSizeId = 0
+    var amount = 0;
+    var authCheck = "{{ \Auth::check() }}"
 
-      var productStock = 0;
-      var productPrice = 0
-      var productTypeSizeId = 0
-      var amount = 0;
-      var authCheck = "{{ \Auth::check() }}"
-
-      function setStock(stock, price, id){
+    function setStock(stock, price, id) {
         amount = 0
         productStock = stock
         productPrice = price
         productTypeSizeId = id
         $(".amountProductModal").html(amount)
-      }
+    }
 
-      function addAmount(){
+    function addAmount() {
 
-        if(amount + 1 <= productStock){
-          amount++
-          $(".amountProductModal").html(amount)
+        if (amount + 1 <= productStock) {
+            amount++
+            $(".amountProductModal").html(amount)
         }
 
-      }
-      function substractAmount(){
-        
-        if(amount - 1 >= 0){
-          amount--
-          $(".amountProductModal").html(amount)
+    }
+
+    function substractAmount() {
+
+        if (amount - 1 >= 0) {
+            amount--
+            $(".amountProductModal").html(amount)
         }
 
-      }
+    }
 
-      function guestCart(){
+    function guestCart() {
 
         var total = 0
         let cart = []
-        if(window.localStorage.getItem('cartAromantica') != null){
-            cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+        if (window.localStorage.getItem('cartAromantica') != null) {
+            cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
         }
-        
+
         var exists = false
 
-        cart.forEach((data, index)=>{
-            
-            if(data.productTypeSizeId == productTypeSizeId){
+        cart.forEach((data, index) => {
+
+            if (data.productTypeSizeId == productTypeSizeId) {
                 data.amount = data.amount + amount
                 exists = true
             }
 
         })
-        
-        if(exists == false){
-            cart.push({productTypeSizeId: productTypeSizeId, amount: amount})
+
+        if (exists == false) {
+            cart.push({
+                productTypeSizeId: productTypeSizeId,
+                amount: amount
+            })
         }
 
-        cart.forEach((data, index)=>{
-            
-          total = data.amount + total
+        cart.forEach((data, index) => {
+
+            total = data.amount + total
 
         })
-        
+
         window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
         cartInfo()
         amount = 0
         $(".amountProductModal").html("0")
         alert("Producto añadido al carrito")
-      }
+    }
 
-      function cartInfo(){
+    function cartInfo() {
         var totalGuest = 0;
         var totalCheck = 0;
 
         let cart = []
-        if(window.localStorage.getItem('cartAromantica') != null){
-            cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
+        if (window.localStorage.getItem('cartAromantica') != null) {
+            cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
         }
 
-        cart.forEach((data, index)=>{
-            
-          totalGuest = data.amount + totalGuest
+        cart.forEach((data, index) => {
+
+            totalGuest = data.amount + totalGuest
 
         })
 
         let cartTotal = totalGuest + totalCheck
-        $("#cart-notification").html(cartTotal+"")
-        
-        if(authCheck == "1"){
-        
-          $.get("{{ url('/cart/fetch') }}", function(res){
+        $("#cart-notification").html(cartTotal + "")
 
-            if(res.success == true){
-                  
-                let products = res.products
+        if (authCheck == "1") {
 
-                products.forEach((data, index) => {
+            $.get("{{ url('/cart/fetch') }}", function(res) {
 
-                  totalCheck = totalCheck + data.amount
+                if (res.success == true) {
 
-                })
+                    let products = res.products
 
-                console.log(totalGuest, totalCheck)
-                let cartTotal = totalGuest + totalCheck
-                $("#cart-notification").html(cartTotal+"")
+                    products.forEach((data, index) => {
 
-            }
+                        totalCheck = totalCheck + data.amount
 
-          })    
+                    })
+
+                    console.log(totalGuest, totalCheck)
+                    let cartTotal = totalGuest + totalCheck
+                    $("#cart-notification").html(cartTotal + "")
+
+                }
+
+            })
 
         }
-        
-      }
 
-      function addToCart(){
+    }
 
-        if(amount > 0){
+    function addToCart() {
 
-          if(authCheck == "1"){
+        if (amount > 0) {
 
-            $.post("{{ url('/cart/store') }}", {productTypeSizeId: productTypeSizeId, amount: amount, _token: "{{ csrf_token() }}"}, function(data){
-              
-              if(data.success == true){
-                alert(data.msg)
-                cartInfo()
-                $(".amountProductModal").html("0")
-              }else{
-                alert(data.msg)
-              }
+            if (authCheck == "1") {
 
-            });
+                $.post("{{ url('/cart/store') }}", {
+                    productTypeSizeId: productTypeSizeId,
+                    amount: amount,
+                    _token: "{{ csrf_token() }}"
+                }, function(data) {
 
-          }else{
-            guestCart()
-          }
+                    if (data.success == true) {
+                        alert(data.msg)
+                        cartInfo()
+                        $(".amountProductModal").html("0")
+                    } else {
+                        alert(data.msg)
+                    }
 
-          }else{
+                });
 
-          alert("Debe seleccionar una cantidad")
+            } else {
+                guestCart()
+            }
 
-          }
+        } else {
 
-      }
+            alert("Debe seleccionar una cantidad")
 
+        }
 
-
+    }
     </script>
-    
-  </section>
 
-  
-
-
-  
+</section>
