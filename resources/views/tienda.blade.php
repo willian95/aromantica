@@ -80,7 +80,7 @@
             <div class="col-md-9">
                 <br>
                 <div id="product-grid" class="product-grid">
-                    <div class="main-products__item col-xs-6 " v-for="product in products">
+                    <div class="main-products__item col-xs-6 fadeInDown animated" v-for="product in products" >
                         <div class="main-products__box">
                             <!--<div class="views">
                                 <span data-toggle="modal" data-target="#producto_modal"><i
@@ -193,11 +193,12 @@
                 fetch(page = 1){
                     
                     this.page = page
+                    $(".main-products__item").removeClass("fadeInDown animated")
 
                     axios.post("{{ url('/tienda/fetch') }}", {categories: this.selectedCategories, brands: this.selectedBrands, price: this.range, page: this.page}).then(res =>{
 
                         if(res.data.success == true){
-
+                            $(".main-products__item").addClass("fadeInDown animated")
                             this.products = res.data.products
                             this.maxPrice = res.data.maxPrice
                             this.pages = Math.ceil(res.data.productsCount / 20)
