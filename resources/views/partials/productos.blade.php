@@ -110,9 +110,9 @@
 
 
                                 <div class="d-flex mt-2">
-                                    <button class="btn btn-success mass mr-2" onclick="substractAmount()">-</button>
+                                    <button class="btn  mass mr-2" onclick="substractAmount()">-</button>
                                     <div class="amountProductModal"></div>
-                                    <button class="btn btn-success mass ml-2" onclick="addAmount()">+</button>
+                                    <button class="btn  mass ml-2" onclick="addAmount()">+</button>
 
 
                                 </div>
