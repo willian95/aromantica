@@ -13,7 +13,7 @@
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-1">
                                     <div class="form-check d-flex filter" data-filter=".category-1">
-                                        <input type="checkbox" value="0" class="form-check-input" id="todascategorias" @click="selectAllCategories()">
+                                        <input type="checkbox" v-model="selectedAllCategories" class="form-check-input" id="todascategorias" @click="selectAllCategories()">
                                         <label class="form-check-label" for="exampleCheck1"><span>Todas ({{ App\ProductTypeSize::count() }})</span></label>
                                     </div>
                                 </li>
@@ -21,9 +21,8 @@
                                 <li class="mb-1" v-for="category in categories">
 
                                     <div class="form-check d-flex filter" data-filter=".category-1">
-                                        <input type="checkbox" :value="category.id" class="form-check-input" :id="'category-id'+category.id" v-model="selectedCategories">
+                                        <input type="checkbox" :value="category.id" class="form-check-input" :id="'category-id'+category.id" v-model="selectedCategories" @click="checkCategory()">
                                         <label class="form-check-label" :for="'category-id'+category.id"><span>@{{ category.name }} - (@{{ category.productsAmount }})</span></label>
-
                                     </div>
                                 </li>
                                 
@@ -40,14 +39,14 @@
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-1">
                                     <div class="form-check d-flex filter" data-filter="all">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1" @click="selectAllBrands()">
+                                        <input type="checkbox" v-model="selectedAllBrands" class="form-check-input" id="exampleCheck1" @click="selectAllBrands()">
                                         <label class="form-check-label" for="exampleCheck1"><span>Todas</span></label>
 
                                     </div>
                                 </li>
                                 <li class="mb-1" v-for="brand in brands">
                                     <div class="form-check d-flex filter" data-filter=".category-1">
-                                        <input type="checkbox" :value="brand.id" class="form-check-input" :id="'brand-id'+brand.id" v-model="selectedBrands">
+                                        <input type="checkbox" :value="brand.id" class="form-check-input" :id="'brand-id'+brand.id" v-model="selectedBrands" @click="checkBrand()">
                                         <label class="form-check-label" :for="'brand-id'+brand.id"><span>@{{ brand.name }}</span></label>
 
                                     </div>
@@ -68,10 +67,10 @@
                                         <span id="rs-bullet" class="">@{{ range }}</span>
                                         <span>$</span>
                                     </div>
-                                    <input id="rs-range-line" class="rs-range" type="range" v-model="range" min="0" :max="maxPrice" step="1000" >
+                                    <input id="rs-range-line" class="rs-range" type="range" v-model="range" min="0" :max="maxPrice" step="1000" @change="fetch()">
                                 </div>
                             </div>
-                            <a href="#" class="btn-custom btn-filtro " @click="fetch()">Filtrar</a>
+                          
                         </div>
                     </div>
                 </div>
@@ -131,6 +130,8 @@
             el: '#store-area',
             data(){
                 return{
+                    selectedAllBrands:false,
+                    selectedAllCategories:false,
                     selectedBrands:[],
                     selectedCategories:[],
                     categories:[],
@@ -189,23 +190,29 @@
 
                     }
 
+                    this.fetch()
+
                 },
                 fetch(page = 1){
                     
-                    this.page = page
-                    $(".main-products__item").removeClass("fadeInDown animated")
+                    setTimeout(() => {
 
-                    axios.post("{{ url('/tienda/fetch') }}", {categories: this.selectedCategories, brands: this.selectedBrands, price: this.range, page: this.page}).then(res =>{
+                        this.page = page
+                        $(".main-products__item").removeClass("fadeInDown animated")
 
-                        if(res.data.success == true){
-                            $(".main-products__item").addClass("fadeInDown animated")
-                            this.products = res.data.products
-                            this.maxPrice = res.data.maxPrice
-                            this.pages = Math.ceil(res.data.productsCount / 20)
+                        axios.post("{{ url('/tienda/fetch') }}", {categories: this.selectedCategories, brands: this.selectedBrands, price: this.range, page: this.page}).then(res =>{
 
-                        }
+                            if(res.data.success == true){
+                                $(".main-products__item").addClass("fadeInDown animated")
+                                this.products = res.data.products
+                                this.maxPrice = res.data.maxPrice
+                                this.pages = Math.ceil(res.data.productsCount / 20)
 
-                    })
+                            }
+
+                        })
+
+                    }, 100)
 
                 },
                 selectAllCategories(){
@@ -224,6 +231,42 @@
                         })
 
                     }
+
+                    this.fetch()
+
+                },
+                checkCategory(){
+
+                    setTimeout(() => {
+
+                        if(this.selectedAllCategories == true){
+                            this.selectedAllCategories = false
+                        }
+
+                        if(this.selectedCategories.length == this.categories.length){
+                            this.selectedAllCategories = true
+                        }
+
+                        this.fetch()
+
+                    }, 100);
+
+                },
+                checkBrand(){
+
+                    setTimeout(() => {
+
+                        if(this.selectedAllBrands== true){
+                            this.selectedAllBrands = false
+                        }
+                        
+                        if(this.selectedAllBrands.length == this.brands.length){
+                            this.selectedAllBrands = true
+                        }
+
+                        this.fetch()
+
+                    }, 100);
 
                 }
 
