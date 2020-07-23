@@ -142,32 +142,32 @@
                 },
                 addToCart(){
 
-                    if(this.amount > 0){
+                  if(this.amount > 0){
 
-                        if(this.authCheck == "1"){
-                            
-                            axios.post("{{ url('/cart/store') }}", {productTypeSizeId: this.productTypeSizeId, amount: this.amount})
-                            .then(res => {
+                      if(this.authCheck == "1"){
+                          
+                          axios.post("{{ url('/cart/store') }}", {productTypeSizeId: this.productTypeSizeId, amount: this.amount})
+                          .then(res => {
 
-                                if(res.data.success == true){
-                                  this.cartInfo()
-                                    alert(res.data.msg)
-                                    this.amount = 0;
-                                }else{
-                                    alert(res.data.msg)
-                                }
+                              if(res.data.success == true){
+                                this.cartInfo()
+                                  alert(res.data.msg)
+                                  this.amount = 0;
+                              }else{
+                                  alert(res.data.msg)
+                              }
 
-                            })
+                          })
 
-                        }else{
-                          this.guestCart()
-                        }
+                      }else{
+                        this.guestCart()
+                      }
 
-                    }else{
+                  }else{
 
-                        alert("Debe seleccionar una cantidad")
+                      alert("Debe seleccionar una cantidad")
 
-                    }
+                  }
 
                 },
                 guestCart(){
