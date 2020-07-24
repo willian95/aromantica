@@ -137,10 +137,10 @@ class SearchController extends Controller
         $brandTitles = Brand::where("name", "like", "%".$request->search."%")->take(2)->get();
         
         if(count($brandTitles) == 0){
-            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(4)->get();
+            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(3)->get();
         }else{
 
-            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(4 - count($brandTitles))->get();
+            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(3 - count($brandTitles))->get();
 
         }
 
