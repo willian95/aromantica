@@ -6,11 +6,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3 v-if="payment.status == 'aprobado'" class="text-center" style="margin-top: 20px;">Muchas gracias! Tu pago ha sido aprobado! Revisa tu email para seguir el proceso de tu compra!</h3>
-                    <h3 v-else class="text-center" style="margin-top: 20px;">@{{ payment.status }}</h3>
-                    <p class="text-center">
-                        <button  class="btn btn-primary" @click="closeWindow()">Aceptar</button>
-                    </p>
+                    <h3 v-if="payment.status == 'aprobado'" class="text-center" style="margin-top: 20px;">Muchas gracias! Tu pago ha sido aprobado! Revisa tu email para seguir el proceso de tu compra!
+                    </h3>
+                    <div v-else class="text-center" style="margin-top: 20px;">
+                        <h3>@{{ payment.status }}</h3>
+                        <p class="text-center" v-if="loading != ''">
+                            <button  class="btn btn-primary" @click="closeWindow()">Aceptar</button>
+                        </p>
+                    </div>
+                    
                 </div>
                 <div class="col-12" v-if="payment.status == 'aprobado'">
                     <p><strong>Total:</strong> $ @{{ parseFloat(payment.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
@@ -20,6 +24,10 @@
                     <p class="text-center">
                         <button  class="btn btn-primary" @click="closeWindow()">Aceptar</button>
                     </p>
+                </div>
+
+                <div class="col-12">
+                    <h2 class="text-center" v-if="loading == ''">Cargando resultados</h2>
                 </div>
 
             </div>
@@ -36,7 +44,8 @@
             data(){
                 return{
                     refPayco:"{{ $ref }}",
-                    payment:""
+                    payment:"",
+                    loading:""
                 }
             },
             methods:{
@@ -48,6 +57,7 @@
                     let shippingData = JSON.parse(window.localStorage.getItem("shipping_data"))
 
                     axios.post("{{ url('checkout/confirm/payment') }}", {guestCart: JSON.parse(window.localStorage.getItem('cartAromantica')), refPayco: this.refPayco, guestUser: guestUser, service: service, shippingData: shippingData}).then(res => {
+                        this.loading = "done"
                         if(res.data.success == true){
                             this.payment = res.data.payment
                             localStorage.setItem("paymentStatusAromantica", "aprobado")
