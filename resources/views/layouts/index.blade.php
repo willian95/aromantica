@@ -55,10 +55,17 @@
                             <li v-for="brandtitle in brandTitles"><a href="#"
                                     @click="setText(brandtitle.name)">@{{ brandtitle.name }} <img style="width: 20px;"
                                         :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image"></a></li>
-                            <li v-for="producttitle in productTitles"><a href="#"
-                                    @click="setText(producttitle.name)">@{{ producttitle.name }} <img
-                                        style="width: 20px;"
-                                        :src="'{{ env('CMS_URL') }}'+'/images/products/'+producttitle.image"></a></li>
+                            <li v-for="producttitle in productTitles">
+                                <a href="#" @click="setText(producttitle.name)">
+                                    <p>
+                                        <img style="width: 40px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+producttitle.brand.image">
+                                    </p>
+                                    @{{ producttitle.name }} 
+                                    <p>
+                                        <img style="width: 90px;" :src="'{{ env('CMS_URL') }}'+'/images/products/'+producttitle.image">
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
 
                         <!--presentaciones-->
@@ -78,38 +85,6 @@
 
                                 @endforeach
 
-                                <!--<li>
-                              1.7 OZ
-                              <label class="control control--radio">
-                                <input type="radio" name="radio"/>
-                                <input type="radio" name="radio"/>
-                                <div class="control__indicator"></div>
-                              </label>
-                            </li>
-                            <li>
-                              2.5 OZ
-                              <label class="control control--radio">
-                                <input type="radio" name="radio"/>
-                                <input type="radio" name="radio"/>
-                                <div class="control__indicator"></div>
-                              </label>
-                            </li>
-                            <li>
-                              4.2 OZ
-                              <label class="control control--radio">
-                                <input type="radio" name="radio"/>
-                                <input type="radio" name="radio"/>
-                                <div class="control__indicator"></div>
-                              </label>
-                            </li>
-                            <li>
-                              4.2 OZ
-                              <label class="control control--radio">
-                                <input type="radio" name="radio"/>
-                                <input type="radio" name="radio"/>
-                                <div class="control__indicator"></div>
-                              </label>
-                            </li>-->
                             </ul>
 
 
@@ -131,30 +106,6 @@
 
                                     @endforeach
 
-                                    <!--<li>
-                                1.7 OZ
-                                <label class="control control--radio">
-                                  <input type="radio" name="radio"/>
-                                  <input type="radio" name="radio"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                              </li>
-                              <li>
-                                2.5 OZ
-                                <label class="control control--radio">
-                                  <input type="radio" name="radio"/>
-                                  <input type="radio" name="radio"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                              </li>
-                              <li>
-                                4.2 OZ
-                                <label class="control control--radio">
-                                  <input type="radio" name="radio"/>
-                                  <input type="radio" name="radio"/>
-                                  <div class="control__indicator"></div>
-                                </label>
-                              </li>-->
                                 </ul>
 
                             </div>
@@ -190,13 +141,7 @@
                             class='nav-link dropdown-toggle nav-link ' data-toggle='dropdown'>
                             {{ $category->name }}
                         </a>
-                        <!--<div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
-                          <div class='content-drop'>
-                            <a class='dropdown-item' href='#'>
-                              <p> Categoria 1</p>
-                            </a>
-                          </div>
-                        </div>-->
+
                     </li>
 
                     @endforeach
@@ -290,39 +235,6 @@
         </div>
     </nav>
 
-
-    <!--- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
-                    @if(\Auth::guest())
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#registerModal">Register</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                        </li>
-                    @else
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ \Auth::user()->name }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/shopping/index') }}">Compras</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
-                        </li>
-
-                    @endif
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/cart/index') }}">Carrito</a>
-                    </li>
-                
-                
-                </ul>
-            </div>--->
     </nav>
 
     @yield("content")
@@ -884,16 +796,24 @@
 
                 this.searchText = string
                 this.search()
+                this.lookFor()
 
             },
             lookFor() {
-                if (this.searchText != "") {
+                if (this.searchText != "" || this.type != "" || this.size != "") {
                     localStorage.setItem("searchAromantica", this.searchText)
-                    if (this.type != "") {
+                    //if (this.type != "") {
+                    if(this.type != ""){
                         localStorage.setItem("typeAromantica", this.type.id)
+                    }else{
+                        localStorage.setItem("typeAromantica", "")
                     }
+                    
+                    //}
                     if (this.size != "") {
                         localStorage.setItem("sizeAromantica", this.size.id)
+                    }else{
+                        localStorage.setItem("sizeAromantica", "")
                     }
                     window.location.href = "{{ url('/search') }}"
                 }
@@ -921,7 +841,8 @@
         },
         mounted() {
 
-            this.searchText = localStorage.getItem("searchAromantica")
+            if("{{ url()->current() }}" == "{{ url('/search') }}")
+                this.searchText = localStorage.getItem("searchAromantica")
 
         }
 
