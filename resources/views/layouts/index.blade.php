@@ -53,12 +53,15 @@
                         <!--por nomnbre-->
                         <ul class="name_list">
                             <li v-for="brandtitle in brandTitles"><a href="#"
-                                    @click="setText(brandtitle.name)">@{{ brandtitle.name }} <img style="width: 60px;"
-                                        :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image"></a></li>
+                                    @click="setText(brandtitle.name)">@{{ brandtitle.name }} 
+                                        <p>
+                                            <img style="width: 60px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image">
+                                        </p>
+                                    </a></li>
                             <li v-for="producttitle in productTitles">
                                 <a href="#" @click="setText(producttitle.name)">
                                     <p>
-                                        <img style="width: 40px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+producttitle.brand.image">
+                                        <img style="width: 90px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+producttitle.brand.image">
                                     </p>
                                     @{{ producttitle.name }} 
                                     <p>
