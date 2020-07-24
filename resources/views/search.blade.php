@@ -52,7 +52,7 @@
                                 <p>@{{ product.name }} </p>
                             </div>
                             <div class="main-products__details">
-                                <span>$ @{{ product.product_type_sizes[0].price }}</span>
+                                <span>$ @{{ parseFloat(product.product_type_sizes[0].price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                             </div>
                             </div>
                         </a>

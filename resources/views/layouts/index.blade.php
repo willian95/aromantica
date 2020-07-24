@@ -52,12 +52,7 @@
                     <div class="list_search">
                         <!--por nomnbre-->
                         <ul class="name_list">
-                            <li v-for="brandtitle in brandTitles"><a href="#"
-                                    @click="setText(brandtitle.name)">@{{ brandtitle.name }} 
-                                        <p>
-                                            <img style="width: 60px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image">
-                                        </p>
-                                    </a></li>
+
                             <li v-for="producttitle in productTitles">
                                 <a href="#" @click="setText(producttitle.name)">
                                     <p>
@@ -69,6 +64,15 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li v-for="brandtitle in brandTitles"><a href="#"
+                                    @click="setText(brandtitle.name)">@{{ brandtitle.name }} 
+                                        <p>
+                                            <img style="width: 90px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image">
+                                        </p>
+                                    </a>
+                            </li>
+                            
                         </ul>
 
                         <!--presentaciones-->
