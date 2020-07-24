@@ -134,13 +134,13 @@ class SearchController extends Controller
     function words(Request $request){
 
         $productTitles = [];
-        $brandTitles = Brand::where("name", "like", "%".$request->search."%")->take(3)->get();
+        $brandTitles = Brand::where("name", "like", "%".$request->search."%")->take(2)->get();
         
         if(count($brandTitles) == 0){
-            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(5)->get();
+            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(4)->get();
         }else{
 
-            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(5 - count($brandTitles))->get();
+            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(4 - count($brandTitles))->get();
 
         }
 
