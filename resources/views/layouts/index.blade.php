@@ -33,7 +33,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>--->
-
+    @if(strpos(url()->current() ,url('/checkout/response')) < -1)
     <nav @if(url()->current() == url('/front-test')) class='navbar navbar-expand-md navbar-fixed-js container-fluid '
         @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid' @endif id="navbarSupportedContent">
         <div class='container-fluid nav-grid'>
@@ -241,6 +241,7 @@
             </div>
         </div>
     </nav>
+    @endif
 
     </nav>
 

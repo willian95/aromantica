@@ -86,7 +86,6 @@ class CheckoutController extends Controller
                     "json" => $shipping
                 ]);
                 $envia = json_decode($response->getBody());
-       
                 $payment->tracking_url = $envia->data[0]->trackUrl;
                 $payment->tracking = $envia->data[0]->trackingNumber;
                 $payment->label = $envia->data[0]->label;

@@ -2,6 +2,10 @@
 
 @section("content")
 
+<div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;" id="cover">
+
+</div>
+
 <div class="container" id="dev-area">
     <div class="row">
         <div class="col-12">
@@ -156,8 +160,9 @@
 
                 <form id="frm_botonePayco" name="frm_botonePayco" method="post"
                     action="https://secure.payco.co/checkout.php"
+                   target="print_popup"
                     v-if="total > 0 && name != '' && email != '' && identification != '' && address != '' && phone != '' && shippingCalculated == true"
-                    @click="storeLocal()">
+                    @click="storeLocal()" onsubmit="openChildWindow()">
                     <input name="p_cust_id_cliente" type="hidden" value="82433">
                     <input name="p_key" type="hidden" value="1d321ba074d13cb580da34031bc7192331a73fed">
                     <input name="p_id_invoice" id="p_id_invoice" type="hidden" v-model="billingNumber">
@@ -670,8 +675,8 @@ const devArea = new Vue({
                     "email": this.email,
                     "phone": this.phone,
                     "street": this.street,
-                    "number": "",
-                    "district": "",
+                    "number": this.street,
+                    "district": this.city,
                     "city": this.city,
                     "state": this.state,
                     "country": "CO",
@@ -712,6 +717,32 @@ const devArea = new Vue({
     }
 
 })
+</script>
+
+<script>
+
+    var childWin = null
+
+    function openChildWindow(){
+        childWin  = window.open('about:blank','print_popup','width=600,height=600');
+        $("#cover").css("display", "block")
+    }
+
+    function checkWindow() {
+        if (childWin && childWin.closed) {
+            window.clearInterval(intervalID);
+            $("#cover").css("display", "none")
+            if(localStorage.getItem("paymentStatusAromantica") == 'aprobado'){
+                localStorage.removeItem("paymentStatusAromantica")
+                window.location.href="{{ url('/') }}"
+            }else if(localStorage.getItem("paymentStatusAromantica") == 'rechazado'){
+                window.location.reload()
+            }
+        }
+    }
+
+    var intervalID = window.setInterval(checkWindow, 500);
+
 </script>
 
 @endpush
