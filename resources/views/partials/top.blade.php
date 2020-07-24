@@ -51,7 +51,7 @@
                        </div>
                       </div>
                       <div class="main-top__price">
-                        <p><span> $85,000</span> </p>
+                        <p><span> $85.000</span> </p>
                       </div>
 
                       <p></p>
@@ -93,7 +93,7 @@
                           cálida y lujosa, con notas de whisky y de cuero, provocativa, moderna y rica.</p>
                       </div>
                       <div class="main-top__price">
-                        <p><span> $85,000</span> </p>
+                        <p><span> $85.000</span> </p>
 
                       </div>
 
