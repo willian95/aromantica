@@ -376,83 +376,79 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+            <!-- modal login -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content login">
+                        <div class="modal-body">
+                            <button id="loginModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
 
+                            <div class="main-login">
+                                <div class="main-login__item">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="title__general title__general2 fadeInUp wow animated">
+                                                <p class="m-0">Inicio de sesión</p>
+                                            </div>
+                                            <p class="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                                Odit,
+                                                eum?!</p>
+                                            <div class="form-group">
+                                                <label for="emailLogin">Correo electrónico</label>
+                                                <input type="text" class="form-control" v-model="emailLogin" id="emailLogin"
+                                                    autocomplete="off" placeholder="pedroperez@gmail.com">
 
-    <!-- modal login -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content login">
-                <div class="modal-body">
-                    <button id="loginModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                                                <i class="fa fa-envelope icon_form"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="passwordLogin">Contraseña</label>
+                                                <input type="password" class="form-control" v-model="passwordLogin"
+                                                    placeholder="Contraseña">
 
-                    <div class="main-login">
-                        <div class="main-login__item">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="title__general title__general2 fadeInUp wow animated">
-                                        <p class="m-0">Inicio de sesión</p>
+                                                <i class="fa fa-lock icon_form"></i>
+                                            </div>
+                                            <div class="form-group  text-lg-right">
+                                                <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
+                                                    contraseña?</a>
+                                            </div>
+                                            <div class=" form-group mt-4 text-center">
+                                                <button class="btn btn-primary btn-custom " @click="login()">Ingresar</button>
+
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="inicia">o inicia con:</p>
+                                                <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
+                                                    <i class="fa fa-facebook"></i> Facebook</a>
+                                                <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
+                                                        class="fa fa-google"></i> Google</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p class="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Odit,
-                                        eum?!</p>
-                                    <div class="form-group">
-                                        <label for="emailLogin">Correo electrónico</label>
-                                        <input type="text" class="form-control" v-model="emailLogin" id="emailLogin"
-                                            autocomplete="off" placeholder="pedroperez@gmail.com">
+                                </div>
+                                <div class=" main-login__item bg-login">
+                                    <!-- <div class="mb-5 text-center">
+                                            <p>¡Registrate facíl!</p>
 
-                                        <i class="fa fa-envelope icon_form"></i>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="passwordLogin">Contraseña</label>
-                                        <input type="password" class="form-control" v-model="passwordLogin"
-                                            placeholder="Contraseña">
+                                        </div>-->
 
-                                        <i class="fa fa-lock icon_form"></i>
-                                    </div>
-                                    <div class="form-group  text-lg-right">
-                                        <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
-                                            contraseña?</a>
-                                    </div>
-                                    <div class=" form-group mt-4 text-center">
-                                        <button class="btn btn-primary btn-custom " @click="login()">Ingresar</button>
-
-                                    </div>
                                     <div class="text-center">
-                                        <p class="inicia">o inicia con:</p>
-                                        <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                            <i class="fa fa-facebook"></i> Facebook</a>
-                                        <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
-                                                class="fa fa-google"></i> Google</a>
+                                        <button class="txt facil" href="#" @click="openRegisterModal()">¡Registrate facíl!</button>
+                                        <p class="mt-3">¿Aún no tienes cuenta?</p>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" main-login__item bg-login">
-                            <!-- <div class="mb-5 text-center">
-                                    <p>¡Registrate facíl!</p>
 
-                                </div>-->
-
-                            <div class="text-center">
-                                <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate
-                                    facíl!</a>
-                                <p class="mt-3">¿Aún no tienes cuenta?</p>
-
-                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-    </div>
 
-    </div>
+        </div>
     <footer class="container-fluid">
         <div class="main-footer">
             <div class="main-footer__item">
