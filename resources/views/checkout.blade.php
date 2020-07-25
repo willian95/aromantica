@@ -114,19 +114,19 @@
                     </div>
 
                 </div>
-                <!--<div class="">
+                <div class="">
 
-                        <div class="form-group">
-                            <label for="streetNumber"><i class="fa fa-id-card icon_form"></i>Carrier</label>
-                            <select class="form-control" v-model="carrier">
-                                <option :value="carrier.name" v-for="carrier in carriers">@{{ carrier.name }}</option>
-                            </select>
-                        </div>
-
-                    </div>-->
-                <div class="mt-5" style="    display: flex;
-    justify-content: space-between;">
-                    <button class=" btn-custom mb-5" @click="calculateCarrier()">Calular envío</button>
+                    <div class="form-group">
+                        <label for="streetNumber">Carriers</label>
+                        <select class="form-control" v-model="carrier" @change="reloadServices()">
+                            <option :value="carrier" v-for="carrier in carriers">
+                                @{{ carrier.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-5" style="display: flex; justify-content: space-between;">
+                    <button class=" btn-custom mb-5" @click="calculateCarrier()">Calcular envío</button>
                     <div class="form-group totaal">
                         <label class="total">Total: $
                             @{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</label>
@@ -147,9 +147,9 @@
                         <div class="card-body">
                             <h4 class="text-center carrier-name">
                                 <img style="width: 50px;"
-                                    src="https://s3.us-east-2.amazonaws.com/enviapaqueteria/uploads/logos/carriers/fedex.png"
-                                    alt="" v-if="availableService.carrier == 'fedex'">
-                                @{{ availableService.carrier }}</h4>
+                                    :src="carrier.logo"
+                                    alt="">
+                                @{{ carrier.name }}</h4>
                             <p>$ @{{ parseFloat(availableService.totalPrice).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                                 COP</p>
                             <small>@{{ availableService.service }} - @{{ availableService.deliveryEstimate }}</small>
@@ -239,7 +239,7 @@ const devArea = new Vue({
             choosenService: "",
             packages: [],
             carriers: [],
-            carrier: "fedex"
+            carrier: ""
         }
     },
     methods: {
@@ -418,7 +418,7 @@ const devArea = new Vue({
                 },
                 "packages": this.packages,
                 "shipment": {
-                    "carrier": this.carrier,
+                    "carrier": this.carrier.name,
                     "type": 1
                 }
             }
@@ -435,8 +435,11 @@ const devArea = new Vue({
                 crossDomain: true,
                 success: function(result) {
                     // process result
-
-                    vm.availableServices = result.data
+                    if(result.meta == "error"){
+                        alert(result.error.message)
+                    }else{
+                        vm.availableServices = result.data
+                    }
 
                 },
                 error: function(e) {
@@ -460,6 +463,11 @@ const devArea = new Vue({
             this.choosenService = service
             this.total = this.baseTotal + service.totalPrice
             this.signature()
+
+        },
+        reloadServices(){
+
+            this.availableServices = []
 
         },
         getCarriers() {
@@ -685,7 +693,7 @@ const devArea = new Vue({
                 },
                 "packages": this.packages,
                 "shipment": {
-                    "carrier": this.carrier,
+                    "carrier": this.carrier.name,
                     "service": this.choosenService.service,
                     "type": 1
                 },
