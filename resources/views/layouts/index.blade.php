@@ -33,8 +33,8 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>--->
-    @if(strpos(url()->current() ,url('/checkout/response')) < -1)
-    <nav @if(url()->current() == url('/front-test')) class='navbar navbar-expand-md navbar-fixed-js container-fluid '
+    @if(strpos(url()->current() ,url('/checkout/response')) < -1) <nav @if(url()->current() == url('/front-test'))
+        class='navbar navbar-expand-md navbar-fixed-js container-fluid '
         @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid' @endif id="navbarSupportedContent">
         <div class='container-fluid nav-grid'>
             <a class='navbar-brand d-flex align-items-center' href="{{ url('/') }}">
@@ -56,23 +56,26 @@
                             <li v-for="producttitle in productTitles">
                                 <a href="#" @click="setText(producttitle.name)">
                                     <p>
-                                        <img style="width: 90px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+producttitle.brand.image">
+                                        <img style="width: 90px;"
+                                            :src="'{{ env('CMS_URL') }}'+'/images/brands/'+producttitle.brand.image">
                                     </p>
-                                    @{{ producttitle.name }} 
+                                    @{{ producttitle.name }}
                                     <p>
-                                        <img style="width: 90px;" :src="'{{ env('CMS_URL') }}'+'/images/products/'+producttitle.image">
+                                        <img style="width: 90px;"
+                                            :src="'{{ env('CMS_URL') }}'+'/images/products/'+producttitle.image">
                                     </p>
                                 </a>
                             </li>
 
                             <li v-for="brandtitle in brandTitles"><a href="#"
-                                    @click="setText(brandtitle.name)">@{{ brandtitle.name }} 
-                                        <p>
-                                            <img style="width: 90px;" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image">
-                                        </p>
-                                    </a>
+                                    @click="setText(brandtitle.name)">@{{ brandtitle.name }}
+                                    <p>
+                                        <img style="width: 90px;"
+                                            :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandtitle.image">
+                                    </p>
+                                </a>
                             </li>
-                            
+
                         </ul>
 
                         <!--presentaciones-->
@@ -140,7 +143,7 @@
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link nav-link-black ' href='{{ url('/tienda') }}'>Tienda</a>
-                      </li>
+                    </li>
                     @foreach(App\Category::all() as $category)
 
                     <li class='nav-item dropdown dowms down-md'>
@@ -240,290 +243,217 @@
                 </ul>
             </div>
         </div>
-    </nav>
-    @endif
+        </nav>
+        @endif
 
-    </nav>
+        </nav>
 
-    @yield("content")
-
-
-    <!-- Modal -->
-    <div id="authModal">
-        <div class="modal fade" id="registerModal" id="registro" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg modal_w">
-                <div class="modal-content login">
-                    <div class="modal-body">
-                        <button id="registerModalClose" type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                        <div class="main-login main-registro">
-                            <div class="main-login__item">
-                                <div class="card">
-                                    <div class="title__general title__general2 fadeInUp wow animated">
-                                        <p class="m-0 ml-3">Registro</p>
-                                    </div>
-                                    <div class="card-body">
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="name">Nombre y apellido</label>
-                                                    <input type="text" class="form-control" v-model="name" id="name"
-                                                        placeholder="Pedro perez" autocomplete="off">
-                                                    <i class="fa fa-user icon_form"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="email">Correo electrónico</label>
-                                                    <input type="text" class="form-control" v-model="email" id="email"
-                                                        placeholder="pedroperez@gmail.com" autocomplete="off">
-                                                    <i class="fa fa-envelope icon_form"></i>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <label for="identification">Cédula</label>
-
-                                                    <input type="text" class="form-control" v-model="identification"
-                                                        id="identification" @keypress="isNumber($event)"
-                                                        style="padding-left: 35px;">
-                                                    <i class="fa fa-id-card icon_form"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <label for="phone">Teléfono</label>
-                                                    <input type="text" class="form-control" v-model="phone" id="phone"
-                                                        @keypress="isNumber($event)">
-                                                    <i class="fa fa-phone icon_form"></i>
-                                                </div>
-
-                                            </div>
+        @yield("content")
 
 
+        <!-- Modal -->
+        <div id="authModal">
+            <div class="modal fade" id="registerModal" id="registro" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg modal_w">
+                    <div class="modal-content login">
+                        <div class="modal-body">
+                            <button id="registerModalClose" type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="address">Dirección</label>
-                                                    <textarea class="form-control" rows="1"
-                                                        v-model="address"></textarea>
-                                                    <i class="fa fa-globe icon_form"></i>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="password">Contraseña</label>
-
-                                                    <input placeholder="Contraseña" type="password"
-                                                        class="form-control  " id="password" v-model="password">
-                                                    <i class="fa fa-lock icon_form"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-
-                                                <div class="form-group">
-                                                    <label for="password_confirmation">Confirmar Contraseña</label>
-                                                    <input type="password" class="form-control"
-                                                        v-model="password_confirmation" placeholder="Contraseña">
-
-                                                    <i class="fa fa-lock icon_form"></i>
-                                                </div>
-                                            </div>
+                            <div class="main-login main-registro">
+                                <div class="main-login__item">
+                                    <div class="card">
+                                        <div class="title__general title__general2 fadeInUp wow animated">
+                                            <p class="m-0 ml-3">Registro</p>
                                         </div>
+                                        <div class="card-body">
 
-                                        <!--<div class="form-group  text-lg-right">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Nombre y apellido</label>
+                                                        <input type="text" class="form-control" v-model="name" id="name"
+                                                            placeholder="Pedro perez" autocomplete="off">
+                                                        <i class="fa fa-user icon_form"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email">Correo electrónico</label>
+                                                        <input type="text" class="form-control" v-model="email"
+                                                            id="email" placeholder="pedroperez@gmail.com"
+                                                            autocomplete="off">
+                                                        <i class="fa fa-envelope icon_form"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label for="identification">Cédula</label>
+
+                                                        <input type="text" class="form-control" v-model="identification"
+                                                            id="identification" @keypress="isNumber($event)"
+                                                            style="padding-left: 35px;">
+                                                        <i class="fa fa-id-card icon_form"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label for="phone">Teléfono</label>
+                                                        <input type="text" class="form-control" v-model="phone"
+                                                            id="phone" @keypress="isNumber($event)">
+                                                        <i class="fa fa-phone icon_form"></i>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="address">Dirección</label>
+                                                        <textarea class="form-control" rows="1"
+                                                            v-model="address"></textarea>
+                                                        <i class="fa fa-globe icon_form"></i>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="password">Contraseña</label>
+
+                                                        <input placeholder="Contraseña" type="password"
+                                                            class="form-control  " id="password" v-model="password">
+                                                        <i class="fa fa-lock icon_form"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <div class="form-group">
+                                                        <label for="password_confirmation">Confirmar Contraseña</label>
+                                                        <input type="password" class="form-control"
+                                                            v-model="password_confirmation" placeholder="Contraseña">
+
+                                                        <i class="fa fa-lock icon_form"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="form-group  text-lg-right">
                             <a href="" class="texto">¿Has olvidado tu contraseña?</a>
                           </div>-->
-                                        <div class=" form-group mt-4 text-center">
-                                            <button class="btn btn-primary btn-custom "
-                                                @click="register()">Registrarse</button>
+                                            <div class=" form-group mt-4 text-center">
+                                                <button class="btn btn-primary btn-custom "
+                                                    @click="register()">Registrarse</button>
 
+                                            </div>
+
+                                            <div class="text-center">
+                                                <p class="inicia">Regístrate con:</p>
+                                                <a class="btn-login btn-login2 mr-2"
+                                                    href="{{ url('/facebook/redirect') }}">
+                                                    <i class="fa fa-facebook"></i> Facebook</a>
+                                                <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
+                                                        class="fa fa-google"></i> Google</a>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" main-login__item bg-login">
-                                <div class="mb-5 text-center">
-                                    <p>Inicia sesion con</p>
-                                    <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                        <i class="fa fa-facebook"></i> Facebook</a>
-                                    <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
-                                            class="fa fa-google"></i> Google</a>
-                                </div>
+                                <div class=" main-login__item bg-login">
 
-                                <div class="text-center">
-                                    <p>¿Ya tienes cuenta?</p>
-                                    <a class="txt facil" href="#" @click="openLoginModal()">Inicia sesión</a>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Registro</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="text-center">
+                                        <p>¿Ya tienes cuenta?</p>
+                                        <a class="txt facil" href="#" @click="openLoginModal()">Inicia sesión</a>
+    </>
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!-- modal login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content login">
+                <div class="modal-body">
+                    <button id="loginModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" class="form-control" v-model="name" id="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" v-model="email" id="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="identification">Cédula</label>
-                            <input type="text" class="form-control" v-model="identification" id="identification">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <input type="text" class="form-control" v-model="phone" id="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Dirección</label>
-                            <textarea class="form-control" rows="5" v-model="address"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Clave</label>
-                            <input type="password" class="form-control" v-model="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="password_confirmation">Confirmar Clave</label>
-                            <input type="password" class="form-control" v-model="password_confirmation">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="register()">Registrarse</button>
-                    </div>
-                    </div>
-                </div>
-            </div>--->
+                    </button>
 
+                    <div class="main-login">
+                        <div class="main-login__item">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="title__general title__general2 fadeInUp wow animated">
+                                        <p class="m-0">Inicio de sesión</p>
+                                    </div>
+                                    <p class="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                        Odit,
+                                        eum?!</p>
+                                    <div class="form-group">
+                                        <label for="emailLogin">Correo electrónico</label>
+                                        <input type="text" class="form-control" v-model="emailLogin" id="emailLogin"
+                                            autocomplete="off" placeholder="pedroperez@gmail.com">
 
-        <!-- modal login -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content login">
-                    <div class="modal-body">
-                        <button id="loginModalClose" type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                                        <i class="fa fa-envelope icon_form"></i>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passwordLogin">Contraseña</label>
+                                        <input type="password" class="form-control" v-model="passwordLogin"
+                                            placeholder="Contraseña">
 
-                        <div class="main-login">
-                            <div class="main-login__item">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="title__general title__general2 fadeInUp wow animated">
-                                            <p class="m-0">Inicio de sesión</p>
-                                        </div>
-                                        <p class="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
-                                            eum?!</p>
-                                        <div class="form-group">
-                                            <label for="emailLogin">Correo electrónico</label>
-                                            <input type="text" class="form-control" v-model="emailLogin" id="emailLogin"
-                                                autocomplete="off" placeholder="pedroperez@gmail.com">
+                                        <i class="fa fa-lock icon_form"></i>
+                                    </div>
+                                    <div class="form-group  text-lg-right">
+                                        <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
+                                            contraseña?</a>
+                                    </div>
+                                    <div class=" form-group mt-4 text-center">
+                                        <button class="btn btn-primary btn-custom " @click="login()">Ingresar</button>
 
-                                            <i class="fa fa-envelope icon_form"></i>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="passwordLogin">Contraseña</label>
-                                            <input type="password" class="form-control" v-model="passwordLogin"
-                                                placeholder="Contraseña">
-
-                                            <i class="fa fa-lock icon_form"></i>
-                                        </div>
-                                        <div class="form-group  text-lg-right">
-                                            <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
-                                                contraseña?</a>
-                                        </div>
-                                        <div class=" form-group mt-4 text-center">
-                                            <button class="btn btn-primary btn-custom "
-                                                @click="login()">Ingresar</button>
-
-                                        </div>
-                                        <div class="text-center">
-                                            <p class="inicia">o inicia con:</p>
-                                            <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                                <i class="fa fa-facebook"></i> Facebook</a>
-                                            <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
-                                                    class="fa fa-google"></i> Google</a>
-                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="inicia">o inicia con:</p>
+                                        <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
+                                            <i class="fa fa-facebook"></i> Facebook</a>
+                                        <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
+                                                class="fa fa-google"></i> Google</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class=" main-login__item bg-login">
-                                <!-- <div class="mb-5 text-center">
+                        </div>
+                        <div class=" main-login__item bg-login">
+                            <!-- <div class="mb-5 text-center">
                                     <p>¡Registrate facíl!</p>
 
                                 </div>-->
 
-                                <div class="text-center">
-                                    <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate facíl!</a>
-                                    <p class="mt-3">¿Aún no tienes cuenta?</p>
+                            <div class="text-center">
+                                <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate
+                                    facíl!</a>
+                                <p class="mt-3">¿Aún no tienes cuenta?</p>
 
-                                </div>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>
-        <!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="emailLogin">Email</label>
-                            <input type="text" class="form-control" v-model="emailLogin" id="emailLogin">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="passwordLogin">Clave</label>
-                            <input type="password" class="form-control" v-model="passwordLogin">
-                        </div>
-
-                        <a href="{{ url('/google/redirect') }}" class="btn btn-primary">Login With Google</a>
-                        <a href="{{ url('/facebook/redirect') }}" class="btn btn-primary">Login With Facebook</a>
-
-                        <a href="{{ url('/forgot-password') }}">Olvidé mi contraseña</a>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="login()">Login</button>
-                    </div>
-                    </div>
-                </div>
-            </div>--->
+    </div>
 
     </div>
     <footer class="container-fluid">
@@ -572,7 +502,8 @@
         </div>
 
         <div>
-            <p class="copy">2020 Copyright. <a class='terminos' data-toggle="modal" data-target="#terminos">Todos los
+            <p class="copy">2020 Copyright. <a class='terminos' data-toggle="modal" data-target="#terminos">Todos
+                    los
                     derechos reservados</a>.</p>
         </div>
     </footer>
@@ -615,7 +546,7 @@
     <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
-     <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
 
     <script>
     const navbar = new Vue({
@@ -811,16 +742,16 @@
                 if (this.searchText != "" || this.type != "" || this.size != "") {
                     localStorage.setItem("searchAromantica", this.searchText)
                     //if (this.type != "") {
-                    if(this.type != ""){
+                    if (this.type != "") {
                         localStorage.setItem("typeAromantica", this.type.id)
-                    }else{
+                    } else {
                         localStorage.setItem("typeAromantica", "")
                     }
-                    
+
                     //}
                     if (this.size != "") {
                         localStorage.setItem("sizeAromantica", this.size.id)
-                    }else{
+                    } else {
                         localStorage.setItem("sizeAromantica", "")
                     }
                     window.location.href = "{{ url('/search') }}"
@@ -849,7 +780,7 @@
         },
         mounted() {
 
-            if("{{ url()->current() }}" == "{{ url('/search') }}")
+            if ("{{ url()->current() }}" == "{{ url('/search') }}")
                 this.searchText = localStorage.getItem("searchAromantica")
 
         }
