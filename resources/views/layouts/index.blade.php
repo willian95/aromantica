@@ -311,9 +311,6 @@
                                                     </div>
 
                                                 </div>
-
-
-
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="address">Dirección</label>
@@ -345,12 +342,11 @@
                                                 </div>
                                             </div>
 
-                                            <!--<div class="form-group  text-lg-right">
-                            <a href="" class="texto">¿Has olvidado tu contraseña?</a>
-                          </div>-->
+                                            
                                             <div class=" form-group mt-4 text-center">
                                                 <button class="btn btn-primary btn-custom "
-                                                    @click="register()">Registrarse</button>
+                                                    @click="register()">Registrarse
+                                                </button>
 
                                             </div>
 
@@ -372,14 +368,15 @@
                                     <div class="text-center">
                                         <p>¿Ya tienes cuenta?</p>
                                         <a class="txt facil" href="#" @click="openLoginModal()">Inicia sesión</a>
-    </>
-    </div>
-    </div>
+                                    </div>
+                                </div>
+                            </div>
 
-    </div>
-    </div>
-    </div>
-    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
