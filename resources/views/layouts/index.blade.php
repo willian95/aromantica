@@ -498,7 +498,7 @@
             </div>
 
         </div>
-        <<<<<<< HEAD <footer class="container-fluid">
+        <footer class="container-fluid">
             <div class="main-footer">
                 <div class="main-footer__item">
                     <a href="{{ url('/') }}">
@@ -524,35 +524,6 @@
                             <a style='color: #000 !important' href="{{ url('/cart/index') }}">Carrito</a>
                         </li>
                     </ul>
-                    =======
-                    <footer class="container-fluid">
-                        <div class="main-footer">
-                            <div class="main-footer__item">
-                                <a href="{{ url('/') }}">
-                                    <img class="logo_footer" src="{{ asset('assets/img/logo.png') }}" alt="">
-                                </a>
-                            </div>
-                            <div class="main-footer__item">
-                                <p class="ml-4 mb-2">Categorias</p>
-                                <ul class='grid_footer'>
-                                    <li class='nav-item active'>
-                                        <a class='' href='#inicio'> Damas</a>
-                                    </li>
-                                    <li class='nav-item active'>
-                                        <a class='' href='#inicio'>Caballeros</a>
-                                    </li>
-                                    <li class='nav-item'>
-                                        <a class='' href='#tienda'>Niños</a>
-                                    </li>
-                                    <li class='nav-item'>
-                                        <a class='' href='#tienda'>Cremas</a>
-                                    </li>
-                                    <li class='nav-item' style='color: #000 !important'>
-                                        <a style='color: #000 !important' href="{{ url('/cart/index') }}">Carrito</a>
-                                    </li>
-                                </ul>
-                                >>>>>>> 93b7975a9501238b8a07f125bf367728111a3621
-
                             </div>
                             <div class="main-footer__item">
                                 <p class="ml-4 mb-2">Empresa</p>
