@@ -30,9 +30,12 @@
         <div class="main main-details__product">
           <div class="grid__detail row">
             <div class="col-md-6">
-              <!--<div class="video">
-        
-              </div>-->
+              <div class="video">
+                <video controls loop style="height: 100%;" id="productVideo" autoplay="true" muted="muted"> 
+                  <source src="{{ env('CMS_URL').'/videos/Invictus-PacoRabanne.mp4' }}" type="video/mp4"> 
+                </video>
+
+              </div>
               <div class="row">
                 <div class="col-md-3">
     
@@ -440,5 +443,6 @@
         })
 
     </script>
+
 
 @endpush

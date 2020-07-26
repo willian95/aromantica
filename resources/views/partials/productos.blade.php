@@ -74,7 +74,7 @@
 
                             <div class="main-top__price">
                                 <p><span>$
-                                        {{ App\ProductTypeSize::where("product_id", $product->id)->first()->price }}</span>
+                                        {{ number_format(App\ProductTypeSize::where("product_id", $product->id)->first()->price, 2, ",", ".") }}</span>
                                 </p>
 
 
