@@ -4,41 +4,38 @@
     </div>
 
     <div class="main-productos__content ">
-        @foreach(App\Product::take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes",
-        "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
+        @foreach(App\ProductTypeSize::take(12)->has("product.brand")->with("product.brand", "product", "size", "type")->get() as $product)
         <div class="main-products__item">
             <div class="main-products__box">
                 <div class="views">
                     <span data-toggle="modal"
-                        onclick="setStock('{{ $product->productTypeSizes[0]->stock }}', '{{ $product->productTypeSizes[0]->price }}', '{{ $product->productTypeSizes[0]->id }}')"
+                        onclick="setStock('{{ $product->stock }}', '{{ $product->price }}', '{{ $product->id }}')"
                         data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
                     <!--<span href=""><i class="flaticon-shopping-cart"></i></span>-->
                 </div>
-                <a href="{{ url('/product/'.$product->slug) }}">
+                <a href="{{ url('/tienda/producto/'.$product->id) }}">
                     <div class="main-products__img">
-                        <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" class="card-img-top"
+                        <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}" class="card-img-top"
                             alt="...">
                     </div>
 
                     <div class="main-products__text">
                         <div class="main-products__title_cat">
-                            <p> {{ $product->brand->name }}</p>
+                            <p> {{ $product->product->brand->name }}</p>
                         </div>
                         <div class="main-products__title">
-                            <p>{{ $product->name }} </p>
+                            <p>{{ $product->product->name }} </p>
+                        </div>
+                        <div class="main-products__details">
+                            <p>{{ $product->type->name }} - {{ $product->size->name }}Oz</p>
+                        </div>
+                        <div class="main-products__details">
+                            <span>$ {{ $product->price }}</span>
                         </div>
                         <!--<div class="main-products__details">
                 <span>$85,000</span>
               </div>-->
-                        <div class=" presentaciones_card d-flex">
-
-                            @foreach(App\ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get()
-                            as $productTypeSize)
-
-                            <p>{{ $productTypeSize->type->name }}</p>
-
-                            @endforeach
-                        </div>
+                        
                     </div>
                 </a>
             </div>
@@ -49,8 +46,8 @@
 
     </div>
 
-    @foreach(App\Product::take(12)->has("brand")->has("productTypeSizes")->with("brand", "productTypeSizes",
-    "productTypeSizes.size", "productTypeSizes.type")->get() as $product)
+    @foreach(App\ProductTypeSize::take(12)->has("product.brand")->with("product.brand", "product",
+    "size", "type")->get() as $product)
 
     <!-- modal producto views -->
     <div class="modal fade" id="producto_modal-{{ $loop->index + 1 }}" tabindex="-1" role="dialog"
@@ -64,8 +61,8 @@
 
                     <div class="content_modal">
                         <div class="content_modal-item">
-                            <p class="titulo">{{ $product->name }}</p>
-                            <span>{{ $product->description }}</span>
+                            <p class="titulo">{{ $product->product->name }}</p>
+                            <span>{{ $product->product->description }}</span>
                             <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ea inventore maxime
                                 harum odio, suscipit enim voluptate saepe incidunt veritatis sed? Deleniti pariatur
                                 dignissimos ratione nisi blanditiis expedita velit assumenda!</span>
@@ -73,7 +70,7 @@
 
                             <div class="main-top__price">
                                 <p><span>$
-                                        {{ number_format(App\ProductTypeSize::where("product_id", $product->id)->first()->price, 2, ",", ".") }}</span>
+                                        {{ number_format($product->price, 0, ",", ".") }}</span>
                                 </p>
 
 
@@ -82,7 +79,7 @@
 
                         </div>
                         <div class="content_modal-item center">
-                            <img src="{{ env('CMS_URL').'/images/products/'.$product->image }}" alt="">
+                            <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}" alt="">
                         </div>
 
 
@@ -92,11 +89,11 @@
                         <div class="col-md-6">
                             <div class="barra">
                                 <!--<p> Vendidos:<span> 12</span></p>-->
-                                <p> {{ App\ProductTypeSize::where("product_id", $product->id)->first()->type->name }} -
-                                    {{ App\ProductTypeSize::where("product_id", $product->id)->first()->size->name }}ml
+                                <p> {{ $product->type->name }} -
+                                    {{ $product->size->name }}ml
                                 </p>
                                 <p>Disponible:
-                                    <span>{{ App\ProductTypeSize::where("product_id", $product->id)->first()->stock }}</span>
+                                    <span>{{ $product->stock }}</span>
                                 </p>
                             </div>
 
@@ -123,8 +120,8 @@
                             <div class=" main-top__btn d-flex justify-content-center">
 
 
-                                <a class="btn-custom " href="{{ url('/product/'.$product->slug) }}">
-                                    vER MÁS >
+                                <a class="btn-custom " href="{{ url('/product/'.$product->product->slug) }}">
+                                    VER MÁS >
                                 </a>
                             </div>
                         </div>
