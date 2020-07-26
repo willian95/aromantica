@@ -196,10 +196,54 @@
 
                     @endif
 
-                    <li class="nav-item position-relative mr-3">
+                    <!--- <li class="nav-item position-relative mr-3">
                         <span class="add_btn" id="cart-notification"></span>
                         <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
-                    </li>
+                    </li>--->
+
+
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                            data-hover="dropdown">
+                            <span class="add_btn" id="cart-notification"></span>
+                            <a class="nav-link" href="{{ url('/cart/index') }}"><i
+                                    class="flaticon-shopping-cart"></i></a>
+                        </button>
+                        <ul class="dropdown-menu carrito-nav">
+
+                            <li>
+                                <div>
+                                    <img src="assets/img/banner2.jpg" alt="">
+                                </div>
+
+                                <div>
+                                    <p>Nombre</p>
+                                    <p>1 x $505.000</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <img src="assets/img/banner2.jpg" alt="">
+                                </div>
+
+                                <div>
+                                    <p>Nombre</p>
+                                    <p>1 x $505.000</p>
+                                </div>
+                            </li>
+                            <div class="sub">
+                                <span>Subtotal: $500</span>
+                                <ul>
+                                    <li><a class="btn-custom sub-h" href="">Ver carrito</a></li>
+                                    <li><a class="btn-custom sub-h btn-w" href="">Finalizar compra</a></li>
+                                </ul>
+                            </div>
+                        </ul>
+
+
+                    </div>
+
+
                     @if(\Auth::guest())
 
                     <li class="nav-item">
@@ -345,9 +389,7 @@
                                                 </div>
                                             </div>
 
-                                            <!--<div class="form-group  text-lg-right">
-                            <a href="" class="texto">¿Has olvidado tu contraseña?</a>
-                          </div>-->
+
                                             <div class=" form-group mt-4 text-center">
                                                 <button class="btn btn-primary btn-custom "
                                                     @click="register()">Registrarse</button>
@@ -355,7 +397,7 @@
                                             </div>
 
                                             <div class="text-center">
-                                                <p class="inicia">Regístrate con:</p>
+                                                <p class="inicia">ó registrate facil </p>
                                                 <a class="btn-login btn-login2 mr-2"
                                                     href="{{ url('/facebook/redirect') }}">
                                                     <i class="fa fa-facebook"></i> Facebook</a>
@@ -372,423 +414,425 @@
                                     <div class="text-center">
                                         <p>¿Ya tienes cuenta?</p>
                                         <a class="txt facil" href="#" @click="openLoginModal()">Inicia sesión</a>
-    </>
-    </div>
-    </div>
-
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-
-    <!-- modal login -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content login">
-                <div class="modal-body">
-                    <button id="loginModalClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                    <div class="main-login">
-                        <div class="main-login__item">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="title__general title__general2 fadeInUp wow animated">
-                                        <p class="m-0">Inicio de sesión</p>
-                                    </div>
-                                    <p class="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Odit,
-                                        eum?!</p>
-                                    <div class="form-group">
-                                        <label for="emailLogin">Correo electrónico</label>
-                                        <input type="text" class="form-control" v-model="emailLogin" id="emailLogin"
-                                            autocomplete="off" placeholder="pedroperez@gmail.com">
-
-                                        <i class="fa fa-envelope icon_form"></i>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="passwordLogin">Contraseña</label>
-                                        <input type="password" class="form-control" v-model="passwordLogin"
-                                            placeholder="Contraseña">
-
-                                        <i class="fa fa-lock icon_form"></i>
-                                    </div>
-                                    <div class="form-group  text-lg-right">
-                                        <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
-                                            contraseña?</a>
-                                    </div>
-                                    <div class=" form-group mt-4 text-center">
-                                        <button class="btn btn-primary btn-custom " @click="login()">Ingresar</button>
-
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="inicia">o inicia con:</p>
-                                        <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                            <i class="fa fa-facebook"></i> Facebook</a>
-                                        <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
-                                                class="fa fa-google"></i> Google</a>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <div class=" main-login__item bg-login">
-                            <!-- <div class="mb-5 text-center">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- modal login -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content login">
+                        <div class="modal-body">
+                            <button id="loginModalClose" type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                            <div class="main-login">
+                                <div class="main-login__item">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="title__general title__general2 fadeInUp wow animated">
+                                                <p class="m-0">Inicio de sesión</p>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="emailLogin">Correo electrónico</label>
+                                                <input type="text" class="form-control" v-model="emailLogin"
+                                                    id="emailLogin" autocomplete="off"
+                                                    placeholder="pedroperez@gmail.com">
+
+                                                <i class="fa fa-envelope icon_form"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="passwordLogin">Contraseña</label>
+                                                <input type="password" class="form-control" v-model="passwordLogin"
+                                                    placeholder="Contraseña">
+
+                                                <i class="fa fa-lock icon_form"></i>
+                                            </div>
+                                            <div class="form-group  text-lg-right">
+                                                <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
+                                                    contraseña?</a>
+                                            </div>
+                                            <div class=" form-group mt-4 text-center">
+                                                <button class="btn btn-primary btn-custom "
+                                                    @click="login()">Ingresar</button>
+
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="inicia">ó inicia sesión con:</p>
+                                                <a class="btn-login btn-login2 mr-2"
+                                                    href="{{ url('/facebook/redirect') }}">
+                                                    <i class="fa fa-facebook"></i> Facebook</a>
+                                                <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i
+                                                        class="fa fa-google"></i> Google</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" main-login__item bg-login">
+                                    <!-- <div class="mb-5 text-center">
                                     <p>¡Registrate facíl!</p>
 
                                 </div>-->
 
-                            <div class="text-center">
-                                <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate
-                                    facíl!</a>
-                                <p class="mt-3">¿Aún no tienes cuenta?</p>
+                                    <div class="text-center">
+                                        <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate
+                                            facíl!</a>
+                                        <p class="mt-3">¿Aún no tienes cuenta?</p>
 
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
-
                 </div>
             </div>
+
         </div>
-    </div>
+        <footer class="container-fluid">
+            <div class="main-footer">
+                <div class="main-footer__item">
+                    <a href="{{ url('/') }}">
+                        <img class="logo_footer" src="{{ asset('assets/img/logo.png') }}" alt="">
+                    </a>
+                </div>
+                <div class="main-footer__item">
+                    <p class="ml-4 mb-2">Categorias</p>
+                    <ul class='grid_footer'>
+                        <li class='nav-item active'>
+                            <a class='' href='#inicio'> Damas</a>
+                        </li>
+                        <li class='nav-item active'>
+                            <a class='' href='#inicio'>Caballeros</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='' href='#tienda'>Niños</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='' href='#tienda'>Cremas</a>
+                        </li>
+                        <li class='nav-item' style='color: #000 !important'>
+                            <a style='color: #000 !important' href="{{ url('/cart/index') }}">Carrito</a>
+                        </li>
+                    </ul>
 
-    </div>
-    <footer class="container-fluid">
-        <div class="main-footer">
-            <div class="main-footer__item">
-                <a href="{{ url('/') }}">
-                    <img class="logo_footer" src="{{ asset('assets/img/logo.png') }}" alt="">
-                </a>
+                </div>
+                <div class="main-footer__item">
+                    <p class="ml-4 mb-2">Empresa</p>
+                    <ul class='grid_foote'>
+                        <li class='nav-item active'>
+                            <a class='' href='#inicio'> Aviso legal</a>
+                        </li>
+                        <li class='nav-item active'>
+                            <a class='' href='#inicio'>Pago seguro</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='terminos' data-toggle="modal" data-target="#terminos">Terminos y condiciones</a>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
-            <div class="main-footer__item">
-                <p class="ml-4 mb-2">Categorias</p>
-                <ul class='grid_footer'>
-                    <li class='nav-item active'>
-                        <a class='' href='#inicio'> Damas</a>
-                    </li>
-                    <li class='nav-item active'>
-                        <a class='' href='#inicio'>Caballeros</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='' href='#tienda'>Niños</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='' href='#tienda'>Cremas</a>
-                    </li>
-                    <li class='nav-item' style='color: #000 !important'>
-                        <a style='color: #000 !important' href="{{ url('/cart/index') }}">Carrito</a>
-                    </li>
-                </ul>
 
+            <div>
+                <p class="copy">2020 Copyright. <a class='terminos' data-toggle="modal" data-target="#terminos">Todos
+                        los
+                        derechos reservados</a>.</p>
             </div>
-            <div class="main-footer__item">
-                <p class="ml-4 mb-2">Empresa</p>
-                <ul class='grid_foote'>
-                    <li class='nav-item active'>
-                        <a class='' href='#inicio'> Aviso legal</a>
-                    </li>
-                    <li class='nav-item active'>
-                        <a class='' href='#inicio'>Pago seguro</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='terminos' data-toggle="modal" data-target="#terminos">Terminos y condiciones</a>
-                    </li>
+        </footer>
 
-                </ul>
-            </div>
-        </div>
+        <!-- modal terminos-->
+        <div class="modal fade" id="terminos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
 
-        <div>
-            <p class="copy">2020 Copyright. <a class='terminos' data-toggle="modal" data-target="#terminos">Todos
-                    los
-                    derechos reservados</a>.</p>
-        </div>
-    </footer>
+                        <div class="content_modal">
+                            Terminos y condiciones FVI
 
-    <!-- modal terminos-->
-    <div class="modal fade" id="terminos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
-                    <div class="content_modal">
-                        Terminos y condiciones FVI
-
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-    </script>
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
-    <script src="{{ asset('assets/js/setting-slick.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+        </script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/js/setting-slick.js') }}"></script>
+        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+        <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
 
-    <script>
-    const navbar = new Vue({
-        el: '#authModal',
-        data() {
-            return {
-                name: "",
-                email: "",
-                password: "",
-                password_confirmation: "",
-                phone: "",
-                identification: "",
-                address: "",
-                emailLogin: "",
-                passwordLogin: "",
-                products: [],
-                authCheck: "{{ Auth::check() }}",
-                total: 0
-            }
-        },
-        methods: {
-
-            isNumber: function(evt) {
-                evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
-                    evt.preventDefault();;
-                } else {
-                    return true;
+        <script>
+        const navbar = new Vue({
+            el: '#authModal',
+            data() {
+                return {
+                    name: "",
+                    email: "",
+                    password: "",
+                    password_confirmation: "",
+                    phone: "",
+                    identification: "",
+                    address: "",
+                    emailLogin: "",
+                    passwordLogin: "",
+                    products: [],
+                    authCheck: "{{ Auth::check() }}",
+                    total: 0
                 }
             },
-            register() {
+            methods: {
 
-                axios.post("{{ url('/register') }}", {
-                        name: this.name,
-                        email: this.email,
-                        password: this.password,
-                        password_confirmation: this.password_confirmation,
-                        phone: this.phone,
-                        identification: this.identification,
-                        address: this.address
-                    }).then(res => {
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+                        evt.preventDefault();;
+                    } else {
+                        return true;
+                    }
+                },
+                register() {
 
-                        if (res.data.success == true) {
-                            alert(res.data.msg)
-                            this.name = ""
-                            this.email = ""
-                            this.password = ""
-                            this.password_confirmation = ""
-                            this.phone = ""
-                            this.identification = ""
-                            this.address = ""
-                        } else {
-                            alert(res.data.msg)
-                        }
+                    axios.post("{{ url('/register') }}", {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password,
+                            password_confirmation: this.password_confirmation,
+                            phone: this.phone,
+                            identification: this.identification,
+                            address: this.address
+                        }).then(res => {
 
-                    })
-                    .catch(err => {
-                        $.each(err.response.data.errors, function(key, value) {
-                            alert(value)
-                            //alertify.error(value);
-                            //alertify.alert('Basic: true').set('basic', true); 
-                        });
-                    })
+                            if (res.data.success == true) {
+                                alert(res.data.msg)
+                                this.name = ""
+                                this.email = ""
+                                this.password = ""
+                                this.password_confirmation = ""
+                                this.phone = ""
+                                this.identification = ""
+                                this.address = ""
+                            } else {
+                                alert(res.data.msg)
+                            }
 
-            },
-            openRegisterModal() {
+                        })
+                        .catch(err => {
+                            $.each(err.response.data.errors, function(key, value) {
+                                alert(value)
+                                //alertify.error(value);
+                                //alertify.alert('Basic: true').set('basic', true); 
+                            });
+                        })
 
-                $("#loginModalClose").click();
-                $('body').removeClass('modal-open');
-                $('body').css('padding-right', '0px');
-                $('.modal-backdrop').remove();
+                },
+                openRegisterModal() {
 
-                $("#openRegisterModal").click()
+                    $("#loginModalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
 
-            },
-            openLoginModal() {
+                    $("#openRegisterModal").click()
 
-                $("#registerModalClose").click();
-                $('body').removeClass('modal-open');
-                $('body').css('padding-right', '0px');
-                $('.modal-backdrop').remove();
+                },
+                openLoginModal() {
 
-                $("#openLoginModal").click()
+                    $("#registerModalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
 
-            },
-            login() {
+                    $("#openLoginModal").click()
 
-                axios.post("{{ url('/login') }}", {
-                        email: this.emailLogin,
-                        password: this.passwordLogin
-                    })
-                    .then(res => {
+                },
+                login() {
 
-                        if (res.data.success == true) {
-
-                            alert(res.data.msg)
-                            this.cartInfo()
-                            window.location.href = "{{ url('/') }}"
-
-                        } else {
-                            alert(res.data.msg)
-                        }
-                    })
-
-
-            },
-            cartInfo() {
-                var totalGuest = 0;
-                var totalCheck = 0;
-
-                let cart = []
-                if (window.localStorage.getItem('cartAromantica') != null) {
-                    cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
-                }
-
-                cart.forEach((data, index) => {
-
-                    totalGuest = data.amount + totalGuest
-
-                })
-
-                let cartTotal = totalGuest + totalCheck
-                $("#cart-notification").html(cartTotal + "")
-
-                if (this.authCheck == "1") {
-
-                    axios.get("{{ url('/cart/fetch') }}")
+                    axios.post("{{ url('/login') }}", {
+                            email: this.emailLogin,
+                            password: this.passwordLogin
+                        })
                         .then(res => {
 
                             if (res.data.success == true) {
 
-                                this.products = res.data.products
+                                alert(res.data.msg)
+                                this.cartInfo()
+                                window.location.href = "{{ url('/') }}"
 
-                                this.products.forEach((data, index) => {
+                            } else {
+                                alert(res.data.msg)
+                            }
+                        })
 
-                                    totalCheck = totalCheck + data.amount
 
-                                })
+                },
+                cartInfo() {
+                    var totalGuest = 0;
+                    var totalCheck = 0;
 
-                                let cartTotalCheck = totalGuest + totalCheck
-                                console.log("test-cartTotal", totalGuest, totalCheck, cartTotalCheck)
-                                $("#cart-notification").html(cartTotalCheck + "")
+                    let cart = []
+                    if (window.localStorage.getItem('cartAromantica') != null) {
+                        cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                    }
+
+                    cart.forEach((data, index) => {
+
+                        totalGuest = data.amount + totalGuest
+
+                    })
+
+                    let cartTotal = totalGuest + totalCheck
+                    $("#cart-notification").html(cartTotal + "")
+
+                    if (this.authCheck == "1") {
+
+                        axios.get("{{ url('/cart/fetch') }}")
+                            .then(res => {
+
+                                if (res.data.success == true) {
+
+                                    this.products = res.data.products
+
+                                    this.products.forEach((data, index) => {
+
+                                        totalCheck = totalCheck + data.amount
+
+                                    })
+
+                                    let cartTotalCheck = totalGuest + totalCheck
+                                    console.log("test-cartTotal", totalGuest, totalCheck, cartTotalCheck)
+                                    $("#cart-notification").html(cartTotalCheck + "")
+
+                                }
+
+                            })
+
+                    }
+
+
+                }
+
+            },
+            mounted() {
+
+                this.cartInfo()
+
+
+
+            }
+
+        })
+
+        const search = new Vue({
+            el: '#search',
+            data() {
+                return {
+                    type: "",
+                    size: "",
+                    searchText: "",
+                    brandTitles: [],
+                    productTitles: [],
+                }
+            },
+            methods: {
+
+                selectType(type) {
+
+                    this.type = JSON.parse(type)
+                },
+                selectSize(size) {
+                    this.size = JSON.parse(size)
+                },
+                setText(string) {
+
+                    this.searchText = string
+                    this.search()
+                    this.lookFor()
+
+                },
+                lookFor() {
+                    if (this.searchText != "" || this.type != "" || this.size != "") {
+                        localStorage.setItem("searchAromantica", this.searchText)
+                        //if (this.type != "") {
+                        if (this.type != "") {
+                            localStorage.setItem("typeAromantica", this.type.id)
+                        } else {
+                            localStorage.setItem("typeAromantica", "")
+                        }
+
+                        //}
+                        if (this.size != "") {
+                            localStorage.setItem("sizeAromantica", this.size.id)
+                        } else {
+                            localStorage.setItem("sizeAromantica", "")
+                        }
+                        window.location.href = "{{ url('/search') }}"
+                    }
+                },
+                search() {
+
+                    if (this.searchText != "") {
+                        axios.post("{{ url('/words') }}", {
+                            search: this.searchText
+                        }).then(res => {
+
+                            if (res.data.success == true) {
+
+                                this.brandTitles = res.data.brandTitles
+                                this.productTitles = res.data.productTitles
 
                             }
 
                         })
-
-                }
-
-
-            }
-
-        },
-        mounted() {
-
-            this.cartInfo()
-
-
-
-        }
-
-    })
-
-    const search = new Vue({
-        el: '#search',
-        data() {
-            return {
-                type: "",
-                size: "",
-                searchText: "",
-                brandTitles: [],
-                productTitles: [],
-            }
-        },
-        methods: {
-
-            selectType(type) {
-
-                this.type = JSON.parse(type)
-            },
-            selectSize(size) {
-                this.size = JSON.parse(size)
-            },
-            setText(string) {
-
-                this.searchText = string
-                this.search()
-                this.lookFor()
-
-            },
-            lookFor() {
-                if (this.searchText != "" || this.type != "" || this.size != "") {
-                    localStorage.setItem("searchAromantica", this.searchText)
-                    //if (this.type != "") {
-                    if (this.type != "") {
-                        localStorage.setItem("typeAromantica", this.type.id)
-                    } else {
-                        localStorage.setItem("typeAromantica", "")
                     }
 
-                    //}
-                    if (this.size != "") {
-                        localStorage.setItem("sizeAromantica", this.size.id)
-                    } else {
-                        localStorage.setItem("sizeAromantica", "")
-                    }
-                    window.location.href = "{{ url('/search') }}"
                 }
+
+
             },
-            search() {
+            mounted() {
 
-                if (this.searchText != "") {
-                    axios.post("{{ url('/words') }}", {
-                        search: this.searchText
-                    }).then(res => {
-
-                        if (res.data.success == true) {
-
-                            this.brandTitles = res.data.brandTitles
-                            this.productTitles = res.data.productTitles
-
-                        }
-
-                    })
-                }
+                if ("{{ url()->current() }}" == "{{ url('/search') }}")
+                    this.searchText = localStorage.getItem("searchAromantica")
 
             }
 
+        })
+        </script>
 
-        },
-        mounted() {
-
-            if ("{{ url()->current() }}" == "{{ url('/search') }}")
-                this.searchText = localStorage.getItem("searchAromantica")
-
-        }
-
-    })
-    </script>
-
-    @stack("scripts")
+        @stack("scripts")
 
 </body>
 

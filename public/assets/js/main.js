@@ -47,3 +47,7 @@ function showSliderValue() {
     var bulletPosition = rangeSlider.value / rangeSlider.max;
     rangeBullet.style.left = bulletPosition * 208 + "px";
 }
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});

@@ -9,6 +9,7 @@
         <div class="main-products__item">
             <div class="main-products__box">
                 <div class="views">
+                    <p class="visualizar">Visualizar</p>
                     <span data-toggle="modal"
                         onclick="setStock('{{ $product->productTypeSizes[0]->stock }}', '{{ $product->productTypeSizes[0]->price }}', '{{ $product->productTypeSizes[0]->id }}')"
                         data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
