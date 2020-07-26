@@ -51,3 +51,38 @@ function showSliderValue() {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+$(".main-banner__content").slick({
+    infinite: true,
+    autoplay: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    fade: true,
+    cssEase: "linear",
+    arrows: true,
+    responsive: [
+        {
+            breakpoint: 1200,
+            settings: {
+                infinite: true,
+                dots: false,
+            },
+        },
+        {
+            breakpoint: 900,
+            settings: {},
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false,
+                autoplay: true,
+                arrows: false,
+                autoplaySpeed: 1000,
+            },
+        },
+    ],
+});

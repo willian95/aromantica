@@ -34,7 +34,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>--->
     @if(strpos(url()->current() ,url('/checkout/response')) < -1) <nav @if(url()->current() == url('/front-test'))
-        class='navbar navbar-expand-md navbar-fixed-js container-fluid '
+        class='navbar navbar-expand-md navbar-fixed-js container-fluid m-0 p-0 '
         @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid' @endif id="navbarSupportedContent">
         <div class='container-fluid nav-grid'>
             <a class='navbar-brand d-flex align-items-center' href="{{ url('/') }}">
@@ -138,9 +138,9 @@
             </button>
             <div class='offcanvas-collapse fil ml-auto' id='navbarNav'>
                 <ul class='navbar-nav'>
-                    <li class='nav-item active'>
+                    <!-- <li class='nav-item active'>
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
-                    </li>
+                    </li> -->
                     <li class='nav-item'>
                         <a class='nav-link nav-link-black ' href='{{ url('/tienda') }}'>Tienda</a>
                     </li>
@@ -182,7 +182,7 @@
                     @if(\Auth::guest())
                     <li class="nav-item">
                         <a id="openRegisterModal" style="border: 1px solid white;
-                          border-radius: 10px;" class="nav-link" href="#" data-toggle="modal"
+                          border-radius: 10px;" class="nav-link p-0 " href="#" data-toggle="modal"
                             data-target="#registerModal">Registrate</a>
                     </li>
 
@@ -203,7 +203,7 @@
 
 
                     <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                        <button class="btn btn-default dropdown-toggle d-flex p-0 " type="button" data-toggle="dropdown"
                             data-hover="dropdown">
                             <span class="add_btn" id="cart-notification"></span>
                             <a class="nav-link" href="{{ url('/cart/index') }}"><i
@@ -247,7 +247,7 @@
                     @if(\Auth::guest())
 
                     <li class="nav-item">
-                        <a id="openLoginModal" class="nav-link" href="#" data-toggle="modal"
+                        <a id="openLoginModal" class="nav-link p-0 mr-5" href="#" data-toggle="modal"
                             data-target="#loginModal"><i class="flaticon-user"></i></a>
                     </li>
                     @else <li class='nav-item dropdown dowms succss'>

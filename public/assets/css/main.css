@@ -189,7 +189,7 @@ body.offcanvas-expanded {
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
-    color: #ffffff;
+    color: #0c4572;
 }
 
 .nav-link-black {
@@ -215,71 +215,20 @@ body.offcanvas-expanded {
 
 /*banner*/
 
-.main-banner__content .slick-prev {
-    right: 100px;
-    z-index: 2;
-    height: auto;
-    width: 40px;
-    cursor: pointer;
-    transition: all 0.5s;
-    top: 35%;
-    background-color: transparent;
-    width: auto;
-    opacity: 1;
+.main-banner_body {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-gap: 20px;
+    grid-template-columns: 40% 12% 44%;
 }
 
-.main-banner__content .slick-prev:before {
-    font-size: 14px;
-    color: #fff;
-    content: "\f053";
-    font-family: "FontAwesome";
-    z-index: 3;
-}
-
-.main-banner__content .slick-prev:hover {
-    outline: none;
-    background: transparent;
-    color: #fff;
-    transition: all 0.5s;
-    filter: opacity(0.5);
-}
-
-.main-banner__content .slick-next {
-    right: 100px;
-    z-index: 2;
-    height: auto;
-    width: 40px;
-    cursor: pointer;
-    transition: all 0.5s;
-    top: 75%;
-    background-color: transparent;
-    width: auto;
-    opacity: 1;
-}
-
-.main-banner__content .slick-next:before {
-    font-size: 14px;
-    color: #fff;
-    content: "\f054";
-    font-family: "FontAwesome";
-    opacity: 1;
-}
-
-.main-banner__content .slick-next:hover {
-    outline: none;
-    background: transparent;
-    color: #fff;
-    transition: all 0.5s;
-    filter: opacity(0.5);
-}
-
-.main-banner__content .slick-dots {
-    z-index: 2;
-    display: block;
-    position: absolute;
-    bottom: 45%;
-    right: 125px;
-    width: 0%;
+.main-banner_img img {
+    width: 550px;
+    height: 500px;
+    object-fit: cover;
+    width: 100%;
+    object-position: center;
+    width: 100%;
 }
 
 .bg-blue::before {
@@ -314,19 +263,93 @@ body.offcanvas-expanded {
     transition: all 300ms ease;
 }
 
+.main-banner {
+    position: relative;
+    overflow: hidden;
+    margin-top: -80px;
+}
+
+.main-banner .main-banner__item {
+    position: relative;
+}
+
+.main-banner .mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.main-banner .mask .main-banner__text {
+    position: absolute;
+    top: 40%;
+    width: 55%;
+    left: 8%;
+}
+
+.main-banner .mask .main-banner__text .main-banner__title p {
+    padding: 0;
+    color: #fff;
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    font-family: Poppins, sans-serif;
+}
+
+.main-banner .mask .main-banner__text .main-banner__title span {
+    padding: 0 25px;
+    color: #fff;
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0;
+}
+
+.main-banner .mask .main-banner__text .main-banner__description {
+    padding: 0;
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    margin: 15px 0 0 0;
+}
+
+.main-banner .mask .main-banner__text .main-banner__description p {
+    margin-bottom: 3rem;
+}
+
+.main-banner .main-banner__img {
+    width: 100%;
+    height: 105vh;
+}
+
+.main-banner .main-banner__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .arrows {
     fill: #5f657f;
 }
 
 .slick-slide img {
     display: block;
-    width: 500px;
-    height: 400px;
+    width: 100%;
+    height: 90vh;
     object-fit: cover;
     box-shadow: 0px 0px 11px #00000026;
-    border-radius: 10px;
-}
 
+    object-position: center;
+}
+.banner-title {
+    position: absolute;
+    color: #ffff;
+    width: 100%;
+    top: 40%;
+}
 .main-banner__item {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
@@ -1701,8 +1724,8 @@ tab detalles
 }
 .add_btn {
     position: absolute;
-    color: #0c4572;
-    background: white;
+    color: #ffffff;
+    background: #0c4572;
     padding: 0px 10px;
     border-radius: 50px;
     font-size: 14px;
@@ -1710,7 +1733,7 @@ tab detalles
     text-align: center;
     display: flex;
     justify-content: center;
-    left: 40px;
+    left: 33px;
 }
 .pepe .add_btn {
     color: #ffffff;
@@ -2111,4 +2134,18 @@ button:focus {
 }
 .dropdown-toggle:after {
     opacity: 0;
+}
+.navbar-expand-md .navbar-nav {
+    align-items: center;
+}
+.flaticon-user:before {
+    content: "\f100";
+    margin: 0;
+}
+.wave {
+    position: absolute;
+    bottom: 0;
+    z-index: 99;
+    width: 100%;
+    height: 200px;
 }
