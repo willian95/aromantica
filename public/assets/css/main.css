@@ -2013,3 +2013,102 @@ button:focus {
     display: inline-block;
     padding: 0 20px !important;
 }
+
+.visualizar {
+    position: absolute;
+    font-size: 12px;
+    background: #0387be;
+    border-radius: 10px;
+    color: #fff;
+    right: 50px;
+    padding: 3px 12px;
+    top: 7px;
+    opacity: 0;
+    transition: 0.5s;
+}
+.visualizar::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: #0387be;
+    position: absolute;
+    transform: rotate(45deg);
+    right: -2px;
+    z-index: -1;
+    top: 5px;
+}
+.views:hover .visualizar {
+    opacity: 1;
+    transition: 0.5s;
+}
+.carrito-nav {
+}
+
+.carrito-nav img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 12px;
+}
+.carrito-nav li {
+    display: flex;
+    margin-bottom: 13px;
+}
+.carrito-nav ul {
+    padding: 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 11px;
+}
+.carrito-nav p {
+    padding: 0;
+    margin: 0;
+    font-weight: 300;
+    font-size: 16px;
+}
+.carrito-nav:nth-child(1) p {
+    color: red;
+}
+.dropdown:hover > .dropdown-menu {
+    display: block;
+    left: -40px;
+    width: 200px;
+    padding: 10px;
+}
+.sub {
+    border-top: 1px solid #00000021;
+    text-align: center;
+    padding-top: 10px;
+    color: #0c4572;
+}
+.sub-h {
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    width: 150px;
+}
+.btn-w {
+    border: 1px solid #0c4572;
+    color: #0c4572;
+}
+
+.btn-w::before {
+    -webkit-transition-duration: 800ms;
+    -o-transition-duration: 800ms;
+    transition-duration: 800ms;
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    content: "";
+    background: #ffffff;
+    /* background-image: -webkit-linear-gradient(120deg, #505add 0%, #df42b1 100%); */
+    z-index: -2;
+}
+.dropdown-toggle:after {
+    opacity: 0;
+}
