@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Brand;
 use App\Product;
+use App\ProductTypeSize;
 
 class SearchController extends Controller
 {
@@ -18,7 +19,7 @@ class SearchController extends Controller
         $brands = Brand::all();
         $brandId = "";
         $type = $request->type;
-
+        $words = [];
         foreach($brands as $brand){
 
             if(strpos(strtoupper($request->searchText), strtoupper($brand->name)) > -1){
@@ -29,44 +30,52 @@ class SearchController extends Controller
 
         }
 
-        $words = explode(' ',strtolower($request->searchText)); // coloco cada palabra en un espacio del array
+        if(isset($request->searchText)){
+            $words = explode(' ',strtolower($request->searchText)); // coloco cada palabra en un espacio del array
 
-        $words = array_unique($words); //eliminamos las palabras duplicadas
-        $words = array_values($words); // reordenamos el array
+            $words = array_unique($words); //eliminamos las palabras duplicadas
+            $words = array_values($words); // reordenamos el array
+        }
         
         
         $skip = ($request->page-1) * 20;
-        
+    
+
         if($brandId != ""){
             
-            $products = Product::where(function ($query) use($words) {
+            $products = ProductTypeSize::whereHas("product", function ($query) use($words, $brandId) {
             
                 for ($i = 0; $i < count($words); $i++){
                     if($words[$i] != ""){
                         //$query->orWhere('description', "like", "%".$words[$i]."%");
                         $query->orWhere('name', "like", "%".$words[$i]."%");
-                        $query->orWhere('description', "like", "%".$words[$i]."%");
+                        //$query->orWhere('description', "like", "%".$words[$i]."%");
                     }
                 }   
+
+                $query->where("brand_id", $brandId);
                 
-            })->with("brand", "category", "ProductTypeSizes")->where("brand_id", $brandId)->whereHas("ProductTypeSizes", function ($query) use($request) {
-                
-                if($request->type != null)
-                    $query->where('type_id', $request->type);
-                if($request->size != null)
-                    $query->where('size_id', $request->size);
-            
+            })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+
+                if(isset($request->type)){
+                    $query->where("type_id", $request->type);
+                }
+
+                if(isset($request->size)){
+                    $query->where("size_id", $request->size);
+                }
+
             })->skip($skip)->take(20)->get();
 
-            if(count($products) == 0){
+            /*if(count($products) == 0){
                 
                 $products = Product::with("brand", "category", "ProductTypeSizes")->where("brand_id", $brandId)->skip($skip)->take(20)->get();
 
-            }
+            }*/
 
     
-            $productsCount = Product::where(function ($query) use($words) {
-                
+            $productsCount = ProductTypeSize::whereHas("product", function ($query) use($words, $brandId) {
+            
                 for ($i = 0; $i < count($words); $i++){
                     if($words[$i] != ""){
                         //$query->orWhere('description', "like", "%".$words[$i]."%");
@@ -74,55 +83,96 @@ class SearchController extends Controller
                         $query->orWhere('description', "like", "%".$words[$i]."%");
                     }
                 }   
-                  
-            })->with("brand", "category", "ProductTypeSizes")->where("brand_id", $brandId)->whereHas("ProductTypeSizes", function ($query) use($request) {
+
+                $query->where("brand_id", $brandId);
                 
-                if($request->type != null)
-                    $query->where('type_id', $request->type);
-                if($request->size != null)
-                    $query->where('size_id', $request->size);
-            
+            })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+
+                if(isset($request->type)){
+                    $query->where("type_id", $request->type);
+                }
+
+                if(isset($request->size)){
+                    $query->where("size_id", $request->size);
+                }
+
             })->count();
         
         }else{
-
-            $products = Product::with("category", "brand", "ProductTypeSizes")
-            ->where(function ($query) use($words) {
-                for ($i = 0; $i < count($words); $i++){
-                    if($words[$i] != ""){
-                        //$query->orWhere('description', "like", "%".$words[$i]."%");
-                        $query->orWhere('name', "like", "%".$words[$i]."%");
-                        $query->orWhere('description', "like", "%".$words[$i]."%");
-                    }
-                }      
-            })
-            ->skip($skip)->whereHas("ProductTypeSizes", function ($query) use($request) {
+            //dd(count($words));
+            if(count($words) <= 0){
                 
-                if($request->type != null)
-                    $query->where('type_id', $request->type);
-                if($request->size != null)
-                    $query->where('size_id', $request->size);
-            
-            })->take(20)->get();
+                $products = ProductTypeSize::with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
     
-            $productsCount = Product::with("category", "brand", "ProductTypeSizes")
-            ->where(function ($query) use($words) {
-                for ($i = 0; $i < count($words); $i++){
-                    if($words[$i] != ""){
-                        //$query->orWhere('description', "like", "%".$words[$i]."%");
-                        $query->orWhere('name', "like", "%".$words[$i]."%");
-                        $query->orWhere('description', "like", "%".$words[$i]."%");
+                    if(isset($request->type)){
+                        $query->where("type_id", $request->type);
                     }
-                }      
-            })
-            ->whereHas("ProductTypeSizes", function ($query) use($request) {
+    
+                    if(isset($request->size)){
+                        $query->where("size_id", $request->size);
+                    }
+    
+                })->skip($skip)->take(20)->get();
                 
-                if($request->type != null)
-                    $query->where('type_id', $request->type);
-                if($request->size != null)
-                    $query->where('size_id', $request->size);
+                //dd($products);
+
+                $productsCount = ProductTypeSize::with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+    
+                    if(isset($request->type)){
+                        $query->where("type_id", $request->type);
+                    }
+    
+                    if(isset($request->size)){
+                        $query->where("size_id", $request->size);
+                    }
+    
+                })->count();
+                
+            }else{
+                $products = ProductTypeSize::whereHas("product", function ($query) use($words) {
             
-            })->count();
+                    for ($i = 0; $i < count($words); $i++){
+                        if($words[$i] != ""){
+                            //$query->orWhere('description', "like", "%".$words[$i]."%");
+                            $query->where('name', "like", "%".$words[$i]."%");
+                            //$query->orWhere('description', "like", "%".$words[$i]."%");
+                        }
+                    }   
+                    
+                })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+    
+                    if(isset($request->type)){
+                        $query->where("type_id", $request->type);
+                    }
+    
+                    if(isset($request->size)){
+                        $query->where("size_id", $request->size);
+                    }
+    
+                })->skip($skip)->take(20)->get();
+        
+                $productsCount = ProductTypeSize::whereHas("product", function ($query) use($words) {
+                
+                    for ($i = 0; $i < count($words); $i++){
+                        if($words[$i] != ""){
+                            //$query->orWhere('description', "like", "%".$words[$i]."%");
+                            $query->where('name', "like", "%".$words[$i]."%");
+                            //$query->orWhere('description', "like", "%".$words[$i]."%");
+                        }
+                    }   
+                    
+                })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+    
+                    if(isset($request->type)){
+                        $query->where("type_id", $request->type);
+                    }
+    
+                    if(isset($request->size)){
+                        $query->where("size_id", $request->size);
+                    }
+    
+                })->count();
+            }
 
         }
 

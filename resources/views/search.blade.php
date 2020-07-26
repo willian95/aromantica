@@ -41,19 +41,23 @@
                             <span href=""><i class="flaticon-shopping-cart"></i></span>
                         </div>
                         <div class="main-products__img">
-                            <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.image">
+                            <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.image">
                         </div>
-                        <a :href="'{{ url('/') }}'+'/product/'+product.slug">
+                        <a :href="'{{ url('/') }}'+'/tienda/producto/'+product.id">
                             <div class="main-products__text">
-                            <div class="main-products__title_cat">
-                                <p>@{{ categoryName }}</p>
-                            </div>
-                            <div class="main-products__title">
-                                <p>@{{ product.name }} </p>
-                            </div>
-                            <div class="main-products__details">
-                                <span>$ @{{ parseFloat(product.product_type_sizes[0].price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                            </div>
+                                <div class="main-products__title_cat">
+                                    <p>@{{ product.product.brand.name }}</p>
+                                </div>
+                        
+                                <div class="main-products__title">
+                                    <p>@{{ product.product.name }}</p>
+                                </div>
+                                <div class="main-products__details">
+                                    <p>@{{ product.type.name }} - @{{ product.size.name }}Oz</p>
+                                </div>
+                                <div class="main-products__details">
+                                    <span>$ @{{ product.price }}</span>
+                                </div>
                             </div>
                         </a>
                     </div>

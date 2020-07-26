@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
-use App\Product;
+use App\ProductTypeSize;
 
 class CategoryController extends Controller
 {
@@ -21,14 +21,16 @@ class CategoryController extends Controller
 
             $skip = ($page - 1) * 20;
 
-            $products = Product::where("category_id", $id)->with("ProductTypeSizes")->skip($skip)->take(20)->get();
-            $productsCount = Product::count();
+            $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->whereHas("product.category", function($q) use($id){
+                $q->where("id", $id);
+            })->skip($skip)->take(20)->get();
+            $productsCount = ProductTypeSize::count();
 
             return response()->json(["success" => true, "products" => $products, "productsCount" => $productsCount]);
 
         }catch(\Exception $e){
 
-            return response()->json(["success" => false, "msg" => "Error en el servidor"]);
+            return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
 
         }
 

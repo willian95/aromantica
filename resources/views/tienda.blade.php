@@ -92,10 +92,14 @@
                             <a :href="'{{ url('/') }}'+'/tienda/producto/'+product.id">
                                 <div class="main-products__text">
                                     <div class="main-products__title_cat">
-                                        <p>@{{ product.product.category.name }}</p>
+                                        <p>@{{ product.product.brand.name }}</p>
                                     </div>
+                         
                                     <div class="main-products__title">
                                         <p>@{{ product.product.name }}</p>
+                                    </div>
+                                    <div class="main-products__details">
+                                        <p>@{{ product.type.name }} - @{{ product.size.name }}Oz</p>
                                     </div>
                                     <div class="main-products__details">
                                         <span>$ @{{ product.price }}</span>
