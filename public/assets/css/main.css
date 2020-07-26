@@ -19,6 +19,9 @@
 html {
     overflow-x: hidden;
 }
+video {
+    width: 100%;
+}
 body {
     font-family: "Poppins", sans-serif;
     color: #3e3e3e;
