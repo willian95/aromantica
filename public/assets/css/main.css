@@ -16,7 +16,9 @@
 .carrier-name:first-letter {
     text-transform: uppercase;
 }
-
+html {
+    overflow-x: hidden;
+}
 body {
     font-family: "Poppins", sans-serif;
     color: #3e3e3e;
