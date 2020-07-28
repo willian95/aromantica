@@ -36,8 +36,10 @@
                     <div class="">
                         <div class="main-top__item">
                             <div class="main-top__text">
-                                <div class="main-top__title">
+                                <div class="main-top__title d-flex justify-content-between mb-4">
                                     <p>@{{ title }}</p>
+                                    <img class="logo-product"
+                                        src="https://1000marcas.net/wp-content/uploads/2019/12/Chanel-logo.png" alt="">
                                 </div>
                                 <div class="main-top__price justify-content-between">
                                     <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
