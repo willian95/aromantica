@@ -2,275 +2,278 @@
 
 @section("content")
 
-    <section class="container mt-5" id="dev-area">
-        <div class="main main-details__product">
-          <div class="grid__detail row">
+<section class="container p-50" id="dev-area">
+    <div class="main main-details__product">
+        <div class="grid__detail row">
             <div class="col-md-6">
-              <div class="video" v-if="video != null || video != ''">
-                <video controls loop style="height: 100%;" id="productVideo" autoplay="true" muted="muted"> 
-                  <source :src="'{{ env('CMS_URL') }}'+'/videos/'+ video" type="video/mp4"> 
-                </video>
-              </div>
-              <div class="row">
-                <div class="col-md-3">
-    
+                <div class="video" v-if="video != null || video != ''">
+                    <video controls loop style="height: 100%;" id="productVideo" autoplay="true" muted="muted">
+                        <source :src="'{{ env('CMS_URL') }}'+'/videos/'+ video" type="video/mp4">
+                    </video>
                 </div>
-                <div class="col-md-8">
-    
-                </div>
-              </div>
-    
-           
-            <div class="slider slider-for__details">
-              <div>
-                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
-              </div>
-  
-            </div>
+                <div class="row">
+                    <div class="col-md-3">
 
-         
+                    </div>
+                    <div class="col-md-8">
+
+                    </div>
+                </div>
+
+
+                <div class="slider slider-for__details">
+                    <div>
+                        <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
+                    </div>
+
+                </div>
+
+
             </div>
             <div class="col-md-6">
-    
-              <div class="slider_details--text">
-                <div class="">
-                  <div class="main-top__item">
-                    <div class="main-top__text">
-                      <div class="main-top__title">
-                        <p>@{{ title }}</p>
-                      </div>
-                      <div class="main-top__price justify-content-between">
-                        <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
 
-               
-                        <div class="cantidad_btn">
-                           
-                       
-                        <button class="btn btn-success" @click="substractAmount()">-</button>
-                        @{{ amount }}
-                        <button class="btn btn-success" @click="addAmount()">+</button>
-                        </div>
-        
+                <div class="slider_details--text">
+                    <div class="">
+                        <div class="main-top__item">
+                            <div class="main-top__text">
+                                <div class="main-top__title">
+                                    <p>@{{ title }}</p>
+                                </div>
+                                <div class="main-top__price justify-content-between">
+                                    <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
 
-                      </div>
-                      <div class="barra mb-3">
-                        <p class="details__txt">Tamaño : @{{ size }} oz / @{{ sizeMl }} ml</p>
-                       <div>
-                        <p>Cantidades disponibles: <span>@{{ stock }}</span></p>
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="10"></div>
-                        </div>
-                       </div>
-                      </div>
-                      
-                      
-    
-                      <div class="main-top__description">
-                        <p>@{{ description }}</p>
-                      </div>
-                      
-                      {{--<p>Presentaciones</p>
+
+                                    <div class="cantidad_btn">
+
+
+                                        <button class="btn btn-success" @click="substractAmount()">-</button>
+                                        @{{ amount }}
+                                        <button class="btn btn-success" @click="addAmount()">+</button>
+                                    </div>
+
+
+                                </div>
+                                <div class="barra mb-3">
+                                    <p class="details__txt">Tamaño : @{{ size }} oz / @{{ sizeMl }} ml</p>
+                                    <div>
+                                        <p>Cantidades disponibles: <span>@{{ stock }}</span></p>
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 25%"
+                                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="main-top__description">
+                                    <p>@{{ description }}</p>
+                                </div>
+
+                                {{--<p>Presentaciones</p>
                       <div class="presentaciones">
                     <div>
                         <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
                           
                           @{{ type.name }}</button>
-                    </div>--}}
-                      </div>
-    
-                      <div class="float-left main-top__btn " v-if="stock > 0">
-                        <a style="color:#fff" class="btn-custom mr-4" @click="addToCart()">
-                          Añadir >
-                        </a>
-                      </div>
-                      <div v-else>
-                        <p>Producto sin stock</p>
-                      </div>
+                            </div>--}}
+                        </div>
+
+                        <div class="float-left main-top__btn " v-if="stock > 0">
+                            <a style="color:#fff" class="btn-custom mr-4" @click="addToCart()">
+                                Añadir >
+                            </a>
+                        </div>
+                        <div v-else>
+                            <p>Producto sin stock</p>
+                        </div>
                     </div>
-                  </div>
-    
                 </div>
-              </div>
+
             </div>
-    
-          </div>
-    
-    
         </div>
-      </section>
-    
+    </div>
+
+    </div>
+
+
+    </div>
+</section>
+
 
 @endsection
 
 @push("scripts")
 
-    <script>
-    
-        const devArea = new Vue({
-            el: '#dev-area',
-            data(){
-                return{
-                    authCheck:"{{ Auth::check() }}",
-                    title:'{!! $product->product->name !!}',
-                    category:'{!! $product->product->category->name !!}',
-                    brand:'{!! $product->product->brand->name !!}',
-                    image:'{!! $product->product->image !!}',
-                    video:'{!! $product->product->video !!}',
-                    description:'{!! $product->product->description !!}',
-                    size:'{!! $product->size->name !!}',
-                    sizeMl:'{!! $product->size->ml !!}',
-                    type:'{!! $product->type->name !!}',
-                    stock:"{{ $product->stock }}",
-                    price:"{{ $product->price }}",
-                    productTypeSizeId:"{{ $product->id }}",
-                    amount:0
-                }
-            },
-            methods:{
-                
-                addAmount(){
+<script>
+const devArea = new Vue({
+    el: '#dev-area',
+    data() {
+        return {
+            authCheck: "{{ Auth::check() }}",
+            title: '{!! $product->product->name !!}',
+            category: '{!! $product->product->category->name !!}',
+            brand: '{!! $product->product->brand->name !!}',
+            image: '{!! $product->product->image !!}',
+            video: '{!! $product->product->video !!}',
+            description: '{!! $product->product->description !!}',
+            size: '{!! $product->size->name !!}',
+            sizeMl: '{!! $product->size->ml !!}',
+            type: '{!! $product->type->name !!}',
+            stock: "{{ $product->stock }}",
+            price: "{{ $product->price }}",
+            productTypeSizeId: "{{ $product->id }}",
+            amount: 0
+        }
+    },
+    methods: {
 
-                    if(this.amount + 1 <= this.stock){
-                        this.amount++
-                    }
+        addAmount() {
 
-                },
-                substractAmount(){
+            if (this.amount + 1 <= this.stock) {
+                this.amount++
+            }
 
-                    if(this.amount - 1 > 0){
-                        this.amount--
-                    }
+        },
+        substractAmount() {
 
-                },
-                addToCart(){
+            if (this.amount - 1 > 0) {
+                this.amount--
+            }
 
-                  if(this.amount > 0){
+        },
+        addToCart() {
 
-                      if(this.authCheck == "1"){
-                          
-                          axios.post("{{ url('/cart/store') }}", {productTypeSizeId: this.productTypeSizeId, amount: this.amount})
-                          .then(res => {
+            if (this.amount > 0) {
 
-                              if(res.data.success == true){
+                if (this.authCheck == "1") {
+
+                    axios.post("{{ url('/cart/store') }}", {
+                            productTypeSizeId: this.productTypeSizeId,
+                            amount: this.amount
+                        })
+                        .then(res => {
+
+                            if (res.data.success == true) {
                                 this.cartInfo()
-                                  alert(res.data.msg)
-                                  this.amount = 0;
-                              }else{
-                                  alert(res.data.msg)
-                              }
+                                alert(res.data.msg)
+                                this.amount = 0;
+                            } else {
+                                alert(res.data.msg)
+                            }
 
-                          })
+                        })
 
-                      }else{
-                        this.guestCart()
-                      }
+                } else {
+                    this.guestCart()
+                }
 
-                  }else{
+            } else {
 
-                      alert("Debe seleccionar una cantidad")
+                alert("Debe seleccionar una cantidad")
 
-                  }
+            }
 
-                },
-                guestCart(){
+        },
+        guestCart() {
 
-                  var total = 0
-                  let cart = []
-                  if(window.localStorage.getItem('cartAromantica') != null){
-                      cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
-                  }
-                  
-                  var exists = false
+            var total = 0
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
 
-                  cart.forEach((data, index)=>{
-                     
-                      if(data.productTypeSizeId == this.productTypeSizeId){
-                          data.amount = data.amount + this.amount
-                          exists = true
-                      }
+            var exists = false
 
-                  })
-                  
-                  if(exists == false){
-                      cart.push({productTypeSizeId: this.productTypeSizeId, amount: this.amount})
-                  }
+            cart.forEach((data, index) => {
 
-                  cart.forEach((data, index)=>{
-                     
-                    total = data.amount + total
+                if (data.productTypeSizeId == this.productTypeSizeId) {
+                    data.amount = data.amount + this.amount
+                    exists = true
+                }
 
-                 })
+            })
 
-                 window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
-                 this.amount = 0
-                 this.cartInfo()
-                  alert("Producto añadido al carrito")
+            if (exists == false) {
+                cart.push({
+                    productTypeSizeId: this.productTypeSizeId,
+                    amount: this.amount
+                })
+            }
+
+            cart.forEach((data, index) => {
+
+                total = data.amount + total
+
+            })
+
+            window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+            this.amount = 0
+            this.cartInfo()
+            alert("Producto añadido al carrito")
 
 
-                },
-                cartInfo(){
-                  var totalGuest = 0;
-                  var totalCheck = 0;
+        },
+        cartInfo() {
+            var totalGuest = 0;
+            var totalCheck = 0;
 
-                  let cart = []
-                  if(window.localStorage.getItem('cartAromantica') != null){
-                      cart =JSON.parse(window.localStorage.getItem('cartAromantica'))
-                  }
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
 
-                  cart.forEach((data, index)=>{
-                      
-                    totalGuest = data.amount + totalGuest
+            cart.forEach((data, index) => {
 
-                  })
+                totalGuest = data.amount + totalGuest
 
-                  let cartTotal = totalGuest + totalCheck
-                  $("#cart-notification").html(cartTotal+"")
-                  
-                  if(this.authCheck == "1"){
-                  
-                    axios.get("{{ url('/cart/fetch') }}")
+            })
+
+            let cartTotal = totalGuest + totalCheck
+            $("#cart-notification").html(cartTotal + "")
+
+            if (this.authCheck == "1") {
+
+                axios.get("{{ url('/cart/fetch') }}")
                     .then(res => {
-                        
-                        if(res.data.success == true){
-                            
+
+                        if (res.data.success == true) {
+
                             this.products = res.data.products
 
                             this.products.forEach((data, index) => {
 
-                              totalCheck = totalCheck + data.amount
+                                totalCheck = totalCheck + data.amount
 
                             })
 
                             console.log(totalGuest, totalCheck)
                             let cartTotal = totalGuest + totalCheck
-                            $("#cart-notification").html(cartTotal+"")
-                        
+                            $("#cart-notification").html(cartTotal + "")
+
                             localStorage.setItem("executeCartPreview", "1")
 
                         }
 
-                    })     
+                    })
 
-                  }
-                  else{
-           
-                    localStorage.setItem("executeCartPreview", "1")
-                  }
-                  
-                }
+            } else {
 
-
-            },
-            mounted(){
-
-              this.cartInfo()
-
-
+                localStorage.setItem("executeCartPreview", "1")
             }
 
-        })
+        }
 
-    </script>
+
+    },
+    mounted() {
+
+        this.cartInfo()
+
+
+    }
+
+})
+</script>
 
 @endpush

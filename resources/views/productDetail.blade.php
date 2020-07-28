@@ -26,7 +26,7 @@
             </div>  
         </div>
     </div>--->
-<section class="container mt-5" id="dev-area">
+<section class="container p-50" id="dev-area">
     <div class="main main-details__product">
         <div class="grid__detail row">
             <div class="col-md-6">
