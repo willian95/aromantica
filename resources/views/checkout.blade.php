@@ -16,7 +16,7 @@
             </div>
 
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -64,7 +64,7 @@
 
         </div>
 
-        <div class="col-md-12 mt-5">
+        <div class="col-md-6 mt-5">
             <div class="card-pay ">
 
                 <div class="row">
