@@ -361,17 +361,6 @@ body.offcanvas-expanded {
     padding: 3px 10px 50px;
 }
 
-.main-banner__img::before {
-    background-image: url(../img/banner_pattern.png);
-    content: "";
-    position: absolute;
-    background-size: cover;
-    width: 200px;
-    height: 100px;
-    bottom: 0;
-    right: 50px;
-}
-
 .main-banner .slick-next:before {
     font-size: 130px;
     color: transparent;
@@ -2153,4 +2142,13 @@ button:focus {
     z-index: 99;
     width: 100%;
     height: 200px;
+}
+.navbar-expand-md {
+    position: fixed;
+    z-index: 9;
+    background: #fff;
+    box-shadow: 0px 0px 10px #00000047;
+}
+#banner {
+    padding-top: 100px;
 }
