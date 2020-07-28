@@ -7,7 +7,7 @@
 
 </div>
 
-<div class="container" id="dev-area">
+<div class="container p-50" id="dev-area">
     <div class="row">
         <div class="col-12">
             <div class="title__general text-left">

@@ -146,9 +146,8 @@
                     </li>
                     @foreach(App\Category::all() as $category)
 
-                    <li class='nav-item dropdown dowms down-md'>
-                        <a href="{{ url('/category/'.$category->slug) }}" aria-expanded='false' aria-haspopup='true'
-                            class='nav-link dropdown-toggle nav-link ' data-toggle='dropdown'>
+                    <li class='nav-item down-md'>
+                        <a href="{{ url('/category/'.$category->slug) }}" class='nav-link  nav-link '>
                             {{ $category->name }}
                         </a>
 
@@ -213,29 +212,37 @@
 
                             <li v-for="product in products">
                                 <div>
-                                    <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="">
+                                    <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image"
+                                        alt="">
                                 </div>
 
                                 <div>
                                     <p>@{{ product.product_type_size.product.name }}</p>
-                                    <p>@{{ product.amount }} x $@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                    <p>@{{ product.amount }} x
+                                        $@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                    </p>
                                 </div>
                             </li>
                             <li v-for="product in guestProducts">
                                 <div>
-                                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt="">
+                                    <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image"
+                                        alt="">
                                 </div>
 
                                 <div>
                                     <p>@{{ product.product.product.name }}</p>
-                                    <p>@{{ product.amount }} x $@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                    <p>@{{ product.amount }} x
+                                        $@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                    </p>
                                 </div>
                             </li>
                             <div class="sub">
-                                <span>Subtotal: $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <span>Subtotal:
+                                    $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                 <ul>
                                     <li><a class="btn-custom sub-h" href="{{ url('/cart/index') }}">Ver carrito</a></li>
-                                    <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar compra</a></li>
+                                    <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar
+                                            compra</a></li>
                                 </ul>
                             </div>
                         </ul>
@@ -524,405 +531,402 @@
                             <a style='color: #000 !important' href="{{ url('/cart/index') }}">Carrito</a>
                         </li>
                     </ul>
-                            </div>
-                            <div class="main-footer__item">
-                                <p class="ml-4 mb-2">Empresa</p>
-                                <ul class='grid_foote'>
-                                    <li class='nav-item active'>
-                                        <a class='' href='#inicio'> Aviso legal</a>
-                                    </li>
-                                    <li class='nav-item active'>
-                                        <a class='' href='#inicio'>Pago seguro</a>
-                                    </li>
-                                    <li class='nav-item'>
-                                        <a class='terminos' data-toggle="modal" data-target="#terminos">Terminos y
-                                            condiciones</a>
-                                    </li>
+                </div>
+                <div class="main-footer__item">
+                    <p class="ml-4 mb-2">Empresa</p>
+                    <ul class='grid_foote'>
+                        <li class='nav-item active'>
+                            <a class='' href='#inicio'> Aviso legal</a>
+                        </li>
+                        <li class='nav-item active'>
+                            <a class='' href='#inicio'>Pago seguro</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='terminos' data-toggle="modal" data-target="#terminos">Terminos y
+                                condiciones</a>
+                        </li>
 
-                                </ul>
-                            </div>
-                        </div>
+                    </ul>
+                </div>
+            </div>
 
-                        <div>
-                            <p class="copy">2020 Copyright. <a class='terminos' data-toggle="modal"
-                                    data-target="#terminos">Todos
-                                    los
-                                    derechos reservados</a>.</p>
-                        </div>
-                    </footer>
+            <div>
+                <p class="copy">2020 Copyright. <a class='terminos' data-toggle="modal" data-target="#terminos">Todos
+                        los
+                        derechos reservados</a>.</p>
+            </div>
+        </footer>
 
-                    <!-- modal terminos-->
-                    <div class="modal fade" id="terminos" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+        <!-- modal terminos-->
+        <div class="modal fade" id="terminos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
 
-                                    <div class="content_modal">
-                                        Terminos y condiciones FVI
+                        <div class="content_modal">
+                            Terminos y condiciones FVI
 
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Optional JavaScript -->
-                    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                        crossorigin="anonymous">
-                    </script>
-                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                        crossorigin="anonymous">
-                    </script>
-                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-                        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-                        crossorigin="anonymous">
-                    </script>
-                    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-                    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-                    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
-                    <script src="{{ asset('assets/js/setting-slick.js') }}"></script>
-                    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-                    <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
-                    <script src="{{ asset('assets/js/main.js') }}"></script>
-                    <script src="{{ asset('/js/app.js') }}"></script>
-                    <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+        </script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+        <script src="{{ asset('assets/js/setting-slick.js') }}"></script>
+        <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+        <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
 
-                    <script>
+        <script>
+        const cartPreview = new Vue({
+            el: "#cartPreview",
+            data() {
+                return {
+                    authCheck: "{{ Auth::check() }}",
+                    products: [],
+                    guestProducts: [],
+                    total: 0
+                }
+            },
+            methods: {
+                cartFetch() {
 
-                    const cartPreview = new Vue({
-                        el: "#cartPreview",
-                        data(){
-                            return{
-                                authCheck: "{{ Auth::check() }}",
-                                products:[],
-                                guestProducts:[],
-                                total:0
-                            }
-                        },
-                        methods: {
-                            cartFetch() {
+                    axios.get("{{ url('/cart/fetch') }}")
+                        .then(res => {
 
-                                axios.get("{{ url('/cart/fetch') }}")
-                                .then(res => {
-
-                                    if (res.data.success == true) {
+                            if (res.data.success == true) {
 
 
-                                        this.products = res.data.products
+                                this.products = res.data.products
 
-                                        this.products.forEach((data, index) => {
+                                this.products.forEach((data, index) => {
 
-                                            this.total = this.total + (data.amount * data.product_type_size.price)
-
-                                        })
-
-                                    }
-
-                                })
-
-                            },
-                            guestFetch() {
-
-                                let cart = []
-                                if (window.localStorage.getItem('cartAromantica') != null) {
-                                    cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
-                                }
-
-                                axios.post("{{ url('/cart/guest/fetch') }}", {
-                                    cart: cart
-                                }).then(res => {
-
-                                    if (res.data.success == true) {
-                                        this.guestProducts = res.data.guestProducts
-
-                                        this.guestProducts.forEach((data, index) => {
-
-                                            this.total = this.total + (parseFloat(data.product.price) * parseInt(
-                                                data.amount))
-
-                                        })
-
-                                    } else {
-                                        alert(res.data.msg)
-                                    }
+                                    this.total = this.total + (data.amount * data.product_type_size
+                                        .price)
 
                                 })
 
                             }
-                        },
-                        mounted(){
 
-                            if (this.authCheck == "1") {
-                                this.cartFetch()
-                            }
+                        })
 
-                            this.guestFetch()
+                },
+                guestFetch() {
 
-                            window.setInterval(() => {
+                    let cart = []
+                    if (window.localStorage.getItem('cartAromantica') != null) {
+                        cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                    }
 
-                                if(window.localStorage.getItem("executeCartPreview") == "1"){
-                                    if (this.authCheck == "1") {
-                                        this.cartFetch()
-                                    }
+                    axios.post("{{ url('/cart/guest/fetch') }}", {
+                        cart: cart
+                    }).then(res => {
 
-                                    this.guestFetch()
+                        if (res.data.success == true) {
+                            this.guestProducts = res.data.guestProducts
 
-                                    window.localStorage.removeItem("executeCartPreview")
-                                }
+                            this.guestProducts.forEach((data, index) => {
 
-                            }, 1000)
+                                this.total = this.total + (parseFloat(data.product.price) *
+                                    parseInt(
+                                        data.amount))
 
+                            })
+
+                        } else {
+                            alert(res.data.msg)
                         }
 
                     })
 
+                }
+            },
+            mounted() {
 
-                    const navbar = new Vue({
-                        el: '#authModal',
-                        data() {
-                            return {
-                                name: "",
-                                email: "",
-                                password: "",
-                                password_confirmation: "",
-                                phone: "",
-                                identification: "",
-                                address: "",
-                                emailLogin: "",
-                                passwordLogin: "",
-                                products: [],
-                                guesProducts: [],
-                                authCheck: "{{ Auth::check() }}",
-                                total: 0
-                            }
-                        },
-                        methods: {
+                if (this.authCheck == "1") {
+                    this.cartFetch()
+                }
 
-                            isNumber: function(evt) {
-                                evt = (evt) ? evt : window.event;
-                                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                                if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
-                                    evt.preventDefault();;
-                                } else {
-                                    return true;
-                                }
-                            },
-                            register() {
+                this.guestFetch()
 
-                                axios.post("{{ url('/register') }}", {
-                                        name: this.name,
-                                        email: this.email,
-                                        password: this.password,
-                                        password_confirmation: this.password_confirmation,
-                                        phone: this.phone,
-                                        identification: this.identification,
-                                        address: this.address
-                                    }).then(res => {
+                window.setInterval(() => {
 
-                                        if (res.data.success == true) {
-                                            alert(res.data.msg)
-                                            this.name = ""
-                                            this.email = ""
-                                            this.password = ""
-                                            this.password_confirmation = ""
-                                            this.phone = ""
-                                            this.identification = ""
-                                            this.address = ""
-                                        } else {
-                                            alert(res.data.msg)
-                                        }
-
-                                    })
-                                    .catch(err => {
-                                        $.each(err.response.data.errors, function(key, value) {
-                                            alert(value)
-                                            //alertify.error(value);
-                                            //alertify.alert('Basic: true').set('basic', true); 
-                                        });
-                                    })
-
-                            },
-                            openRegisterModal() {
-
-                                $("#loginModalClose").click();
-                                $('body').removeClass('modal-open');
-                                $('body').css('padding-right', '0px');
-                                $('.modal-backdrop').remove();
-
-                                $("#openRegisterModal").click()
-
-                            },
-                            openLoginModal() {
-
-                                $("#registerModalClose").click();
-                                $('body').removeClass('modal-open');
-                                $('body').css('padding-right', '0px');
-                                $('.modal-backdrop').remove();
-
-                                $("#openLoginModal").click()
-
-                            },
-                            login() {
-
-                                axios.post("{{ url('/login') }}", {
-                                        email: this.emailLogin,
-                                        password: this.passwordLogin
-                                    })
-                                    .then(res => {
-
-                                        if (res.data.success == true) {
-
-                                            alert(res.data.msg)
-                                            this.cartInfo()
-                                            window.location.href = "{{ url('/') }}"
-
-                                        } else {
-                                            alert(res.data.msg)
-                                        }
-                                    })
-
-
-                            },
-                            cartInfo() {
-                                var totalGuest = 0;
-                                var totalCheck = 0;
-
-                                let cart = []
-                                if (window.localStorage.getItem('cartAromantica') != null) {
-                                    cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
-                                }
-
-                                cart.forEach((data, index) => {
-
-                                    totalGuest = data.amount + totalGuest
-
-                                })
-
-                                let cartTotal = totalGuest + totalCheck
-                                $("#cart-notification").html(cartTotal + "")
-
-                                if (this.authCheck == "1") {
-
-                                    axios.get("{{ url('/cart/fetch') }}")
-                                        .then(res => {
-
-                                            if (res.data.success == true) {
-
-                                                this.products = res.data.products
-
-                                                this.products.forEach((data, index) => {
-
-                                                    totalCheck = totalCheck + data.amount
-
-                                                })
-
-                                                let cartTotalCheck = totalGuest + totalCheck
-                                                console.log("test-cartTotal", totalGuest, totalCheck,
-                                                    cartTotalCheck)
-                                                $("#cart-notification").html(cartTotalCheck + "")
-
-                                            }
-
-                                        })
-
-                                }
-
-
-                            },
-
-                        },
-                        mounted() {
-
-                            this.cartInfo()
-
+                    if (window.localStorage.getItem("executeCartPreview") == "1") {
+                        if (this.authCheck == "1") {
+                            this.cartFetch()
                         }
+
+                        this.guestFetch()
+
+                        window.localStorage.removeItem("executeCartPreview")
+                    }
+
+                }, 1000)
+
+            }
+
+        })
+
+
+        const navbar = new Vue({
+            el: '#authModal',
+            data() {
+                return {
+                    name: "",
+                    email: "",
+                    password: "",
+                    password_confirmation: "",
+                    phone: "",
+                    identification: "",
+                    address: "",
+                    emailLogin: "",
+                    passwordLogin: "",
+                    products: [],
+                    guesProducts: [],
+                    authCheck: "{{ Auth::check() }}",
+                    total: 0
+                }
+            },
+            methods: {
+
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+                        evt.preventDefault();;
+                    } else {
+                        return true;
+                    }
+                },
+                register() {
+
+                    axios.post("{{ url('/register') }}", {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password,
+                            password_confirmation: this.password_confirmation,
+                            phone: this.phone,
+                            identification: this.identification,
+                            address: this.address
+                        }).then(res => {
+
+                            if (res.data.success == true) {
+                                alert(res.data.msg)
+                                this.name = ""
+                                this.email = ""
+                                this.password = ""
+                                this.password_confirmation = ""
+                                this.phone = ""
+                                this.identification = ""
+                                this.address = ""
+                            } else {
+                                alert(res.data.msg)
+                            }
+
+                        })
+                        .catch(err => {
+                            $.each(err.response.data.errors, function(key, value) {
+                                alert(value)
+                                //alertify.error(value);
+                                //alertify.alert('Basic: true').set('basic', true); 
+                            });
+                        })
+
+                },
+                openRegisterModal() {
+
+                    $("#loginModalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
+
+                    $("#openRegisterModal").click()
+
+                },
+                openLoginModal() {
+
+                    $("#registerModalClose").click();
+                    $('body').removeClass('modal-open');
+                    $('body').css('padding-right', '0px');
+                    $('.modal-backdrop').remove();
+
+                    $("#openLoginModal").click()
+
+                },
+                login() {
+
+                    axios.post("{{ url('/login') }}", {
+                            email: this.emailLogin,
+                            password: this.passwordLogin
+                        })
+                        .then(res => {
+
+                            if (res.data.success == true) {
+
+                                alert(res.data.msg)
+                                this.cartInfo()
+                                window.location.href = "{{ url('/') }}"
+
+                            } else {
+                                alert(res.data.msg)
+                            }
+                        })
+
+
+                },
+                cartInfo() {
+                    var totalGuest = 0;
+                    var totalCheck = 0;
+
+                    let cart = []
+                    if (window.localStorage.getItem('cartAromantica') != null) {
+                        cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                    }
+
+                    cart.forEach((data, index) => {
+
+                        totalGuest = data.amount + totalGuest
 
                     })
 
-                    const search = new Vue({
-                        el: '#search',
-                        data() {
-                            return {
-                                type: "",
-                                size: "",
-                                searchText: "",
-                                brandTitles: [],
-                                productTitles: [],
-                            }
-                        },
-                        methods: {
+                    let cartTotal = totalGuest + totalCheck
+                    $("#cart-notification").html(cartTotal + "")
 
-                            selectType(type) {
+                    if (this.authCheck == "1") {
 
-                                this.type = JSON.parse(type)
-                            },
-                            selectSize(size) {
-                                this.size = JSON.parse(size)
-                            },
-                            setText(string) {
+                        axios.get("{{ url('/cart/fetch') }}")
+                            .then(res => {
 
-                                this.searchText = string
-                                this.search()
-                                this.lookFor()
+                                if (res.data.success == true) {
 
-                            },
-                            lookFor() {
-                                if (this.searchText != "" || this.type != "" || this.size != "") {
-                                    localStorage.setItem("searchAromantica", this.searchText)
-                                    //if (this.type != "") {
-                                    if (this.type != "") {
-                                        localStorage.setItem("typeAromantica", this.type.id)
-                                    } else {
-                                        localStorage.setItem("typeAromantica", "")
-                                    }
+                                    this.products = res.data.products
 
-                                    //}
-                                    if (this.size != "") {
-                                        localStorage.setItem("sizeAromantica", this.size.id)
-                                    } else {
-                                        localStorage.setItem("sizeAromantica", "")
-                                    }
-                                    window.location.href = "{{ url('/search') }}"
-                                }
-                            },
-                            search() {
+                                    this.products.forEach((data, index) => {
 
-                                if (this.searchText != "") {
-                                    axios.post("{{ url('/words') }}", {
-                                        search: this.searchText
-                                    }).then(res => {
-
-                                        if (res.data.success == true) {
-
-                                            this.brandTitles = res.data.brandTitles
-                                            this.productTitles = res.data.productTitles
-
-                                        }
+                                        totalCheck = totalCheck + data.amount
 
                                     })
+
+                                    let cartTotalCheck = totalGuest + totalCheck
+                                    console.log("test-cartTotal", totalGuest, totalCheck,
+                                        cartTotalCheck)
+                                    $("#cart-notification").html(cartTotalCheck + "")
+
                                 }
+
+                            })
+
+                    }
+
+
+                },
+
+            },
+            mounted() {
+
+                this.cartInfo()
+
+            }
+
+        })
+
+        const search = new Vue({
+            el: '#search',
+            data() {
+                return {
+                    type: "",
+                    size: "",
+                    searchText: "",
+                    brandTitles: [],
+                    productTitles: [],
+                }
+            },
+            methods: {
+
+                selectType(type) {
+
+                    this.type = JSON.parse(type)
+                },
+                selectSize(size) {
+                    this.size = JSON.parse(size)
+                },
+                setText(string) {
+
+                    this.searchText = string
+                    this.search()
+                    this.lookFor()
+
+                },
+                lookFor() {
+                    if (this.searchText != "" || this.type != "" || this.size != "") {
+                        localStorage.setItem("searchAromantica", this.searchText)
+                        //if (this.type != "") {
+                        if (this.type != "") {
+                            localStorage.setItem("typeAromantica", this.type.id)
+                        } else {
+                            localStorage.setItem("typeAromantica", "")
+                        }
+
+                        //}
+                        if (this.size != "") {
+                            localStorage.setItem("sizeAromantica", this.size.id)
+                        } else {
+                            localStorage.setItem("sizeAromantica", "")
+                        }
+                        window.location.href = "{{ url('/search') }}"
+                    }
+                },
+                search() {
+
+                    if (this.searchText != "") {
+                        axios.post("{{ url('/words') }}", {
+                            search: this.searchText
+                        }).then(res => {
+
+                            if (res.data.success == true) {
+
+                                this.brandTitles = res.data.brandTitles
+                                this.productTitles = res.data.productTitles
 
                             }
 
-                        },
-                        mounted() {
+                        })
+                    }
 
-                            if ("{{ url()->current() }}" == "{{ url('/search') }}")
-                                this.searchText = localStorage.getItem("searchAromantica")
+                }
 
-                        }
+            },
+            mounted() {
 
-                    })
-                    </script>
+                if ("{{ url()->current() }}" == "{{ url('/search') }}")
+                    this.searchText = localStorage.getItem("searchAromantica")
 
-                    @stack("scripts")
+            }
+
+        })
+        </script>
+
+        @stack("scripts")
 
 </body>
 
