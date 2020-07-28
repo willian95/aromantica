@@ -202,7 +202,7 @@
                     </li>--->
 
 
-                    <div class="dropdown">
+                    <div class="dropdown" id="cartPreview">
                         <button class="btn btn-default dropdown-toggle d-flex p-0 " type="button" data-toggle="dropdown"
                             data-hover="dropdown">
                             <span class="add_btn" id="cart-notification"></span>
@@ -211,31 +211,31 @@
                         </button>
                         <ul class="dropdown-menu carrito-nav">
 
-                            <li>
+                            <li v-for="product in products">
                                 <div>
-                                    <img src="assets/img/banner2.jpg" alt="">
+                                    <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="">
                                 </div>
 
                                 <div>
-                                    <p>Nombre</p>
-                                    <p>1 x $505.000</p>
+                                    <p>@{{ product.product_type_size.product.name }}</p>
+                                    <p>@{{ product.amount }} x $@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                                 </div>
                             </li>
-                            <li>
+                            <li v-for="product in guestProducts">
                                 <div>
-                                    <img src="assets/img/banner2.jpg" alt="">
+                                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt="">
                                 </div>
 
                                 <div>
-                                    <p>Nombre</p>
-                                    <p>1 x $505.000</p>
+                                    <p>@{{ product.product.product.name }}</p>
+                                    <p>@{{ product.amount }} x $@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                                 </div>
                             </li>
                             <div class="sub">
-                                <span>Subtotal: $500</span>
+                                <span>Subtotal: $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                 <ul>
-                                    <li><a class="btn-custom sub-h" href="">Ver carrito</a></li>
-                                    <li><a class="btn-custom sub-h btn-w" href="">Finalizar compra</a></li>
+                                    <li><a class="btn-custom sub-h" href="{{ url('/cart/index') }}">Ver carrito</a></li>
+                                    <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar compra</a></li>
                                 </ul>
                             </div>
                         </ul>
@@ -595,6 +595,95 @@
                     <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
 
                     <script>
+
+                    const cartPreview = new Vue({
+                        el: "#cartPreview",
+                        data(){
+                            return{
+                                authCheck: "{{ Auth::check() }}",
+                                products:[],
+                                guestProducts:[],
+                                total:0
+                            }
+                        },
+                        methods: {
+                            cartFetch() {
+
+                                axios.get("{{ url('/cart/fetch') }}")
+                                .then(res => {
+
+                                    if (res.data.success == true) {
+
+
+                                        this.products = res.data.products
+
+                                        this.products.forEach((data, index) => {
+
+                                            this.total = this.total + (data.amount * data.product_type_size.price)
+
+                                        })
+
+                                    }
+
+                                })
+
+                            },
+                            guestFetch() {
+
+                                let cart = []
+                                if (window.localStorage.getItem('cartAromantica') != null) {
+                                    cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                                }
+
+                                axios.post("{{ url('/cart/guest/fetch') }}", {
+                                    cart: cart
+                                }).then(res => {
+
+                                    if (res.data.success == true) {
+                                        this.guestProducts = res.data.guestProducts
+
+                                        this.guestProducts.forEach((data, index) => {
+
+                                            this.total = this.total + (parseFloat(data.product.price) * parseInt(
+                                                data.amount))
+
+                                        })
+
+                                    } else {
+                                        alert(res.data.msg)
+                                    }
+
+                                })
+
+                            }
+                        },
+                        mounted(){
+
+                            if (this.authCheck == "1") {
+                                this.cartFetch()
+                            }
+
+                            this.guestFetch()
+
+                            window.setInterval(() => {
+
+                                if(window.localStorage.getItem("executeCartPreview") == "1"){
+                                    if (this.authCheck == "1") {
+                                        this.cartFetch()
+                                    }
+
+                                    this.guestFetch()
+
+                                    window.localStorage.removeItem("executeCartPreview")
+                                }
+
+                            }, 1000)
+
+                        }
+
+                    })
+
+
                     const navbar = new Vue({
                         el: '#authModal',
                         data() {
@@ -609,6 +698,7 @@
                                 emailLogin: "",
                                 passwordLogin: "",
                                 products: [],
+                                guesProducts: [],
                                 authCheck: "{{ Auth::check() }}",
                                 total: 0
                             }
@@ -745,14 +835,12 @@
                                 }
 
 
-                            }
+                            },
 
                         },
                         mounted() {
 
                             this.cartInfo()
-
-
 
                         }
 
@@ -822,7 +910,6 @@
                                 }
 
                             }
-
 
                         },
                         mounted() {

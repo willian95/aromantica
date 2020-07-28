@@ -102,7 +102,7 @@
                                         <p>@{{ product.type.name }} - @{{ product.size.name }}Oz</p>
                                     </div>
                                     <div class="main-products__details">
-                                        <span>$ @{{ product.price }}</span>
+                                        <span>$ @{{ parseFloat(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                     </div>
                                 </div>
                             </a>

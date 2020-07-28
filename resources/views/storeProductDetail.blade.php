@@ -6,9 +6,9 @@
         <div class="main main-details__product">
           <div class="grid__detail row">
             <div class="col-md-6">
-              <div class="video">
+              <div class="video" v-if="video != null || video != ''">
                 <video controls loop style="height: 100%;" id="productVideo" autoplay="true" muted="muted"> 
-                  <source src="{{ env('CMS_URL').'/videos/Invictus-PacoRabanne.mp4' }}" type="video/mp4"> 
+                  <source :src="'{{ env('CMS_URL') }}'+'/videos/'+ video" type="video/mp4"> 
                 </video>
               </div>
               <div class="row">
@@ -70,13 +70,13 @@
                         <p>@{{ description }}</p>
                       </div>
                       
-                      <p>Presentaciones</p>
+                      {{--<p>Presentaciones</p>
                       <div class="presentaciones">
                     <div>
                         <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
                           
                           @{{ type.name }}</button>
-                    </div>
+                    </div>--}}
                       </div>
     
                       <div class="float-left main-top__btn " v-if="stock > 0">
@@ -116,6 +116,7 @@
                     category:'{!! $product->product->category->name !!}',
                     brand:'{!! $product->product->brand->name !!}',
                     image:'{!! $product->product->image !!}',
+                    video:'{!! $product->product->video !!}',
                     description:'{!! $product->product->description !!}',
                     size:'{!! $product->size->name !!}',
                     sizeMl:'{!! $product->size->ml !!}',
@@ -244,11 +245,17 @@
                             console.log(totalGuest, totalCheck)
                             let cartTotal = totalGuest + totalCheck
                             $("#cart-notification").html(cartTotal+"")
+                        
+                            localStorage.setItem("executeCartPreview", "1")
 
                         }
 
                     })     
 
+                  }
+                  else{
+           
+                    localStorage.setItem("executeCartPreview", "1")
                   }
                   
                 }
