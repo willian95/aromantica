@@ -4,7 +4,8 @@
     </div>
 
     <div class="main-productos__content ">
-        @foreach(App\ProductTypeSize::take(12)->has("product.brand")->with("product.brand", "product", "size", "type")->get() as $product)
+        @foreach(App\ProductTypeSize::take(12)->has("product.brand")->with("product.brand", "product", "size",
+        "type")->get() as $product)
         <div class="main-products__item">
             <div class="main-products__box">
                 <div class="views">
@@ -16,8 +17,8 @@
                 </div>
                 <a href="{{ url('/tienda/producto/'.$product->id) }}">
                     <div class="main-products__img">
-                        <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}" class="card-img-top"
-                            alt="...">
+                        <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}"
+                            class="card-img-top" alt="...">
                     </div>
 
                     <div class="main-products__text">
@@ -36,7 +37,7 @@
                         <!--<div class="main-products__details">
                 <span>$85,000</span>
               </div>-->
-                        
+
                     </div>
                 </a>
             </div>
@@ -63,6 +64,7 @@
                     <div class="content_modal">
                         <div class="content_modal-item">
                             <p class="titulo">{{ $product->product->name }}</p>
+
                             <span>{{ $product->product->description }}</span>
                             <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ea inventore maxime
                                 harum odio, suscipit enim voluptate saepe incidunt veritatis sed? Deleniti pariatur

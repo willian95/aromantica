@@ -73,7 +73,8 @@
                         <div class="main-top__item">
                             <div class="main-top__text">
                                 <div class="main-top__title">
-                                    <p>@{{ title }}</p>
+                                    <p>@{{ title }}</p>XCXC
+                                    <img src="{{ url('assets/img/banner2.jpg') }}">
                                 </div>
                                 <div class="main-top__price justify-content-between">
                                     <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>

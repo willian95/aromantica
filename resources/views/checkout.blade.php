@@ -2,7 +2,8 @@
 
 @section("content")
 
-<div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;" id="cover">
+<div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;"
+    id="cover">
 
 </div>
 
@@ -120,7 +121,7 @@
                         <label for="streetNumber">Carriers</label>
                         <select class="form-control" v-model="carrier" @change="reloadServices()">
                             <option :value="carrier" v-for="carrier in carriers">
-                                @{{ carrier.name }}
+                                <img src="assets/img/banner2.jpg"> @{{ carrier.name }}
                             </option>
                         </select>
                     </div>
@@ -146,9 +147,7 @@
                         style="margin-top: 5px; cursor:pointer" @click="setService(availableService)">
                         <div class="card-body">
                             <h4 class="text-center carrier-name">
-                                <img style="width: 50px;"
-                                    :src="carrier.logo"
-                                    alt="">
+                                <img style="width: 50px;" :src="carrier.logo" alt="">
                                 @{{ carrier.name }}</h4>
                             <p>$ @{{ parseFloat(availableService.totalPrice).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                                 COP</p>
@@ -159,8 +158,7 @@
 
 
                 <form id="frm_botonePayco" name="frm_botonePayco" method="post"
-                    action="https://secure.payco.co/checkout.php"
-                   target="print_popup"
+                    action="https://secure.payco.co/checkout.php" target="print_popup"
                     v-if="total > 0 && name != '' && email != '' && identification != '' && address != '' && phone != '' && shippingCalculated == true"
                     @click="storeLocal()" onsubmit="openChildWindow()">
                     <input name="p_cust_id_cliente" type="hidden" value="82433">
@@ -435,9 +433,9 @@ const devArea = new Vue({
                 crossDomain: true,
                 success: function(result) {
                     // process result
-                    if(result.meta == "error"){
+                    if (result.meta == "error") {
                         alert(result.error.message)
-                    }else{
+                    } else {
                         vm.availableServices = result.data
                     }
 
@@ -465,7 +463,7 @@ const devArea = new Vue({
             this.signature()
 
         },
-        reloadServices(){
+        reloadServices() {
 
             this.availableServices = []
 
@@ -728,29 +726,27 @@ const devArea = new Vue({
 </script>
 
 <script>
+var childWin = null
 
-    var childWin = null
+function openChildWindow() {
+    childWin = window.open('about:blank', 'print_popup', 'width=600,height=600');
+    $("#cover").css("display", "block")
+}
 
-    function openChildWindow(){
-        childWin  = window.open('about:blank','print_popup','width=600,height=600');
-        $("#cover").css("display", "block")
-    }
-
-    function checkWindow() {
-        if (childWin && childWin.closed) {
-            window.clearInterval(intervalID);
-            $("#cover").css("display", "none")
-            if(localStorage.getItem("paymentStatusAromantica") == 'aprobado'){
-                localStorage.removeItem("paymentStatusAromantica")
-                window.location.href="{{ url('/') }}"
-            }else if(localStorage.getItem("paymentStatusAromantica") == 'rechazado'){
-                window.location.reload()
-            }
+function checkWindow() {
+    if (childWin && childWin.closed) {
+        window.clearInterval(intervalID);
+        $("#cover").css("display", "none")
+        if (localStorage.getItem("paymentStatusAromantica") == 'aprobado') {
+            localStorage.removeItem("paymentStatusAromantica")
+            window.location.href = "{{ url('/') }}"
+        } else if (localStorage.getItem("paymentStatusAromantica") == 'rechazado') {
+            window.location.reload()
         }
     }
+}
 
-    var intervalID = window.setInterval(checkWindow, 500);
-
+var intervalID = window.setInterval(checkWindow, 500);
 </script>
 
 @endpush
