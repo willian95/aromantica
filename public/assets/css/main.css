@@ -2199,3 +2199,18 @@ button:focus {
         opacity: 0.8;
     }
 }
+.overlay::before {
+    content: "";
+    position: absolute;
+    background-image: -webkit-linear-gradient(85deg, #0c4572 0%, #764ebe1a 80%);
+    width: 100%;
+    height: 100%;
+}
+
+.banner-title h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.slick-dotted.slick-slider {
+    margin-bottom: 0;
+}
