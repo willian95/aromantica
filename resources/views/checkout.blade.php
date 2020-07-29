@@ -89,7 +89,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="city"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
-                            <input type="text" class="form-control" v-model="city" id="city"
+                            <input type="text" class="form-control" v-model="city" id="city" placeholder="Bogotá"
                                 @keyup="setShippingCalculatedFalse()">
                         </div>
 
@@ -100,7 +100,7 @@
 
                         <div class="form-group">
                             <label for="dirección"><i class="fa fa-globe icon_form"></i>Dirección de envío</label>
-                            <input placeholder="opcional" type="text" class="form-control" v-model="street"
+                            <input placeholder="Cra 12 # 34 - 56" type="text" class="form-control" v-model="street"
                                 id="dirección" @keyup="setShippingCalculatedFalse()">
                         </div>
 
@@ -109,7 +109,7 @@
 
                         <div class="form-group">
                             <label for="postalCode"><i class="fa fa-id-card icon_form"></i>Código postal</label>
-                            <input type="text" class="form-control" v-model="postalCode" id="postalCode"
+                            <input type="text" placeholder="opcional" class="form-control" v-model="postalCode" id="postalCode"
                                 @keypress="isNumber($event)" @keyup="setShippingCalculatedFalse()">
                         </div>
 
@@ -120,9 +120,9 @@
 
                     <div class="form-group">
                         <label for="streetNumber">Carriers</label>
-                        <select class="form-control" v-model="carrier" @change="reloadServices()">
-                            <option :value="carrier" v-for="carrier in carriers">
-                                <img src="assets/img/banner2.jpg"> @{{ carrier.name }}
+                        <select class="form-control" v-model="carrier" @change="reloadServices()" style="text-transform: capitalize;">
+                            <option :value="carrier" v-for="carrier in carriers" style="text-transform: capitalize;">
+                                @{{ carrier.name }}
                             </option>
                         </select>
                     </div>
@@ -147,12 +147,12 @@
                     <div class="card" v-for="availableService in availableServices"
                         style="margin-top: 5px; cursor:pointer" @click="setService(availableService)">
                         <div class="card-body">
-                            <h4 class="text-center carrier-name">
+                            <h4 class="text-center carrier-name" style="text-transform: capitalize;">
                                 <img style="width: 50px;" :src="carrier.logo" alt="">
                                 @{{ carrier.name }}</h4>
                             <p>$ @{{ parseFloat(availableService.totalPrice).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                                 COP</p>
-                            <small>@{{ availableService.service }} - @{{ availableService.deliveryEstimate }}</small>
+                            <small><span style="text-transform: capitalize;">@{{ availableService.service }} </span> - @{{ availableService.deliveryEstimate }}</small>
                         </div>
                     </div>
                 </div>
@@ -184,8 +184,10 @@
                     <input name="p_billing_email" type="hidden" id="p_billing_email" v-model="email" />
                     <input name="p_billing_phone" type="hidden" id="p_billing_phone" v-model="phone" />
                     <input name="p_billing_cellphone" type="hidden" id="p_billing_cellphone" v-model="phone" />
+                    <p class="text-center">
                     <input type="image" @click="storeGuestUser()" id="imagen"
-                        src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" />
+                        src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/btns/btn1.png" style="width: 250px; padding: 2rem;"/>
+                    </p>
                 </form>
 
                 <div v-if="total <= 0">
@@ -219,14 +221,14 @@ const devArea = new Vue({
             email: "{{ Auth::check() ? Auth::user()->email : '' }}",
             identification: "{{ Auth::check() ? Auth::user()->identification : '' }}",
             address: "{{ Auth::check() ? Auth::user()->address : '' }}",
-            street: "Cra. 66",
+            street: "",
             phone: "{{ Auth::check() ? Auth::user()->phone : '' }}",
             readonly: "false",
             shippingCalculated: false,
             states: "",
-            state: "AN",
-            city: "medellin",
-            postalCode: "050001",
+            state: "DE",
+            city: "",
+            postalCode: "",
             streetNumber: "49B-20",
             authCheck: "{{Auth::check()}}",
             basePrice: 0,
@@ -366,7 +368,7 @@ const devArea = new Vue({
                     }
 
                 } else {
-                    alert(res.data.msg)
+                    alertify.error(res.data.msg)
                 }
 
             })
@@ -386,67 +388,77 @@ const devArea = new Vue({
         },
         calculateCarrier() {
 
-            var data = {
-                "origin": {
-                    "name": "Aromantica",
-                    "company": "Aromantica",
-                    "email": "ventas@aromantica.co",
-                    "phone": "8116300800",
-                    "street": "Cra. 68g",
-                    "number": "65-02",
-                    "district": "Cundinamarca",
-                    "city": "Bogota",
-                    "state": "DE",
-                    "country": "CO",
-                    "postalCode": "110111",
-                    "reference": ""
-                },
-                "destination": {
-                    "name": this.name,
-                    "company": this.name,
-                    "email": this.email,
-                    "phone": this.phone,
-                    "street": this.street,
-                    "number": "",
-                    "district": "",
-                    "city": this.city,
-                    "state": this.state,
-                    "country": "CO",
-                    "postalCode": this.postalCode,
-                    "reference": ""
-                },
-                "packages": this.packages,
-                "shipment": {
-                    "carrier": this.carrier.name,
-                    "type": 1
-                }
-            }
+            if(this.city != "" && this.state != "" && this.street){
 
-            vm = this
-            $.ajax({
-                type: "POST",
-                url: "https://api-test.envia.com/ship/rate",
-                data: JSON.stringify(data),
-                dataType: "json",
-                headers: {
-                    'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
-                },
-                crossDomain: true,
-                success: function(result) {
-                    // process result
-                    if (result.meta == "error") {
-                        alert(result.error.message)
-                    } else {
-                        vm.availableServices = result.data
+                var data = {
+                    "origin": {
+                        "name": "Aromantica",
+                        "company": "Aromantica",
+                        "email": "ventas@aromantica.co",
+                        "phone": "8116300800",
+                        "street": "Cra. 68g",
+                        "number": "65-02",
+                        "district": "Cundinamarca",
+                        "city": "Bogota",
+                        "state": "DE",
+                        "country": "CO",
+                        "postalCode": "110111",
+                        "reference": ""
+                    },
+                    "destination": {
+                        "name": this.name,
+                        "company": this.name,
+                        "email": this.email,
+                        "phone": this.phone,
+                        "street": this.street,
+                        "number": "",
+                        "district": "",
+                        "city": this.city,
+                        "state": this.state,
+                        "country": "CO",
+                        "postalCode": this.postalCode,
+                        "reference": ""
+                    },
+                    "packages": this.packages,
+                    "shipment": {
+                        "carrier": this.carrier.name,
+                        "type": 1
+                    }
+                }
+
+                vm = this
+                $.ajax({
+                    type: "POST",
+                    url: "https://api-test.envia.com/ship/rate",
+                    data: JSON.stringify(data),
+                    dataType: "json",
+                    headers: {
+                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
+                    },
+                    crossDomain: true,
+                    success: function(result) {
+                        // process result
+                        if (result.meta == "error") {
+                            alertify.error(result.error.message)
+                        } else {
+                            vm.availableServices = result.data
+                        }
+
+                    },
+                    error: function(e) {
+                        // log error in browser
+                        console.log(e.message);
                     }
 
-                },
-                error: function(e) {
-                    // log error in browser
-                    console.log(e.message);
-                }
+                });
 
-            });
+            }else{  
+
+                alertify.error("Debe completar los campos para el envío")
+
+            }
+
+            
 
 
         },

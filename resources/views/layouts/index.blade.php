@@ -23,6 +23,8 @@
     <link href="{{ asset('assets/css/login.css') }}" rel='stylesheet'>
     <link href="{{ asset('assets/css/responsive.css') }}" rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link href="{{ asset('alertify/css/alertify.css') }}" rel='stylesheet'>
+    <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel='stylesheet'>
     <title>Aromantica</title>
 </head>
 
@@ -265,10 +267,17 @@
                             data-target="#loginModal"><i class="flaticon-user"></i></a>
                     </li>
                     @else <li class='nav-item dropdown dowms succss'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true'
+                        <a href='#' aria-expanded='false' aria-haspopup='true' style="text-transform: capitalize;"
                             class='nav-link dropdown-toggle border-blue ' data-toggle='dropdown'>
                             <i class="flaticon-user"></i>
-                            {{ \Auth::user()->name }}
+                            
+                            @if(strpos(\Auth::user()->name, " ") > 0)
+                                {{ substr(\Auth::user()->name, 0, strpos(\Auth::user()->name, " ")) }} {{ substr(\Auth::user()->name, strpos(\Auth::user()->name, " "), 2) }}.
+                            @else   
+                                {{ \Auth::user()->name }}
+                            @endif
+
+
                         </a>
 
                         <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
@@ -602,7 +611,13 @@
         <script src="{{ asset('assets/js/wow-settings.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('/js/app.js') }}"></script>
+        <script src="{{ asset('alertify/alertify.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script>
+            alertify.set('notifier','position', 'top-right');
+        </script>
 
         <script>
         const cartPreview = new Vue({
@@ -661,7 +676,7 @@
                             })
 
                         } else {
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
@@ -738,7 +753,11 @@
                         }).then(res => {
 
                             if (res.data.success == true) {
-                                alert(res.data.msg)
+                                swal({
+                                    title: "Excelente!",
+                                    text: res.data.msg,
+                                    icon: "success"
+                                });
                                 this.name = ""
                                 this.email = ""
                                 this.password = ""
@@ -747,13 +766,13 @@
                                 this.identification = ""
                                 this.address = ""
                             } else {
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
                         .catch(err => {
                             $.each(err.response.data.errors, function(key, value) {
-                                alert(value)
+                                alertify.error(value[0])
                                 //alertify.error(value);
                                 //alertify.alert('Basic: true').set('basic', true); 
                             });
@@ -790,12 +809,18 @@
 
                             if (res.data.success == true) {
 
-                                alert(res.data.msg)
+                                swal({
+                                    title: "Excelente!",
+                                    text: res.data.msg,
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.href = "{{ url('/') }}"
+                                });
                                 this.cartInfo()
-                                window.location.href = "{{ url('/') }}"
+                                
 
                             } else {
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
                         })
 

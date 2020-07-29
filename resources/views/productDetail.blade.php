@@ -308,13 +308,13 @@ const devArea = new Vue({
 
                             if (res.data.success == true) {
                                 this.cartInfo()
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.amount = 0;
                                 this.type = ""
                                 this.size = ""
                                 this.productTypeSize = ""
                             } else {
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
@@ -325,7 +325,7 @@ const devArea = new Vue({
 
             } else {
 
-                alert("Debe seleccionar una cantidad")
+                alertify.error("Debe seleccionar una cantidad")
 
             }
 
@@ -366,7 +366,7 @@ const devArea = new Vue({
 
             this.amount = 0
             this.cartInfo()
-            alert("Producto añadido al carrito")
+            alertify.success("Producto añadido al carrito")
 
 
         },
