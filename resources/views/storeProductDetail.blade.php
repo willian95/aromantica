@@ -7,7 +7,7 @@
         <div class="grid__detail row">
             <div class="col-md-6">
                 <!--<div class="video" >-->
-                    <video loop style="width: 100%;" id="productVideo" autoplay="true" muted="muted" v-if="video != null || video != ''">
+                    <video loop style="width: 100%;" id="productVideo" autoplay="true" muted="muted" v-if="video != null && video != ''">
                         <source :src="'{{ env('CMS_URL') }}'+'/videos/'+ video" type="video/mp4">
                     </video>
                 <!--</div>-->

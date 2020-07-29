@@ -32,7 +32,7 @@
             <div class="col-md-6">
                 <!--<div class="video">-->
                     <video loop style="width: 100%;" id="productVideo" autoplay="true"
-                        muted="muted" v-if="video != null || video != ''">
+                        muted="muted" v-if="video != null && video != ''">
                         <source src="{{ env('CMS_URL').'/videos/Invictus-PacoRabanne.mp4' }}" type="video/mp4">
                     </video>
 
