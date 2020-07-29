@@ -10,13 +10,14 @@
 <div class="container p-50" id="dev-area">
     <div class="row">
         <div class="col-12">
+
+
+        </div>
+        <div class="col-md-6">
             <div class="title__general text-left">
                 <h2>Checkout @if(\Auth::guest())<span style="font-weight: normal; font-size: 20px;">(como
                         invitado)</span>@endif</h2>
             </div>
-
-        </div>
-        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -64,15 +65,16 @@
 
         </div>
 
-        <div class="col-md-12 mt-5">
+        <div class="col-md-6">
+            <div class="title__general text-left ">
+                <h2>Datos de envío
+                </h2>
+            </div>
             <div class="card-pay ">
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="title__general text-left m-0">
-                            <h2>Datos de envío
-                            </h2>
-                        </div>
+
 
                         <div class="form-group">
                             <label for="state"><i class="fa fa-id-card icon_form"></i>Departamento</label>
@@ -84,8 +86,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-6" style="margin-top: 40px;">
-
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="city"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
                             <input type="text" class="form-control" v-model="city" id="city"
