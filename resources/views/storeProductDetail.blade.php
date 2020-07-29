@@ -124,6 +124,7 @@ const devArea = new Vue({
             type: '{!! $product->type->name !!}',
             stock: "{{ $product->stock }}",
             price: "{{ $product->price }}",
+            video:"{{ $product->product->video }}",
             productTypeSizeId: "{{ $product->id }}",
             amount: 0
         }
