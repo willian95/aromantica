@@ -38,8 +38,7 @@
                             <div class="main-top__text">
                                 <div class="main-top__title d-flex justify-content-between mb-4">
                                     <p>@{{ title }}</p>
-                                    <img class="logo-product"
-                                        src="https://1000marcas.net/wp-content/uploads/2019/12/Chanel-logo.png" alt="">
+                                    <img class="logo-product" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandImage" alt="">
                                 </div>
                                 <div class="main-top__price justify-content-between">
                                     <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
@@ -117,6 +116,7 @@ const devArea = new Vue({
             category: '{!! $product->product->category->name !!}',
             brand: '{!! $product->product->brand->name !!}',
             image: '{!! $product->product->image !!}',
+            brandImage: '{!! $product->product->brand->image !!}',
             video: '{!! $product->product->video !!}',
             description: '{!! $product->product->description !!}',
             size: '{!! $product->size->name !!}',
