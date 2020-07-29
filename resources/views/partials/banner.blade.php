@@ -13,7 +13,7 @@
                         <div class="mask"></div>
                       @elseif(App\Banner::find(1)->type == "video")
                         <video loop style="width: 100%;" autoplay="true" muted="muted">
-                          <source src="{{ env('CMS_URL').'/images/'.App\Banner::find(1)->image }}" type="video/mp4">
+                          <source src="{{ env('CMS_URL').'/images/banners/'.App\Banner::find(1)->image }}" type="video/mp4">
                         </video>
                       @endif
                     </div>
@@ -33,7 +33,7 @@
                         <div class="mask"></div>
                       @elseif(App\Banner::find(1)->type == "video")
                         <video loop style="width: 100%;" autoplay="true" muted="muted">
-                          <source src="{{ env('CMS_URL').'/images/'.App\Banner::find(1)->image }}" type="video/mp4">
+                          <source src="{{ env('CMS_URL').'/images/banners/'.App\Banner::find(1)->image }}" type="video/mp4">
                         </video>
                       @endif
                     </div>
