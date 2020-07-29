@@ -660,7 +660,8 @@ body.offcanvas-expanded {
 
 .slider-nav .slick-current .main-top__img img {
     opacity: 1;
-    background: #0000000a;
+    transform: translate(0px, -10px);
+    transition: 0.5s;
 }
 
 .main-top__content {
@@ -701,7 +702,7 @@ body.offcanvas-expanded {
 
 .main-top__title p {
     font-size: 30px;
-
+    margin: 0;
     color: #121212;
 }
 
@@ -713,7 +714,6 @@ body.offcanvas-expanded {
 .main-top__price p {
     margin: 0;
     font-size: 16px;
-    margin-bottom: 17px;
 }
 
 .main-top__price span {
@@ -725,6 +725,8 @@ body.offcanvas-expanded {
 .main-top__description p {
     font-size: 16px;
     color: #666;
+    height: 15vh;
+    overflow: auto;
 }
 
 .main-top__details span {
@@ -809,7 +811,7 @@ body.offcanvas-expanded {
 }
 
 .main-products__details span {
-    font-size: 15px;
+    font-size: 18px;
     font-family: "Fira Sans", sans-serif;
     color: #999;
     margin-right: 10px;
@@ -916,6 +918,8 @@ footer {
 .content_modal {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
 }
 
 .content_modal-item img {
@@ -2157,9 +2161,9 @@ button:focus {
     padding-top: 150px !important;
 }
 .logo-product {
-    /*width: 200px;*/
-    height: 150px;
-    object-fit: cover;
+    width: 25%;
+    height: 70px;
+    object-fit: contain;
 }
 
 .elipse {
@@ -2213,4 +2217,20 @@ button:focus {
 }
 .slick-dotted.slick-slider {
     margin-bottom: 0;
+}
+.present {
+    line-height: 0.5;
+}
+.present p {
+    color: #0c4572;
+}
+.main-products__details p {
+    margin: 0;
+}
+.content_modal-item {
+    text-align: justify;
+    height: 50vh;
+    overflow: auto;
+
+    padding: 10px;
 }
