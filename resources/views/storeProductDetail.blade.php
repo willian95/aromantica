@@ -7,7 +7,7 @@
         <div class="grid__detail row">
             <div class="col-md-6">
                 <div class="video" v-if="video != null || video != ''">
-                    <video controls loop style="height: 100%;" id="productVideo" autoplay="true" muted="muted">
+                    <video loop style="height: 100%;" id="productVideo" autoplay="true" muted="muted">
                         <source :src="'{{ env('CMS_URL') }}'+'/videos/'+ video" type="video/mp4">
                     </video>
                 </div>
@@ -158,10 +158,10 @@ const devArea = new Vue({
 
                             if (res.data.success == true) {
                                 this.cartInfo()
-                                alert(res.data.msg)
+                                alertify.success(res.data.msg)
                                 this.amount = 0;
                             } else {
-                                alert(res.data.msg)
+                                alertify.error(res.data.msg)
                             }
 
                         })
@@ -172,7 +172,7 @@ const devArea = new Vue({
 
             } else {
 
-                alert("Debe seleccionar una cantidad")
+                alertify.error("Debe seleccionar una cantidad")
 
             }
 
@@ -212,7 +212,7 @@ const devArea = new Vue({
             window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
             this.amount = 0
             this.cartInfo()
-            alert("Producto añadido al carrito")
+            alertify.success("Producto añadido al carrito")
 
 
         },

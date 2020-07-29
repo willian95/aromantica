@@ -209,7 +209,7 @@
         cartInfo()
         amount = 0
         $(".amountProductModal").html("0")
-        alert("Producto añadido al carrito")
+        alertify.success("Producto añadido al carrito")
     }
 
     function cartInfo() {
@@ -269,11 +269,11 @@
                 }, function(data) {
 
                     if (data.success == true) {
-                        alert(data.msg)
+                        alertify.success(data.msg)
                         cartInfo()
                         $(".amountProductModal").html("0")
                     } else {
-                        alert(data.msg)
+                        alertify.error(data.msg)
                     }
 
                 });
@@ -284,7 +284,7 @@
 
         } else {
 
-            alert("Debe seleccionar una cantidad")
+            alertify.error("Debe seleccionar una cantidad")
 
         }
 

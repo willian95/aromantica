@@ -74,7 +74,7 @@ const devArea = new Vue({
                     $("#cart-notification").html("0")
 
                 } else {
-                    alert(res.data.msg)
+                    alertify.error(res.data.msg)
                     localStorage.setItem("paymentStatusAromantica", "rechazado")
                 }
             })

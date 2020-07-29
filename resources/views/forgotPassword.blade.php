@@ -49,22 +49,22 @@ const devArea = new Vue({
                     .then(res => {
 
                         if (res.data.success == true) {
-                            alert(res.data.msg)
+                            alertify.success(res.data.msg)
                             this.email = ""
                         } else {
-                            alert(res.data.msg)
+                            alertify.error(res.data.msg)
                         }
 
                     })
                     .catch(err => {
                         $.each(err.response.data.errors, function(key, value) {
-                            alert(value)
+                            alertify.error(value[0])
                         });
                     })
 
             } else {
 
-                alert("Email es requerido")
+                alertify.error("Email es requerido")
 
             }
 

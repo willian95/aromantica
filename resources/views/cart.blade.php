@@ -386,7 +386,7 @@ const devArea = new Vue({
                     this.cartInfo()
 
                 } else {
-                    alert(res.data.msg)
+                    alertify.error(res.data.msg)
                 }
 
             })

@@ -91,15 +91,15 @@ const devArea = new Vue({
                 .then(res => {
 
                     if (res.data.success == true) {
-                        alert(res.data.msg)
+                        alertify.success(res.data.msg)
                     } else {
-                        alert(res.data.msg)
+                        alertify.error(res.data.msg)
                     }
 
                 })
                 .catch(err => {
                     $.each(err.response.data.errors, function(key, value) {
-                        alert(value)
+                        alertify.error(value[0])
                         //alertify.error(value);
                         //alertify.alert('Basic: true').set('basic', true); 
                     });
