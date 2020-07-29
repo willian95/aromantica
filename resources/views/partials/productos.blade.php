@@ -32,7 +32,7 @@
                             <p>{{ $product->type->name }} - {{ $product->size->name }}Oz</p>
                         </div>
                         <div class="main-products__details">
-                            <span>$ {{ $product->price }}</span>
+                            <span>$ {{ number_format($product->price, 0, ",", ".") }}</span>
                         </div>
                         <!--<div class="main-products__details">
                 <span>$85,000</span>
