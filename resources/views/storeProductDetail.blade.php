@@ -124,7 +124,6 @@ const devArea = new Vue({
             type: '{!! $product->type->name !!}',
             stock: "{{ $product->stock }}",
             price: "{{ $product->price }}",
-            video:"{{ $product->product->video }}",
             productTypeSizeId: "{{ $product->id }}",
             amount: 0
         }
@@ -173,7 +172,7 @@ const devArea = new Vue({
 
             } else {
 
-                alertify.error("Debe seleccionar una cantidad")
+                alertify.error("Debes seleccionar una cantidad")
 
             }
 

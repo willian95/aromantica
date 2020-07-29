@@ -191,11 +191,11 @@
                 </form>
 
                 <div v-if="total <= 0">
-                    <p>Debe agregar productos al carrito</p>
+                    <p>Debes agregar productos al carrito</p>
                 </div>
 
                 <div v-if="name == '' || email == '' || identification == '' || address == '' || phone == ''">
-                    <p>Debe iniciar sesión o llenar todos los campos del formulario</p>
+                    <p>Debes iniciar sesión o llenar todos los campos del formulario</p>
                 </div>
 
             </div>

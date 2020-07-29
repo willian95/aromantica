@@ -284,7 +284,7 @@
 
         } else {
 
-            alertify.error("Debe seleccionar una cantidad")
+            alertify.error("Debes seleccionar una cantidad")
 
         }
 
