@@ -73,8 +73,8 @@
                         <div class="main-top__item">
                             <div class="main-top__text">
                                 <div class="main-top__title">
-                                    <p>@{{ title }}</p>XCXC
-                                    <img src="{{ url('assets/img/banner2.jpg') }}">
+                                    <p>@{{ title }}</p>
+                                    <img class="logo-product" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandImage" alt="">
                                 </div>
                                 <div class="main-top__price justify-content-between">
                                     <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
@@ -107,13 +107,13 @@
                                     <p>@{{ description }}</p>
                                 </div>
 
-                                <!--<p>Presentaciones</p>
+                                <p>Presentaciones</p>
                       <div class="presentaciones">
                     <div>
                         <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
                           
                           @{{ type.name }}</button>
-                    </div>-->
+                    </div>
 
 
                                 <div class="ml-2 mt-3">
@@ -227,6 +227,7 @@ const devArea = new Vue({
             title: "{{ $product->name }}",
             category: "{{ $product->category->name }}",
             brand: "{{ $product->brand->name }}",
+            brandImage: "{{ $product->brand->image }}",
             image: "{{ $product->image }}",
             description: "{{ $product->description }}",
             productTypeSizes: JSON.parse('{!! json_encode($product->productTypeSizes) !!}'),

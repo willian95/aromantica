@@ -4,11 +4,11 @@
             <div class="main-banner__content_item">
                 <div class="overlay">
                     <div class="banner-title text-center ">
-                        <p>Ipsum sit amet</p>
-                        <h1>Lorem ipsum dolor sit amet</h1>
+                        <p>{{ App\Banner::find(1)->small_text }}</p>
+                        <h1>{{ App\Banner::find(1)->big_text }}</h1>
                     </div>
                     <div class="main-banner__img">
-                        <img src="assets/img/banner2.jpg">
+                        <img src="{{ env('CMS_URL').'/images/banners/'.App\Banner::find(1)->image }}">
                         <div class="mask"></div>
                     </div>
                 </div>
@@ -18,11 +18,11 @@
             <div class="main-banner__content_item">
                 <div class="overlay">
                     <div class="banner-title text-center ">
-                        <p>Ipsum sit amet</p>
-                        <h1>Lorem ipsum dolor sit amet</h1>
+                        <p>{{ App\Banner::find(1)->small_text }}</p>
+                        <h1>{{ App\Banner::find(1)->big_text }}</h1>
                     </div>
                     <div class="main-banner__img">
-                        <img src="assets/img/banner2.jpg">
+                        <img src="{{ env('CMS_URL').'/images/banners/'.App\Banner::find(1)->image }}">
                         <div class="mask"></div>
                     </div>
                 </div>

@@ -20,4 +20,8 @@ class Product extends Model
         return $this->hasMany(ProductTypeSize::class);
     }
 
+    public function topProduct(){
+        return $this->hasOne(Product::class);
+    }
+
 }
