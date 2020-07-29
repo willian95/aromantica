@@ -48,14 +48,14 @@
                        </div>
                       </div>
                       <div class="main-top__price">
-                        <p><span> $ {{ number_format(App\ProductTypeSize::where('product_id', $topProduct->product_id)->orderBy("price", "desc")->first()->price, 0, ",", ".") }}</span> </p>
+                        <p><span> $ {{ number_format(App\ProductTypeSize::where('product_id', $topProduct->product_id)->orderBy("price", "asc")->first()->price, 0, ",", ".") }}</span> </p>
                       </div>
 
                       <p></p>
 
                       <div class="barra">
                         <!--<p> Vendidos:<span> 12</span></p>-->
-                        <p>Disponible: <span>{{ App\ProductTypeSize::where('product_id', $topProduct->product_id)->orderBy("price", "desc")->first()->stock }}</span></p>
+                        <p>Disponible: <span>{{ App\ProductTypeSize::where('product_id', $topProduct->product_id)->orderBy("price", "asc")->first()->stock }}</span></p>
                       </div>
                       <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"

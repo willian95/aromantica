@@ -227,6 +227,7 @@ const devArea = new Vue({
             title: "{{ $product->name }}",
             category: "{{ $product->category->name }}",
             brand: "{{ $product->brand->name }}",
+            brandImage: "{{ $product->brand->image }}",
             image: "{{ $product->image }}",
             description: "{{ $product->description }}",
             productTypeSizes: JSON.parse('{!! json_encode($product->productTypeSizes) !!}'),
