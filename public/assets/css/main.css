@@ -2155,7 +2155,7 @@ button:focus {
     top: 0;
 }
 #banner {
-    padding-top: 105px !important;
+    padding-top: 90px !important;
 }
 .p-50 {
     padding-top: 150px !important;
@@ -2233,4 +2233,11 @@ button:focus {
     overflow: auto;
 
     padding: 10px;
+}
+
+.terminos-modal .content_modal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+    text-align: justify;
 }
