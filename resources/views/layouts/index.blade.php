@@ -200,51 +200,53 @@
                     </li>--->
 
 
-                    <div class="dropdown" id="cartPreview">
-                        <button class="btn btn-default dropdown-toggle d-flex p-0 " type="button" data-toggle="dropdown" data-hover="dropdown">
-                            <span class="add_btn" id="cart-notification"></span>
-                            <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
-                        </button>
-                        <ul class="dropdown-menu carrito-nav">
+                    <li>
+                        <div class="dropdown" id="cartPreview">
+                            <button class="btn btn-default dropdown-toggle d-flex p-0 " type="button" data-toggle="dropdown" data-hover="dropdown">
+                                <span class="add_btn" id="cart-notification"></span>
+                                <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
+                            </button>
+                            <ul class="dropdown-menu carrito-nav">
 
-                            <li v-for="product in products">
-                                <div>
-                                    <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="">
+                                <li v-for="product in products">
+                                    <div>
+                                        <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="">
+                                    </div>
+
+                                    <div>
+                                        <p>@{{ product.product_type_size.product.name }}</p>
+                                        <p>@{{ product.amount }} x
+                                            $@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                        </p>
+                                    </div>
+                                </li>
+                                <li v-for="product in guestProducts">
+                                    <div>
+                                        <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt="">
+                                    </div>
+
+                                    <div>
+                                        <p>@{{ product.product.product.name }}</p>
+                                        <p>@{{ product.amount }} x
+                                            $@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                        </p>
+                                    </div>
+                                </li>
+                                <div class="sub">
+                                    <span>Subtotal:
+                                        $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                    <ul>
+                                        <li><a class="btn-custom sub-h" href="{{ url('/cart/index') }}">Ver carrito</a></li>
+                                        <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar
+                                                compra</a></li>
+                                    </ul>
                                 </div>
-
-                                <div>
-                                    <p>@{{ product.product_type_size.product.name }}</p>
-                                    <p>@{{ product.amount }} x
-                                        $@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
-                                    </p>
-                                </div>
-                            </li>
-                            <li v-for="product in guestProducts">
-                                <div>
-                                    <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt="">
-                                </div>
-
-                                <div>
-                                    <p>@{{ product.product.product.name }}</p>
-                                    <p>@{{ product.amount }} x
-                                        $@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
-                                    </p>
-                                </div>
-                            </li>
-                            <div class="sub">
-                                <span>Subtotal:
-                                    $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                                <ul>
-                                    <li><a class="btn-custom sub-h" href="{{ url('/cart/index') }}">Ver carrito</a></li>
-                                    <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar
-                                            compra</a></li>
-                                </ul>
-                            </div>
-                        </ul>
+                            </ul>
 
 
-                    </div>
+                        </div>
 
+                    </li>
 
                     @if(\Auth::guest())
 

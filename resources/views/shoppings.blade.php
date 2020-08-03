@@ -8,7 +8,7 @@
             <h2>Mis compras</h2>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 over_table">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item" v-if="page > 1">
@@ -48,8 +48,7 @@
                         <td><a :href="shopping.tracking_url" target="_blank">@{{ shopping.tracking }}</a></td>
                         <td>$ @{{ parseInt(shopping.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                         <td>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingModal"
-                                @click="show(shopping)">Ver</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingModal" @click="show(shopping)">Ver</button>
                         </td>
                     </tr>
                 </tbody>
@@ -61,8 +60,7 @@
 
 
     <!-- Modal-->
-    <div class="modal fade" id="shoppingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="shoppingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -138,8 +136,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary font-weight-bold"
-                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -153,45 +150,45 @@
 @push("scripts")
 
 <script>
-const devArea = new Vue({
-    el: '#dev-area',
-    data() {
-        return {
-            shoppings: [],
-            shopping: "",
-            page: 1,
-            pages: 0
-        }
-    },
-    methods: {
+    const devArea = new Vue({
+        el: '#dev-area',
+        data() {
+            return {
+                shoppings: [],
+                shopping: "",
+                page: 1,
+                pages: 0
+            }
+        },
+        methods: {
 
-        fetch(page = 1) {
+            fetch(page = 1) {
 
-            this.page = page
+                this.page = page
 
-            axios.get("{{ url('/shopping/fetch/') }}" + "/" + page)
-                .then(res => {
+                axios.get("{{ url('/shopping/fetch/') }}" + "/" + page)
+                    .then(res => {
 
-                    this.shoppings = res.data.shoppings
-                    this.pages = Math.ceil(res.data.shoppingsCount / 20)
+                        this.shoppings = res.data.shoppings
+                        this.pages = Math.ceil(res.data.shoppingsCount / 20)
 
-                })
+                    })
+
+            },
+            show(shopping) {
+
+                this.shopping = shopping
+
+            }
 
         },
-        show(shopping) {
+        mounted() {
 
-            this.shopping = shopping
+            this.fetch()
 
         }
 
-    },
-    mounted() {
-
-        this.fetch()
-
-    }
-
-})
+    })
 </script>
 
 @endpush

@@ -123,7 +123,7 @@ body.offcanvas-expanded {
     top: 35px;
     transition-duration: 0.275s;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    right: 40px;
+    right: 20px;
 }
 
 .hamburger--elastic .hamburger-inner::before {
@@ -173,7 +173,7 @@ body.offcanvas-expanded {
 
 @media (max-width: 767px) and (min-width: 0px) and (max-width: 767px) {
     .offcanvas-collapse {
-        top: 75px;
+        top: 90px;
         padding: 40px 10px;
         overflow-y: scroll;
         z-index: 1;
@@ -183,14 +183,15 @@ body.offcanvas-expanded {
 @media (max-width: 767px) {
     .offcanvas-collapse.open {
         -webkit-transform: translateX(-1rem);
-        transform: translateX(8rem);
+
+        text-align: center;
         /* Account for horizontal padding on navbar */
     }
 }
 
 /*navbar*/
 .navbar-brand img {
-    width: 60%;
+    width: 67%;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
@@ -1633,7 +1634,7 @@ tab detalles
 }
 
 .list_search {
-    opacity: 0;
+    display: none;
     position: absolute;
     box-shadow: 0px 0px 15px #0000001f;
     border-radius: 10px;
@@ -1645,7 +1646,7 @@ tab detalles
     transition: 0.6s;
     width: auto;
     text-align: center;
-    display: flex;
+
     justify-content: center;
     left: 17%;
     flex-direction: column;
@@ -1653,7 +1654,7 @@ tab detalles
     z-index: 0;
 }
 .active_s {
-    opacity: 1;
+    display: block;
     z-index: 999;
 }
 .name_list {
@@ -2240,4 +2241,7 @@ button:focus {
     flex-direction: column;
     padding: 30px 50px;
     text-align: justify;
+}
+.drow-none {
+    display: none;
 }
