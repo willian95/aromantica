@@ -55,7 +55,7 @@
 
                                 </div>
                                 <div class="barra mb-3">
-                                    <p class="details__txt">Tamaño : @{{ size }} oz / @{{ sizeMl }} ml</p>
+                                    <p class="details__txt">Tamaño : @{{ size.name }} oz / @{{ size.ml }} ml</p>
                                     <div>
                                         <p>Cantidades disponibles: <span>@{{ stock }}</span></p>
                                         <div class="progress">
@@ -71,13 +71,35 @@
                                     <p>@{{ description }}</p>
                                 </div>
 
-                                {{--<p>Presentaciones</p>
-                      <div class="presentaciones">
-                    <div>
-                        <button class="btn btn-primary optiones" v-for="type in types" @click="selectType(type)" style="margin-right: 5px;">
-                          
-                          @{{ type.name }}</button>
-                            </div>--}}
+                                <p>Presentaciones</p>
+                                <div class="presentaciones">
+                                    <div>
+                                        <button class="btn btn-primary optiones" :class="typeButton.id == type.id ? 'active' : ''"  v-for="typeButton in types" @click="selectType(typeButton)" style="margin-right: 5px;">
+                                        
+                                        @{{ typeButton.name }}</button>
+                                    </div>
+                                    <div class="ml-2 mt-3">
+
+                                        <div class="control-group">
+
+                                            <label class="control control--radio" v-for="(sizeButton, index) in sizes"
+                                                @click="selectSize(sizeButton)">@{{ sizeButton.name }} Oz - @{{ sizeButton.ml }} ml
+                                                <input type="radio" name="radio" v-if="size.id == sizeButton.id" checked />
+                                                <input type="radio" name="radio" v-else />
+
+                                                <div class="control__indicator"></div>
+                                            </label>
+                                            
+
+
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                                
+
+                                
                         </div>
 
                         <div class="float-left main-top__btn " v-if="stock > 0">
@@ -119,12 +141,15 @@ const devArea = new Vue({
             brandImage: '{!! $product->product->brand->image !!}',
             video: '{!! $product->product->video !!}',
             description: '{!! $product->product->description !!}',
-            size: '{!! $product->size->name !!}',
-            sizeMl: '{!! $product->size->ml !!}',
-            type: '{!! $product->type->name !!}',
+            size: JSON.parse('{!! $product->size !!}'),
+            type: JSON.parse('{!! $product->type !!}'),
             stock: "{{ $product->stock }}",
             price: "{{ $product->price }}",
             productTypeSizeId: "{{ $product->id }}",
+            productTypeSizes: JSON.parse('{!! json_encode($productTypeSizes->productTypeSizes) !!}'),
+            types: [],
+            sizes: [],
+            productTypeSize: "",
             amount: 0
         }
     },
@@ -264,11 +289,72 @@ const devArea = new Vue({
                 localStorage.setItem("executeCartPreview", "1")
             }
 
+        },
+        selectType(type) {
+            this.type = type
+
+            this.sizes = []
+         
+            this.productTypeSizes.forEach((data, index) => {
+
+                if (data.type_id == type.id) {
+                    this.sizes.push(data.size)
+                }
+
+            })
+            this.selectSize(this.size)
+
+        },
+        selectSize(size) {
+
+            this.amount = 0;
+            this.size = size
+
+            if (this.type != "" && this.size != "") {
+
+                this.productTypeSizes.forEach((data, index) => {
+
+                    if (data.type_id == this.type.id && data.size_id == this.size.id) {
+
+                        this.productTypeSize = data
+                        this.price = data.price
+                        this.stock = data.stock
+
+                    }
+
+                })
+
+            }
+
         }
 
 
     },
     mounted() {
+
+        this.productTypeSizes.forEach((data, index) => {
+            var typeExists = false
+            this.types.forEach((type, index) => {
+
+                if (type.id == data.type.id) {
+                    typeExists = true
+                }
+
+            })
+
+            if (typeExists == false) {
+                this.types.push(data.type)
+            }
+
+
+        })
+
+        window.setTimeout(() => {
+
+            this.selectType(this.type)
+            this.selectSize(this.size)
+
+        }, 400)
 
         this.cartInfo()
 
