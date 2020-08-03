@@ -2230,7 +2230,7 @@ button:focus {
 }
 .content_modal-item {
     text-align: justify;
-    height: 50vh;
+    height: 40vh;
     overflow: auto;
 
     padding: 10px;
@@ -2244,4 +2244,9 @@ button:focus {
 }
 .drow-none {
     display: none;
+}
+.img-top {
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }

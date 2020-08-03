@@ -10,15 +10,12 @@
             <div class="main-products__box">
                 <div class="views">
                     <p class="visualizar">Visualizar</p>
-                    <span data-toggle="modal"
-                        onclick="setStock('{{ $product->stock }}', '{{ $product->price }}', '{{ $product->id }}')"
-                        data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
+                    <span data-toggle="modal" onclick="setStock('{{ $product->stock }}', '{{ $product->price }}', '{{ $product->id }}')" data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
                     <!--<span href=""><i class="flaticon-shopping-cart"></i></span>-->
                 </div>
                 <a href="{{ url('/tienda/producto/'.$product->id) }}">
                     <div class="main-products__img">
-                        <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}"
-                            class="card-img-top" alt="...">
+                        <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}" class="card-img-top" alt="...">
                     </div>
 
                     <div class="main-products__text">
@@ -52,8 +49,7 @@
     "size", "type")->get() as $product)
 
     <!-- modal producto views -->
-    <div class="modal fade" id="producto_modal-{{ $loop->index + 1 }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="producto_modal-{{ $loop->index + 1 }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-body">
@@ -66,22 +62,9 @@
                             <p class="titulo">{{ $product->product->name }}</p>
 
                             <span>{{ $product->product->description }}</span>
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ea inventore maxime
-                                harum odio, suscipit enim voluptate saepe incidunt veritatis sed? Deleniti pariatur
-                                dignissimos ratione nisi blanditiis expedita velit assumenda!</span>
-
-
-                            <div class="main-top__price">
-                                <p><span>$
-                                        {{ number_format($product->price, 0, ",", ".") }}</span>
-                                </p>
-
-
-                            </div>
-
 
                         </div>
-                        <div class="content_modal-item center">
+                        <div class="content_modal-item center img-top">
                             <img src="{{ env('CMS_URL').'/images/products/'.$product->product->image }}" alt="">
                         </div>
 
@@ -90,6 +73,13 @@
 
                     <div class="row">
                         <div class="col-md-6">
+                            <div class="main-top__price">
+                                <p><span>$
+                                        {{ number_format($product->price, 0, ",", ".") }}</span>
+                                </p>
+
+
+                            </div>
                             <div class="barra">
                                 <!--<p> Vendidos:<span> 12</span></p>-->
                                 <p> {{ $product->type->name }} -
@@ -141,154 +131,154 @@
     @endforeach
 
     <script>
-    var productStock = 0;
-    var productPrice = 0
-    var productTypeSizeId = 0
-    var amount = 0;
-    var authCheck = "{{ \Auth::check() }}"
+        var productStock = 0;
+        var productPrice = 0
+        var productTypeSizeId = 0
+        var amount = 0;
+        var authCheck = "{{ \Auth::check() }}"
 
-    function setStock(stock, price, id) {
-        amount = 0
-        productStock = stock
-        productPrice = price
-        productTypeSizeId = id
-        $(".amountProductModal").html(amount)
-    }
-
-    function addAmount() {
-
-        if (amount + 1 <= productStock) {
-            amount++
+        function setStock(stock, price, id) {
+            amount = 0
+            productStock = stock
+            productPrice = price
+            productTypeSizeId = id
             $(".amountProductModal").html(amount)
         }
 
-    }
+        function addAmount() {
 
-    function substractAmount() {
-
-        if (amount - 1 >= 0) {
-            amount--
-            $(".amountProductModal").html(amount)
-        }
-
-    }
-
-    function guestCart() {
-
-        var total = 0
-        let cart = []
-        if (window.localStorage.getItem('cartAromantica') != null) {
-            cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
-        }
-
-        var exists = false
-
-        cart.forEach((data, index) => {
-
-            if (data.productTypeSizeId == productTypeSizeId) {
-                data.amount = data.amount + amount
-                exists = true
+            if (amount + 1 <= productStock) {
+                amount++
+                $(".amountProductModal").html(amount)
             }
 
-        })
-
-        if (exists == false) {
-            cart.push({
-                productTypeSizeId: productTypeSizeId,
-                amount: amount
-            })
         }
 
-        cart.forEach((data, index) => {
+        function substractAmount() {
 
-            total = data.amount + total
+            if (amount - 1 >= 0) {
+                amount--
+                $(".amountProductModal").html(amount)
+            }
 
-        })
-
-        window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
-        cartInfo()
-        amount = 0
-        $(".amountProductModal").html("0")
-        alertify.success("Producto añadido al carrito")
-    }
-
-    function cartInfo() {
-        var totalGuest = 0;
-        var totalCheck = 0;
-
-        let cart = []
-        if (window.localStorage.getItem('cartAromantica') != null) {
-            cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
         }
 
-        cart.forEach((data, index) => {
+        function guestCart() {
 
-            totalGuest = data.amount + totalGuest
+            var total = 0
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
 
-        })
+            var exists = false
 
-        let cartTotal = totalGuest + totalCheck
-        $("#cart-notification").html(cartTotal + "")
+            cart.forEach((data, index) => {
 
-        if (authCheck == "1") {
-
-            $.get("{{ url('/cart/fetch') }}", function(res) {
-
-                if (res.success == true) {
-
-                    let products = res.products
-
-                    products.forEach((data, index) => {
-
-                        totalCheck = totalCheck + data.amount
-
-                    })
-
-                    console.log(totalGuest, totalCheck)
-                    let cartTotal = totalGuest + totalCheck
-                    $("#cart-notification").html(cartTotal + "")
-
+                if (data.productTypeSizeId == productTypeSizeId) {
+                    data.amount = data.amount + amount
+                    exists = true
                 }
 
             })
 
+            if (exists == false) {
+                cart.push({
+                    productTypeSizeId: productTypeSizeId,
+                    amount: amount
+                })
+            }
+
+            cart.forEach((data, index) => {
+
+                total = data.amount + total
+
+            })
+
+            window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+            cartInfo()
+            amount = 0
+            $(".amountProductModal").html("0")
+            alertify.success("Producto añadido al carrito")
         }
 
-    }
+        function cartInfo() {
+            var totalGuest = 0;
+            var totalCheck = 0;
 
-    function addToCart() {
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
 
-        if (amount > 0) {
+            cart.forEach((data, index) => {
+
+                totalGuest = data.amount + totalGuest
+
+            })
+
+            let cartTotal = totalGuest + totalCheck
+            $("#cart-notification").html(cartTotal + "")
 
             if (authCheck == "1") {
 
-                $.post("{{ url('/cart/store') }}", {
-                    productTypeSizeId: productTypeSizeId,
-                    amount: amount,
-                    _token: "{{ csrf_token() }}"
-                }, function(data) {
+                $.get("{{ url('/cart/fetch') }}", function(res) {
 
-                    if (data.success == true) {
-                        alertify.success(data.msg)
-                        cartInfo()
-                        $(".amountProductModal").html("0")
-                    } else {
-                        alertify.error(data.msg)
+                    if (res.success == true) {
+
+                        let products = res.products
+
+                        products.forEach((data, index) => {
+
+                            totalCheck = totalCheck + data.amount
+
+                        })
+
+                        console.log(totalGuest, totalCheck)
+                        let cartTotal = totalGuest + totalCheck
+                        $("#cart-notification").html(cartTotal + "")
+
                     }
 
-                });
+                })
 
-            } else {
-                guestCart()
             }
-
-        } else {
-
-            alertify.error("Debes seleccionar una cantidad")
 
         }
 
-    }
+        function addToCart() {
+
+            if (amount > 0) {
+
+                if (authCheck == "1") {
+
+                    $.post("{{ url('/cart/store') }}", {
+                        productTypeSizeId: productTypeSizeId,
+                        amount: amount,
+                        _token: "{{ csrf_token() }}"
+                    }, function(data) {
+
+                        if (data.success == true) {
+                            alertify.success(data.msg)
+                            cartInfo()
+                            $(".amountProductModal").html("0")
+                        } else {
+                            alertify.error(data.msg)
+                        }
+
+                    });
+
+                } else {
+                    guestCart()
+                }
+
+            } else {
+
+                alertify.error("Debes seleccionar una cantidad")
+
+            }
+
+        }
     </script>
 
 </section>

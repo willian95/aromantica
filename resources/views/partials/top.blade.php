@@ -62,12 +62,10 @@
                                              </p>
                                          </div>
                                          <div class="progress">
-                                             <div class="progress-bar" role="progressbar" style="width: 25%"
-                                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="10"></div>
+                                             <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="10"></div>
                                          </div>
                                          <div class="float-left main-top__btn">
-                                             <a class="btn-custom"
-                                                 href="{{ url('/product/'.$topProduct->product->slug) }}">
+                                             <a class="btn-custom" href="{{ url('/product/'.$topProduct->product->slug) }}">
                                                  Ordene ya >
                                              </a>
                                          </div>
@@ -75,8 +73,7 @@
                                  </div>
                                  <div class="main-top__item">
                                      <div class="main-top__img top2">
-                                         <img
-                                             src="{{ env('CMS_URL').'/images/products/'.$topProduct->product->image }}">
+                                         <img src="{{ env('CMS_URL').'/images/products/'.$topProduct->product->image }}">
                                      </div>
                                  </div>
                              </div>
