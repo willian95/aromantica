@@ -390,6 +390,12 @@ const devArea = new Vue({
 
             if(this.city != "" && this.state != "" && this.street){
 
+                let zipcode = "110111"
+
+                if(this.postalCode == ''){
+                    zipcpde = this.postalCode
+                }
+
                 var data = {
                     "origin": {
                         "name": "Aromantica",
@@ -416,7 +422,7 @@ const devArea = new Vue({
                         "city": this.city,
                         "state": this.state,
                         "country": "CO",
-                        "postalCode": this.postalCode,
+                        "postalCode": zipcode,
                         "reference": ""
                     },
                     "packages": this.packages,
@@ -673,6 +679,12 @@ const devArea = new Vue({
         },
         storeLocal() {
 
+            let zipcode = "110111"
+
+            if(this.postalCode == ''){
+                zipcpde = this.postalCode
+            }
+
             var data = {
                 "origin": {
                     "name": "Aromantica",
@@ -699,7 +711,7 @@ const devArea = new Vue({
                     "city": this.city,
                     "state": this.state,
                     "country": "CO",
-                    "postalCode": this.postalCode,
+                    "postalCode": zipcode,
                     "reference": ""
                 },
                 "packages": this.packages,

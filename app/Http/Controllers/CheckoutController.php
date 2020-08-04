@@ -44,9 +44,9 @@ class CheckoutController extends Controller
 
         try{    
 
-            if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
+            /*if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
-            }
+            }*/
 
             $total= 0;
             $client = new \GuzzleHttp\Client();
@@ -86,6 +86,7 @@ class CheckoutController extends Controller
                     "json" => $shipping
                 ]);
                 $envia = json_decode($response->getBody());
+                //dd($envia);
                 $payment->tracking_url = $envia->data[0]->trackUrl;
                 $payment->tracking = $envia->data[0]->trackingNumber;
                 $payment->label = $envia->data[0]->label;
