@@ -516,7 +516,7 @@
 
 
                         <li class='nav-item'>
-                            <a class='terminos' data-toggle="modal" data-target="#terminos">Terminos y
+                            <a class='terminos' data-toggle="modal" data-target="#terminos">Términos y
                                 condiciones</a>
                         </li>
                         <li style="list-style: none;
@@ -542,7 +542,7 @@
                         </button>
 
                         <div class="content_modal">
-                            <strong class="mb-4">TERMINOS Y CONDICIONES - POLÍTICA DE
+                            <strong class="mb-4">TÉRMINOS Y CONDICIONES - POLÍTICA DE
                                 PRIVACIDAD</strong>
                             La presente Política de Privacidad establece los términos en que
                             Aromantica - Tavanca S.A.S. usa y protege la información que es
