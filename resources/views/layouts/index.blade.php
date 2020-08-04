@@ -520,7 +520,13 @@
                                 condiciones</a>
                         </li>
                         <li style="list-style: none;
-    margin-left: -20px;"><img style="    width: 80%;" src="https://0523aae09f0cadbd79f4-60bf0867add971908d4f26a64519c2aa.r62.cf5.rackcdn.com/btns/epayco/epayco_pago_seguro_gray.png" alt=""></li>
+    margin-left: -20px;">
+                            <div class="">
+                                <img style="    width: 30%;" src="{{ asset('assets/img/logo-envia.png') }}">
+
+                            </div>
+                            <img style="    width: 80%;" src="{{ asset('assets/img/logo-pay.png') }}" alt="">
+                        </li>
 
                     </ul>
                 </div>
