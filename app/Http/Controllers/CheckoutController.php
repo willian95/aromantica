@@ -86,12 +86,18 @@ class CheckoutController extends Controller
                     "json" => $shipping
                 ]);
                 $envia = json_decode($response->getBody());
-                //dd($envia);
+                
+                $totalShippingCost = 0;
+                foreach($envia->data as $shippingCost){
+                    $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
+                }
+
                 $payment->tracking_url = $envia->data[0]->trackUrl;
                 $payment->tracking = $envia->data[0]->trackingNumber;
                 $payment->label = $envia->data[0]->label;
-                $payment->shipping_cost = $envia->data[0]->totalPrice;
-
+                //$payment->shipping_cost = $envia->data[0]->totalPrice;
+                $payment->shipping_cost = $totalShippingCost;
+                //dd($payment);
             }else{
                 $payment->status = "rechazado";
                 $payment->shipping_cost = 0;
@@ -194,6 +200,9 @@ class CheckoutController extends Controller
                 $data = ["user" => GuestUser::where("id", $guestUser->id)->first(), "products" => $productsPurchased, "tracking_url" => $payment->tracking_url];
 
             }
+
+            
+
             //dd($productsPurchased->productTypeSize);
             \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
 
