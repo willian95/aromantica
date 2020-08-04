@@ -237,11 +237,17 @@
                         console.log(totalGuest, totalCheck)
                         let cartTotal = totalGuest + totalCheck
                         $("#cart-notification").html(cartTotal + "")
+                        localStorage.setItem("executeCartPreview", "1")
 
                     }
 
                 })
 
+            
+            
+            
+            }else{
+                localStorage.setItem("executeCartPreview", "1")
             }
 
         }
