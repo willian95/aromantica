@@ -528,7 +528,7 @@
 
             <div>
                 <p class="copy mt-2 mb-2">Aromantica - Copyright 2020©
-                    <a class='terminos'>Desarrollado por Ass (Apps, Services & Solutions)</a>.</p>
+                    <a class='terminos'>Desarrollado por Ass (Apps, Services & Solutions)</a></p>
             </div>
         </footer>
 
