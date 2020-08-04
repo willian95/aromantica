@@ -113,7 +113,7 @@
                             <div class=" main-top__btn d-flex justify-content-center">
 
 
-                                <a class="btn-custom " href="{{ url('/product/'.$product->product->slug) }}">
+                                <a class="btn-custom " href="{{ url('/tienda/producto/'.$product->id) }}">
                                     VER MÁS >
                                 </a>
                             </div>

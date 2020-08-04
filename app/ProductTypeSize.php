@@ -24,4 +24,8 @@ class ProductTypeSize extends Model
         return $this->hasMany(productPurchase::class);
     }
 
+    public function topProduct(){
+        return $this->hasOne(TopProduct::class);
+    }
+
 }

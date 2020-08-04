@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TopProduct extends Model
 {
-    public function product(){
-        return $this->belongsTo(Product::class);
+    public function productTypeSize(){
+        return $this->belongsTo(ProductTypeSize::class);
     }
 }

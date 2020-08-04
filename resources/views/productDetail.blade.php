@@ -33,7 +33,7 @@
                 <!--<div class="video">-->
                     <video loop style="width: 100%;" id="productVideo" autoplay="true"
                         muted="muted" v-if="video != null && video != ''">
-                        <source src="{{ env('CMS_URL').'/videos/Invictus-PacoRabanne.mp4' }}" type="video/mp4">
+                        <source src="'{{ env('CMS_URL') }}'+/videos/'+video }}" type="video/mp4">
                     </video>
 
                 <!--</div>-->
@@ -126,69 +126,17 @@
                                             <input type="radio" name="radio" v-else />
                                             <div class="control__indicator"></div>
                                         </label>
-                                        <!--<label class="control control--radio">do
-                          <input type="radio" name="radio"/>
-                          <div class="control__indicator"></div>
-                        </label>-->
+                                        
 
 
                                     </div>
 
-                                    <!--<div class="btn radios "   style="margin-right: 5px; margin-top: 5px;">@{{ size.name }} Oz - @{{ size.ml }} ml</div>-->
+                                    
                                 </div>
 
 
 
-                                <!---  <div class="tabset">
-                      
-                          <input type="radio" name="tabset" id="tab1" checked>
-                          <label for="tab1">Parfum</label>
-                      
-                          <input type="radio" name="tabset" id="tab2">
-                          <label for="tab2">Eau de toilete</label>
-                        
-                          <input type="radio" name="tabset" id="tab3">
-                          <label for="tab3">Eau deperfum</label>
-    
-                          <div class="tab-panels">
-                    
-                            <div class="tab-panel">
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">1.7 OZ</label>
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">3.4 OZ</label>
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">4.2 OZ</label>
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">1.7 OZ</label>
-                            </div>
-                         
-    
-                            <div class="tab-panel">
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">3.4 OZ</label>
-    
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">4.2 OZ</label>
-    
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">1.7 OZ</label>
-                            </div>
-                            <section class="tab-panel">
-    
-                              <input class="" type="radio">
-                              <label class="mr-4" for="">1.7 OZ</label>
-                            </section>
-                          </div>
-    
-                        </div>--->
+                                
 
                             </div>
 
