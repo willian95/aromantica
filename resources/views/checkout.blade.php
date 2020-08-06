@@ -2,6 +2,12 @@
 
 @section("content")
 
+<style>
+
+    ::placeholder{ color:#eee}
+
+</style>
+
 <div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;"
     id="cover">
 
