@@ -14,15 +14,15 @@
 
 
 Route::get('/', function () {
-  //return view('welcome');
+  return view('welcome');
   //  echo "<h3>Coming soon</h3>";
-  return view("pronto");
+  //return view("pronto");
 });
 
-Route::get('/front-test', function () {
+/*Route::get('/front-test', function () {
   //return view('welcome');
   return view("welcome");
-});
+});*/
 
 Route::get('/tienda', "StoreSiteController@index");
 Route::post('/tienda/fetch', "StoreSiteController@fetch");
