@@ -1981,7 +1981,7 @@ button:focus {
     width: 50px;
     height: 1px;
     background: black;
-    left: 21%;
+    left: 17%;
     top: 44%;
     opacity: 0.1;
 }
@@ -1991,7 +1991,7 @@ button:focus {
     width: 50px;
     height: 1px;
     background: black;
-    right: 21%;
+    right: 16%;
     top: 44%;
     opacity: 0.1;
 }
