@@ -85,8 +85,8 @@
                         <div class="form-group">
                             <label for="state"><i class="fa fa-id-card icon_form"></i>Departamento</label>
                             <select class="form-control" v-model="state" id="state"
-                                @change="setShippingCalculatedFalse()">
-                                <option v-for="state in states.data" :value="state.code_2_digits">@{{ state.name }}
+                                @change="setShippingCalculatedFalse(); getProvinces()">
+                                <option v-for="state in states" :value="state.code_2_digits">@{{ state.name }}
                                 </option>
                             </select>
                         </div>
@@ -94,9 +94,12 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="city"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
-                            <input type="text" class="form-control" v-model="city" id="city" placeholder="Bogotá"
-                                @keyup="setShippingCalculatedFalse()">
+                            <label for="vity"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
+                            <select class="form-control" v-model="city" id="city"
+                                @change="setShippingCalculatedFalse();">
+                                <option v-for="province in provinces" :value="province.code">@{{ province.name }}
+                                </option>
+                            </select>
                         </div>
 
                     </div>
@@ -232,7 +235,7 @@ const devArea = new Vue({
             readonly: "false",
             shippingCalculated: false,
             states: "",
-            state: "DE",
+            state: "CN",
             city: "",
             postalCode: "",
             streetNumber: "49B-20",
@@ -246,6 +249,8 @@ const devArea = new Vue({
             choosenService: "",
             packages: [],
             carriers: [],
+            provinces:[],
+            province:"",
             carrier: ""
         }
     },
@@ -411,8 +416,8 @@ const devArea = new Vue({
                         "street": "Cra. 68g",
                         "number": "65-02",
                         "district": "Cundinamarca",
-                        "city": "Bogota",
-                        "state": "DE",
+                        "city": "11001000",
+                        "state": "CN",
                         "country": "CO",
                         "postalCode": "110111",
                         "reference": ""
@@ -517,174 +522,24 @@ const devArea = new Vue({
         },
         getStates() {
 
-            this.states = {
-                "data": [{
-                    "name": "Amazonas",
-                    "code_2_digits": "AM",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Antioquia",
-                    "code_2_digits": "AN",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Arauca",
-                    "code_2_digits": "AR",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Atlantico",
-                    "code_2_digits": "AT",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Bolívar",
-                    "code_2_digits": "BL",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Boyacá",
-                    "code_2_digits": "BY",
-                    "code_3_digits": "HCW",
-                    "country_code": "CO"
-                }, {
-                    "name": "Caldas",
-                    "code_2_digits": "CL",
-                    "code_3_digits": "HSO",
-                    "country_code": "CO"
-                }, {
-                    "name": "Caqueta",
-                    "code_2_digits": "CA",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Casanare",
-                    "code_2_digits": "CS",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Cauca",
-                    "code_2_digits": "CU",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Cesar",
-                    "code_2_digits": "CE",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Choco",
-                    "code_2_digits": "CH",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Cordoba",
-                    "code_2_digits": "CO",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Cundinamarca",
-                    "code_2_digits": "CN",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Distrito Especial de Bogotá",
-                    "code_2_digits": "DE",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Guainia",
-                    "code_2_digits": "GU",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Guaviare",
-                    "code_2_digits": "GA",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Huila",
-                    "code_2_digits": "HU",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "La Guajira",
-                    "code_2_digits": "LG",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Magdalena",
-                    "code_2_digits": "MA",
-                    "code_3_digits": "HWC",
-                    "country_code": "CO"
-                }, {
-                    "name": "Meta",
-                    "code_2_digits": "ME",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Narino",
-                    "code_2_digits": "NA",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Norte de Santander",
-                    "code_2_digits": "NS",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Putumayo",
-                    "code_2_digits": "PU",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Quindio",
-                    "code_2_digits": "QU",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Risaralda",
-                    "code_2_digits": "RI",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "San Andres y Providencia",
-                    "code_2_digits": "SA",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Santander",
-                    "code_2_digits": "SN",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Sucre",
-                    "code_2_digits": "SU",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Tolima",
-                    "code_2_digits": "TO",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Valle del Cauca",
-                    "code_2_digits": "VC",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Vaupes",
-                    "code_2_digits": "VA",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }, {
-                    "name": "Vichada",
-                    "code_2_digits": "VI",
-                    "code_3_digits": null,
-                    "country_code": "CO"
-                }]
-            }
+            vm = this
+            $.ajax({
+                type: "GET",
+                crossDomain: true,
+                headers: {
+                    'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                },
+                url: "https://queries.envia.com/state?country_code=CO",
+                success: function(result) {
+                    // process result
+                    vm.states = result.data
+                },
+                error: function(e) {
+                    // log error in browser
+                    console.log(e.message);
+                }
+
+            });
 
         },
         storeLocal() {
@@ -704,8 +559,8 @@ const devArea = new Vue({
                     "street": "Cra. 68g",
                     "number": "65-02",
                     "district": "Cundinamarca",
-                    "city": "Bogota",
-                    "state": "DE",
+                    "city": "11001000",
+                    "state": "CN",
                     "country": "CO",
                     "postalCode": "110111",
                     "reference": ""
@@ -738,6 +593,22 @@ const devArea = new Vue({
 
             window.localStorage.setItem("shipping_data", JSON.stringify(data))
 
+        },
+        getProvinces(){
+            vm = this
+            $.ajax({
+                type: "GET",
+                url: "https://queries.envia.com/provinces/"+this.state,
+                success: function(result) {
+                    // process result
+                    vm.provinces = result.data
+                },
+                error: function(e) {
+                    // log error in browser
+                    console.log(e.message);
+                }
+
+            });
         }
 
 
@@ -746,6 +617,7 @@ const devArea = new Vue({
         this.guestFetch()
         this.getStates()
         this.getCarriers()
+        this.getProvinces()
         //this.getLabels()
 
         //this.storeSessionProducts()
