@@ -408,16 +408,16 @@ const devArea = new Vue({
                 vm = this
                 $.ajax({
                     type: "POST",
-                    //url: "https://api-test.envia.com/ship/rate",
-                    url: "https://api.envia.com/ship/rate",
+                    url: "https://api-test.envia.com/ship/rate",
+                    //url: "https://api.envia.com/ship/rate",
                     data: JSON.stringify(data),
                     dataType: "json",
-                    /*headers: {
-                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
-                    },*/
                     headers: {
-                        'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
                     },
+                    /*headers: {
+                        'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                    },*/
                     crossDomain: true,
                     success: function(result) {
                         // process result
