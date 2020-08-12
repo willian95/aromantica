@@ -3,9 +3,7 @@
 @section("content")
 
 <style>
-
     ::placeholder{ color:#eee}
-
 </style>
 
 <div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;"
@@ -94,9 +92,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="vity"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
+                            <label for="city"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
                             <select class="form-control" v-model="city" id="city"
-                                @change="setShippingCalculatedFalse();">
+                                @keyup="setShippingCalculatedFalse()">
                                 <option v-for="province in provinces" :value="province.code">@{{ province.name }}
                                 </option>
                             </select>
@@ -105,7 +103,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
 
                         <div class="form-group">
                             <label for="dirección"><i class="fa fa-globe icon_form"></i>Dirección de envío</label>
@@ -114,7 +112,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
 
                         <div class="form-group">
                             <label for="postalCode"><i class="fa fa-id-card icon_form"></i>Código postal</label>
@@ -122,7 +120,7 @@
                                 @keypress="isNumber($event)" @keyup="setShippingCalculatedFalse()">
                         </div>
 
-                    </div>
+                    </div>-->
 
                 </div>
                 <div class="">
@@ -159,7 +157,7 @@
                             <h4 class="text-center carrier-name" style="text-transform: capitalize;">
                                 <img style="width: 50px;" :src="carrier.logo" alt="">
                                 @{{ carrier.name }}</h4>
-                            <p>$ @{{ parseFloat(availableService.totalPrice).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                            <p>$ @{{ parseInt(availableService.totalPrice + 1).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                                 COP</p>
                             <small><span style="text-transform: capitalize;">@{{ availableService.service }} </span> - @{{ availableService.deliveryEstimate }}</small>
                         </div>
@@ -250,21 +248,15 @@ const devArea = new Vue({
             packages: [],
             carriers: [],
             provinces:[],
-            province:"",
             carrier: ""
         }
     },
     methods: {
-
         fetch() {
-
             axios.get("{{ url('/cart/fetch') }}")
                 .then(res => {
-
                     if (res.data.success == true) {
-
                         res.data.products.forEach((data, index) => {
-
                             this.total = this.total + (data.amount * data.product_type_size.price)
                             let weight = 0
                             if (parseInt(data.amount) > 1) {
@@ -272,7 +264,6 @@ const devArea = new Vue({
                             } else {
                                 weight = 1
                             }
-
                             this.packages.push({
                                 "content": data.product_type_size.product.name,
                                 "amount": data.amount,
@@ -289,15 +280,10 @@ const devArea = new Vue({
                                 "weightUnit": "KG",
                                 "lengthUnit": "CM"
                             })
-
                         })
-
                         this.baseTotal = this.total
-
                     }
-
                 })
-
         },
         isNumber: function(evt) {
             evt = (evt) ? evt : window.event;
@@ -309,37 +295,28 @@ const devArea = new Vue({
             }
         },
         signature() {
-
             axios.post("{{ url('checkout/signature') }}", {
                 total: this.total
             }).then(res => {
-
                 console.log(res)
                 this.shippingCalculated = true
                 //$("#signature").val(res.data.hash)
                 this.billingNumber = res.data.billingNumber
                 this.signatureHash = res.data.hash
                 //$("#p_id_invoice").val(res.data.billingNumber)
-
             })
-
         },
         guestFetch() {
-
             let cart = []
             let packages = []
             if (window.localStorage.getItem('cartAromantica') != null) {
                 cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
             }
-
             axios.post("{{ url('/cart/guest/fetch') }}", {
                 cart: cart
             }).then(res => {
-
                 if (res.data.success == true) {
-
                     res.data.guestProducts.forEach((data, index) => {
-
                         this.total = this.total + (parseFloat(data.product.price) * parseInt(
                             data.amount))
                         let weight = 0
@@ -348,7 +325,6 @@ const devArea = new Vue({
                         } else {
                             weight = 1
                         }
-
                         this.packages.push({
                             "content": data.product.product.name,
                             "amount": data.amount,
@@ -365,28 +341,20 @@ const devArea = new Vue({
                             "weightUnit": "KG",
                             "lengthUnit": "CM"
                         })
-
                     })
-
                     this.baseTotal = this.total
-
                     //$("#p_amount_base").val(this.total)
                     //$("#p_amount").val(this.total)
                     //alert("entre 1")
-
                     if (this.authCheck != '') {
                         this.fetch()
                     }
-
                 } else {
                     alertify.error(res.data.msg)
                 }
-
             })
-
         },
         storeGuestUser() {
-
             let user = {
                 name: this.name,
                 email: this.email,
@@ -395,18 +363,13 @@ const devArea = new Vue({
                 phone: this.phone
             }
             window.localStorage.setItem("guestUserAromantica", JSON.stringify(user))
-
         },
         calculateCarrier() {
-
             if(this.city != "" && this.state != "" && this.street){
-
                 let zipcode = "110111"
-
                 if(this.postalCode == ''){
                     zipcpde = this.postalCode
                 }
-
                 var data = {
                     "origin": {
                         "name": "Aromantica",
@@ -419,7 +382,7 @@ const devArea = new Vue({
                         "city": "11001000",
                         "state": "CN",
                         "country": "CO",
-                        "postalCode": "110111",
+                        "postalCode": "11001000",
                         "reference": ""
                     },
                     "destination": {
@@ -433,7 +396,7 @@ const devArea = new Vue({
                         "city": this.city,
                         "state": this.state,
                         "country": "CO",
-                        "postalCode": zipcode,
+                        "postalCode": this.city,
                         "reference": ""
                     },
                     "packages": this.packages,
@@ -442,7 +405,6 @@ const devArea = new Vue({
                         "type": 1
                     }
                 }
-
                 vm = this
                 $.ajax({
                     type: "POST",
@@ -464,46 +426,31 @@ const devArea = new Vue({
                         } else {
                             vm.availableServices = result.data
                         }
-
                     },
                     error: function(e) {
                         // log error in browser
                         console.log(e.message);
                     }
-
                 });
-
             }else{  
-
                 alertify.error("Debe completar los campos para el envío")
-
             }
-
             
-
-
         },
         setShippingCalculatedFalse() {
-
             this.shippingCalculated = false
             this.availableServices = []
             this.choosenService = ""
-
         },
         setService(service) {
-
             this.choosenService = service
-            this.total = this.baseTotal + service.totalPrice
+            this.total = this.baseTotal + parseInt(service.totalPrice)+1
             this.signature()
-
         },
         reloadServices() {
-
             this.availableServices = []
-
         },
         getCarriers() {
-
             vm = this
             $.ajax({
                 type: "GET",
@@ -516,19 +463,12 @@ const devArea = new Vue({
                     // log error in browser
                     console.log(e.message);
                 }
-
             });
-
         },
         getStates() {
-
             vm = this
             $.ajax({
                 type: "GET",
-                crossDomain: true,
-                headers: {
-                    'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
-                },
                 url: "https://queries.envia.com/state?country_code=CO",
                 success: function(result) {
                     // process result
@@ -538,18 +478,28 @@ const devArea = new Vue({
                     // log error in browser
                     console.log(e.message);
                 }
-
             });
-
+        },
+        getProvinces() {
+            vm = this
+            $.ajax({
+                type: "GET",
+                url: "https://queries.envia.com/provinces/"+this.state,
+                success: function(result) {
+                    // process result
+                    vm.provinces = result.data
+                },
+                error: function(e) {
+                    // log error in browser
+                    console.log(e.message);
+                }
+            });
         },
         storeLocal() {
-
             let zipcode = "110111"
-
             if(this.postalCode == ''){
                 zipcpde = this.postalCode
             }
-
             var data = {
                 "origin": {
                     "name": "Aromantica",
@@ -562,7 +512,7 @@ const devArea = new Vue({
                     "city": "11001000",
                     "state": "CN",
                     "country": "CO",
-                    "postalCode": "110111",
+                    "postalCode": "11001000",
                     "reference": ""
                 },
                 "destination": {
@@ -576,7 +526,7 @@ const devArea = new Vue({
                     "city": this.city,
                     "state": this.state,
                     "country": "CO",
-                    "postalCode": zipcode,
+                    "postalCode": this.city,
                     "reference": ""
                 },
                 "packages": this.packages,
@@ -590,28 +540,8 @@ const devArea = new Vue({
                     "printSize": "STOCK_4X6"
                 }
             }
-
             window.localStorage.setItem("shipping_data", JSON.stringify(data))
-
-        },
-        getProvinces(){
-            vm = this
-            $.ajax({
-                type: "GET",
-                url: "https://queries.envia.com/provinces/"+this.state,
-                success: function(result) {
-                    // process result
-                    vm.provinces = result.data
-                },
-                error: function(e) {
-                    // log error in browser
-                    console.log(e.message);
-                }
-
-            });
         }
-
-
     },
     mounted() {
         this.guestFetch()
@@ -619,27 +549,21 @@ const devArea = new Vue({
         this.getCarriers()
         this.getProvinces()
         //this.getLabels()
-
         //this.storeSessionProducts()
-
         this.readonly = "{{ Auth::check() }}"
         if (this.readonly == "") {
             this.readonly = false
         }
-
     }
-
 })
 </script>
 
 <script>
 var childWin = null
-
 function openChildWindow() {
     childWin = window.open('about:blank', 'print_popup', 'width=600,height=600');
     $("#cover").css("display", "block")
 }
-
 function checkWindow() {
     if (childWin && childWin.closed) {
         window.clearInterval(intervalID);
@@ -652,7 +576,6 @@ function checkWindow() {
         }
     }
 }
-
 var intervalID = window.setInterval(checkWindow, 500);
 </script>
 
