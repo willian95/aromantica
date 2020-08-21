@@ -90,9 +90,9 @@ class CheckoutController extends Controller
                 $response = $client->post("https://api.envia.com/ship/generate", [
                     "json" => $shipping
                 ]);*/
-
-                $envia = json_decode($response->getBody());
                 
+                $envia = json_decode($response->getBody());
+                dd($envia);
                 $totalShippingCost = 0;
                 foreach($envia->data as $shippingCost){
                     $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
