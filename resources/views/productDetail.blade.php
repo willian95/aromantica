@@ -47,14 +47,14 @@
                 </div>
 
 
-                <div class="slider slider-for__details">
+                <!--<div class="slider slider-for__details">-->
                     <div>
                         <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
                     </div>
                     <!--<div>
                 <img src="assets/img/productos/perfume1.png" alt="">
               </div>-->
-                </div>
+                <!--</div>-->
                 <!---mini---->
                 <!--<div class="slider slider-nav__details">
               <div>
