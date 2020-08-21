@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
     <link href="{{ asset('alertify/css/alertify.css') }}" rel='stylesheet'>
     <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel='stylesheet'>
-    <title>Aromantica</title>
+    <title>Aromantica {{ url()->current() }}</title>
 </head>
 
 <body>
