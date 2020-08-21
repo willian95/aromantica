@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+
+    @if(strpos(url()->current, "https://aromantica.co") >= 0 || strpos(url()->current, "http://www.aromantica.co") >= 0)
+        @php
+            header("https://www.aromantica.co");
+        @endphp
+    @endif
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
