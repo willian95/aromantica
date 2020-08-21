@@ -2,7 +2,7 @@
 
  @section("content")
  <div class="container p-50" id="store-area">
-     <div class="row">
+     <div class="row" v-cloak>
          <div class="col-md-3">
              <div class="controls">
                  <div class="">
@@ -123,7 +123,7 @@
          </div>
      </div>
 
-     <div class="row">
+     <div class="row" v-cloak>
          <div class="col-12">
              <nav aria-label="Page navigation example">
                  <ul class="pagination">

@@ -3,7 +3,7 @@
 @section("content")
 
 <div class="container p-50" id="dev-area">
-    <div class="row">
+    <div class="row" v-cloak>
         <div class="title__general text-justify d-flex justify-content-between" style="    width: 100%;">
             <h2>Mis compras</h2>
 

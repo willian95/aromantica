@@ -3,7 +3,7 @@
 @section("content")
 
 <div class="p-50" id="dev-area">
-    <section class="container">
+    <section class="container" v-cloak>
         <div class="row">
             <div class="col-sm-12 ">
                 <div class="carrito">

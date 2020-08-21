@@ -3,7 +3,7 @@
 @section("content")
 
 <div class="p-50" id="dev-area">
-    <div class="container">
+    <div class="container" v-cloak>
         <div class="row">
             <div class="col-12">
                 <h3 v-if="payment.status == 'aprobado'" class="text-center" style="margin-top: 20px;">Muchas gracias! Tu

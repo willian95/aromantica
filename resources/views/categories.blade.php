@@ -4,7 +4,7 @@
 
 <div id="dev-area">
 
-    <div class="main-banner main-banner-categorias p-50   pb-5">
+    <div class="main-banner main-banner-categorias p-50   pb-5" v-cloak>
         <div class="main-banner__conten">
             <div class="main-banner__item--categoria">
                 <div class="main-banner__text">
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <section class="container mt-2">
+    <section class="container mt-2" v-cloak>
         <div class="row">
             <div class="col-md-3">
                 <div class="controls">

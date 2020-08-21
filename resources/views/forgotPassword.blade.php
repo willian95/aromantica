@@ -7,7 +7,7 @@
         <h2>Recuperar mi contraseña</h2>
     </div>
 
-    <div class="row">
+    <div class="row" v-cloak>
         <div class="col-12">
 
             <div class="form-group mb-4" style="    width: 320px;">

@@ -3,7 +3,7 @@
 @section("content")
 
 <section class="container p-50" id="dev-area">
-    <div class="car">
+    <div class="car" v-cloak>
         <div class="card-body">
             <div class="title__general title__general2 fadeInUp wow animated title__general_flex">
                 <p class="m-0">Perfil</p>

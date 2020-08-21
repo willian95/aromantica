@@ -21,7 +21,7 @@
             </div>
         </div>-->
 
-    <section class="container p-50">
+    <section class="container p-50" v-cloak>
 
         <div class="main-productos__conten categorias_grid">
 

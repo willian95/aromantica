@@ -12,7 +12,7 @@
 </div>
 
 <div class="container p-50" id="dev-area">
-    <div class="row">
+    <div class="row" v-cloak>
         <div class="col-12">
 
 
