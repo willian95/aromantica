@@ -30,9 +30,9 @@
 <body>
 
     @if(strpos(url()->current(), "https://aromantica.co") >= 0 || strpos(url()->current(), "http://www.aromantica.co") >= 0)
-        {{ "entre aquí" }}
+        
         @php
-            header("https://www.aromantica.co");
+            header("Location: https://www.aromantica.co");
         @endphp
     @endif
 
