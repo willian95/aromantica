@@ -21,12 +21,12 @@
                 </div>
 
 
-                <div class="slider slider-for__details">
+                <!--<div class="slider slider-for__details">-->
                     <div>
                         <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
                     </div>
 
-                </div>
+                <!--</div>-->
 
 
             </div>
