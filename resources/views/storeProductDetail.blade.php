@@ -22,7 +22,7 @@
 
 
                 <!--<div class="slider slider-for__details">-->
-                    <div>
+                    <div class="slider-for__details">
                         <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
                     </div>
 
