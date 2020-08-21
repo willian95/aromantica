@@ -32,7 +32,7 @@
     @if(strpos(url()->current(), "https://aromantica.co") >= 0 || strpos(url()->current(), "http://www.aromantica.co") >= 0)
         
         @php
-            header("Location: https://www.aromantica.co");
+            return Redirect::away("https://www.aromantica.co");
         @endphp
     @endif
 
