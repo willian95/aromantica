@@ -78,10 +78,10 @@
                     <div class="main-products__item" v-for="product in products">
 
                         <div class="main-products__box">
-                            <div class="views">
+                            <!--<div class="views">
                                 <span data-toggle="modal" data-target="#producto_modal"><i class="flaticon-view"></i></span>
                                 <span href=""><i class="flaticon-shopping-cart"></i></span>
-                            </div>
+                            </div>-->
                             <div class="main-products__img">
                                 <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.image">
                             </div>
