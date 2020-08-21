@@ -22,8 +22,8 @@
 
 
                 <!--<div class="slider slider-for__details">-->
-                    <div style="width: 80%">
-                        <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
+                    <div>
+                        <img style="width: 80%" :src="'{{ env('CMS_URL') }}'+'/images/products/'+image" alt="">
                     </div>
 
                 <!--</div>-->
