@@ -3,12 +3,6 @@
 
 <head>
 
-    @if(strpos(url()->current(), "https://aromantica.co") >= 0 || strpos(url()->current(), "http://www.aromantica.co") >= 0)
-        @php
-            header("https://www.aromantica.co");
-        @endphp
-    @endif
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,10 +24,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
     <link href="{{ asset('alertify/css/alertify.css') }}" rel='stylesheet'>
     <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel='stylesheet'>
-    <title>Aromantica {{ url()->current() }}</title>
+    <title>Aromantica </title>
 </head>
 
 <body>
+
+    @if(strpos(url()->current(), "https://aromantica.co") >= 0 || strpos(url()->current(), "http://www.aromantica.co") >= 0)
+        @php
+            header("https://www.aromantica.co");
+        @endphp
+    @endif
+
+    {{ url()->current() }}
 
 
     <div class="elipse">
