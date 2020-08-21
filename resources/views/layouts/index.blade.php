@@ -32,7 +32,7 @@
     @if(strpos(url()->current(), "https://aromantica.co") >= 0 || strpos(url()->current(), "http://www.aromantica.co") >= 0)
         
         @php
-            return Redirect::away("https://www.aromantica.co");
+            return Redirect::to("https://aromantica.co");
         @endphp
     @endif
 
