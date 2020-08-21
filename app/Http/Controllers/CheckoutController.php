@@ -44,9 +44,9 @@ class CheckoutController extends Controller
 
         try{    
 
-            /*if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
+            if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
-            }*/
+            }
 
             $total= 0;
             $client = new \GuzzleHttp\Client();
@@ -92,7 +92,7 @@ class CheckoutController extends Controller
                 ]);*/
                 
                 $envia = json_decode($response->getBody());
-                dd($envia);
+                
                 $totalShippingCost = 0;
                 foreach($envia->data as $shippingCost){
                     $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
