@@ -1,13 +1,12 @@
 const staticCacheName = 'site-static-v1';
 const assets = [
-  '/',
-  '/alertify/alertify.js',
-  '/alertify/css/alertify.css',
-  '/alertify/css/themes/bootstrap.css',
-  '/assets/css/*',
-  '/assets/js/*',
-  '/assets/*',
-  'https://fonts.googleapis.com/css?family=Lato:300,400,700',
+  'https://www.aromantica.co/',
+  'https://www.aromantica.co/alertify/alertify.js',
+  'https://www.aromantica.co/alertify/css/alertify.css',
+  'https://www.aromantica.co/alertify/css/themes/bootstrap.css',
+  'https://www.aromantica.co/assets/css/*',
+  'https://www.aromantica.co/assets/js/*',
+  'https://www.aromantica.co/assets/*',
 ];
 // install event
 self.addEventListener('install', evt => {
