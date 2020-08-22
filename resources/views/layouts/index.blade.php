@@ -27,6 +27,9 @@
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <script src="{{ asset('pwa.js') }}"></script>
     <title>Aromantica </title>
+
+    @laravelPWA
+
 </head>
 
 <body>

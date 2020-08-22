@@ -19,6 +19,12 @@ Route::get('/', function () {
   //return view("pronto");
 });
 
+Route::get("/offline", function(){
+
+  return view('vendor/laravelpwa/offline');
+
+});
+
 /*Route::get('/front-test', function () {
   //return view('welcome');
   return view("welcome");
