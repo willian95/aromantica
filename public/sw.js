@@ -1,9 +1,6 @@
 const staticCacheName = 'site-static-v1';
 const assets = [
-  'https://www.aromantica.co/',
-  'https://www.aromantica.co/alertify/alertify.js',
-  'https://www.aromantica.co/alertify/css/alertify.css',
-  'https://www.aromantica.co/alertify/css/themes/bootstrap.css'
+  'https://www.aromantica.co/assets/css/main.css'
 ];
 // install event
 self.addEventListener('install', evt => {
