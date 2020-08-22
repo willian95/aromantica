@@ -3,10 +3,7 @@ const assets = [
   'https://www.aromantica.co/',
   'https://www.aromantica.co/alertify/alertify.js',
   'https://www.aromantica.co/alertify/css/alertify.css',
-  'https://www.aromantica.co/alertify/css/themes/bootstrap.css',
-  'https://www.aromantica.co/assets/css/*',
-  'https://www.aromantica.co/assets/js/*',
-  'https://www.aromantica.co/assets/*',
+  'https://www.aromantica.co/alertify/css/themes/bootstrap.css'
 ];
 // install event
 self.addEventListener('install', evt => {
