@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
     <link href="{{ asset('alertify/css/alertify.css') }}" rel='stylesheet'>
     <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel='stylesheet'>
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <script src="{{ asset('pwa.js') }}"></script>
     <title>Aromantica </title>
 </head>
 
