@@ -4,7 +4,7 @@
     </div>
 
     <div class="main-productos__content ">
-        @foreach(App\ProductTypeSize::take(12)->has("category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product", "size",
+        @foreach(App\ProductTypeSize::take(12)->has("product.category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product", "size",
         "type")->get() as $product)
         <div class="main-products__item">
             <div class="main-products__box">
@@ -45,7 +45,7 @@
 
     </div>
 
-    @foreach(App\ProductTypeSize::take(12)->has("category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product",
+    @foreach(App\ProductTypeSize::take(12)->has("product.category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product",
     "size", "type")->get() as $product)
 
     <!-- modal producto views -->
