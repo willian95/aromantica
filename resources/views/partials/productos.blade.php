@@ -20,7 +20,9 @@
 
                     <div class="main-products__text">
                         <div class="main-products__title_cat">
-                            dd($product)
+                            @php
+                                dd($product->product);
+                            @endphp
                             <p> {{ $product->product->brand->name }}</p>
                         </div>
                         <div class="main-products__title">
