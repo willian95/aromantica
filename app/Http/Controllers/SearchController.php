@@ -55,7 +55,7 @@ class SearchController extends Controller
 
                 $query->where("brand_id", $brandId);
                 
-            })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+            })->with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
 
                 if(isset($request->type)){
                     $query->where("type_id", $request->type);
@@ -86,7 +86,7 @@ class SearchController extends Controller
 
                 $query->where("brand_id", $brandId);
                 
-            })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+            })->with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
 
                 if(isset($request->type)){
                     $query->where("type_id", $request->type);
@@ -102,7 +102,7 @@ class SearchController extends Controller
             //dd(count($words));
             if(count($words) <= 0){
                 
-                $products = ProductTypeSize::with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+                $products = ProductTypeSize::with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
     
                     if(isset($request->type)){
                         $query->where("type_id", $request->type);
@@ -116,7 +116,7 @@ class SearchController extends Controller
                 
                 //dd($products);
 
-                $productsCount = ProductTypeSize::with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+                $productsCount = ProductTypeSize::with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
     
                     if(isset($request->type)){
                         $query->where("type_id", $request->type);
@@ -139,7 +139,7 @@ class SearchController extends Controller
                         }
                     }   
                     
-                })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+                })->with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
     
                     if(isset($request->type)){
                         $query->where("type_id", $request->type);
@@ -161,7 +161,7 @@ class SearchController extends Controller
                         }
                     }   
                     
-                })->with("product.brand", "product.category", "product", "type", "size")->where(function ($query) use($request) {
+                })->with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
     
                     if(isset($request->type)){
                         $query->where("type_id", $request->type);
@@ -187,10 +187,10 @@ class SearchController extends Controller
         $brandTitles = Brand::where("name", "like", "%".$request->search."%")->take(2)->get();
         
         if(count($brandTitles) == 0){
-            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(3)->get();
+            $productTitles = Product::with("brand")->has("brand")->where("name", "like", "%".$request->search."%")->take(3)->get();
         }else{
 
-            $productTitles = Product::with("brand")->where("name", "like", "%".$request->search."%")->take(3 - count($brandTitles))->get();
+            $productTitles = Product::with("brand")->has("brand")->where("name", "like", "%".$request->search."%")->take(3 - count($brandTitles))->get();
 
         }
 

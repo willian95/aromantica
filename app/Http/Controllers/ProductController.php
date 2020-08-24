@@ -13,7 +13,7 @@ class ProductController extends Controller
 
         try{
 
-            $product = Product::where("slug", $slug)->with("productTypeSizes.size", "productTypeSizes.type", "productTypeSizes", "category", "brand")->first();
+            $product = Product::where("slug", $slug)->with("productTypeSizes.size", "productTypeSizes.type", "productTypeSizes", "category", "brand")->has("productTypeSizes.size")->has("productTypeSizes.type")->has("productTypeSizes")->has("category")->has("brand")->first();
             //$types = ProductTypeSize::where("product_id", $product->id)->groupBy("type_id")->get();
             //$sizes = ProductTypeSize::where("product_id", $product->id)->groupBy("size_id")->get();
 

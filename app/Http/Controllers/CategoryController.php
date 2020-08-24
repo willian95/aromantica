@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
             $skip = ($page - 1) * 20;
 
-            $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->whereHas("product.category", function($q) use($id){
+            $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->has("product.brand")->has("type")->has("size")->whereHas("product.category", function($q) use($id){
                 $q->where("id", $id);
             })->skip($skip)->take(20)->get();
             $productsCount = ProductTypeSize::count();

@@ -26,7 +26,9 @@ class StoreSiteController extends Controller
 
             if(isset($request->price) && $request->price > 0){
                 
-                $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->whereHas("product", function($q) use($request){
+                $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")
+                ->has("product")->has( "product.category")->has( "product.brand")->has( "type")->has( "size")
+                ->whereHas("product", function($q) use($request){
 
                     if(isset($request->brands) && count($request->brands))
                     {
@@ -82,11 +84,11 @@ class StoreSiteController extends Controller
     
                     //dd($q->toSql());
     
-                })->where("price", "<=", $request->price)->count();
+                })->has("product")->has("product.category")->has( "product.brand")->has( "type")->has( "size")->where("price", "<=", $request->price)->count();
 
             }else{
 
-                $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->whereHas("product", function($q) use($request){
+                $products = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->has("product")->has("product.category")->has( "product.brand")->has( "type")->has( "size")->whereHas("product", function($q) use($request){
 
                     if(isset($request->brands) && count($request->brands))
                     {
@@ -113,7 +115,7 @@ class StoreSiteController extends Controller
     
                 })->where("price", ">", 0)->skip($skip)->take($take)->get();
 
-                $productsCount = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->whereHas("product", function($q) use($request){
+                $productsCount = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->has("product")->has("product.category")->has( "product.brand")->has( "type")->has( "size")->whereHas("product", function($q) use($request){
 
                     if(isset($request->brands) && count($request->brands))
                     {
@@ -201,8 +203,8 @@ class StoreSiteController extends Controller
 
     function showProductDetail($productTypeSizeId){
 
-        $product = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->where("id", $productTypeSizeId)->first();
-        $productTypeSizes = Product::where("slug", $product->product->slug)->with("productTypeSizes.size", "productTypeSizes.type", "productTypeSizes", "category", "brand")->first();
+        $product = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->has("product")->has("product.category")->has( "product.brand")->has( "type")->has( "size")->where("id", $productTypeSizeId)->first();
+        $productTypeSizes = Product::where("slug", $product->product->slug)->with("productTypeSizes.size", "productTypeSizes.type", "productTypeSizes", "category", "brand")->has("productTypeSizes.size")->has("productTypeSizes.type")->has( "productTypeSizes")->has( "category")->has( "brand")->first();
 
         return view("storeProductDetail", ["product" => $product, "productTypeSizes" => $productTypeSizes]);
 

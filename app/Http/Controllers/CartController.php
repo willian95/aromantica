@@ -46,7 +46,7 @@ class CartController extends Controller
 
         try{
 
-            $cart = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.size", "productTypeSize.type")->get();
+            $cart = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.size", "productTypeSize.type")->has("productTypeSize")->has("productTypeSize.product")->has("productTypeSize.size")->has("productTypeSize.type")->get();
             return response()->json(["success" => true, "products" => $cart]);
 
         }catch(\Exception $e){
@@ -62,7 +62,7 @@ class CartController extends Controller
             $guestProducts = [];
             foreach($request->cart as $cart){
 
-                $product = ProductTypeSize::with("product", "size", "type")->where("id", $cart['productTypeSizeId'])->first();
+                $product = ProductTypeSize::with("product", "size", "type")->has("product", "size", "type")->where("id", $cart['productTypeSizeId'])->first();
 
                 $guestProducts[] = [
                     "product" => $product,

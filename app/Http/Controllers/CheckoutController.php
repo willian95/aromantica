@@ -64,7 +64,7 @@ class CheckoutController extends Controller
 
             if(\Auth::check()){
 
-                $carts = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize")->get();
+                $carts = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize")->has("productTypeSize")->get();
                 foreach($carts as $cart){
 
                     $total = $total + ($cart->productTypeSize->price * $cart->amount);
@@ -164,7 +164,7 @@ class CheckoutController extends Controller
     
                 if(\Auth::check()){
     
-                    $carts = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize")->get();
+                    $carts = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize")->has("productTypeSize")->get();
                     foreach($carts as $cart){
     
                         $total = $total + ($cart->productTypeSize->price * $cart->amount);
@@ -190,7 +190,7 @@ class CheckoutController extends Controller
 
             }            
 
-            $productsPurchased = ProductPurchase::where("payment_id", $payment->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.type", "productTypeSize.size")->get();
+            $productsPurchased = ProductPurchase::where("payment_id", $payment->id)->with("productTypeSize", "productTypeSize.product", "productTypeSize.type", "productTypeSize.size")->has("productTypeSize")->has("productTypeSize.product")->has("productTypeSize.type")->has("productTypeSize.size")->get();
 
             if(\Auth::check()){
 
