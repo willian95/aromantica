@@ -2220,8 +2220,11 @@ button:focus {
 }
 
 .banner-title h1 {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 700;
+    font-family: 'Lobster', cursive;
+    font-size: 5rem;
+
 }
 .slick-dotted.slick-slider {
     margin-bottom: -10px;
