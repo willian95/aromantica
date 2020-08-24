@@ -7,7 +7,7 @@ return [
         'short_name' => 'PWA',
         'start_url' => '/',
         'background_color' => '#ffffff',
-        'theme_color' => '#000000',
+        'theme_color' => '#352961',
         'display' => 'standalone',
         'orientation'=> 'any',
         'status_bar'=> 'black',
