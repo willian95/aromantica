@@ -4,7 +4,7 @@ return [
     'name' => 'Aromantica',
     'manifest' => [
         'name' => env('APP_NAME', 'Aromantica'),
-        'short_name' => 'PWA',
+        'short_name' => 'Aromantica',
         'start_url' => '/',
         'background_color' => '#ffffff',
         'theme_color' => '#352961',
