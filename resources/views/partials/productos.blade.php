@@ -1,6 +1,6 @@
 <section class="container">
     <div class="title__general">
-        <h2>Fragancias recomendadas</h2>
+        <h2>Fragancias recomendadas Prueba</h2>
     </div>
 
     <div class="main-productos__content ">
@@ -20,9 +20,7 @@
 
                     <div class="main-products__text">
                         <div class="main-products__title_cat">
-                            @php
-                                dd($product->product);
-                            @endphp
+                            
                             <p> {{ $product->product->brand->name }}</p>
                         </div>
                         <div class="main-products__title">
