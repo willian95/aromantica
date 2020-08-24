@@ -1,6 +1,6 @@
 <section class="container">
     <div class="title__general">
-        <h2>Fragancias recomendadas Prueba</h2>
+        <h2>Fragancias recomendadas</h2>
     </div>
 
     <div class="main-productos__content ">
