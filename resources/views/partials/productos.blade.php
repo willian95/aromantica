@@ -45,7 +45,7 @@
 
     </div>
 
-    @foreach(App\ProductTypeSize::take(12)->has("product.brand")->has("size")->has("type")->with("product.brand", "product",
+    @foreach(App\ProductTypeSize::take(12)->has("category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product",
     "size", "type")->get() as $product)
 
     <!-- modal producto views -->
