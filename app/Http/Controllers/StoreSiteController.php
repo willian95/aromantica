@@ -207,7 +207,7 @@ class StoreSiteController extends Controller
 
         $product = ProductTypeSize::with("product", "product.category", "product.brand", "type", "size")->has("product")->has("product.category")->has( "product.brand")->has( "type")->has( "size")->where("id", $productTypeSizeId)->first();
 
-        if($product->product){
+        if($product){
             $productTypeSizes = Product::where("slug", $product->product->slug)->with("productTypeSizes.size", "productTypeSizes.type", "productTypeSizes", "category", "brand")->has("productTypeSizes.size")->has("productTypeSizes.type")->has( "productTypeSizes")->has( "category")->has( "brand")->first();
         }
         
