@@ -1018,3 +1018,96 @@
 </body>
 
 </html>
+
+
+
+
+      <?php
+         if ( isset($_GET['sent']) ){
+           if ( $_GET['sent'] == '1'){
+             echo "<p style='font-size: 20px;
+    margin: 0;
+    margin-bottom: 0;
+    position: absolute;'>  Formulario enviado correctamente</p><br>";
+           }
+           else {
+             echo "<p> Hubo un error al enviar</p><br>";
+           }
+         }
+                     	
+      ?>
+  <div class="row center-form">
+          <div class="col-lg-12 col-md-10 ">
+            <div class="site-section " id="contact-section">
+              <div class="container">
+                <div class="row center mt-5">
+                  <div class="col-md-12 col-lg-9 col-xs-12  center-form ">
+                      <form method="post" action="<?php echo admin_url( 'admin-post.php' )      ?>">
+                      <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                          <input type="text" name="name" id="name" class="form-control " placeholder="Nombre" />
+                        </div>                    
+                      </div>
+                          <div class="row form-group">
+                     
+                        <div class="col-md-12">
+                          <input type="tel" name="telefono"   id="telf" class="form-control " required placeholder="Teléfono" />
+                        </div>
+                      </div>
+                                          
+                      <div class="row form-group">
+                        <div class="col-md-12">
+                          <input type="email" name="email" id="email" autocomplete="off"  class="form-control" required placeholder="Email" />
+                        </div>
+                      </div>
+						  
+						  
+    <input type="hidden" name="link" value="<?php echo $actual_link; ?>" >
+
+
+                      <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                          <select required  name="evento" class="form-control" >
+                            <option >Tipo de Evento</option>
+                            <option value="matrimonio">MATRIMONIO</option>
+                            <option value="cumpleano">CUMPLEAÑOS</option>
+                            <option value="graduacion">GRADUACIÓN</option>
+                            <option value="corporativo">CORPORATIVO</option>
+                            <option value="otros">OTROS</option>
+
+                          </select>
+                        </div>
+                        <div class="col-md-6 center">
+                           <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="customCheck" name="productora">
+    <label class="custom-control-label" for="customCheck">Soy productora</label>
+  </div>
+                        </div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class="col-md-12">
+                          <textarea name="message" id="message" cols="30" rows="7" class="form-control "
+                          placeholder="Mensaje"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class="col-md-12 text-center">
+                            <input type="hidden" name="action" value="process_form">
+                            
+                          <input  type="submit" name="submit" value="Enviar" class="btn btn-black btn-form btn-  py-3 px-4 " />
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+ 
+        </div>
+        
+      
+

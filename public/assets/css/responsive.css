@@ -2,6 +2,13 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+    .banner-title h1 {
+    font-size: 2rem;
+}
+    .main-categories__item {
+ 
+    width: 100%;
+}
     .over_table {
         overflow-x: scroll;
     }
@@ -235,6 +242,10 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+    .main-categories__item {
+   
+    width: 50%;
+}
     .product-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;

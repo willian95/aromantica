@@ -505,12 +505,14 @@ body.offcanvas-expanded {
 
 /*categorias*/
 .main-categories {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .main-categories__item {
     background: #d2d2d2;
+    width: 25%;
 }
 
 .main-categories__content {
