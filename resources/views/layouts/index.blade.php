@@ -1042,7 +1042,7 @@
               <div class="container">
                 <div class="row center mt-5">
                   <div class="col-md-12 col-lg-9 col-xs-12  center-form ">
-                      <form method="post" action="<?php echo admin_url( 'admin-post.php' )      ?>">
+                      
                       <div class="row form-group">
                         <div class="col-md-12 mb-3 mb-md-0">
                           <input type="text" name="name" id="name" class="form-control " placeholder="Nombre" />
