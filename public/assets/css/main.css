@@ -2222,10 +2222,10 @@ button:focus {
 }
 
 .banner-title h1 {
-    /* text-transform: uppercase; */
-    font-weight: 700;
-    font-family: "Lobster", cursive;
-    font-size: 5rem;
+    text-transform: uppercase;
+    /* font-weight: 700; */
+    /* font-family: "Lobster", cursive; */
+    font-size: 4rem;
 }
 .slick-dotted.slick-slider {
     margin-bottom: -10px;
@@ -2266,6 +2266,6 @@ button:focus {
     height: 30vh !important;
 }
 .img-logo {
-    width: 212px;
-    margin-right: 30px;
+    width: 230px;
+    margin-right: 50px;
 }

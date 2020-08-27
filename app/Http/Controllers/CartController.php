@@ -62,7 +62,7 @@ class CartController extends Controller
             $guestProducts = [];
             foreach($request->cart as $cart){
 
-                $product = ProductTypeSize::with("product", "size", "type")->has("product", "size", "type")->where("id", $cart['productTypeSizeId'])->first();
+                $product = ProductTypeSize::with("product", "size", "type")->has("product")->has( "size")->has("type")->where("id", $cart['productTypeSizeId'])->first();
 
                 $guestProducts[] = [
                     "product" => $product,
