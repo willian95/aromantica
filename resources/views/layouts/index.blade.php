@@ -723,7 +723,7 @@
                                 this.guestProducts = res.data.guestProducts
 
                                 this.guestProducts.forEach((data, index) => {
-
+                                    console.log("test-product", data.product)
                                     this.total = this.total + (parseFloat(data.product.price) *
                                         parseInt(
                                             data.amount))
