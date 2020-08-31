@@ -41,6 +41,7 @@ Route::get("/email/check/{hash}", "RegisterController@check");
 
 Route::post("/login", "LoginController@login");
 Route::get("/logout", "LoginController@logout");
+Route::get("/check/login", "LoginController@checkAuth");
 
 Route::get("/profile", "ProfileController@index");
 Route::post("/profile/update", "ProfileController@update");

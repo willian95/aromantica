@@ -37,6 +37,12 @@ class LoginController extends Controller
 
     }
 
+    function checkAuth(){
+
+        return response()->json(["success" => \Auth::check()]);
+
+    }
+
     function logout(){
         \Auth::logout();
         return redirect()->to("/");

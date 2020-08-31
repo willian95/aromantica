@@ -187,21 +187,16 @@
                     </li>
 
                     <!--menu tablet--->
-                    @if(\Auth::guest())
-                    <li class="nav-item">
-                        <a id="openRegisterModal" style="border: 1px solid white;
-                          border-radius: 10px;" class="nav-link p-0 " href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
-                    </li>
+                    <div id="register">
+                    
+                        <li class="nav-item">
+                            <a id="openRegisterModal" style="border: 1px solid white;
+                            border-radius: 10px;" class="nav-link p-0 " href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
+                        </li>
 
+                    </div>
 
-                    <!--- <li class="nav-item">
-                          <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
-                      </li>--->
-                    @else
-
-
-
-                    @endif
+        
 
                     <!--- <li class="nav-item position-relative mr-3">
                         <span class="add_btn" id="cart-notification"></span>
@@ -262,30 +257,32 @@
                     <li class="nav-item">
                         <a id="openLoginModal" class="nav-link p-0 mr-5" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
                     </li>
-                    @else <li class='nav-item dropdown dowms succss'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true' style="text-transform: capitalize;" class='nav-link dropdown-toggle border-blue ' data-toggle='dropdown'>
-                            <i class="flaticon-user"></i>
+                    @else 
+                    
+                        <li class='nav-item dropdown dowms succss'>
+                            <a href='#' aria-expanded='false' aria-haspopup='true' style="text-transform: capitalize;" class='nav-link dropdown-toggle border-blue ' data-toggle='dropdown'>
+                                <i class="flaticon-user"></i>
 
-                            @if(strpos(\Auth::user()->name, " ") > 0)
-                            {{ substr(\Auth::user()->name, 0, strpos(\Auth::user()->name, " ")) }} {{ substr(\Auth::user()->name, strpos(\Auth::user()->name, " "), 2) }}.
-                            @else
-                            {{ \Auth::user()->name }}
-                            @endif
+                                @if(strpos(\Auth::user()->name, " ") > 0)
+                                {{ substr(\Auth::user()->name, 0, strpos(\Auth::user()->name, " ")) }} {{ substr(\Auth::user()->name, strpos(\Auth::user()->name, " "), 2) }}.
+                                @else
+                                {{ \Auth::user()->name }}
+                                @endif
 
 
-                        </a>
+                            </a>
 
-                        <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
-                            <div class='content-drop'>
-                                <a class='dropdown-item nav-link-black' href='#'>
-                                    <a class="nav-link nav-link-black" href="{{ url('/profile') }}">Perfil</a>
-                                    <a class="nav-link nav-link-black" href="{{ url('/shopping/index') }}">Compras</a>
+                            <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                                <div class='content-drop'>
+                                    <a class='dropdown-item nav-link-black' href='#'>
+                                        <a class="nav-link nav-link-black" href="{{ url('/profile') }}">Perfil</a>
+                                        <a class="nav-link nav-link-black" href="{{ url('/shopping/index') }}">Compras</a>
 
-                                    <a class="nav-link nav-link-black" href="{{ url('/logout') }}">Cerrar sesión</a>
-                                </a>
+                                        <a class="nav-link nav-link-black" href="{{ url('/logout') }}">Cerrar sesión</a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
 
                     <!-- <li class="nav-item">
                       <a class="nav-link" href="#">{{ \Auth::user()->name }}</a>
@@ -1011,6 +1008,20 @@
                 }
 
             })
+        </script>
+
+        <script>
+
+            $(document).ready(function(){
+
+                $.get("{{ url('/check/login') }}", function(data){
+
+                    console.log("check", data)
+
+                })
+
+            })
+
         </script>
 
         @stack("scripts")
