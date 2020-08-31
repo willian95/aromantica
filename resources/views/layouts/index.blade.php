@@ -263,10 +263,12 @@
                             <a href='#' aria-expanded='false' aria-haspopup='true' style="text-transform: capitalize;" class='nav-link dropdown-toggle border-blue ' data-toggle='dropdown'>
                                 <i class="flaticon-user"></i>
 
-                                @if(strpos(\Auth::user()->name, " ") > 0)
-                                {{ substr(\Auth::user()->name, 0, strpos(\Auth::user()->name, " ")) }} {{ substr(\Auth::user()->name, strpos(\Auth::user()->name, " "), 2) }}.
-                                @else
-                                {{ \Auth::user()->name }}
+                                @if(\Auth::check())
+                                    @if(strpos(\Auth::user()->name, " ") > 0)
+                                    {{ substr(\Auth::user()->name, 0, strpos(\Auth::user()->name, " ")) }} {{ substr(\Auth::user()->name, strpos(\Auth::user()->name, " "), 2) }}.
+                                    @else
+                                    {{ \Auth::user()->name }}
+                                    @endif
                                 @endif
 
 
