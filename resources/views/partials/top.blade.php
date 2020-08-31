@@ -10,7 +10,7 @@
                      <!---mini cards ---->
                      <div class="slider slider-nav">
                          <!---mini cards imagen ---->
-                         @foreach(App\TopProduct::with('productTypeSize', 'productTypeSize.product', 'productTypeSize.type', 'productTypeSize.size')->get() as $topProduct)
+                         @foreach(App\TopProduct::with('productTypeSize', 'productTypeSize.product', 'productTypeSize.type', 'productTypeSize.size')->has("productTypeSize", "productTypeSize.product")->get() as $topProduct)
                          <div>
                              <div class="main-top__img">
                                  <img src="{{ env('CMS_URL').'/images/products/'.$topProduct->productTypeSize->product->image }}">
