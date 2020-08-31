@@ -187,7 +187,7 @@
                     </li>
 
                     <!--menu tablet--->
-                    <div id="register">
+                    <div class="guest">
                     
                         <li class="nav-item">
                             <a id="openRegisterModal" style="border: 1px solid white;
@@ -252,14 +252,14 @@
 
                     </li>
 
-                    @if(\Auth::guest())
+                    
 
-                    <li class="nav-item">
+                    <li class="nav-item guest">
                         <a id="openLoginModal" class="nav-link p-0 mr-5" href="#" data-toggle="modal" data-target="#loginModal"><i class="flaticon-user"></i></a>
                     </li>
-                    @else 
+                 
                     
-                        <li class='nav-item dropdown dowms succss'>
+                        <li class='nav-item dropdown dowms succss auth'>
                             <a href='#' aria-expanded='false' aria-haspopup='true' style="text-transform: capitalize;" class='nav-link dropdown-toggle border-blue ' data-toggle='dropdown'>
                                 <i class="flaticon-user"></i>
 
@@ -294,7 +294,7 @@
                       <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
                   </li>--->
 
-                    @endif
+            
 
                     <!-- <li class='nav-item'>
                         <a class='nav-link' data-toggle="modal" data-target="#login"><i class="flaticon-user"></i></a>
@@ -1016,7 +1016,17 @@
 
                 $.get("{{ url('/check/login') }}", function(data){
 
-                    console.log("check", data)
+                    if(data.success == false){
+
+                        $(".auth").css("display", "none")
+                        $(".guest").css("display", "block")
+
+                    }else{
+
+                        $(".auth").css("display", "block")
+                        $(".guest").css("display", "none")
+
+                    }
 
                 })
 
