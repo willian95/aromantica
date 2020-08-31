@@ -53,8 +53,8 @@
         class='navbar navbar-expand-md navbar-fixed-js container-fluid m-0 p-0 '
         @else class='navbar navbar-expand-md navbar-fixed-js pepe container-fluid' @endif id="navbarSupportedContent">
         <div class='container-fluid nav-grid'>
-            <a class='navbar-brand d-flex align-items-center' href="{{ url('/') }}">
-                <img alt='' src="{{ asset('assets/img/logo.png') }}">
+            <a class='' href="{{ url('/') }}">
+                <img alt='' class="img-logo" src="{{ asset('assets/img/logo.png') }}">
 
             </a>
 
@@ -1018,6 +1018,3 @@
 </body>
 
 </html>
-        
-      
-
