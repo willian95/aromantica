@@ -286,21 +286,9 @@
                             </div>
                         </li>
 
-                    <!-- <li class="nav-item">
-                      <a class="nav-link" href="#">{{ \Auth::user()->name }}</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ url('/shopping/index') }}">Compras</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ url('/logout') }}">Cerrar sesión</a>
-                  </li>--->
-
             
 
-                    <!-- <li class='nav-item'>
-                        <a class='nav-link' data-toggle="modal" data-target="#login"><i class="flaticon-user"></i></a>
-                      </li>-->
+        
                 </ul>
             </div>
         </div>
