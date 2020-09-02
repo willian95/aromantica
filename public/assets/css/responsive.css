@@ -2,6 +2,25 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+    .btn-default {
+        width: 100%;
+    }
+    .btn-default .flaticon-shopping-cart:before {
+        content: "\f102";
+        margin-left: 0;
+        font-size: 25px;
+    }
+    .flaticon-user:before {
+        content: "\f100";
+        margin-left: -16px !important;
+        font-size: 26px !important;
+    }
+    .add_btn {
+        left: 50%;
+    }
+    .nav-item .mr-5 {
+        margin-right: 0rem !important;
+    }
     .main-registro .card-body {
         padding-top: 260px;
     }
