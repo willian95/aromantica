@@ -28,15 +28,6 @@
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <script src="{{ asset('pwa.js') }}"></script>
 
-    @php
-
-        if(url('/') == "https://aromantica.co"){
-            header("location: https://www.aromantica.co");
-            
-        }
-
-    @endphp
-
     <title>Aromantica </title>
 
     @laravelPWA
@@ -940,6 +931,10 @@
 
                 },
                 mounted() {
+                    
+                    if("{{ url('/') }}" == "https://aromantica.co"){
+                        window.location.href="https://www.aromantica.co");
+                    }
 
                     this.cartInfo()
 
