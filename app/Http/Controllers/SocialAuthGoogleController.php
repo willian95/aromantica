@@ -20,10 +20,14 @@ class SocialAuthGoogleController extends Controller
     {
         try {
             
-            
-            dd(url('/'));
+            $driver = "";
+            if(url('/') == "https://www.aromantica.co"){
+                $driver = "google";
+            }else{
+                $driver = "google2";
+            }
 
-            $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver($driver)->user();
             $existUser = User::where('email',$googleUser->email)->first();
             
             if($existUser) {
