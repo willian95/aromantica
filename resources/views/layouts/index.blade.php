@@ -31,7 +31,8 @@
     @php
 
         if(url('/') == "https://aromantica.co"){
-            dd("hey");
+            header("location: https://www.aromantica.co");
+            
         }
 
     @endphp
