@@ -934,7 +934,7 @@
                 mounted() {
                     console.log(this.url)
                     if(this.url == "https://aromantica.co"){
-                        window.location.href="https://www.aromantica.co");
+                        window.location.href="https://www.aromantica.co"
                     }
 
                     this.cartInfo()
