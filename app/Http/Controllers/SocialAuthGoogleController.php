@@ -12,7 +12,15 @@ class SocialAuthGoogleController extends Controller
 {
     public function redirect()
     {
-        return Socialite::driver('google')->redirect();
+
+        $driver = "";
+        if(url('/') == "https://www.aromantica.co"){
+            $driver = "google";
+        }else{
+            $driver = "google2";
+        }
+
+        return Socialite::driver($driver)->redirect();
     }
 
 
