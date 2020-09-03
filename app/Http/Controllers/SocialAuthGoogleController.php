@@ -20,7 +20,9 @@ class SocialAuthGoogleController extends Controller
     {
         try {
             
-        
+            
+            dd(url('/'));
+
             $googleUser = Socialite::driver('google')->user();
             $existUser = User::where('email',$googleUser->email)->first();
             

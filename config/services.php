@@ -28,11 +28,21 @@ return [
         'client_id' => '270786535137-tc6hofsn5ijmicm7dkdfihni8ta8j20g.apps.googleusercontent.com',
         'client_secret' => 'nkdylfOeY0dOCerNoDn3fJ3p',
         'redirect' => 'https://www.aromantica.co/google/login/callback'],
+
+    'google2' => [
+        'client_id' => '270786535137-tc6hofsn5ijmicm7dkdfihni8ta8j20g.apps.googleusercontent.com',
+        'client_secret' => 'nkdylfOeY0dOCerNoDn3fJ3p',
+        'redirect' => 'https://aromantica.co/google/login/callback'],
     
     'facebook' => [
         'client_id' => '1398681316992199',
         'client_secret' => 'ed7d196af7c133152a45d1863baacaaa',
         'redirect' => 'https://www.aromantica.co/facebook/login/callback'],
+
+    'facebook2' => [
+        'client_id' => '1398681316992199',
+        'client_secret' => 'ed7d196af7c133152a45d1863baacaaa',
+        'redirect' => 'https://aromantica.co/facebook/login/callback'],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
