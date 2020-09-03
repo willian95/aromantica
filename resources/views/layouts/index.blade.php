@@ -27,6 +27,15 @@
     <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel='stylesheet'>
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <script src="{{ asset('pwa.js') }}"></script>
+
+    @php
+
+        if(url('/') == "https://aromantica.co"){
+            dd("hey");
+        }
+
+    @endphp
+
     <title>Aromantica </title>
 
     @laravelPWA
