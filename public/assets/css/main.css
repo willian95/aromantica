@@ -124,7 +124,7 @@ body.offcanvas-expanded {
 }
 
 .hamburger--elastic .hamburger-inner {
-    top: 35px;
+    top: 55px;
     transition-duration: 0.275s;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     right: 20px;
@@ -177,7 +177,7 @@ body.offcanvas-expanded {
 
 @media (max-width: 767px) and (min-width: 0px) and (max-width: 767px) {
     .offcanvas-collapse {
-        top: 90px;
+        top: 120px;
         padding: 40px 10px;
         overflow-y: scroll;
         z-index: 1;
