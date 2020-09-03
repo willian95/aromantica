@@ -782,7 +782,8 @@
                         products: [],
                         guesProducts: [],
                         authCheck: "{{ Auth::check() }}",
-                        total: 0
+                        total: 0,
+                        url:"{{ url('/') }}"
                     }
                 },
                 methods: {
@@ -931,8 +932,8 @@
 
                 },
                 mounted() {
-                    
-                    if("{{ url('/') }}" == "https://aromantica.co"){
+                    console.log(this.url)
+                    if(this.url == "https://aromantica.co"){
                         window.location.href="https://www.aromantica.co");
                     }
 
