@@ -160,7 +160,7 @@ class StoreSiteController extends Controller
         try{
 
             $categoriesArray=[];
-            $categories = Category::all();
+            $categories = Category::orderBy("name")->get();
 
             foreach($categories as $category){
 
@@ -192,7 +192,7 @@ class StoreSiteController extends Controller
 
         try{
 
-            $brands = Brand::all();
+            $brands = Brand::orderBy("name")->get();
             return response()->json(["success" => true, "brands" => $brands]);
 
         }catch(\Exception $e){
