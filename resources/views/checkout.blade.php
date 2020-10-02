@@ -81,7 +81,7 @@
 
 
                         <div class="form-group">
-                            <label for="state"><i class="fa fa-id-card icon_form"></i>Departamento</label>
+                            <label for="state"><i class="fa fa-map icon_form"></i>Departamento</label>
                             <select class="form-control" v-model="state" id="state"
                                 @change="setShippingCalculatedFalse(); getProvinces()">
                                 <option v-for="state in states" :value="state.code_2_digits">@{{ state.name }}
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="city"><i class="fa fa-id-card icon_form"></i>Ciudad</label>
+                            <label for="city"><i class="fa fa-map icon_form"></i>Ciudad</label>
                             <select class="form-control" v-model="city" id="city"
                                 @keyup="setShippingCalculatedFalse()">
                                 <option v-for="province in provinces" :value="province.code">@{{ province.name }}
@@ -106,7 +106,7 @@
                     <div class="col-md-12">
 
                         <div class="form-group">
-                            <label for="dirección"><i class="fa fa-globe icon_form"></i>Dirección de envío</label>
+                            <label for="dirección"><i class="fa fa-map-marker icon_form"></i>Dirección de envío</label>
                             <input placeholder="Cra 12 # 34 - 56" type="text" class="form-control" v-model="street"
                                 id="dirección" @keyup="setShippingCalculatedFalse()">
                         </div>

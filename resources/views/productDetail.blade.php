@@ -82,7 +82,6 @@
 
                                     <div class="cantidad_btn">
 
-
                                         <button class="btn btn-success" @click="substractAmount()">-</button>
                                         @{{ amount }}
                                         <button class="btn btn-success" @click="addAmount()">+</button>
