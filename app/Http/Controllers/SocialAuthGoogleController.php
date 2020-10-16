@@ -17,7 +17,7 @@ class SocialAuthGoogleController extends Controller
         if(url('/') == "https://www.aromantica.co"){
             $driver = "google";
         }else{
-            $driver = "google2";
+            Redirect::away("https://www.aromantica.co/google/redirect");
         }
 
         return Socialite::driver($driver)->redirect();
@@ -31,8 +31,6 @@ class SocialAuthGoogleController extends Controller
             $driver = "";
             if(url('/') == "https://www.aromantica.co"){
                 $driver = "google";
-            }else{
-                $driver = "google2";
             }
 
             $googleUser = Socialite::driver($driver)->user();
