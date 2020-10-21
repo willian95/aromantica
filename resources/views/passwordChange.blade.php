@@ -48,22 +48,12 @@ const devArea = new Vue({
 
                     if (res.data.success == true) {
 
-                        swal({
-                            icon:"success",
-                            text:res.data.msg
-                        }).then(res => {
-                            window.location.href = "{{ url('/') }}"
-                        })
-                        
+                        alertify.success(res.data.msg)
+                        window.location.href = "{{ url('/') }}"
 
                     } else {
 
-                        swal({
-                            icon:"error",
-                            text:res.data.msg
-                        }).then(res => {
-                            window.location.href = "{{ url('/') }}"
-                        })
+                        alertify.error(res.data.msg)
 
                     }
 
