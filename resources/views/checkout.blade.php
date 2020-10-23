@@ -178,9 +178,9 @@
                     <input name="p_tax" id="p_tax" type="hidden" value="0">
                     <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
                     @if(env("APP_ENV") == 'local')
-                        <input name="p_test_request" type="hidden" value="true">
+                        <input name="p_test_request" type="hidden" value="TRUE">
                     @else
-                        <input name="p_test_request" type="hidden" value="false">
+                        <input name="p_test_request" type="hidden" value="FALSE">
                     @endif
                     <input name="p_email" type="hidden" value="rodriguezwillian95@gmail.com">
                     <input name="p_url_response" type="hidden" value="{{ url('checkout/response') }}">
