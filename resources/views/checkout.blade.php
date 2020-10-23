@@ -177,7 +177,11 @@
                     <input name="p_amount" id="p_amount" type="hidden" v-model="total">
                     <input name="p_tax" id="p_tax" type="hidden" value="0">
                     <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
-                    <input name="p_test_request" type="hidden" value="FALSE">
+                    @if(env("APP_ENV") == 'local')
+                        <input name="p_test_request" type="hidden" value="true">
+                    @else
+                        <input name="p_test_request" type="hidden" value="false">
+                    @endif
                     <input name="p_email" type="hidden" value="rodriguezwillian95@gmail.com">
                     <input name="p_url_response" type="hidden" value="{{ url('checkout/response') }}">
                     <input name="p_url_confirmation" type="hidden" value="{{ url('checkout/confirmation') }}">
@@ -377,7 +381,7 @@ const devArea = new Vue({
                         "email": "ventas@aromantica.co",
                         "phone": "573165726092‬",
                         "street": "CRA 68 # 24 39 LOCAL 316 CC SALITRE PLAZA",
-                        "number": "",
+                        "number": "#24 39",
                         "district": "Cundinamarca",
                         "city": "11001000",
                         "state": "CN",
@@ -408,16 +412,16 @@ const devArea = new Vue({
                 vm = this
                 $.ajax({
                     type: "POST",
-                    //url: "https://api-test.envia.com/ship/rate",
-                    url: "https://api.envia.com/ship/rate",
+                    url: "https://api-test.envia.com/ship/rate",
+                    //url: "https://api.envia.com/ship/rate",
                     data: JSON.stringify(data),
                     dataType: "json",
-                    /*headers: {
-                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
-                    },*/
                     headers: {
-                        'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
                     },
+                    /*headers: {
+                        'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                    },*/
                     crossDomain: true,
                     success: function(result) {
                         // process result
@@ -507,7 +511,7 @@ const devArea = new Vue({
                     "email": "ventas@aromantica.co",
                     "phone": "573165726092‬",
                     "street": "CRA 68 # 24 39 LOCAL 316 CC SALITRE PLAZA",
-                    "number": "",
+                    "number": "#24 39",
                     "district": "Cundinamarca",
                     "city": "11001000",
                     "state": "CN",

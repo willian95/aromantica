@@ -81,15 +81,15 @@ class CheckoutController extends Controller
                 $payment->status = "aprobado";
 
                 $shipping = $request->shippingData;
-                /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
+                $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
                 $response = $client->post("https://api-test.envia.com/ship/generate", [
                     "json" => $shipping
-                ]);*/
+                ]);
 
-                $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
+                /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
                 $response = $client->post("https://api.envia.com/ship/generate", [
                     "json" => $shipping
-                ]);
+                ]);*/
                 
                 $envia = json_decode($response->getBody());
                 
