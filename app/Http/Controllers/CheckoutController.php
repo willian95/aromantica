@@ -44,6 +44,10 @@ class CheckoutController extends Controller
 
         try{    
 
+            $shipping = $request->shippingData;
+            $shipping->origin->number = "";
+            dump($shipping);
+
             if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
                 return response()->json(["success" => false, "msg" => "Esta referencia ya ha sido utilizada"]);
             }
@@ -81,6 +85,7 @@ class CheckoutController extends Controller
                 $payment->status = "aprobado";
 
                 $shipping = $request->shippingData;
+                dump($shipping);
                 /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
                 $response = $client->post("https://api-test.envia.com/ship/generate", [
                     "json" => $shipping
@@ -92,7 +97,7 @@ class CheckoutController extends Controller
                 ]);
                 
                 $envia = json_decode($response->getBody());
-                dump(json_encode($shipping));
+                
                 dump($envia);
                 
                 $totalShippingCost = 0;
