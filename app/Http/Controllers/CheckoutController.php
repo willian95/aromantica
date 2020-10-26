@@ -85,13 +85,15 @@ class CheckoutController extends Controller
                 $response = $client->post("https://api-test.envia.com/ship/generate", [
                     "json" => $shipping
                 ]);*/
-                dump($shipping);
+                
                 $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
                 $response = $client->post("https://api.envia.com/ship/generate", [
                     "json" => $shipping
                 ]);
                 
                 $envia = json_decode($response->getBody());
+                dump($shipping);
+                dump($envia);
                 
                 $totalShippingCost = 0;
                 foreach($envia->data as $shippingCost){
