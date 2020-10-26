@@ -92,7 +92,7 @@ class CheckoutController extends Controller
                 ]);
                 
                 $envia = json_decode($response->getBody());
-                dump($shipping);
+                dump(json_encode($shipping));
                 dump($envia);
                 
                 $totalShippingCost = 0;
