@@ -45,7 +45,7 @@ class CheckoutController extends Controller
         try{    
 
             $shipping = $request->shippingData;
-            $shipping->origin->number = "";
+            $shipping["origin"]["number"] = "";
             dump($shipping);
 
             if(Payment::where("epayco_reference", $request->refPayco)->count() > 0){
