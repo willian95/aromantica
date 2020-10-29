@@ -382,7 +382,7 @@ const devArea = new Vue({
                         "city": "11001000",
                         "state": "CN",
                         "country": "CO",
-                        "postalCode": "11001000",
+                        "postalCode": "900864948-9",
                         "reference": ""
                     },
                     "destination": {
@@ -512,7 +512,7 @@ const devArea = new Vue({
                     "city": "11001000",
                     "state": "CN",
                     "country": "CO",
-                    "postalCode": "11001000",
+                    "postalCode": "900864948-9",
                     "reference": ""
                 },
                 "destination": {
