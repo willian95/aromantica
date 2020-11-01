@@ -2295,3 +2295,7 @@ button:focus {
     height: 70vh;
     overflow: scroll;
 }
+.mover1{
+    height: 50vh;
+    overflow: scroll;
+}
