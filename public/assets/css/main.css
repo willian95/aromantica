@@ -2299,3 +2299,8 @@ button:focus {
     height: 50vh;
     overflow: scroll;
 }
+strike{
+    color: #969696;
+    margin-left: 10px;
+
+}
