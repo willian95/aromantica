@@ -257,7 +257,7 @@ const devArea = new Vue({
                 .then(res => {
                     if (res.data.success == true) {
                         res.data.products.forEach((data, index) => {
-                            if(data.product_type_price.discount_percentage == 0){
+                            if(data.product_type_size.discount_percentage == 0){
                                 this.total = this.total + (data.amount * data.product_type_size.price)
                             }else{
                                 this.total = this.total + (data.amount * (data.product_type_size.price - (data.product_type_size.price * (data.product_type_size.discount_percentage/100))))
