@@ -177,7 +177,7 @@
                     <input name="p_amount" id="p_amount" type="hidden" v-model="total">
                     <input name="p_tax" id="p_tax" type="hidden" value="0">
                     <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
-                    <input name="p_test_request" type="hidden" value="FALSE">
+                    <input name="p_test_request" type="hidden" value="TRUE">
                     <input name="p_email" type="hidden" value="rodriguezwillian95@gmail.com">
                     <input name="p_url_response" type="hidden" value="{{ url('checkout/response') }}">
                     <input name="p_url_confirmation" type="hidden" value="{{ url('checkout/confirmation') }}">
@@ -257,7 +257,12 @@ const devArea = new Vue({
                 .then(res => {
                     if (res.data.success == true) {
                         res.data.products.forEach((data, index) => {
-                            this.total = this.total + (data.amount * data.product_type_size.price)
+                            if(data.product_type_price.discount_percentage == 0){
+                                this.total = this.total + (data.amount * data.product_type_size.price)
+                            }else{
+                                this.total = this.total + (data.amount * (data.product_type_size.price - (data.product_type_size.price * (data.product_type_size.discount_percentage/100))))
+                            }
+                            
                             let weight = 0
                             if (parseInt(data.amount) > 1) {
                                 weight = parseFloat(data.amount/2)
@@ -317,8 +322,11 @@ const devArea = new Vue({
             }).then(res => {
                 if (res.data.success == true) {
                     res.data.guestProducts.forEach((data, index) => {
-                        this.total = this.total + (parseFloat(data.product.price) * parseInt(
-                            data.amount))
+                        if(data.product.discount_percentage == 0){
+                            this.total = this.total + (parseFloat(data.product.price) * parseInt(data.amount))
+                        }else{
+                            this.total = this.total + (parseInt(data.amount) * (parseFloat(data.product.price) - (parseFloat(data.product.price) * (parseFloat(data.product.discount_percentage)/100))))
+                        }
                         let weight = 0
                         if (parseInt(data.amount) > 1) {
                             weight = parseFloat(data.amount/2)
@@ -408,16 +416,16 @@ const devArea = new Vue({
                 vm = this
                 $.ajax({
                     type: "POST",
-                    //url: "https://api-test.envia.com/ship/rate",
-                    url: "https://api.envia.com/ship/rate",
+                    url: "https://api-test.envia.com/ship/rate",
+                    //url: "https://api.envia.com/ship/rate",
                     data: JSON.stringify(data),
                     dataType: "json",
-                    /*headers: {
-                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
-                    },*/
                     headers: {
-                        'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                        'Authorization': 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d'
                     },
+                    /*headers: {
+                        'Authorization': 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c'
+                    },*/
                     crossDomain: true,
                     success: function(result) {
                         // process result

@@ -36,10 +36,10 @@
             <div class="main-products__item" v-for="product in products">
 
                 <div class="main-products__box">
-                    <div class="views">
+                    {{--<div class="views">
                         <span data-toggle="modal" data-target="#producto_modal"><i class="flaticon-view"></i></span>
                         <span href=""><i class="flaticon-shopping-cart"></i></span>
-                    </div>
+                    </div>--}}
                     <div class="main-products__img">
                         <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.image">
                     </div>
@@ -55,9 +55,15 @@
                             <div class="main-products__details">
                                 <p>@{{ product.type.name }} - @{{ product.size.name }}Oz</p>
                             </div>
-                            <div class="main-products__details">
+                            <div class="main-products__details" v-if="product.discount_percentage == 0">
                                 <span>$
                                     @{{ parseFloat(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                            </div>
+                            <div class="main-products__details" v-else>
+                                <span>$
+                                    @{{ parseFloat(product.price - ((product.discount_percentage/100)*product.price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                <strike>$
+                                    @{{ parseFloat(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
                             </div>
                         </div>
                     </a>

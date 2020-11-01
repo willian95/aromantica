@@ -10,7 +10,16 @@
             <div class="main-products__box">
                 <div class="views">
                     <p class="visualizar">Visualizar</p>
+                    @if($product->discount_percentage == 0)
                     <span data-toggle="modal" onclick="setStock('{{ $product->stock }}', '{{ $product->price }}', '{{ $product->id }}')" data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
+                    @else
+
+                        @php
+                            $price = $product->price - ($product->price*($product->discount_percentage/100));
+                        @endphp
+
+                        <span data-toggle="modal" onclick="setStock('{{ $product->stock }}', '{{ $price }}', '{{ $product->id }}')" data-target="#producto_modal-{{ $loop->index + 1 }}"><i class="flaticon-view"></i></span>
+                    @endif
                     <!--<span href=""><i class="flaticon-shopping-cart"></i></span>-->
                 </div>
                 <a href="{{ url('/tienda/producto/'.$product->id) }}">
@@ -29,9 +38,24 @@
                         <div class="main-products__details">
                             <p>{{ $product->type->name }} - {{ $product->size->name }}Oz</p>
                         </div>
+
+                        @if($product->discount_percentage == 0)
                         <div class="main-products__details">
                             <span>$ {{ number_format($product->price, 0, ",", ".") }}</span>
                         </div>
+
+                        @else
+
+                            @php
+                                $price = $product->price - ($product->price*($product->discount_percentage/100));
+                            @endphp
+
+                            <div class="main-products__details">
+                                <span>$ {{ number_format($price, 0, ",", ".") }}</span>
+                                <strike>$ {{ number_format($product->price, 0, ",", ".") }}</strike>
+                            </div>
+
+                        @endif
                         <!--<div class="main-products__details">
                 <span>$85,000</span>
               </div>-->
@@ -75,9 +99,20 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="main-top__price">
-                                <p><span>$
-                                        {{ number_format($product->price, 0, ",", ".") }}</span>
-                                </p>
+                                @if($product->discount_percentage == 0)
+                                    <p><span>$
+                                            {{ number_format($product->price, 0, ",", ".") }}</span>
+                                    </p>
+                                @else
+                                    
+                                    @php
+                                        $price = $product->price - ($product->price*($product->discount_percentage/100));
+                                    @endphp
+
+                                    <p><span>$
+                                            {{ number_format($price, 0, ",", ".") }}</span>
+                                    </p>
+                                @endif
 
 
                             </div>

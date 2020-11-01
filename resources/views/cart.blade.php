@@ -39,9 +39,8 @@
                                             </td>-->
                                         <td class="text-center">
                                             <div>
-                                                <span>$
-                                                    @{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-
+                                                <span v-if="product.product_type_size.discount_percentage == 0">$ @{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                                <span v-else>$ @{{ parseInt(product.product_type_size.price - ((product.product_type_size.discount_percentage/100)*product.product_type_size.price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                             </div>
                                         </td>
                                         <td class="text-center ">
@@ -58,8 +57,11 @@
                         </div>
                     </div>
 
-                    <td class="text-center">$
+                    <td class="text-center" v-if="product.product_type_size.discount_percentage == 0">$
                         @{{ parseInt(parseFloat(product.product_type_size.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                    </td>
+                    <td class="text-center" v-else>$
+                        @{{ parseInt(parseFloat(product.product_type_size.price - ((product.product_type_size.discount_percentage/100)*product.product_type_size.price)) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                     </td>
                     <td class="text-center">
                         <div class="btn ">
@@ -75,8 +77,8 @@
                                 :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt=""
                                 style="width: 100%">@{{ product.product.product.name }} -
                             @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
-                        <td class="text-center">$
-                            @{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                        <td class="text-center" v-if="product.product.discount_percentage == 0">$ @{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                        <td class="text-center" v-else>$ @{{ parseInt(product.product.price - ((product.product.discount_percentage/100)*product.product.price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                         <td class="text-center">
                             <div style="    text-align: center;
                                                 display: flex;
@@ -91,8 +93,11 @@
                 </div>
 
 
-                <td class="text-center">$
+                <td class="text-center" v-if="product.product.discount_percentage == 0">$
                     @{{ parseInt(parseFloat(product.product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                </td>
+                <td class="text-center" v-else>$
+                    @{{ parseInt(parseFloat(product.product.price - ((product.product.discount_percentage/100)*product.product.price)) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                 </td>
                 <td class="text-center">
                     <div class="btn ">
@@ -274,7 +279,12 @@ const devArea = new Vue({
 
                         this.products.forEach((data, index) => {
 
-                            this.total = this.total + (data.amount * data.product_type_size.price)
+                            if(data.product_type_size.discount_percentage == 0){
+                                this.total = this.total + (data.amount * data.product_type_size.price)
+                            }else{
+                                this.total = this.total + (data.amount * (data.product_type_size.price - ((data.product_type_size.discount_percentage/100)*data.product_type_size.price)))
+                            }
+                            
 
                         })
 
@@ -375,13 +385,18 @@ const devArea = new Vue({
             }).then(res => {
 
                 if (res.data.success == true) {
-                    console.log("test-guestProducts", res.data.guestProducts)
+                    //console.log("test-guestProducts", res.data.guestProducts)
                     this.guestProducts = res.data.guestProducts
 
                     this.guestProducts.forEach((data, index) => {
 
-                        this.total = this.total + (parseFloat(data.product.price) * parseInt(
+                        if(data.product.discount_percentage == 0){
+                            this.total = this.total + (parseFloat(data.product.price) * parseInt(
                             data.amount))
+                        }
+                        else{
+                            this.total = this.total + (data.amount * (data.product.price - ((data.product.discount_percentage/100)*data.product.price)))
+                        }
 
                     })
 

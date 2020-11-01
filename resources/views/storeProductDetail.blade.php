@@ -41,8 +41,8 @@
                                     <img class="logo-product" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandImage" alt="">
                                 </div>
                                 <div class="main-top__price justify-content-between">
-                                    <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
-
+                                    <p v-if="discountPercentage == 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                    <p v-else>$ @{{ parseFloat(price - ((discountPercentage/100)*price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
 
                                     <div class="cantidad_btn">
 
@@ -145,6 +145,7 @@ const devArea = new Vue({
             type: JSON.parse('{!! $product->type !!}'),
             stock: "{{ $product->stock }}",
             price: "{{ $product->price }}",
+            discountPercentage:"{{ $product->discount_percentage }}",
             productTypeSizeId: "{{ $product->id }}",
             productTypeSizes: JSON.parse('{!! json_encode($productTypeSizes->productTypeSizes) !!}'),
             types: [],

@@ -111,9 +111,15 @@
                                  <div class="main-products__details">
                                      <p>@{{ product.type.name }} - @{{ product.size.name }}Oz</p>
                                  </div>
-                                 <div class="main-products__details">
+                                 <div class="main-products__details" v-if="product.discount_percentage == 0">
                                      <span>$
                                          @{{ parseFloat(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                 </div>
+                                 <div class="main-products__details" v-else>
+                                    <span>$
+                                         @{{ parseFloat(product.price - (product.discount_percentage/100) * product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                     <strike>$
+                                         @{{ parseFloat(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
                                  </div>
                              </div>
                          </a>

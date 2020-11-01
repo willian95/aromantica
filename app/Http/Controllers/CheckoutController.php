@@ -57,7 +57,12 @@ class CheckoutController extends Controller
                 foreach($guestCart as $guest){
 
                     $productTypeSize = ProductTypeSize::where("id", $guest["productTypeSizeId"])->first();
-                    $total = $total + ($productTypeSize->price * $guest["amount"]);
+                    if($productTypeSize->discount_percentage == 0){
+                        $total = $total + ($productTypeSize->price * $guest["amount"]);
+                    }else{
+                        $total = $total + ($productTypeSize->price - ($productTypeSize->price * ($productTypeSize->discount_percentage/100))) * $guest["amount"];
+                    }
+                    
     
                 }
             }
@@ -68,7 +73,13 @@ class CheckoutController extends Controller
                 $carts = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize")->has("productTypeSize")->get();
                 foreach($carts as $cart){
 
-                    $total = $total + ($cart->productTypeSize->price * $cart->amount);
+                    if($cart->productTypeSize->discount_percentage == 0){
+                        $total = $total + ($cart->productTypeSize->price * $cart->amount);
+                    }
+                    else{
+
+                        $total = $total + (($cartproductTypeSize->price - ($cart->productTypeSize->price * ($cart->productTypeSize->discount_percentage/100))) * $cart->amount);
+                    }
 
                 }
 
@@ -81,22 +92,24 @@ class CheckoutController extends Controller
             if($data->data->x_response == "Aceptada"){
                 $payment->status = "aprobado";
 
-                //$shipping = $request->shippingData;
-                //dump($shipping);
-                /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
-                $response = $client->post("https://api-test.envia.com/ship/generate", [
-                    "json" => $shipping
-                ]);*/
-
                 $shipping = $request->shippingData;
                 $shipping["origin"]["number"] = "";
                 $shipping["destination"]["number"] = "";
+
+                //$shipping = $request->shippingData;
                 //dump($shipping);
-                
-                $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
-                $response = $client->post("https://api.envia.com/ship/generate", [
+                $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
+                $response = $client->post("https://api-test.envia.com/ship/generate", [
                     "json" => $shipping
                 ]);
+
+                
+                //dump($shipping);
+                
+                /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
+                $response = $client->post("https://api.envia.com/ship/generate", [
+                    "json" => $shipping
+                ]);*/
                 
                 $envia = json_decode($response->getBody());
                 
@@ -153,11 +166,20 @@ class CheckoutController extends Controller
                     foreach($guestCart as $guest){
 
                         $productTypeSize = ProductTypeSize::where("id", $guest["productTypeSizeId"])->first();
-                        $total = $total + ($productTypeSize->price * $guest["amount"]);
+                        if($productTypeSize->discount_percentage == 0){
+                            $total = $total + ($productTypeSize->price * $guest["amount"]);
+                        }else{
+                            $total = $total + ($productTypeSize->price - (($productTypeSize->discount_percentage/100) * $productTypeSize->price)) * $guest["amount"];
+                        }
+                        
         
                         $productPurchase = new ProductPurchase;
                         $productPurchase->amount = $guest["amount"];
-                        $productPurchase->price = $productTypeSize->price;
+                        if($productTypeSize->discount_percentage == 0){
+                            $productPurchase->price = $productTypeSize->price;
+                        }else{
+                            $productPurchase->price = ($productTypeSize->price - ($productTypeSize->discount_percentage/100) * $productTypeSize->price);
+                        }
                         $productPurchase->shipping_cost = 0;
                         $productPurchase->payment_id = $payment->id;
                         $productPurchase->product_type_size_id = $guest["productTypeSizeId"];
@@ -175,12 +197,21 @@ class CheckoutController extends Controller
     
                     $carts = Cart::where("user_id", \Auth::user()->id)->with("productTypeSize")->has("productTypeSize")->get();
                     foreach($carts as $cart){
-    
-                        $total = $total + ($cart->productTypeSize->price * $cart->amount);
-    
+                        
+                        if($cart->productTypeSize->discount_percentage == 0){
+                            $total = $total + ($cart->productTypeSize->price * $cart->amount);
+                        }else{
+                            $total = $total + (($cart->productTypeSize->price - (($cart->productTypeSize->discount_percentage/100)*$cart->productTypeSize->price)) * $cart->amount);
+                        }
+                        
+
                         $productPurchase = new ProductPurchase;
                         $productPurchase->amount = $cart->amount;
-                        $productPurchase->price = $cart->productTypeSize->price;
+                        if($cart->productTypeSize->discount_percentage == 0){
+                            $productPurchase->price = $cart->productTypeSize->price;
+                        }else{
+                            $productPurchase->price = $cart->productTypeSize->price - (($cart->productTypeSize->discount_percentage/100)*$cart->productTypeSize->price);
+                        }
                         $productPurchase->shipping_cost = 0;
                         $productPurchase->payment_id = $payment->id;
                         $productPurchase->product_type_size_id = $cart->product_type_size_id;

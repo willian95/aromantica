@@ -226,7 +226,8 @@
                                     <div>
                                         <p>@{{ product.product_type_size.product.name }}</p>
                                         <p>@{{ product.amount }} x
-                                            $@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                            <span v-if="product.product_type_size.discount_percentage == 0">$@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                            <span v-else>$@{{ parseInt(product.product_type_size.price - (product.product_type_size.price * (product.product_type_size.discount_percentage/100))).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                         </p>
                                     </div>
                                 </li>
@@ -238,7 +239,8 @@
                                     <div>
                                         <p>@{{ product.product.product.name }}</p>
                                         <p>@{{ product.amount }} x
-                                            $@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                            <span v-if="product.product.discount_percentage == 0">$@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                            <span v-else>$@{{ parseInt(product.product.price - (product.product.price * (product.product.discount_percentage/100))).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                         </p>
                                     </div>
                                 </li>
@@ -699,8 +701,13 @@
 
                                     this.products.forEach((data, index) => {
 
-                                        this.total = this.total + (data.amount * data.product_type_size
+                                        if(data.product_type_size.discount_percentage == 0){
+                                            this.total = this.total + (data.amount * data.product_type_size
                                             .price)
+                                        }else{
+                                            this.total = this.total + (data.amount * (data.product_type_size.price - (data.product_type_size.price*data.product_type_size.discount_percentage/100)))
+                                        }
+                                        
 
                                     })
 
@@ -724,10 +731,13 @@
                                 this.guestProducts = res.data.guestProducts
 
                                 this.guestProducts.forEach((data, index) => {
-                                    console.log("test-product", data)
-                                    this.total = this.total + (parseFloat(data.product.price) *
-                                        parseInt(
-                                            data.amount))
+                                    
+                                    if(data.product.discount_percentage == 0){
+                                        this.total = this.total + (parseFloat(data.product.price) * parseInt(data.amount))
+                                    }else{
+                                        this.total = this.total + ((parseFloat(data.product.price) - ((data.product.discount_percentage/100)*data.product.price) ) * parseInt(data.amount))
+                                    }
+                                    
 
                                 })
 
@@ -893,7 +903,7 @@
                         }
 
                         cart.forEach((data, index) => {
-
+                            
                             totalGuest = data.amount + totalGuest
 
                         })
