@@ -78,7 +78,7 @@ class CheckoutController extends Controller
                     }
                     else{
 
-                        $total = $total + (($cartproductTypeSize->price - ($cart->productTypeSize->price * ($cart->productTypeSize->discount_percentage/100))) * $cart->amount);
+                        $total = $total + (($cart->productTypeSize->price - ($cart->productTypeSize->price * ($cart->productTypeSize->discount_percentage/100))) * $cart->amount);
                     }
 
                 }
