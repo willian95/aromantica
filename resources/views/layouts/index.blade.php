@@ -869,27 +869,27 @@
                     login() {
 
                         axios.post("{{ url('/login') }}", {
-                                email: this.emailLogin,
-                                password: this.passwordLogin
-                            })
-                            .then(res => {
+                            email: this.emailLogin,
+                            password: this.passwordLogin
+                        })
+                        .then(res => {
 
-                                if (res.data.success == true) {
+                            if (res.data.success == true) {
 
-                                    swal({
-                                        title: "Excelente!",
-                                        text: res.data.msg,
-                                        icon: "success"
-                                    }).then(() => {
-                                        window.location.href = "{{ url('/') }}"
-                                    });
-                                    this.cartInfo()
+                                swal({
+                                    title: "Excelente!",
+                                    text: res.data.msg,
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.href = "{{ url('/') }}"
+                                });
+                                this.cartInfo()
 
 
-                                } else {
-                                    alertify.error(res.data.msg)
-                                }
-                            })
+                            } else {
+                                alertify.error(res.data.msg)
+                            }
+                        })
 
 
                     },
