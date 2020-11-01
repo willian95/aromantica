@@ -35,16 +35,9 @@
 </head>
 
 <body>
-
-
-
-
     <div class="elipse">
         <img class="logo-f" src="{{ asset('assets/img/logo.png') }}" alt="">
     </div>
-
-
-
     <!---   <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,9 +49,7 @@
         <div class='container-fluid nav-grid'>
             <a class='' href="{{ url('/') }}">
                 <img alt='' class="img-logo" src="{{ asset('assets/img/logo.png') }}">
-
             </a>
-
             <div class="search">
                 <div id="search">
                     <form>
@@ -93,7 +84,7 @@
                         <!--presentaciones-->
                         <div class="bg-search">
                             <span>Presentaciones</span>
-                            <ul class="name_list name_list2">
+                            <ul class="name_list name_list2 name_list3">
 
                                 @foreach(App\Type::all() as $type)
 
@@ -112,7 +103,7 @@
 
 
                             <!--caracteristicas--->
-                            <div class="bg-search">
+                            <div class="bg-search bg-search-scroll">
                                 <span>Tamaños</span>
                                 <ul class="name_list name_list2">
 
@@ -152,10 +143,30 @@
                     <!-- <li class='nav-item active'>
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
                     </li> -->
-                    <li class='nav-item'>
+                    <li class='nav-item mr-3'>
                         <a class='nav-link nav-link-black ' href='{{ url('/tienda') }}'>Tienda</a>
                     </li>
-                    @foreach(App\Category::all() as $category)
+
+                    <li class='nav-item dropdown dowms mr-3'>
+                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link-black '
+                          data-toggle='dropdown'>
+                         Categorías
+                        </a>
+                        <div aria-labelledby='dropdownMenuButton' class='dropdown-menu overdro'>
+                          <div class='content-drop'>
+                            <a class='dropdown-item' href='#'>
+                                @foreach(App\Category::all() as $category)
+                                <a href="{{ url('/category/'.$category->slug) }}" class='nav-link  nav-link '>
+                                    {{ $category->name }}
+                                </a>
+                                @endforeach
+                            </a>
+                          </div>
+                        </div>
+                      </li>
+
+
+                 <!-----   @foreach(App\Category::all() as $category)
 
                     <li class='nav-item down-md'>
                         <a href="{{ url('/category/'.$category->slug) }}" class='nav-link  nav-link '>
@@ -164,10 +175,10 @@
 
                     </li>
 
-                    @endforeach
+                    @endforeach---->
 
                     <!--menu tablet--->
-                    <li class='nav-item dropdown down-md-v'>
+                    <li class='nav-item dropdown down-md-v mr-3'>
                         <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle  ' data-toggle='dropdown'>
                             Categorias
                         </a>
@@ -189,7 +200,7 @@
 
                     <!--menu tablet--->
                     @if(\Auth::guest())
-                    <li class="nav-item">
+                    <li class="nav-item mr-3">
                         <a id="openRegisterModal" style="border: 1px solid white;
                           border-radius: 10px;" class="nav-link p-0 " href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
                     </li>

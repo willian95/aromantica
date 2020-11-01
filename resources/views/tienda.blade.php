@@ -38,7 +38,7 @@
 
                  <!--marcas--->
                  <div class="">
-                     <div class="border p-4 rounded mb-4">
+                     <div class="border p-4 rounded mb-4 cat-over">
                          <h3 class="mb-3 h6 text-uppercase text-black d-block">
                              Marcas
                          </h3>

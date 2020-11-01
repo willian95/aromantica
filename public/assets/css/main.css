@@ -733,7 +733,7 @@ body.offcanvas-expanded {
     font-size: 16px;
     color: #666;
     height: 15vh;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .main-top__details span {
@@ -814,7 +814,7 @@ body.offcanvas-expanded {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: auto;
 }
 
 .main-products__details span {
@@ -1638,6 +1638,8 @@ tab detalles
     border: 1px solid #0c4572;
     border-radius: 50px;
     background-color: transparent;
+    width: 350px;
+    margin-left: 20px;
 }
 
 .list_search {
@@ -2106,6 +2108,12 @@ button:focus {
     left: -40px;
     width: 200px;
     padding: 10px;
+    
+}
+.overdro
+{
+    overflow: scroll;
+    height: 45vh;
 }
 .sub {
     border-top: 1px solid #00000021;
@@ -2270,4 +2278,24 @@ button:focus {
 .img-logo {
     width: 230px;
     margin-right: 50px;
+}
+.nav-link {
+ 
+    font-size: 18px;
+}
+.bg-search-scroll{
+    height: 26vh;
+    overflow: scroll;
+}
+.name_list3{
+    height: 13vh;
+    overflow: scroll;
+}
+.cat-over{
+    height: 70vh;
+    overflow: scroll;
+}
+.mover1{
+    height: 50vh;
+    overflow: scroll;
 }
