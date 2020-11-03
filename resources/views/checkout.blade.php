@@ -470,9 +470,11 @@ const devArea = new Vue({
                     //$("#p_amount_base").val(this.total)
                     //$("#p_amount").val(this.total)
                     //alert("entre 1")
-                    this.cartInfo()
+                    
                     if (this.authCheck != '') {
                         this.checkAuthCartAmounts()
+                    }else{
+                        this.cartInfo()
                     }
                 } else {
                     alertify.error(res.data.msg)
