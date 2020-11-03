@@ -391,7 +391,7 @@ const devArea = new Vue({
 
                         if(data.product_type_size.stock < data.amount){
                             data.amount = data.product_type_size.stock
-                            this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].amount)
+                            this.updateCartAmount(this.products[index].product_type_size.id, data.amount)
                             //this.cartInfo()
                         }
 
