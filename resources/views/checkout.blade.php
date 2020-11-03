@@ -485,6 +485,8 @@ const devArea = new Vue({
                     
                     if (this.authCheck != '') {
                         this.checkAuthCartAmounts()
+                    }else{
+                        this.cartInfo()
                     }
                 } else {
                     alertify.error(res.data.msg)
