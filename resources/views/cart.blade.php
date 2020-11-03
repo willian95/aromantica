@@ -380,7 +380,7 @@ const devArea = new Vue({
                 })
 
         },
-        guestFetch() {
+        checkGuestCartAmounts(){
 
             let cart = []
             if (window.localStorage.getItem('cartAromantica') != null) {
@@ -391,14 +391,9 @@ const devArea = new Vue({
                 cart: cart
             }).then(res => {
 
-                if (res.data.success == true) {
-                    //console.log("test-guestProducts", res.data.guestProducts)
-                    this.guestProducts = res.data.guestProducts
-
-                    this.guestProducts.forEach((data, index) => {
-
-                        if(data.product.stock < data.amount){
-                            
+                this.guestProducts.forEach((data, index) => {
+                    if(data.product.stock < data.amount){
+                        isAmountChanged = true
                         if (window.localStorage.getItem('cartAromantica') != null) {
                             cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
                         }
@@ -414,12 +409,33 @@ const devArea = new Vue({
 
                         window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
 
-                        this.total = 0
-                        this.fetch()
-                        this.guestFetch()
-                        this.cartInfo()
-
                     }
+                })
+
+                this.guestFetch()
+
+            })
+
+        },
+        guestFetch() {
+
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
+
+            axios.post("{{ url('/cart/guest/fetch') }}", {
+                cart: cart
+            }).then(res => {
+
+                if (res.data.success == true) {
+
+                    //console.log("test-guestProducts", res.data.guestProducts)
+                    this.guestProducts = res.data.guestProducts
+
+                    this.guestProducts.forEach((data, index) => {
+
+                        
 
                         if(data.product.discount_percentage == 0){
                             this.total = this.total + (parseFloat(data.product.price) * parseInt(
@@ -428,6 +444,8 @@ const devArea = new Vue({
                         else{
                             this.total = this.total + (data.amount * (data.product.price - ((data.product.discount_percentage/100)*data.product.price)))
                         }
+
+                        console.log("total", this.total)
 
                     })
 
@@ -473,7 +491,8 @@ const devArea = new Vue({
             this.fetch()
         }
 
-        this.guestFetch()
+        //this.guestFetch()
+        this.checkGuestCartAmounts()
         //this.cartInfo()
 
     }
