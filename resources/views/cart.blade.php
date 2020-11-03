@@ -344,18 +344,20 @@ const devArea = new Vue({
         },
         updateCartAmount(product_type_size_id, amount) {
 
+            console.log(product_type_size_id, amount)
+
             axios.post("{{ url('/cart/amount/update') }}", {
-                    productTypeSizeId: product_type_size_id,
-                    amount: amount
-                })
-                .then(res => {
+                productTypeSizeId: product_type_size_id,
+                amount: amount
+            })
+            .then(res => {
 
-                    this.total = 0
-                    this.fetch()
-                    this.guestFetch()
-                    this.cartInfo()
+                this.total = 0
+                this.fetch()
+                this.guestFetch()
+                this.cartInfo()
 
-                })
+            })
 
         },
         erase(id) {
@@ -398,7 +400,10 @@ const devArea = new Vue({
 
                     })
 
-                    this.fetch()
+                    window.setTimeOut(() => {
+                        this.fetch()
+                    }, 300)
+                    
 
                 }
 
