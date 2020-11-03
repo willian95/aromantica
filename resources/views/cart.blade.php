@@ -286,11 +286,11 @@ const devArea = new Vue({
                             }else{
                                 this.total = this.total + (data.amount * (data.product_type_size.price - ((data.product_type_size.discount_percentage/100)*data.product_type_size.price)))
                             }
-
-                            console.log("total", this.total, data.product_type_size.id, data.amount)
                             
 
                         })
+
+                        this.cartInfo()
 
                     }
 
@@ -343,8 +343,6 @@ const devArea = new Vue({
             $("#cart-notification").html(cartTotal + "")
         },
         updateCartAmount(product_type_size_id, amount) {
-
-            console.log(product_type_size_id, amount)
 
             axios.post("{{ url('/cart/amount/update') }}", {
                 productTypeSizeId: product_type_size_id,
