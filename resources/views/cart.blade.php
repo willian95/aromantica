@@ -380,6 +380,33 @@ const devArea = new Vue({
                 })
 
         },
+        checkAuthCartAmounts(){
+
+            axios.get("{{ url('/cart/fetch') }}")
+                .then(res => {
+
+                if (res.data.success == true) {
+
+
+                    this.products = res.data.products
+
+                    this.products.forEach((data, index) => {
+
+                        if(data.product_type_size.stock < data.amount){
+                            data.amount = data.product_type_size.stock
+                            this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].amount)
+                            this.cartInfo()
+                        }
+
+                    })
+
+                    this.fetch()
+
+                }
+
+            })
+
+        },
         checkGuestCartAmounts(){
 
             let cart = []
