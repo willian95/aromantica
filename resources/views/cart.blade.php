@@ -389,7 +389,7 @@ const devArea = new Vue({
 
                     this.products.forEach((data, index) => {
 
-                        console.log(data)
+                      
                         if(data.product_type_size.stock < data.amount){
                             console.log("entre", data)
                             this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].product_type_size.stock)

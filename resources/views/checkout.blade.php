@@ -311,6 +311,76 @@ const devArea = new Vue({
                 //$("#p_id_invoice").val(res.data.billingNumber)
             })
         },
+        checkAuthCartAmounts(){
+
+            axios.get("{{ url('/cart/fetch') }}")
+                .then(res => {
+
+                if (res.data.success == true) {
+
+
+                    this.products = res.data.products
+
+                    this.products.forEach((data, index) => {
+
+                    
+                        if(data.product_type_size.stock < data.amount){
+                            console.log("entre", data)
+                            this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].product_type_size.stock)
+                            //this.cartInfo()
+                        }
+
+                    })
+
+                    window.setTimeOut(() => {
+                        this.fetch()
+                    }, 300)
+                    
+
+                }
+
+            })
+
+        },
+        checkGuestCartAmounts(){
+
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
+
+            axios.post("{{ url('/cart/guest/fetch') }}", {
+                cart: cart
+            }).then(res => {
+
+                this.guestProducts = res.data.guestProducts
+
+                this.guestProducts.forEach((data, index) => {
+                    if(data.product.stock < data.amount){
+                        isAmountChanged = true
+                        if (window.localStorage.getItem('cartAromantica') != null) {
+                            cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                        }
+
+                        cart.forEach((prod) => {
+
+                            if (prod.productTypeSizeId == this.guestProducts[index].product.id) {
+                                prod.amount = data.product.stock
+                                exists = true
+                            }
+
+                        })
+
+                        window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+
+                    }
+                })
+
+                this.guestFetch()
+
+            })  
+
+        },
         guestFetch() {
             let cart = []
             let packages = []
@@ -355,7 +425,7 @@ const devArea = new Vue({
                     //$("#p_amount").val(this.total)
                     //alert("entre 1")
                     if (this.authCheck != '') {
-                        this.fetch()
+                        this.checkAuthCartAmounts()
                     }
                 } else {
                     alertify.error(res.data.msg)
@@ -552,7 +622,8 @@ const devArea = new Vue({
         }
     },
     mounted() {
-        this.guestFetch()
+        this.checkGuestCartAmounts()
+        //this.guestFetch()
         this.getStates()
         this.getCarriers()
         this.getProvinces()
