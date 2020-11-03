@@ -743,7 +743,7 @@
                                 this.guestProducts = res.data.guestProducts
 
                                 this.guestProducts.forEach((data, index) => {
-                                    
+                                    console.log("guest-fetch-cart-info", data)
                                     if(data.product.discount_percentage == 0){
                                         this.total = this.total + (parseInt(data.product.price) * parseInt(data.amount))
                                     }else{
