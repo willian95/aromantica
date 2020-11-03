@@ -391,6 +391,8 @@ const devArea = new Vue({
                 cart: cart
             }).then(res => {
 
+                this.guestProducts = res.data.guestProducts
+
                 this.guestProducts.forEach((data, index) => {
                     if(data.product.stock < data.amount){
                         isAmountChanged = true
