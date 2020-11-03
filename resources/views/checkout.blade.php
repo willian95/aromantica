@@ -365,7 +365,7 @@ const devArea = new Vue({
             }
 
             cart.forEach((data, index) => {
-
+                console.log("cart-fetch", data)
                 totalGuest = data.amount + totalGuest
 
             })
@@ -380,7 +380,7 @@ const devArea = new Vue({
                             this.products = res.data.products
 
                             this.products.forEach((data, index) => {
-                                console.log("cart-fetch", data)
+                                
                                 totalCheck = totalCheck + data.amount
 
                             })
