@@ -397,7 +397,7 @@ const devArea = new Vue({
                 localStorage.setItem("executeCartPreview", "1")
             }
 
-            console.log("cart-total", data)
+            console.log("cart-total", totalGuest, totalCheck)
             let cartTotal = totalGuest + totalCheck
             $("#cart-notification").html(cartTotal + "")
         },
