@@ -79,13 +79,11 @@
                                 <div class="main-top__price justify-content-between">
                                     <p v-if="discount == 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
 
-                                    <span v-else>
                         
                                         
-                                        <p>$ @{{ parseFloat(price - ((discount/100)*price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
-                                        <strike>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
-                                    
-                                    </span>
+                                        <p v-if="discount > 0">$ @{{ parseFloat(price - ((discount/100)*price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                        <strike v-if="discount > 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
+              
 
 
                                     <div class="cantidad_btn">
