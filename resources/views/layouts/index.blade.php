@@ -712,6 +712,8 @@
 
                                     this.products.forEach((data, index) => {
 
+                                        console.log("products-cart-info", data)
+
                                         if(data.product_type_size.discount_percentage == 0){
                                             this.total = this.total + (data.amount * data.product_type_size.price)
                                         }else{
