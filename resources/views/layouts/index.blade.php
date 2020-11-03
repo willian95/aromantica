@@ -713,8 +713,7 @@
                                     this.products.forEach((data, index) => {
 
                                         if(data.product_type_size.discount_percentage == 0){
-                                            this.total = this.total + (data.amount * data.product_type_size
-                                            .price)
+                                            this.total = this.total + (data.amount * data.product_type_size.price)
                                         }else{
                                             this.total = this.total + (data.amount * (data.product_type_size.price - (data.product_type_size.price*data.product_type_size.discount_percentage/100)))
                                         }
@@ -744,16 +743,16 @@
                                 this.guestProducts.forEach((data, index) => {
                                     
                                     if(data.product.discount_percentage == 0){
-                                        this.total = this.total + (parseFloat(data.product.price) * parseInt(data.amount))
+                                        this.total = this.total + (parseInt(data.product.price) * parseInt(data.amount))
                                     }else{
-                                        this.total = this.total + ((parseFloat(data.product.price) - ((data.product.discount_percentage/100)*data.product.price) ) * parseInt(data.amount))
+                                        this.total = this.total + ((parseInt(data.product.price) - ((data.product.discount_percentage/100)*data.product.price) ) * parseInt(data.amount))
                                     }
                                     
 
                                 })
 
                             } else {
-                                alertify.error(res.data.msg)
+                                //alertify.error(res.data.msg)
                             }
 
                         })
@@ -938,8 +937,7 @@
                                         })
 
                                         let cartTotalCheck = totalGuest + totalCheck
-                                        console.log("test-cartTotal", totalGuest, totalCheck,
-                                            cartTotalCheck)
+                                        
                                         $("#cart-notification").html(cartTotalCheck + "")
 
                                     }

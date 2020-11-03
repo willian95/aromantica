@@ -77,7 +77,15 @@
                                     <img class="logo-product" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandImage" alt="">
                                 </div>
                                 <div class="main-top__price justify-content-between">
-                                    <p>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                    <p v-if="discount == 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+
+                                    <div v-else>
+                        
+                                        
+                                        <p>$ @{{ parseFloat(price - ((discount/100)*price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                        <strike>$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
+                                    
+                                    </div>
 
 
                                     <div class="cantidad_btn">
@@ -178,6 +186,7 @@ const devArea = new Vue({
             image: "{{ $product->image }}",
             description: "{{ $product->description }}",
             productTypeSizes: JSON.parse('{!! json_encode($product->productTypeSizes) !!}'),
+            discount:0,
             types: [],
             sizes: [],
             type: "",
@@ -209,6 +218,7 @@ const devArea = new Vue({
 
             this.amount = 0;
             this.size = size
+            this.discount = 0
 
             if (this.type != "" && this.size != "") {
 
@@ -218,6 +228,7 @@ const devArea = new Vue({
 
                         this.productTypeSize = data
                         this.price = data.price
+                        this.discount = data.discount
                         this.stock = data.stock
 
                     }
