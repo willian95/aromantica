@@ -704,15 +704,15 @@
 
                         axios.get("{{ url('/cart/fetch') }}")
                             .then(res => {
-
+                            
                                 if (res.data.success == true) {
 
 
                                     this.products = res.data.products
-
+                                    this.total = 0;
                                     this.products.forEach((data, index) => {
 
-                                        console.log("products-cart-info", data)
+                                        
 
                                         if(data.product_type_size.discount_percentage == 0){
                                             this.total = this.total + (data.amount * data.product_type_size.price)
