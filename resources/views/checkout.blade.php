@@ -342,6 +342,51 @@ const devArea = new Vue({
             })
 
         },
+        cartInfo() {
+            var totalGuest = 0;
+            var totalCheck = 0;
+
+            let cart = []
+            if (window.localStorage.getItem('cartAromantica') != null) {
+                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+            }
+
+            cart.forEach((data, index) => {
+
+                totalGuest = data.amount + totalGuest
+
+            })
+
+            if (this.authCheck == "1") {
+
+                axios.get("{{ url('/cart/fetch') }}")
+                    .then(res => {
+
+                        if (res.data.success == true) {
+
+                            this.products = res.data.products
+
+                            this.products.forEach((data, index) => {
+
+                                totalCheck = totalCheck + data.amount
+
+                            })
+
+                            let cartTotalCheck = totalGuest + totalCheck
+                
+                            $("#cart-notification").html(cartTotalCheck + "")
+                            localStorage.setItem("executeCartPreview", "1")
+                        }
+
+                    })
+
+            }else{
+                localStorage.setItem("executeCartPreview", "1")
+            }
+
+            let cartTotal = totalGuest + totalCheck
+            $("#cart-notification").html(cartTotal + "")
+        },
         checkGuestCartAmounts(){
 
             let cart = []
