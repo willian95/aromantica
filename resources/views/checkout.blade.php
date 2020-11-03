@@ -365,7 +365,7 @@ const devArea = new Vue({
             }
 
             cart.forEach((data, index) => {
-                console.log("cart-fetch", data)
+                
                 totalGuest = data.amount + totalGuest
 
             })
@@ -397,6 +397,7 @@ const devArea = new Vue({
                 localStorage.setItem("executeCartPreview", "1")
             }
 
+            console.log("cart-total", data)
             let cartTotal = totalGuest + totalCheck
             $("#cart-notification").html(cartTotal + "")
         },
