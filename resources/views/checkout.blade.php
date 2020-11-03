@@ -345,7 +345,7 @@ const devArea = new Vue({
 
                     })
 
-                    window.setTimeOut(() => {
+                    window.setTimeout(() => {
                         this.fetch()
                     }, 300)
                     
@@ -396,7 +396,7 @@ const devArea = new Vue({
             }else{
                 localStorage.setItem("executeCartPreview", "1")
             }
-            
+
             let cartTotal = totalGuest + totalCheck
             $("#cart-notification").html(cartTotal + "")
         },

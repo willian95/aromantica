@@ -398,7 +398,7 @@ const devArea = new Vue({
 
                     })
 
-                    window.setTimeOut(() => {
+                    window.setTimeout(() => {
                         this.fetch()
                     }, 300)
                     
