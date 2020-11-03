@@ -31,6 +31,7 @@
                                             @{{ product.product_type_size.product.name }} -
                                             @{{ product.product_type_size.type.name }} -
                                             @{{ product.product_type_size.size.name }} Oz
+                                            
                                         </td>
 
                                         <!--- <td class="text-center w-150">
@@ -279,6 +280,12 @@ const devArea = new Vue({
 
                         this.products.forEach((data, index) => {
 
+                            if(data.product_type_size.stock < data.amount){
+                                data.amount = data.product_type_size.stock
+                                this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].amount)
+                                this.cartInfo()
+                            }
+
                             if(data.product_type_size.discount_percentage == 0){
                                 this.total = this.total + (data.amount * data.product_type_size.price)
                             }else{
@@ -324,7 +331,7 @@ const devArea = new Vue({
                             })
 
                             let cartTotalCheck = totalGuest + totalCheck
-                            console.log("test-cartTotal", totalGuest, totalCheck, cartTotalCheck)
+                
                             $("#cart-notification").html(cartTotalCheck + "")
                             localStorage.setItem("executeCartPreview", "1")
                         }
@@ -389,6 +396,30 @@ const devArea = new Vue({
                     this.guestProducts = res.data.guestProducts
 
                     this.guestProducts.forEach((data, index) => {
+
+                        if(data.product.stock < data.amount){
+                            
+                        if (window.localStorage.getItem('cartAromantica') != null) {
+                            cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                        }
+
+                        cart.forEach((prod) => {
+
+                            if (prod.productTypeSizeId == this.guestProducts[index].product.id) {
+                                prod.amount = data.product.stock
+                                exists = true
+                            }
+
+                        })
+
+                        window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
+
+                        this.total = 0
+                        this.fetch()
+                        this.guestFetch()
+                        this.cartInfo()
+
+                    }
 
                         if(data.product.discount_percentage == 0){
                             this.total = this.total + (parseFloat(data.product.price) * parseInt(
