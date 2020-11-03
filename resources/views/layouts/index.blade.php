@@ -772,6 +772,7 @@
                     window.setInterval(() => {
 
                         if (window.localStorage.getItem("executeCartPreview") == "1") {
+                            this.total = 0;
                             if (this.authCheck == "1") {
                                 this.cartFetch()
                             }
