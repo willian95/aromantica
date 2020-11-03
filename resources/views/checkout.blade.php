@@ -312,6 +312,18 @@ const devArea = new Vue({
                 //$("#p_id_invoice").val(res.data.billingNumber)
             })
         },
+        updateCartAmount(product_type_size_id, amount) {
+
+            axios.post("{{ url('/cart/amount/update') }}", {
+                productTypeSizeId: product_type_size_id,
+                amount: amount
+            })
+            .then(res => {
+
+
+            })
+
+        },
         checkAuthCartAmounts(){
 
             axios.get("{{ url('/cart/fetch') }}")
@@ -326,7 +338,7 @@ const devArea = new Vue({
 
                     
                         if(data.product_type_size.stock < data.amount){
-                            console.log("entre", data)
+                            
                             this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].product_type_size.stock)
                             //this.cartInfo()
                         }
@@ -368,7 +380,7 @@ const devArea = new Vue({
                             this.products = res.data.products
 
                             this.products.forEach((data, index) => {
-
+                                console.log("cart-fetch", data)
                                 totalCheck = totalCheck + data.amount
 
                             })
@@ -473,8 +485,6 @@ const devArea = new Vue({
                     
                     if (this.authCheck != '') {
                         this.checkAuthCartAmounts()
-                    }else{
-                        this.cartInfo()
                     }
                 } else {
                     alertify.error(res.data.msg)
