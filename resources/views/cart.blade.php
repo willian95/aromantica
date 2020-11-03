@@ -517,7 +517,8 @@ const devArea = new Vue({
     mounted() {
 
         if (this.authCheck) {
-            this.fetch()
+            this.checkAuthCartAmounts()
+            //this.fetch()
         }
 
         //this.guestFetch()
