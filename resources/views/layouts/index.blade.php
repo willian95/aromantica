@@ -142,13 +142,13 @@
                 <ul class="navbar-nav nav-2">
                    <div class="iconos-social">
                        
-                    <li><a href=""><i class="fa fa-whatsapp" aria-hidden="true"></i>                 </a></li>
-                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i>                    </a></li>
-                    <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i>                    </a></li>
+                    <li><a href="https://wa.me/573003707533" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i>                 </a></li>
+                    <li><a href="https://www.facebook.com/Aromantica-Perfumeria-100208405251210/?ti=as" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i>                    </a></li>
+                    <li><a href="https://instagram.com/aromanticaperfumeria?igshid=4i52vlzcp5jz" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i>                    </a></li>
                    </div>
                     <li><a href="mailto:ventas@aromatica"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        ventas@aromatica.com</a></li>
-                        <li><a href="tel:0000000"><i class="fa fa-phone" aria-hidden="true"></i>
+                        ventas@aromatica.co</a></li>
+                        <li><a href="tel:+573003707533"><i class="fa fa-phone" aria-hidden="true"></i>
 
                             +57 00 12345567</a></li>
                 </ul>
