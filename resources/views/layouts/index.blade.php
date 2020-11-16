@@ -139,6 +139,19 @@
                 </span>
             </button>
             <div class='offcanvas-collapse fil ml-auto' id='navbarNav'>
+                <ul class="navbar-nav nav-2">
+                   <div class="iconos-social">
+                       
+                    <li><a href=""><i class="fa fa-whatsapp" aria-hidden="true"></i>                 </a></li>
+                    <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i>                    </a></li>
+                    <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i>                    </a></li>
+                   </div>
+                    <li><a href="mailto:ventas@aromatica"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        ventas@aromatica.com</a></li>
+                        <li><a href="tel:0000000"><i class="fa fa-phone" aria-hidden="true"></i>
+
+                            +57 00 12345567</a></li>
+                </ul>
                 <ul class='navbar-nav'>
                     <!-- <li class='nav-item active'>
                         <a class='nav-link active nav-link-black ' href='{{ url('/front-test') }}'>Inicio</a>
@@ -317,6 +330,8 @@
                         <a class='nav-link' data-toggle="modal" data-target="#login"><i class="flaticon-user"></i></a>
                       </li>-->
                 </ul>
+
+               
             </div>
         </div>
         </nav>

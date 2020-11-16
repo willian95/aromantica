@@ -2304,3 +2304,21 @@ strike{
     margin-left: 10px;
 
 }
+.nav-2{
+    border-bottom: 1px solid #00000017;
+    padding: 10px 0px;
+    font-size: 15px;
+    justify-content: flex-end;
+}
+.nav-2 i{
+    font-size: 17px;
+    
+}
+.nav-2 a{
+    margin-right: 25px;
+    color: #565656;
+    font-weight: 400;
+ }
+.iconos-social{
+    display: flex;
+}
