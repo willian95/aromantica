@@ -150,7 +150,7 @@
                         ventas@aromatica.co</a></li>
                         <li><a href="tel:+573003707533"><i class="fa fa-phone" aria-hidden="true"></i>
 
-                            +57 00 12345567</a></li>
+                            +57 3003707533</a></li>
                 </ul>
                 <ul class='navbar-nav'>
                     <!-- <li class='nav-item active'>
