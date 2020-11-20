@@ -1468,6 +1468,7 @@ tab detalles
     border: 1px solid #0000007a;
     border-radius: 10px;
     height: 33px;
+    width: max-content;
 }
 
 .cantidad_btn .btn-success {
@@ -2322,4 +2323,11 @@ strike{
  }
 .iconos-social{
     display: flex;
+}
+.precio_content{
+    display: flex;
+    font-size: 21px;
+}
+.main-top__title{
+    align-items: center;
 }

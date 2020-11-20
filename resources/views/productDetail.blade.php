@@ -77,13 +77,15 @@
                                     <img class="logo-product" :src="'{{ env('CMS_URL') }}'+'/images/brands/'+brandImage" alt="">
                                 </div>
                                 <div class="main-top__price justify-content-between">
+                                   <div class="precio_content">
                                     <p v-if="discount == 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
 
                         
                                         
-                                        <p v-if="discount > 0">$ @{{ parseFloat(price - ((discount/100)*price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
-                                        <strike v-if="discount > 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
-              
+                                    <p v-if="discount > 0">$ @{{ parseFloat(price - ((discount/100)*price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                    <strike v-if="discount > 0">$ @{{ parseFloat(price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</strike>
+          
+                                   </div>
 
 
                                     <div class="cantidad_btn">
