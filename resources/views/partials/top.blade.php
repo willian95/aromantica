@@ -50,10 +50,10 @@
                                          </div>
                                          <div class="main-top__price">
                                              <p>
-                                                @if($topProduct->productTypeSize->discountPercentage == 0)
+                                                @if($topProduct->productTypeSize->discount_percentage == 0)
                                                     <span> ${{ number_format($topProduct->productTypeSize->price, 0, ",", ".") }}</span>
                                                 @else
-                                                    <span> ${{ number_format($topProduct->productTypeSize->price - (($topProduct->productTypeSize->discountPercentage/100)*$topProduct->productTypeSize->price), 0, ",", ".") }}</span>
+                                                    <span> ${{ number_format($topProduct->productTypeSize->price - (($topProduct->productTypeSize->discount_percentage/100)*$topProduct->productTypeSize->price), 0, ",", ".") }}</span>
                                                     <strike>${{ number_format($topProduct->productTypeSize->price, 0, ",", ".") }}</strike>
                                                 @endif
                                                    
@@ -72,7 +72,7 @@
                                          <div class="float-left main-top__btn">
                                              <a class="btn-custom" href="{{ url('/tienda/producto/'.$topProduct->productTypeSize->id) }}">
                                                 Ordene ya >
-                                                {{ $topProduct->productTypeSize->discountPercentage }}
+                                                {{ $topProduct->productTypeSize->discount_percentage }}
 
                                              </a>
                                          </div>
