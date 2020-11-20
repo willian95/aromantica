@@ -50,7 +50,7 @@
                                          </div>
                                          <div class="main-top__price">
                                              <p>
-                                                @if($topProduuct->productTypeSize->discountPercentage == 0)
+                                                @if($topProduct->productTypeSize->discountPercentage == 0)
                                                     <span> ${{ number_format($topProduct->productTypeSize->price, 0, ",", ".") }}</span>
                                                 @else
                                                     <span> ${{ number_format($topProduct->productTypeSize->price - (($topProduct->productTypeSize->discountPercentage/100)*$topProduct->productTypeSize->price), 0, ",", ".") }}</span>
