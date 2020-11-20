@@ -269,6 +269,10 @@
         margin-top: 7px;
         margin-bottom: 10px;
     }
+    .img-logo {
+        width: 160px;
+       
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
