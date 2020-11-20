@@ -12,7 +12,7 @@
                         <img src="{{ env('CMS_URL').'/images/banners/'.App\Banner::find(1)->image }}">
                         <div class="mask"></div>
                       @elseif(App\Banner::find(1)->type == "video")
-                        <video playsinline  loop style="width: 100%;" autoplay="true" muted="muted">
+                        <video playsinline poster="videos/banner.png" preload="auto"  loop style="width: 100%;" autoplay="true" muted="muted">
                           <source src="{{ env('CMS_URL').'/images/banners/'.App\Banner::find(1)->image }}" type="video/mp4">
                         </video>
                       @endif
