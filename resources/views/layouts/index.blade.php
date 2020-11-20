@@ -31,7 +31,14 @@
     <title>Aromantica </title>
 
     @laravelPWA
-
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9GR52EFB78"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9GR52EFB78');
+</script>
 </head>
 
 <body>

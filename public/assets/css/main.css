@@ -2309,6 +2309,7 @@ strike{
     padding: 10px 0px;
     font-size: 15px;
     justify-content: flex-end;
+    margin-bottom: 10px;
 }
 .nav-2 i{
     font-size: 17px;
