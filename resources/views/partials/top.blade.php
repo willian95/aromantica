@@ -71,7 +71,9 @@
                                          </div>
                                          <div class="float-left main-top__btn">
                                              <a class="btn-custom" href="{{ url('/tienda/producto/'.$topProduct->productTypeSize->id) }}">
-                                                 Ordene ya >
+                                                Ordene ya >
+                                                {{ $topProduct->productTypeSize->discountPercentage }}
+
                                              </a>
                                          </div>
                                      </div>
