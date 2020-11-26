@@ -154,7 +154,7 @@
                     <li><a href="https://instagram.com/aromanticaperfumeria?igshid=4i52vlzcp5jz" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i>                    </a></li>
                    </div>
                     <li><a href="mailto:ventas@aromatica"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        ventas@aromatica.co</a></li>
+                        ventas@aromantica.co</a></li>
                         <li><a href="tel:+573003707533"><i class="fa fa-phone" aria-hidden="true"></i>
 
                             +57 3003707533</a></li>
