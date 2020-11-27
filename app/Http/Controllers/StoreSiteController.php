@@ -19,7 +19,7 @@ class StoreSiteController extends Controller
 
     function fetch(Request $request){
 
-        $take = 20;
+        $take = 21;
         $skip = ($request->page-1) * $take;
 
         try{
