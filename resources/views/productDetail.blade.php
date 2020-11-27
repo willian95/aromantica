@@ -179,7 +179,7 @@ const devArea = new Vue({
     data() {
         return {
             authCheck: "{{ Auth::check() }}",
-            title: "{{ $product->name }}",
+            title: "{{ addslashes($product->name) }}",
             category: "{{ $product->category->name }}",
             brand: "{{ $product->brand->name }}",
             brandImage: "{{ $product->brand->image }}",
