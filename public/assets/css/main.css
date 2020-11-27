@@ -2331,3 +2331,6 @@ strike{
 .main-top__title{
     align-items: center;
 }
+.nav-2 a:hover{
+    color: #0c4572;
+}
