@@ -126,10 +126,21 @@
                      </div>
                  </div>
              </div>
+
+             <div class="row" v-cloak>
+                <div class="col-12 text-center d-flex justify-content-center align-content-center mt-4">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item" v-for="index in pages"><a class="page-link" href="#"
+                                    @click="fetch(index)">@{{ index }}</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
          </div>
      </div>
 
-     <div class="row" v-cloak>
+    <!-- <div class="row" v-cloak>
          <div class="col-12">
              <nav aria-label="Page navigation example">
                  <ul class="pagination">
@@ -138,7 +149,7 @@
                  </ul>
              </nav>
          </div>
-     </div>
+     </div>--->
  </div>
 
 
