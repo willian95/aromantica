@@ -438,8 +438,8 @@
 
                                             <div class="text-center">
                                                 <p class="inicia">ó registrate facil </p>
-                                                <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                                    <i class="fa fa-facebook"></i> Facebook</a>
+                                                {{--<a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
+                                                    <i class="fa fa-facebook"></i> Facebook</a>--}}
                                                 <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i class="fa fa-google"></i> Google</a>
 
                                             </div>
@@ -502,8 +502,8 @@
                                             </div>
                                             <div class="text-center">
                                                 <p class="inicia">ó inicia sesión con:</p>
-                                                <a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                                    <i class="fa fa-facebook"></i> Facebook</a>
+                                                {{--<a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
+                                                    <i class="fa fa-facebook"></i> Facebook</a>--}}
                                                 <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i class="fa fa-google"></i> Google</a>
                                             </div>
                                         </div>
