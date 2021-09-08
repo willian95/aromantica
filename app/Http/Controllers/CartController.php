@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\ProductTypeSize;
+use App\Http\Requests\CouponRequest;
+use App\Coupon;
+use App\CouponUser;
+use App\CouponProduct;
 
 class CartController extends Controller
 {
@@ -16,12 +20,16 @@ class CartController extends Controller
     
     function store(Request $request){
 
-        try{
+        try{    
 
+            $productTypeSize = ProductTypeSize::find($request->productTypeSizeId);
             if(Cart::where("product_type_size_id", $request->productTypeSizeId)->where("user_id", \Auth::user()->id)->count() > 0){
+
+                
 
                 $cart = Cart::where("product_type_size_id", $request->productTypeSizeId)->where("user_id", \Auth::user()->id)->first();
                 $cart->amount = $cart->amount + $request->amount;
+                $cart->price = $productTypeSize->price;
                 $cart->update();
 
             }else{
@@ -30,6 +38,18 @@ class CartController extends Controller
                 $cart->product_type_size_id = $request->productTypeSizeId;
                 $cart->amount = $request->amount;
                 $cart->user_id = \Auth::user()->id;
+
+                if($productTypeSize->discount_percentage > 0){
+
+                    $cart->price = $productTypeSize->price - ($productTypeSize->price * ($productTypeSize->discount_percentage / 100));
+
+                }else{
+
+                    $cart->price = $productTypeSize->price;
+
+                }
+
+                
                 $cart->save();
 
             }
@@ -97,6 +117,129 @@ class CartController extends Controller
         }catch(\Exception $e){
             return response()->json(["success" => false, "msg" => "Error en el servidor", "err" => $e->getMessage(), "ln" => $e->getLine()]);
         }
+
+    }
+
+    function singleProductDiscount(CouponRequest $request){
+
+        if(Cart::where("user_id", \Auth::user()->id)->where("is_used", true)->count() > 0){
+
+            return response()->json(["success" => false, "msg" => "Ya has utilizado un cupón"]);
+
+        }
+
+
+        $coupon = Coupon::where("coupon_code", $request->coupon)->first();
+        if($coupon->total_discount == 'producto'){
+
+            if(CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->where("is_used", false)->count() > 0 || $coupon->all_users == true){
+
+                if(CouponProduct::where("coupon_id", $coupon->id)->where("product_type_size_id", $request->productTypeSizeId)->count() > 0 || $coupon->all_products == true){
+    
+                    $cart = Cart::where("user_id", \Auth::user()->id)->where("product_type_size_id", $request->productTypeSizeId)->first();
+    
+                    if($cart){
+    
+                        
+                        
+                        if($coupon->discount_type == "porcentual"){
+
+                            $priceToSubstract = $cart->price * ($coupon->discount_amount / 100);
+                            $cart->price = $cart->price - $priceToSubstract;
+
+                        }else{
+
+                            $cart->price = $cart->price - $coupon->discount_amount;
+
+                        }
+                        $cart->is_used = true;
+                        $cart->update();
+
+                        CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->update(["is_used" => true]);
+
+                        return response()->json(["success" => true, "msg" => "Has obtenido un descuento"]);
+    
+                    }else{
+    
+                        return response()->json(["success" => false, "msg" => "Producto no existe"]);
+    
+                    }
+    
+                }else{
+    
+                    return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+    
+                }
+    
+            }else{
+    
+                return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+    
+            }
+
+        }else{
+
+            return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+
+        }
+
+
+    }
+
+    function fullCartDiscount(CouponRequest $request){
+
+        if(Cart::where("user_id", \Auth::user()->id)->where("is_used", true)->count() > 0){
+
+            return response()->json(["success" => false, "msg" => "Ya has utilizado un cupón"]);
+
+        }
+
+        $coupon = Coupon::where("coupon_code", $request->coupon)->first();
+        if($coupon->total_discount == 'total'){
+
+            if(CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->where("is_used", false)->count() > 0 || $coupon->all_users == true){
+
+
+    
+                $carts = Cart::where("user_id", \Auth::user()->id)->get();
+            
+                foreach($carts as $cart){
+
+                    if(CouponProduct::where("coupon_id", $coupon->id)->where("product_type_size_id", $cart->product_type_size_id)->count() > 0 || $coupon->all_products == true ){
+
+                        $cartModel = Cart::find($cart->id);
+
+                        if($coupon->discount_type == "porcentual"){
+
+                            $priceToSubstract = $cartModel->price * ($coupon->discount_amount / 100);
+                            $cartModel->price = $cartModel->price - $priceToSubstract;
+    
+                        }else{
+    
+                            $cartModel->price = $cartModel->price - $coupon->discount_amount;
+    
+                        }
+                        $cartModel->is_used = true;
+                        $cartModel->update();
+                    }
+
+                }
+
+                return response()->json(["success" => true, "msg" => "Has obtenido un descuento"]);
+
+    
+            }else{
+    
+                return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+    
+            }
+
+        }else{
+
+            return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+
+        }
+
 
     }
 

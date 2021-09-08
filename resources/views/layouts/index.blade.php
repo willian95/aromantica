@@ -222,7 +222,7 @@
                     @if(\Auth::guest())
                     <li class="nav-item mr-3">
                         <a id="openRegisterModal" style="border: 1px solid white;
-                          border-radius: 10px;" class="nav-link p-0 " href="#" data-toggle="modal" data-target="#registerModal">Registrate</a>
+                          border-radius: 10px;" class="nav-link p-0 " href="#" data-toggle="modal" data-target="#registerModal">Regístrate</a>
                     </li>
 
 
@@ -431,13 +431,13 @@
 
 
                                             <div class=" form-group mt-4 text-center">
-                                                <button class="btn btn-primary btn-custom " @click="register()">Registrarse
+                                                <button class="btn btn-primary btn-custom " @click="register()">Regístrarse
                                                 </button>
 
                                             </div>
 
                                             <div class="text-center">
-                                                <p class="inicia">ó registrate facil </p>
+                                                <p class="inicia">ó regístrate facil </p>
                                                 {{--<a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
                                                     <i class="fa fa-facebook"></i> Facebook</a>--}}
                                                 <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i class="fa fa-google"></i> Google</a>
@@ -493,7 +493,7 @@
                                                 <i class="fa fa-lock icon_form"></i>
                                             </div>
                                             <div class="form-group  text-lg-right">
-                                                <a href="{{ url('/forgot-password') }}" class="texto">¿Haz olvidado tu
+                                                <a href="{{ url('/forgot-password') }}" class="texto">¿Has olvidado tu
                                                     contraseña?</a>
                                             </div>
                                             <div class=" form-group mt-4 text-center">
@@ -516,7 +516,7 @@
                                 </div>-->
 
                                     <div class="text-center">
-                                        <a class="txt facil" href="#" @click="openRegisterModal()">¡Registrate
+                                        <a class="txt facil" href="#" @click="openRegisterModal()">¡Regístrate
                                             facíl!</a>
                                         <p class="mt-3">¿Aún no tienes cuenta?</p>
 
@@ -815,14 +815,8 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                                     this.products = res.data.products
                                     this.total = 0;
                                     this.products.forEach((data, index) => {
-
                                         
-
-                                        if(data.product_type_size.discount_percentage == 0){
-                                            this.total = this.total + (data.amount * data.product_type_size.price)
-                                        }else{
-                                            this.total = this.total + (data.amount * (data.product_type_size.price - (data.product_type_size.price*data.product_type_size.discount_percentage/100)))
-                                        }
+                                        this.total = this.total + (data.amount * data.price)
                                         
 
                                     })
@@ -847,12 +841,9 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                                 this.guestProducts = res.data.guestProducts
 
                                 this.guestProducts.forEach((data, index) => {
-                                    console.log("guest-fetch-cart-info", data)
-                                    if(data.product.discount_percentage == 0){
-                                        this.total = this.total + (parseInt(data.product.price) * parseInt(data.amount))
-                                    }else{
-                                        this.total = this.total + ((parseInt(data.product.price) - ((data.product.discount_percentage/100)*data.product.price) ) * parseInt(data.amount))
-                                    }
+                                    
+                                    this.total = this.total + (parseInt(data.product.price) * parseInt(data.amount))
+                                    
                                     
 
                                 })

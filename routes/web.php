@@ -62,6 +62,8 @@ Route::get("/product/{slug}", "ProductController@show");
 
 Route::get("/cart/index", "CartController@index");
 Route::post("/cart/store", "CartController@store");
+Route::post("/cart/single-product/discount", "CartController@singleProductDiscount");
+Route::post("/cart/full-cart/discount", "CartController@fullCartDiscount");
 Route::get("/cart/fetch", "CartController@fetch");
 Route::post("/cart/guest/fetch", "CartController@guestFetch");
 Route::post("/cart/delete", "CartController@delete");

@@ -19,11 +19,15 @@
                                         <td class="text-center">Precio</td>
                                         <td class="text-center">Cantidad</td>
                                         <td class="text-center">Total</td>
+                                        @if(\Auth::check())
+                                            <td class="text-center">Descuento</td>
+                                        @endif
                                         <td class="text-center">Eliminar</td>
 
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    
                                     <tr v-for="(product, index) in products">
                                         <td class="text-center w-150 text-center">
                                             <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image"
@@ -55,24 +59,27 @@
                                                         @click="addAmountProduct(product, index)">+</button>
                                         </td>
 
-                        </div>
-                    </div>
+                                            </div>
+                                        </div>
 
-                    <td class="text-center" v-if="product.product_type_size.discount_percentage == 0">$
-                        @{{ parseInt(parseFloat(product.product_type_size.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
-                    </td>
-                    <td class="text-center" v-else>$
-                        @{{ parseInt(parseFloat(product.product_type_size.price - ((product.product_type_size.discount_percentage/100)*product.product_type_size.price)) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
-                    </td>
-                    <td class="text-center">
-                        <div class="btn ">
-                            <p class="delete" href="#" @click="erase(product.id)"><span>x</span></p>
-                        </div>
-                    </td>
+                                        <td class="text-center">$
+                                            @{{ parseInt(parseFloat(product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Código de descuento" :id="'cart-discount'+index">
+                                            </div>
+                                            <button class="btn btn-primary" @click="setCodeSingleProduct(product.product_type_size, index, false)">Aplicar</button>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn ">
+                                                <p class="delete" href="#" @click="erase(product.id)"><span>x</span></p>
+                                            </div>
+                                        </td>
 
 
 
-                    </tr>
+                                    </tr>
                     <tr v-for="(product, index) in guestProducts">
                         <td class="text-center w-150"><img
                                 :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt=""
@@ -94,12 +101,18 @@
                 </div>
 
 
-                <td class="text-center" v-if="product.product.discount_percentage == 0">$
-                    @{{ parseInt(parseFloat(product.product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+
+                <td class="text-center">$
+                    @{{ parseInt(parseFloat(product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                 </td>
-                <td class="text-center" v-else>$
-                    @{{ parseInt(parseFloat(product.product.price - ((product.product.discount_percentage/100)*product.product.price)) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
-                </td>
+                @if(\Auth::check())
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Código de descuento" :id="'cart-discount-guest'+index">
+                        </div>
+                        <button class="btn btn-primary" @click="setCodeSingleProduct(product.product_type_size, index, true)">Aplicar</button>
+                    </td>
+                @endif
                 <td class="text-center">
                     <div class="btn ">
                         <p class="delete" href="#" @click="guestDelete(index)"><span>x</span></p>
@@ -125,6 +138,27 @@
                     </div>
 
                 </div>
+
+                @if(\Auth::check())
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="pedido">
+
+                                <h5>Descuento</h5>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Código de descuento" id="fullcart">
+                                </div>
+
+                                <div class="text-center">
+                                    <button @click="fullCartDiscount()" class="btn-custom">Aplicar descuento ></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
             </div>
         </div>
 </div>
@@ -199,6 +233,85 @@ const devArea = new Vue({
     },
     methods: {
 
+        setCodeSingleProduct(productTypeSizeId, index, isGuest){
+
+            let code = ""
+            if(isGuest){
+
+                code = $("#cart-discount-guest"+index).val()
+                $("#cart-discount-guest"+index).val("")
+
+            }else{
+
+                code = $("#cart-discount"+index).val()
+                $("#cart-discount"+index).val("")
+
+            }
+
+            axios.post("{{ url('/cart/single-product/discount') }}", {"productTypeSizeId": productTypeSizeId, "coupon": code})
+            .then(res => {
+
+                if(res.data.success == true){
+
+                    swal({
+                        text:res.data.msg,
+                        icon:"success"
+                    }).then(ans =>{
+                        this.fetch()
+                    })
+
+                   
+                }else{
+
+                    swal({
+                        text:res.data.msg,
+                        icon:"error"
+                    })
+
+                }
+
+            }).catch(err => {
+                $.each(err.response.data.errors, function(key, value) {
+                    alertify.error(value[0])
+                    //alertify.error(value);
+                    //alertify.alert('Basic: true').set('basic', true); 
+                });
+            })
+
+        },
+        fullCartDiscount(){
+            let code = $("#fullcart").val()
+            axios.post("{{ url('/cart/full-cart/discount') }}", {"coupon": code})
+            .then(res => {
+
+                if(res.data.success == true){
+
+                    swal({
+                        text:res.data.msg,
+                        icon:"success"
+                    }).then(ans =>{
+                        this.fetch()
+                        $("#fullcart").val("")
+                    })
+
+
+                }else{
+
+                    swal({
+                        text:res.data.msg,
+                        icon:"error"
+                    })
+
+                }
+
+            }).catch(err => {
+                $.each(err.response.data.errors, function(key, value) {
+                    alertify.error(value[0])
+                });
+            })
+
+        },
+
         addAmountProduct(product, index) {
 
             if (this.products[index].amount + 1 <= this.products[index].product_type_size.stock) {
@@ -269,7 +382,7 @@ const devArea = new Vue({
             }
         },
         fetch() {
-
+            this.total = 0
             axios.get("{{ url('/cart/fetch') }}")
                 .then(res => {
 
@@ -282,9 +395,9 @@ const devArea = new Vue({
 
 
                             if(data.product_type_size.discount_percentage == 0){
-                                this.total = this.total + (data.amount * data.product_type_size.price)
+                                this.total = this.total + (data.amount * data.price)
                             }else{
-                                this.total = this.total + (data.amount * (data.product_type_size.price - ((data.product_type_size.discount_percentage/100)*data.product_type_size.price)))
+                                this.total = this.total + (data.amount * (data.price - ((data.price.discount_percentage/100)*data.price)))
                             }
                             
 
@@ -468,14 +581,12 @@ const devArea = new Vue({
                         
 
                         if(data.product.discount_percentage == 0){
-                            this.total = this.total + (parseFloat(data.product.price) * parseInt(
+                            this.total = this.total + (parseFloat(data.price) * parseInt(
                             data.amount))
                         }
                         else{
-                            this.total = this.total + (data.amount * (data.product.price - ((data.product.discount_percentage/100)*data.product.price)))
+                            this.total = this.total + (data.amount * (data.price - ((data.product.discount_percentage/100)*data.price)))
                         }
-
-                        console.log("total", this.total)
 
                     })
 

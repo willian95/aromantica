@@ -257,11 +257,9 @@ const devArea = new Vue({
                 .then(res => {
                     if (res.data.success == true) {
                         res.data.products.forEach((data, index) => {
-                            if(data.product_type_size.discount_percentage == 0){
-                                this.total = this.total + (data.amount * data.product_type_size.price)
-                            }else{
-                                this.total = this.total + (data.amount * (data.product_type_size.price - (data.product_type_size.price * (data.product_type_size.discount_percentage/100))))
-                            }
+                            
+                                this.total = this.total + (data.amount * data.price)
+                          
                             
                             let weight = 0
                             if (parseInt(data.amount) > 1) {
@@ -280,7 +278,7 @@ const devArea = new Vue({
                                 },
                                 "weight": weight,
                                 "insurance": 0,
-                                "declaredValue": (parseFloat(data.product_type_size.price) *
+                                "declaredValue": (parseFloat(data.price) *
                                     parseInt(data.amount)),
                                 "weightUnit": "KG",
                                 "lengthUnit": "CM"
