@@ -29,7 +29,7 @@ class CouponRequest extends FormRequest
     }
 
 
-    public function message()
+    public function messages()
     {
         return [
             "coupon.required" => "Código es requerido",

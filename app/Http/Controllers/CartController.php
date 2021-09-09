@@ -9,6 +9,7 @@ use App\Http\Requests\CouponRequest;
 use App\Coupon;
 use App\CouponUser;
 use App\CouponProduct;
+use Carbon\Carbon;
 
 class CartController extends Controller
 {
@@ -130,6 +131,11 @@ class CartController extends Controller
 
 
         $coupon = Coupon::where("coupon_code", $request->coupon)->first();
+
+        if(Carbon::createFromFormat('Y-m-d', $coupon->end_date)->lt(Carbon::now())){
+            return response()->json(["success" => false, "msg" => "Cupón ha expirado"]);
+        }
+
         if($coupon->total_discount == 'producto'){
 
             if(CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->where("is_used", false)->count() > 0 || $coupon->all_users == true){
@@ -167,19 +173,19 @@ class CartController extends Controller
     
                 }else{
     
-                    return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+                    return response()->json(["success" => false, "msg" => "Este cupón no éste producto"]);
     
                 }
     
             }else{
     
-                return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+                return response()->json(["success" => false, "msg" => "Este cupón no está disponible para ti"]);
     
             }
 
         }else{
 
-            return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+            return response()->json(["success" => false, "msg" => "Este cupón solo está disponible para un producto en específico"]);
 
         }
 
@@ -195,11 +201,15 @@ class CartController extends Controller
         }
 
         $coupon = Coupon::where("coupon_code", $request->coupon)->first();
+
+
+        if(Carbon::createFromFormat('Y-m-d', $coupon->end_date)->lt(Carbon::now())){
+            return response()->json(["success" => false, "msg" => "Cupón ha expirado"]);
+        }
+
         if($coupon->total_discount == 'total'){
 
             if(CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->where("is_used", false)->count() > 0 || $coupon->all_users == true){
-
-
     
                 $carts = Cart::where("user_id", \Auth::user()->id)->get();
             
@@ -230,13 +240,13 @@ class CartController extends Controller
     
             }else{
     
-                return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+                return response()->json(["success" => false, "msg" => "Este cupón no está disponible para ti"]);
     
             }
 
         }else{
 
-            return response()->json(["success" => false, "msg" => "Este cupón no está disponible"]);
+            return response()->json(["success" => false, "msg" => "Este cupón solo está disponible para un descuento del carrito completo"]);
 
         }
 
