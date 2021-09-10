@@ -207,7 +207,7 @@ class CartController extends Controller
             return response()->json(["success" => false, "msg" => "Cupón ha expirado"]);
         }
 
-        if($coupon->total_discount == 'total'){
+        if($coupon->total_discount == 'carrito'){
 
             if(CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->where("is_used", false)->count() > 0 || $coupon->all_users == true){
     
@@ -246,7 +246,7 @@ class CartController extends Controller
 
         }else{
 
-            return response()->json(["success" => false, "msg" => "Este cupón solo está disponible para un descuento del carrito completo"]);
+            return response()->json(["success" => false, "msg" => "Este cupón solo está disponible para descuento a un producto"]);
 
         }
 
