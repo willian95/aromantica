@@ -44,8 +44,8 @@
                                             </td>-->
                                         <td class="text-center">
                                             <div>
-                                                <span v-if="product.product_type_size.discount_percentage == 0">$ @{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-                                                <span v-else>$ @{{ parseInt(product.product_type_size.price - ((product.product_type_size.discount_percentage/100)*product.product_type_size.price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                                <span>$ @{{ parseInt(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+    
                                             </div>
                                         </td>
                                         <td class="text-center ">
@@ -85,8 +85,7 @@
                                 :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt=""
                                 style="width: 100%">@{{ product.product.product.name }} -
                             @{{ product.product.type.name }} - @{{ product.product.size.name }} Oz</td>
-                        <td class="text-center" v-if="product.product.discount_percentage == 0">$ @{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
-                        <td class="text-center" v-else>$ @{{ parseInt(product.product.price - ((product.product.discount_percentage/100)*product.product.price)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                        <td class="text-center">$ @{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                         <td class="text-center">
                             <div style="    text-align: center;
                                                 display: flex;
