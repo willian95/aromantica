@@ -185,7 +185,7 @@ class CartController extends Controller
 
         }else{
 
-            return response()->json(["success" => false, "msg" => "Este cupón solo está disponible para un producto en específico"]);
+            return response()->json(["success" => false, "msg" => "Este cupón solo está disponible para el carrito completo"]);
 
         }
 

@@ -20,9 +20,17 @@ class SearchController extends Controller
         $brandId = "";
         $type = $request->type;
         $words = [];
+
+        $searchText = $request->searchText;
+        $searchText = str_replace("Á", "A", $searchText);
+        $searchText = str_replace("É", "E", $searchText);
+        $searchText = str_replace("Í", "I", $searchText);
+        $searchText = str_replace("Ó", "O", $searchText);
+        $searchText = str_replace("Ú", "U", $searchText);
+        
         foreach($brands as $brand){
 
-            if(strpos(strtoupper($request->searchText), strtoupper($brand->name)) > -1){
+            if(strpos(strtoupper($searchText), strtoupper($brand->name)) > -1){
 
                 $brandId = $brand->id;
 
@@ -30,8 +38,8 @@ class SearchController extends Controller
 
         }
 
-        if(isset($request->searchText)){
-            $words = explode(' ',strtolower($request->searchText)); // coloco cada palabra en un espacio del array
+        if(isset($searchText)){
+            $words = explode(' ',strtolower($searchText)); // coloco cada palabra en un espacio del array
 
             $words = array_unique($words); //eliminamos las palabras duplicadas
             $words = array_values($words); // reordenamos el array
