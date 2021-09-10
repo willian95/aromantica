@@ -27,6 +27,34 @@ class SearchController extends Controller
         $searchText = str_replace("Í", "I", $searchText);
         $searchText = str_replace("Ó", "O", $searchText);
         $searchText = str_replace("Ú", "U", $searchText);
+        $searchText = str_replace("'", "", $searchText);
+
+
+        $skip = ($request->page-1) * 20;
+
+        $query = ProductTypeSize::whereHas("product", function ($query) use($request) {
+
+            $query->where("name", "like", "%".$request->searchText."%");
+            
+        })->with("product.brand", "product.category", "product", "type", "size")->has("product.brand")->has("product.category")->has("product")->has("type")->has("size")->where(function ($query) use($request) {
+
+            if(isset($request->type)){
+                $query->where("type_id", $request->type);
+            }
+
+            if(isset($request->size)){
+                $query->where("size_id", $request->size);
+            }
+
+        });
+
+        $productsCount = $query->count();
+        $products = $query->skip($skip)->take(20)->get();
+
+        if($products){
+            return response()->json(["products" => $products, "productsCount" => $productsCount]);
+        }
+
         
         foreach($brands as $brand){
 
@@ -44,9 +72,6 @@ class SearchController extends Controller
             $words = array_unique($words); //eliminamos las palabras duplicadas
             $words = array_values($words); // reordenamos el array
         }
-        
-        
-        $skip = ($request->page-1) * 20;
     
 
         if($brandId != ""){
