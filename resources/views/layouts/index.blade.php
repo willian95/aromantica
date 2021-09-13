@@ -1001,7 +1001,7 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
 
 
                     },
-                    cartInfo() {
+                    async cartInfo() {
                         var totalGuest = 0;
                         var totalCheck = 0;
 
@@ -1021,33 +1021,65 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
 
                         if (this.authCheck == "1") {
 
+                            
+
+                            let cart = []
+                            if (window.localStorage.getItem('cartAromantica') != null) {
+                                cart = JSON.parse(window.localStorage.getItem('cartAromantica'))
+                            }
+
+                            var _this = this
+                            for(var i = 0; i< cart.length; i++){
+
+                                await _this.addToCart(cart[i].productTypeSizeId, cart[i].amount)
+
+                            }
+                            
+                            window.localStorage.removeItem("cartAromantica")
+
                             axios.get("{{ url('/cart/fetch') }}")
-                                .then(res => {
+                            .then(res => {
 
-                                    if (res.data.success == true) {
+                                if (res.data.success == true) {
 
-                                        this.products = res.data.products
+                                    this.products = res.data.products
 
-                                        this.products.forEach((data, index) => {
+                                    this.products.forEach((data, index) => {
 
-                                            totalCheck = totalCheck + data.amount
+                                        totalCheck = totalCheck + data.amount
 
-                                        })
+                                    })
 
-                                        let cartTotalCheck = totalGuest + totalCheck
-                                        
-                                        $("#cart-notification").html(cartTotalCheck + "")
+                                    let cartTotalCheck = totalGuest + totalCheck
+                                    
+                                    $("#cart-notification").html(cartTotalCheck + "")
 
-                                    }
+                                }
 
-                                })
+                            })
 
                         }
 
 
                     },
+                    async addToCart(productTypeSizeId, amount) {
+
+
+                        if (this.authCheck == "1") {
+
+                            let res = await axios.post("{{ url('/cart/store') }}", {
+                                    productTypeSizeId: productTypeSizeId,
+                                    amount: amount
+                                })
+
+                        }
+
+
+
+                    },
 
                 },
+                
                 mounted() {
                     
                     this.cartInfo()
