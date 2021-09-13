@@ -132,7 +132,7 @@ class CartController extends Controller
 
         $coupon = Coupon::where("coupon_code", $request->coupon)->first();
 
-        if(Carbon::createFromFormat('Y-m-d', $coupon->end_date)->lt(Carbon::now())){
+        if(Carbon::createFromFormat('Y-m-d', $coupon->end_date)->lt(Carbon::now()->format('Y-m-d'))){
             return response()->json(["success" => false, "msg" => "Cupón ha expirado"]);
         }
 
@@ -173,7 +173,7 @@ class CartController extends Controller
     
                 }else{
     
-                    return response()->json(["success" => false, "msg" => "Este cupón no éste producto"]);
+                    return response()->json(["success" => false, "msg" => "Este cupón no pertenece a éste producto"]);
     
                 }
     
@@ -203,7 +203,7 @@ class CartController extends Controller
         $coupon = Coupon::where("coupon_code", $request->coupon)->first();
 
 
-        if(Carbon::createFromFormat('Y-m-d', $coupon->end_date)->lt(Carbon::now())){
+        if(Carbon::createFromFormat('Y-m-d', $coupon->end_date)->lt(Carbon::now()->format('Y-m-d'))){
             return response()->json(["success" => false, "msg" => "Cupón ha expirado"]);
         }
 
