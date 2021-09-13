@@ -101,8 +101,11 @@
 
 
 
-                <td class="text-center">$
+                <td class="text-center" v-if="product.product.discount_percentage == 0">$
                     @{{ parseInt(parseFloat(product.product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                </td>
+                <td class="text-center" v-else>$
+                    @{{ parseInt(parseFloat(product.product.price - ((product.product.discount_percentage/100)*product.product.price)) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                 </td>
                 @if(\Auth::check())
                     <td>
