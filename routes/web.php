@@ -87,12 +87,12 @@ Route::post("/words", "SearchController@words");
     $message->to($to_email, $to_name)->subject("¡Tu compra se ha realizado con éxito!");
     $message->from("ventas@aromantica.co", "Aromantica");
   });
-});
+});*/
 
 Route::get("/test/admin/mail", function () {
 
   $to_name = "Felipe";
-  $to_email = "info@myass.co";
+  $to_email = "rodriguezwillian95@gmail.co";
   //$data = ["user" => $user, "hash" => $hash];
 
   \Mail::send("emails.admin", [], function ($message) use ($to_name, $to_email) {
@@ -100,7 +100,7 @@ Route::get("/test/admin/mail", function () {
     $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
     $message->from("ventas@aromantica.co", "Aromantica");
   });
-});*/
+});
 
 
 /*Route::get("/test/forget/mail", function(){
