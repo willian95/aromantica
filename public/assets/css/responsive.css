@@ -2,6 +2,20 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+    .banner-title {
+
+        top: 14%;
+    }
+    .grid-new {
+
+        grid-template-columns: 100%;
+
+        text-align: center;
+    }
+    .newl-content h2 {
+        font-size: 1.2rem;
+
+    }
     .ws img{
         width: 40px;
     }
