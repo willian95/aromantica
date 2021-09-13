@@ -320,6 +320,8 @@ const devArea = new Vue({
 
             })
 
+            console.log("cart", cart)
+
             window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
 
             this.amount = 0
