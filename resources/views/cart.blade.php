@@ -582,7 +582,7 @@ const devArea = new Vue({
                             data.amount))
                         }
                         else{
-                            this.total = this.total + (data.amount * (data.price - ((data.product.discount_percentage/100)*data.price)))
+                            this.total = this.total + (data.amount * (data.product.price - ((data.product.discount_percentage/100)*data.price)))
                         }
 
                     })
