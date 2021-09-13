@@ -102,7 +102,7 @@
 
 
                 <td class="text-center">$
-                    @{{ parseInt(parseFloat(product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                    @{{ parseInt(parseFloat(product.product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                 </td>
                 @if(\Auth::check())
                     <td>
