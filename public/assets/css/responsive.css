@@ -2,6 +2,9 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+    .ws img{
+        width: 40px;
+    }
     .btn-default {
         width: 100%;
     }
@@ -271,7 +274,7 @@
     }
     .img-logo {
         width: 160px;
-       
+
     }
 }
 

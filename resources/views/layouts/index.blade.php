@@ -31,17 +31,21 @@
     <title>Aromantica </title>
 
     @laravelPWA
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9GR52EFB78"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-9GR52EFB78');
-</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9GR52EFB78"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-9GR52EFB78');
+    </script>
 </head>
 
 <body>
+    <a class="ws" target="_blank" href="https://api.whatsapp.com/send?phone=+573003707531&text=%C2%A1Hola!%20,%20Quiero%20m%C3%A1s%20informaci%C3%B3n."> <img src="{{ asset('assets/img/whatsapp.png') }}" alt=""> </a>
     <div class="elipse">
         <img class="logo-f" src="{{ asset('assets/img/logo.png') }}" alt="">
     </div>
@@ -147,15 +151,15 @@
             </button>
             <div class='offcanvas-collapse fil ml-auto' id='navbarNav'>
                 <ul class="navbar-nav nav-2">
-                   <div class="iconos-social">
-                       
-                    <li><a href="https://wa.me/573003707533" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i>                 </a></li>
-                    <li><a href="https://www.facebook.com/Aromantica-Perfumeria-100208405251210/?ti=as" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i>                    </a></li>
-                    <li><a href="https://instagram.com/aromanticaperfumeria?igshid=4i52vlzcp5jz" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i>                    </a></li>
-                   </div>
+                    <div class="iconos-social">
+
+                        <li><a href="https://wa.me/573003707533" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i> </a></li>
+                        <li><a href="https://www.facebook.com/Aromantica-Perfumeria-100208405251210/?ti=as" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i> </a></li>
+                        <li><a href="https://instagram.com/aromanticaperfumeria?igshid=4i52vlzcp5jz" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i> </a></li>
+                    </div>
                     <li><a href="mailto:ventas@aromatica"><i class="fa fa-envelope-o" aria-hidden="true"></i>
-                        ventas@aromantica.co</a></li>
-                        <li><a href="tel:+573003707533"><i class="fa fa-phone" aria-hidden="true"></i>
+                            ventas@aromantica.co</a></li>
+                    <li><a href="tel:+573003707533"><i class="fa fa-phone" aria-hidden="true"></i>
 
                             +57 3003707533</a></li>
                 </ul>
@@ -168,25 +172,24 @@
                     </li>
 
                     <li class='nav-item dropdown dowms mr-3'>
-                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link-black '
-                          data-toggle='dropdown'>
-                         Categorías
+                        <a href='#' aria-expanded='false' aria-haspopup='true' class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown'>
+                            Categorías
                         </a>
                         <div aria-labelledby='dropdownMenuButton' class='dropdown-menu overdro'>
-                          <div class='content-drop'>
-                            <a class='dropdown-item' href='#'>
-                                @foreach(App\Category::all() as $category)
-                                <a href="{{ url('/category/'.$category->slug) }}" class='nav-link  nav-link '>
-                                    {{ $category->name }}
+                            <div class='content-drop'>
+                                <a class='dropdown-item' href='#'>
+                                    @foreach(App\Category::all() as $category)
+                                    <a href="{{ url('/category/'.$category->slug) }}" class='nav-link  nav-link '>
+                                        {{ $category->name }}
+                                    </a>
+                                    @endforeach
                                 </a>
-                                @endforeach
-                            </a>
-                          </div>
+                            </div>
                         </div>
-                      </li>
+                    </li>
 
 
-                 <!-----   @foreach(App\Category::all() as $category)
+                    <!-----   @foreach(App\Category::all() as $category)
 
                     <li class='nav-item down-md'>
                         <a href="{{ url('/category/'.$category->slug) }}" class='nav-link  nav-link '>
@@ -338,7 +341,7 @@
                       </li>-->
                 </ul>
 
-               
+
             </div>
         </div>
         </nav>
@@ -439,7 +442,7 @@
                                             <div class="text-center">
                                                 <p class="inicia">ó regístrate facil </p>
                                                 {{--<a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                                    <i class="fa fa-facebook"></i> Facebook</a>--}}
+                                                <i class="fa fa-facebook"></i> Facebook</a>--}}
                                                 <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i class="fa fa-google"></i> Google</a>
 
                                             </div>
@@ -503,7 +506,7 @@
                                             <div class="text-center">
                                                 <p class="inicia">ó inicia sesión con:</p>
                                                 {{--<a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
-                                                    <i class="fa fa-facebook"></i> Facebook</a>--}}
+                                                <i class="fa fa-facebook"></i> Facebook</a>--}}
                                                 <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i class="fa fa-google"></i> Google</a>
                                             </div>
                                         </div>
@@ -564,9 +567,8 @@
                             <a class='terminos' data-toggle="modal" data-target="#terminos">Términos y
                                 condiciones</a>
                         </li>
-                        
-                        <li style="list-style: none;
-    margin-left: -20px;">
+
+                        <li style="list-style: none; margin-left: -20px;">
                             <div class="">
                                 <img style="    width: 30%;" src="{{ asset('assets/img/logo-envia.png') }}">
 
@@ -580,7 +582,8 @@
 
             <div>
                 <p class="copy mt-2 mb-2">Aromantica - Copyright 2020©
-                    <a class='terminos'>Desarrollado por Ass (Apps, Services & Solutions)</a></p>
+                    <a class='terminos'>Desarrollado por Ass (Apps, Services & Solutions)</a>
+                </p>
             </div>
         </footer>
 
@@ -682,62 +685,62 @@
                             cualquier momento.
 
                             <div class="mb-4 mt-4">
-                               <strong>
-                                PROMOCIONES DE PERFUMERÍA
-                               </strong><br>
-                                Las promociones que se ofrezcan en nuestro sitio web NO son necesariamente las mismas que se ofrezcan en tiendas físicas, venta telefónica, catálogos u otros, a menos que se señale expresamente en este sitio o en la publicidad de cada promoción. 
+                                <strong>
+                                    PROMOCIONES DE PERFUMERÍA
+                                </strong><br>
+                                Las promociones que se ofrezcan en nuestro sitio web NO son necesariamente las mismas que se ofrezcan en tiendas físicas, venta telefónica, catálogos u otros, a menos que se señale expresamente en este sitio o en la publicidad de cada promoción.
                                 Además de los Términos y Condiciones generales, cuando<strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> realice promociones en vallas publicitarias, redes sociales u otros medios publicitarios, aplican adicionalmente los siguientes Términos y Condiciones específicos:
-                               <br> •	Cuando se ofrezcan descuentos, se señalará en la publicidad, el porcentaje o valor del descuento, el canal de venta por el cual se puede obtener, así como la suma mínima de compra para adquirir ese descuento y y las fechas válidas.
-                               <br> •	Las promociones no son acumulables 
-                               <br> •	La promoción sólo podrá ser usado una vez por cada cliente.
-                               <br> •	Al hacer una compra durante una promoción vigente, se entiende que el consumidor ha aceptado íntegramente los Términos y Condiciones generales y específicos de <strong>Aromantica – Tavanca S.A.S.</strong>
+                                <br> • Cuando se ofrezcan descuentos, se señalará en la publicidad, el porcentaje o valor del descuento, el canal de venta por el cual se puede obtener, así como la suma mínima de compra para adquirir ese descuento y y las fechas válidas.
+                                <br> • Las promociones no son acumulables
+                                <br> • La promoción sólo podrá ser usado una vez por cada cliente.
+                                <br> • Al hacer una compra durante una promoción vigente, se entiende que el consumidor ha aceptado íntegramente los Términos y Condiciones generales y específicos de <strong>Aromantica – Tavanca S.A.S.</strong>
 
                                 <br><br>
-                              <strong>  DESPACHO DE LOS PRODUCTOS</strong><br>
-                                Los productos adquiridos a través de nuestro sitio web serán despachados y entregados de acuerdo a las opciones elegidas por el usuario. <strong> Envía.com logistics</strong> es la plataforma de envíos integrada con la cual trabajamos conjuntamente para ofrecer el mejor servicio. Sin embargo, para la recolección y entrega de los envíos se aplicarán estrictamente los términos y condiciones de servicios de las agencias de mensajería y paquetería (transportistas) que el usuario haya elegido durante el proceso de compra. De modo que<strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> queda exento de cualquier anomalía presentada en los servicios del transportista. 
+                                <strong> DESPACHO DE LOS PRODUCTOS</strong><br>
+                                Los productos adquiridos a través de nuestro sitio web serán despachados y entregados de acuerdo a las opciones elegidas por el usuario. <strong> Envía.com logistics</strong> es la plataforma de envíos integrada con la cual trabajamos conjuntamente para ofrecer el mejor servicio. Sin embargo, para la recolección y entrega de los envíos se aplicarán estrictamente los términos y condiciones de servicios de las agencias de mensajería y paquetería (transportistas) que el usuario haya elegido durante el proceso de compra. De modo que<strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> queda exento de cualquier anomalía presentada en los servicios del transportista.
                                 La información del lugar de envío es de exclusiva responsabilidad del usuario. Los plazos elegidos para el despacho y entrega, se cuentan desde que se haya validado la orden de compra y el medio de pago utilizado, y se consideraran días hábiles para el cumplimiento de dicho plazo. El usuario antes de finalizar su compra podrá hacer seguimiento a la entrega estimada de su producto. <br><br>
-                               <strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> comunicará por e-mail a los usuarios los datos para que se pueda realizar el seguimiento del estado del envío por Internet. Si el usuario o la persona autorizada para recibir, se encontrara ausente cuando se le visita y se le notifica vía telefónica para dejar el pedido y nadie lo recibe en el lugar de residencia, con previo aviso de nuestra plataforma de envíos, se efectuará la entrega en la puerta del domicilio o en su caso en la agencia de paquetería más cercana al domicilio del destino con su respectiva notificación. Con el fin de facilitar el seguimiento de los pedidos realizados por los usuarios en nuestro sitio web,<strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> podrá enviar información vía mensajes de texto (SMS y/o MMS) o vía «WhatsApp» acerca de la entrega y estado de los pedidos realizados en el sitio web.
+                                <strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> comunicará por e-mail a los usuarios los datos para que se pueda realizar el seguimiento del estado del envío por Internet. Si el usuario o la persona autorizada para recibir, se encontrara ausente cuando se le visita y se le notifica vía telefónica para dejar el pedido y nadie lo recibe en el lugar de residencia, con previo aviso de nuestra plataforma de envíos, se efectuará la entrega en la puerta del domicilio o en su caso en la agencia de paquetería más cercana al domicilio del destino con su respectiva notificación. Con el fin de facilitar el seguimiento de los pedidos realizados por los usuarios en nuestro sitio web,<strong><strong> Aromantica – Tavanca S.A.S.</strong></strong> podrá enviar información vía mensajes de texto (SMS y/o MMS) o vía «WhatsApp» acerca de la entrega y estado de los pedidos realizados en el sitio web.
 
-                               <br><br>
+                                <br><br>
                                 <strong> POLÍTICA DE CAMBIOS, DEVOLUCIONES Y GARANTÍA DE PERFUMERÍA</strong><br>
-                                    <strong>
-                                        1.	GARANTÍA DE PRODUCTOS DE PERFUMERÍA:  
-                                    </strong>
-                                   <strong> Aromantica – Tavanca S.A.S.</strong> ofrece garantía sobre los productos vendidos en nuestra tienda que no cumplan con las condiciones de calidad ofrecidas por el fabricante. En consecuencia, el cliente tendrá derecho a solicitar garantía sobre fragancias en los siguientes casos:
-                                   <br> •	Alteraciones en el color de la fragancia
-                                   <br> •	Fragancia vacía
-                                   <br> •	Filtración
-                                   <br> •	Oxidación
-                                   <br> •	Daño Válvula Dosificadora
-                                   <br> •	Presencia de alguna partícula de impureza en su contenido u hongos.
-                                    <br><br>
-                                    El cliente deberá devolver el producto que fue adquirido, en su empaque original en buen estado y sin uso adicional al primero, informando los defectos que presenta.  El cliente deberá o acreditar que el producto fue adquirido en las tiendas<strong> Aromantica – Tavanca S.A.S.</strong> El término de la garantía sobre los productos de perfumería es de TREINTA (30) días hábiles contados a partir de la fecha de compra.  No será procedente la solicitud de efectividad de la garantía en caso en que el daño en el producto sea consecuencia del uso indebido del mismo, por el hecho de un tercero ajeno a<strong> Aromantica – Tavanca S.A.S.</strong> o al fabricante, así como en los demás casos previstos en la ley.  Toda solicitud de garantía deberá ser presentada dentro del término de vigencia y cumpliendo con las condiciones aquí establecidas y serán analizadas y evaluadas por el área de servicio al cliente y el consultor de la marca según el caso quienes determinarán si se accede o no a la garantía para lo cual contarán con un plazo no mayor a 15 días hábiles. En caso de improcedencia de la garantía se informará al consumidor los motivos de la decisión. El plazo para la entrega del producto de reemplazo será de 10 días hábiles dependiendo de la disponibilidad de inventario en la tienda. De ser necesario<strong> Aromantica – Tavanca S.A.S.</strong> podrá informarle al consumidor si requiere un plazo adicional. La entrega del producto de reemplazo se realizará previo aviso y acuerdo de<strong> Aromantica – Tavanca S.A.S.</strong> con el cliente y según se determine. <br><br>
-                                    <strong>Reclamación de garantía por efectos de fijación:</strong>  los productos de uso personal como perfumería, no tienen la misma fijación en la piel en todas las personas, ya que, por efectos únicos del comportamiento corporal, la reacción de durabilidad es diferente. La fijación del producto depende entre otras del tipo de piel, las condiciones climáticas, el nivel de PH, los medicamentos que se estén consumiendo, cambios hormonales o de alimentación.  Por lo anterior, no procede reclamación alguna de garantía por efectos de fijación del producto. <br><br>
+                                <strong>
+                                    1. GARANTÍA DE PRODUCTOS DE PERFUMERÍA:
+                                </strong>
+                                <strong> Aromantica – Tavanca S.A.S.</strong> ofrece garantía sobre los productos vendidos en nuestra tienda que no cumplan con las condiciones de calidad ofrecidas por el fabricante. En consecuencia, el cliente tendrá derecho a solicitar garantía sobre fragancias en los siguientes casos:
+                                <br> • Alteraciones en el color de la fragancia
+                                <br> • Fragancia vacía
+                                <br> • Filtración
+                                <br> • Oxidación
+                                <br> • Daño Válvula Dosificadora
+                                <br> • Presencia de alguna partícula de impureza en su contenido u hongos.
+                                <br><br>
+                                El cliente deberá devolver el producto que fue adquirido, en su empaque original en buen estado y sin uso adicional al primero, informando los defectos que presenta. El cliente deberá o acreditar que el producto fue adquirido en las tiendas<strong> Aromantica – Tavanca S.A.S.</strong> El término de la garantía sobre los productos de perfumería es de TREINTA (30) días hábiles contados a partir de la fecha de compra. No será procedente la solicitud de efectividad de la garantía en caso en que el daño en el producto sea consecuencia del uso indebido del mismo, por el hecho de un tercero ajeno a<strong> Aromantica – Tavanca S.A.S.</strong> o al fabricante, así como en los demás casos previstos en la ley. Toda solicitud de garantía deberá ser presentada dentro del término de vigencia y cumpliendo con las condiciones aquí establecidas y serán analizadas y evaluadas por el área de servicio al cliente y el consultor de la marca según el caso quienes determinarán si se accede o no a la garantía para lo cual contarán con un plazo no mayor a 15 días hábiles. En caso de improcedencia de la garantía se informará al consumidor los motivos de la decisión. El plazo para la entrega del producto de reemplazo será de 10 días hábiles dependiendo de la disponibilidad de inventario en la tienda. De ser necesario<strong> Aromantica – Tavanca S.A.S.</strong> podrá informarle al consumidor si requiere un plazo adicional. La entrega del producto de reemplazo se realizará previo aviso y acuerdo de<strong> Aromantica – Tavanca S.A.S.</strong> con el cliente y según se determine. <br><br>
+                                <strong>Reclamación de garantía por efectos de fijación:</strong> los productos de uso personal como perfumería, no tienen la misma fijación en la piel en todas las personas, ya que, por efectos únicos del comportamiento corporal, la reacción de durabilidad es diferente. La fijación del producto depende entre otras del tipo de piel, las condiciones climáticas, el nivel de PH, los medicamentos que se estén consumiendo, cambios hormonales o de alimentación. Por lo anterior, no procede reclamación alguna de garantía por efectos de fijación del producto. <br><br>
 
-                                  <strong>
-                                    2.	CAMBIOS NO RELACIONADOS CON LA GARANTÍA 
-                                  </strong> <br>
-                        Por aspectos no relacionados con la garantía del producto, Aromantica – Tavanca S.A.S podrá, bajo su propia voluntad, criterio y decisión, aceptar el cambio del producto para lo cual se deberán tener en cuenta las siguientes condiciones:
-                       <br> •	El producto debe estar en las condiciones que se recibió, con su empaque original, con las etiquetas, sellos de seguridad, y contar con todas sus partes y/o accesorios. No podrá presentar abolladuras, rayones, roturas, manchas, fallas de funcionamiento diferentes a defectos de producto o de fabricación. Si tiene celofán debe estar en perfecto estado, apto para su posterior venta
-                       <br> •	No se aceptan solicitudes de reembolso de dinero
-                       <br> •	 Los productos que presenten daño por mala manipulación del cliente no tendrán cambio
-                       <br> •	No se realizan cambios de fragancias por gusto del cliente, o por fijación del mismo
-                       <br> •	No se aceptan cambios de productos en promoción y/o estuchería (con excepción de reclamaciones por garantía). El cliente deberá devolver todos los productos contenidos en la oferta, involucrando obsequios y miniaturas, en caso que se hubieran entregado al momento de la venta
-                       <br> •	En caso de aceptarse el cambio, el cliente tendrá derecho a uno de iguales características y de igual valor. En caso de solicitar un producto de mayor valor, deberá cancelar la diferencia entre el precio cancelado y el precio de venta del nuevo producto
-                       <br> •	Las solicitudes de cambio deberán presentarse como plazo máximo dentro de los 5 días posteriores a la venta y en cualquier caso están sometidos a la decisión discrecional del personal de<strong> Aromantica – Tavanca S.A.S.</strong>
+                                <strong>
+                                    2. CAMBIOS NO RELACIONADOS CON LA GARANTÍA
+                                </strong> <br>
+                                Por aspectos no relacionados con la garantía del producto, Aromantica – Tavanca S.A.S podrá, bajo su propia voluntad, criterio y decisión, aceptar el cambio del producto para lo cual se deberán tener en cuenta las siguientes condiciones:
+                                <br> • El producto debe estar en las condiciones que se recibió, con su empaque original, con las etiquetas, sellos de seguridad, y contar con todas sus partes y/o accesorios. No podrá presentar abolladuras, rayones, roturas, manchas, fallas de funcionamiento diferentes a defectos de producto o de fabricación. Si tiene celofán debe estar en perfecto estado, apto para su posterior venta
+                                <br> • No se aceptan solicitudes de reembolso de dinero
+                                <br> • Los productos que presenten daño por mala manipulación del cliente no tendrán cambio
+                                <br> • No se realizan cambios de fragancias por gusto del cliente, o por fijación del mismo
+                                <br> • No se aceptan cambios de productos en promoción y/o estuchería (con excepción de reclamaciones por garantía). El cliente deberá devolver todos los productos contenidos en la oferta, involucrando obsequios y miniaturas, en caso que se hubieran entregado al momento de la venta
+                                <br> • En caso de aceptarse el cambio, el cliente tendrá derecho a uno de iguales características y de igual valor. En caso de solicitar un producto de mayor valor, deberá cancelar la diferencia entre el precio cancelado y el precio de venta del nuevo producto
+                                <br> • Las solicitudes de cambio deberán presentarse como plazo máximo dentro de los 5 días posteriores a la venta y en cualquier caso están sometidos a la decisión discrecional del personal de<strong> Aromantica – Tavanca S.A.S.</strong>
 
-                            <br><br>
-                          <strong>  3.	DERECHO DE RETRACTO PARA COMPRAS POR INTERNET </strong> <br>
-En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adquieran cualquier producto a través de nuestra página web https://aromantica.co tienen derecho al retracto, dentro de los CINCO (5) días hábiles siguientes a la fecha de recibo del producto. Para ejercer el derecho de retracto, el cliente podrá solicitar en el término previamente indicado, su solicitud de devolución del dinero, mediante envío por correo electrónico a la dirección ventas@aromantica.co info@elmejorperfume.com, un escrito con el asunto “DERECHO DE RETRACTO” identificando en el cuerpo del correo, sus datos, el producto adquirido, la fecha de su recepción.
-El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario desde la fecha en que se presentó la solicitud. La devolución del dinero se realizará de la siguiente manera: En caso de compras realizadas con tarjeta de crédito o en caso de pagos por medio de PSE se realizará el reembolso a la misma tarjeta de crédito o débito con la que se realizó la compra. El cliente deberá devolver a<strong> Aromantica – Tavanca S.A.S.</strong> el producto adquirido el cual debe estar en las mismas condiciones en que lo recibió, esto es, en perfecto estado, con su empaque completo con todos sus sellos, celofán en estado original y sin uso o rupturas.   El producto deberá ser enviado por el cliente a las oficinas de<strong> Aromantica – Tavanca S.A.S.</strong> para lo cual se indicará la dirección correspondiente.  Los costos del transporte para la entrega del producto correrán a cargo del consumidor.
- 
-
+                                <br><br>
+                                <strong> 3. DERECHO DE RETRACTO PARA COMPRAS POR INTERNET </strong> <br>
+                                En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adquieran cualquier producto a través de nuestra página web https://aromantica.co tienen derecho al retracto, dentro de los CINCO (5) días hábiles siguientes a la fecha de recibo del producto. Para ejercer el derecho de retracto, el cliente podrá solicitar en el término previamente indicado, su solicitud de devolución del dinero, mediante envío por correo electrónico a la dirección ventas@aromantica.co info@elmejorperfume.com, un escrito con el asunto “DERECHO DE RETRACTO” identificando en el cuerpo del correo, sus datos, el producto adquirido, la fecha de su recepción.
+                                El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario desde la fecha en que se presentó la solicitud. La devolución del dinero se realizará de la siguiente manera: En caso de compras realizadas con tarjeta de crédito o en caso de pagos por medio de PSE se realizará el reembolso a la misma tarjeta de crédito o débito con la que se realizó la compra. El cliente deberá devolver a<strong> Aromantica – Tavanca S.A.S.</strong> el producto adquirido el cual debe estar en las mismas condiciones en que lo recibió, esto es, en perfecto estado, con su empaque completo con todos sus sellos, celofán en estado original y sin uso o rupturas. El producto deberá ser enviado por el cliente a las oficinas de<strong> Aromantica – Tavanca S.A.S.</strong> para lo cual se indicará la dirección correspondiente. Los costos del transporte para la entrega del producto correrán a cargo del consumidor.
 
 
 
 
 
-                                
+
+
+
 
                             </div>
 
@@ -768,6 +771,36 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade newletter" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-body bg-new" style="background-image: url('assets/img/newletter.jpg');">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                        <div class="newl-content">
+                            <!---<span>Regala personalidad</span>-->
+                            <h2>Suscríbete a nuestro <br> newsletter </h2>
+                            <form action="">
+                                <div class="grid-new">
+                                    <div class="">
+                                        <div class="form-group"><label for="emailLogin">Correo electrónico</label> <input type="text" autocomplete="off" placeholder="Email" class="form-control"> <i class="fa fa-envelope icon_form"></i></div>
+                                    </div>
+                                    <div class="">
+
+                                        <button class="btn btn-custom">SUSCRIBIR</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -789,6 +822,11 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <script>
+            $(document).ready(function($) {
+                $(".newletter").modal("show");
+            });
+        </script>
+        <script>
             alertify.set('notifier', 'position', 'top-right');
         </script>
 
@@ -808,16 +846,16 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
 
                         axios.get("{{ url('/cart/fetch') }}")
                             .then(res => {
-                            
+
                                 if (res.data.success == true) {
 
 
                                     this.products = res.data.products
                                     this.total = 0;
                                     this.products.forEach((data, index) => {
-                                        
+
                                         this.total = this.total + (data.amount * data.price)
-                                        
+
 
                                     })
 
@@ -841,10 +879,10 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                                 this.guestProducts = res.data.guestProducts
 
                                 this.guestProducts.forEach((data, index) => {
-                                    
+
                                     this.total = this.total + (parseInt(data.product.price) * parseInt(data.amount))
-                                    
-                                    
+
+
 
                                 })
 
@@ -901,7 +939,7 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                         guesProducts: [],
                         authCheck: "{{ Auth::check() }}",
                         total: 0,
-                        url:"{{ url('/') }}"
+                        url: "{{ url('/') }}"
                     }
                 },
                 methods: {
@@ -949,7 +987,7 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                                 $.each(err.response.data.errors, function(key, value) {
                                     alertify.error(value[0])
                                     //alertify.error(value);
-                                    //alertify.alert('Basic: true').set('basic', true); 
+                                    //alertify.alert('Basic: true').set('basic', true);
                                 });
                             })
 
@@ -977,27 +1015,27 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                     login() {
 
                         axios.post("{{ url('/login') }}", {
-                            email: this.emailLogin,
-                            password: this.passwordLogin
-                        })
-                        .then(res => {
+                                email: this.emailLogin,
+                                password: this.passwordLogin
+                            })
+                            .then(res => {
 
-                            if (res.data.success == true) {
+                                if (res.data.success == true) {
 
-                                swal({
-                                    title: "Excelente!",
-                                    text: res.data.msg,
-                                    icon: "success"
-                                }).then(() => {
-                                    window.location.href = "{{ url('/') }}"
-                                });
-                                this.cartInfo()
+                                    swal({
+                                        title: "Excelente!",
+                                        text: res.data.msg,
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.href = "{{ url('/') }}"
+                                    });
+                                    this.cartInfo()
 
 
-                            } else {
-                                alertify.error(res.data.msg)
-                            }
-                        })
+                                } else {
+                                    alertify.error(res.data.msg)
+                                }
+                            })
 
 
                     },
@@ -1011,7 +1049,7 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                         }
 
                         cart.forEach((data, index) => {
-                            
+
                             totalGuest = data.amount + totalGuest
 
                         })
@@ -1035,7 +1073,7 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
                                         })
 
                                         let cartTotalCheck = totalGuest + totalCheck
-                                        
+
                                         $("#cart-notification").html(cartTotalCheck + "")
 
                                     }
@@ -1049,7 +1087,7 @@ El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario
 
                 },
                 mounted() {
-                    
+
                     this.cartInfo()
 
                 }
