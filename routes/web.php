@@ -95,7 +95,7 @@ Route::get("/test/admin/mail", function () {
   $to_email = "rodriguezwillian95@gmail.co";
   $data = ["user" => App\User::where("email", "rodriguezwillian95@gmail.com")->first(), "hash" => "aadasdfgfd"];
 
-  \Mail::send("emails.admin", $data, function ($message) use ($to_name, $to_email) {
+  \Mail::send("emails.register", $data, function ($message) use ($to_name, $to_email) {
 
     $message->to($to_email, $to_name)->subject("¡Un cliente ha realizado una compra!");
     $message->from("ventas@aromantica.co", "Aromantica");
