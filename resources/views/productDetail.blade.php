@@ -290,6 +290,8 @@ const devArea = new Vue({
         },
         guestCart() {
 
+            console.log("hey")
+
             var total = 0
             let cart = []
             if (window.localStorage.getItem('cartAromantica') != null) {
@@ -320,7 +322,7 @@ const devArea = new Vue({
 
             })
 
-            console.log("cart", cart)
+            
 
             window.localStorage.setItem("cartAromantica", JSON.stringify(cart))
 
