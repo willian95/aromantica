@@ -777,15 +777,15 @@
                 <div class="modal-content">
                     <div class="modal-body bg-new" style="background-image: url('assets/img/newletter.jpg');">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                         <div class="newl-content">
                             <!---<span>Regala personalidad</span>-->
                             <h2>Suscríbete a nuestro <br> newsletter </h2>
-                            <form action="">
+                            <form @submit.prevent="store()">
                                 <div class="grid-new">
                                     <div class="">
-                                        <div class="form-group"><label for="emailLogin">Correo electrónico</label> <input type="text" autocomplete="off" placeholder="Email" class="form-control"> <i class="fa fa-envelope icon_form"></i></div>
+                                        <div class="form-group"><label for="emailLogin">Correo electrónico</label> <input type="text" autocomplete="off" placeholder="Email" class="form-control" v-model="email"> <i class="fa fa-envelope icon_form"></i></div>
                                     </div>
                                     <div class="">
 
@@ -918,6 +918,46 @@
                     }, 1000)
 
                 }
+
+            })
+
+            const newsLetter = new Vue({
+                el: "#new",
+                data() {
+                    return {
+                        email:""
+                    }
+                },
+                methods: {
+                    store(){
+
+                        axios.post("{{ url('/newsletter') }}", {
+                                email: this.email,
+                            }).then(res => {
+
+                                if (res.data.success == true) {
+                                    swal({
+                                        title: "Excelente!",
+                                        text: res.data.msg,
+                                        icon: "success"
+                                    });
+                    
+                                    this.email = ""
+                                    $(".newletter").modal("hide");
+    
+                                } else {
+                                    alertify.error(res.data.msg)
+                                }
+
+                            })
+                            .catch(err => {
+                                $.each(err.response.data.errors, function(key, value) {
+                                    alertify.error(value[0])
+                                });
+                            })
+
+                    }
+                },
 
             })
 

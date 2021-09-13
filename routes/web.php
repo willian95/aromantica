@@ -76,6 +76,8 @@ Route::get("/search", "SearchController@index");
 Route::post("/search", "SearchController@search");
 Route::post("/words", "SearchController@words");
 
+Route::post("/newsletter", "PromotionController@store");
+
 /*Route::get("/test/purchase/mail", function () {
 
   $to_name = "Felipe";
