@@ -101,8 +101,11 @@
 
 
 
-                <td class="text-center">$
-                    @{{ parseInt(parseFloat(product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                <td class="text-center" v-if="product.product.discount_percentage == 0">$
+                    @{{ parseInt(parseFloat(product.product.price) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
+                </td>
+                <td class="text-center" v-else>$
+                    @{{ parseInt(parseFloat(product.product.price - ((product.product.discount_percentage/100)*product.product.price)) * parseInt(product.amount)).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}
                 </td>
                 @if(\Auth::check())
                     <td>
@@ -578,11 +581,11 @@ const devArea = new Vue({
                         
 
                         if(data.product.discount_percentage == 0){
-                            this.total = this.total + (parseFloat(data.price) * parseInt(
+                            this.total = this.total + (parseFloat(data.product.price) * parseInt(
                             data.amount))
                         }
                         else{
-                            this.total = this.total + (data.amount * (data.price - ((data.product.discount_percentage/100)*data.price)))
+                            this.total = this.total + (data.amount * (data.product.price - ((data.product.discount_percentage/100)*data.product.price)))
                         }
 
                     })

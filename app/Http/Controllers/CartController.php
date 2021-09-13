@@ -208,10 +208,16 @@ class CartController extends Controller
         }
 
         if($coupon->total_discount == 'carrito'){
+            $discountNetAmount = 0;
+            
 
             if(CouponUser::where("coupon_id", $coupon->id)->where("user_id", \Auth::user()->id)->where("is_used", false)->count() > 0 || $coupon->all_users == true){
     
                 $carts = Cart::where("user_id", \Auth::user()->id)->get();
+
+                if($coupon->discount_type != "porcentual"){
+                    $discountNetAmount = $coupon->discount_amount / count($carts);
+                }
             
                 foreach($carts as $cart){
 
@@ -226,7 +232,7 @@ class CartController extends Controller
     
                         }else{
     
-                            $cartModel->price = $cartModel->price - $coupon->discount_amount;
+                            $cartModel->price = $cartModel->price - $discountNetAmount;
     
                         }
                         $cartModel->is_used = true;

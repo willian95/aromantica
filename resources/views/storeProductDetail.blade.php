@@ -323,7 +323,7 @@ const devArea = new Vue({
 
                     if (data.type_id == this.type.id && data.size_id == this.size.id) {
 
-                        this.productTypeSize = data
+                        this.productTypeSizeId = data.id
                         this.price = data.price
                         this.stock = data.stock
 
