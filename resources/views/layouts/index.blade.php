@@ -853,8 +853,6 @@
 
                                     this.total = this.total + (parseInt(data.product.price) * parseInt(data.amount))
 
-
-
                                 })
 
                             } else {
