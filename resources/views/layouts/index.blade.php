@@ -777,8 +777,8 @@
                 <div class="modal-content">
                     <div class="modal-body bg-new" style="background-image: url('assets/img/newletter.jpg');">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                         <div class="newl-content">
                             <!---<span>Regala personalidad</span>-->
                             <h2>Suscríbete a nuestro <br> newsletter </h2>
@@ -1059,7 +1059,7 @@
 
                         if (this.authCheck == "1") {
 
-                            
+
 
                             let cart = []
                             if (window.localStorage.getItem('cartAromantica') != null) {
@@ -1072,7 +1072,7 @@
                                 await _this.addToCart(cart[i].productTypeSizeId, cart[i].amount)
 
                             }
-                            
+
                             window.localStorage.removeItem("cartAromantica")
 
                             axios.get("{{ url('/cart/fetch') }}")
@@ -1089,7 +1089,7 @@
                                     })
 
                                     let cartTotalCheck = totalGuest + totalCheck
-                                    
+
                                     $("#cart-notification").html(cartTotalCheck + "")
 
                                 }
@@ -1117,7 +1117,7 @@
                     },
 
                 },
-                
+
                 mounted() {
 
                     this.cartInfo()

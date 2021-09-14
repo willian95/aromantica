@@ -3,7 +3,7 @@
 @section("content")
 
 <div class="p-50" id="dev-area">
-    <section class="container" v-cloak>
+    <section class="containe contain-cart" v-cloak>
         <div class="row">
             <div class="col-sm-12 ">
                 <div class="carrito">
@@ -27,7 +27,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     <tr v-for="(product, index) in products">
                                         <td class="text-center w-150 text-center">
                                             <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image"
@@ -35,7 +35,7 @@
                                             @{{ product.product_type_size.product.name }} -
                                             @{{ product.product_type_size.type.name }} -
                                             @{{ product.product_type_size.size.name }} Oz
-                                            
+
                                         </td>
 
                                         <!--- <td class="text-center w-150">
@@ -45,7 +45,7 @@
                                         <td class="text-center">
                                             <div>
                                                 <span>$ @{{ parseInt(product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
-    
+
                                             </div>
                                         </td>
                                         <td class="text-center ">
@@ -144,7 +144,7 @@
                 @if(\Auth::check())
                     <div class="row">
                         <div class="col-12">
-                            <div class="pedido">
+                            <div class="pedido mt-4">
 
                                 <h5>Descuento</h5>
 
@@ -262,7 +262,7 @@ const devArea = new Vue({
                         this.fetch()
                     })
 
-                   
+
                 }else{
 
                     swal({
@@ -276,7 +276,7 @@ const devArea = new Vue({
                 $.each(err.response.data.errors, function(key, value) {
                     alertify.error(value[0])
                     //alertify.error(value);
-                    //alertify.alert('Basic: true').set('basic', true); 
+                    //alertify.alert('Basic: true').set('basic', true);
                 });
             })
 
@@ -396,10 +396,10 @@ const devArea = new Vue({
                         this.products.forEach((data, index) => {
 
 
-                       
+
                             this.total = this.total + (data.amount * data.price)
-                            
-                            
+
+
 
                         })
 
@@ -441,7 +441,7 @@ const devArea = new Vue({
                             })
 
                             let cartTotalCheck = totalGuest + totalCheck
-                
+
                             $("#cart-notification").html(cartTotalCheck + "")
                             localStorage.setItem("executeCartPreview", "1")
                         }
@@ -502,7 +502,7 @@ const devArea = new Vue({
 
                     this.products.forEach((data, index) => {
 
-                      
+
                         if(data.product_type_size.stock < data.amount){
                             console.log("entre", data)
                             this.updateCartAmount(this.products[index].product_type_size.id, this.products[index].product_type_size.stock)
@@ -514,7 +514,7 @@ const devArea = new Vue({
                     window.setTimeout(() => {
                         this.fetch()
                     }, 300)
-                    
+
 
                 }
 
@@ -578,7 +578,7 @@ const devArea = new Vue({
 
                     this.guestProducts.forEach((data, index) => {
 
-                        
+
 
                         if(data.product.discount_percentage == 0){
                             this.total = this.total + (parseFloat(data.product.price) * parseInt(
