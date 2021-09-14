@@ -2,6 +2,16 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+    .contain-cart {
+        padding: 0px 2rem;
+    }
+    #cart-discount0, #cart-discount1 {
+        font-size: .7rem;
+    }
+    .table {
+        width: 900px;
+
+    }
     .banner-title {
 
         top: 14%;

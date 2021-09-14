@@ -771,35 +771,6 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade newletter" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered " role="document">
-                <div class="modal-content">
-                    <div class="modal-body bg-new" style="background-image: url('assets/img/newletter.jpg');">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="newl-content">
-                            <!---<span>Regala personalidad</span>-->
-                            <h2>Suscríbete a nuestro <br> newsletter </h2>
-                            <form action="">
-                                <div class="grid-new">
-                                    <div class="">
-                                        <div class="form-group"><label for="emailLogin">Correo electrónico</label> <input type="text" autocomplete="off" placeholder="Email" class="form-control"> <i class="fa fa-envelope icon_form"></i></div>
-                                    </div>
-                                    <div class="">
-
-                                        <button class="btn btn-custom">SUSCRIBIR</button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -820,12 +791,12 @@
         <script src="{{ asset('alertify/alertify.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
         <script>
             $(document).ready(function($) {
                 $(".newletter").modal("show");
             });
         </script>
+
         <script>
             alertify.set('notifier', 'position', 'top-right');
         </script>
@@ -918,6 +889,46 @@
                     }, 1000)
 
                 }
+
+            })
+
+            const newsLetter = new Vue({
+                el: "#new",
+                data() {
+                    return {
+                        email:""
+                    }
+                },
+                methods: {
+                    store(){
+
+                        axios.post("{{ url('/newsletter') }}", {
+                                email: this.email,
+                            }).then(res => {
+
+                                if (res.data.success == true) {
+                                    swal({
+                                        title: "Excelente!",
+                                        text: res.data.msg,
+                                        icon: "success"
+                                    });
+
+                                    this.email = ""
+                                    $(".newletter").modal("hide");
+
+                                } else {
+                                    alertify.error(res.data.msg)
+                                }
+
+                            })
+                            .catch(err => {
+                                $.each(err.response.data.errors, function(key, value) {
+                                    alertify.error(value[0])
+                                });
+                            })
+
+                    }
+                },
 
             })
 

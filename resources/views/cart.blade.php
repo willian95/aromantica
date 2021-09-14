@@ -69,7 +69,7 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control" placeholder="Código de descuento" :id="'cart-discount'+index">
                                             </div>
-                                            <button class="btn btn-primary" @click="setCodeSingleProduct(product.product_type_size, index, false)">Aplicar</button>
+                                            <button class="btn btn-primary btn-des" @click="setCodeSingleProduct(product.product_type_size, index, false)">Aplicar</button>
                                         </td>
                                         <td class="text-center">
                                             <div class="btn ">

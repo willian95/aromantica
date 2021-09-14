@@ -177,11 +177,12 @@ body.offcanvas-expanded {
 
 @media (max-width: 767px) and (min-width: 0px) and (max-width: 767px) {
     .offcanvas-collapse {
-        top: 120px;
+        top: 95px;
         padding: 40px 10px;
         overflow-y: scroll;
         z-index: 1;
     }
+
 }
 
 @media (max-width: 767px) {
@@ -2343,7 +2344,7 @@ z-index: 9;
 
 .newletter .bg-new{
     background-size: cover;
-    height: 55vh;
+    height: 46vh;
     background-repeat: no-repeat;
     position: relative;
     object-position: center;
@@ -2444,9 +2445,13 @@ z-index: 9;
     padding-left: 6px!important;
 
 }
-#cart-discount0 {
+#cart-discount0 ,#cart-discount1{
     font-size: .9rem;
 }
 .contain-cart{
     padding: 0 4rem;
+}
+.btn-des{
+    font-size: 12px;
+    width: 100%;
 }
