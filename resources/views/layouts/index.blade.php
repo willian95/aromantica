@@ -792,10 +792,68 @@
         <script src="https://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?v=2.1.2"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
-            $(document).ready(function($) {
-                $(".newletter").modal("show");
-            });
+
+            let isEmailSaved =  window.localStorage.getItem("aromantica_newsletter")
+            let timeToDisplay = window.localStorage.getItem("aromantica_newsletter_time")
+
+            var d1 = new Date (),
+            d2 = new Date ( d1 );
+            d2.setMinutes ( d1.getMinutes() + 30 );
+            
+            var currentDate = d1.getTime()
+
+            if(isEmailSaved != "1"){
+
+                if(timeToDisplay != null){
+
+                    if(parseInt(timeToDisplay) < currentDate){
+
+                        showModal()
+
+                    }
+
+
+                }else{  
+
+                    showModal()
+
+                }
+                
+               
+            }
+
+            function showModal(){
+                window.setTimeout(function(){
+                    $(document).ready(function($) {
+                        $(".newletter").modal("show");
+                    });
+                }, 5000)
+                var newDate = d2.getTime()
+                window.localStorage.setItem("aromantica_newsletter_time", newDate)
+            }
+
+            
+
+
         </script>
+
+        @if(isset($showModal))
+            @if($showModal == true)
+                <script>
+                    
+                    window.setTimeout(function(){
+                        $(document).ready(function($) {
+                            $(".newletter").modal("show");
+                        });
+                    }, 5000)
+                    var newDate = d2.getTime()
+                    window.localStorage.setItem("aromantica_newsletter_time", newDate)
+                    
+                </script>
+
+            @endif
+
+        @endif
 
         <script>
             alertify.set('notifier', 'position', 'top-right');
@@ -913,6 +971,7 @@
 
                                     this.email = ""
                                     $(".newletter").modal("hide");
+                                    window.localStorage.setItem("aromantica_newsletter", 1)
 
                                 } else {
                                     alertify.error(res.data.msg)
