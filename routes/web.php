@@ -13,11 +13,7 @@
 
 
 
-Route::get('/', function () {
-  return view('welcome');
-  //  echo "<h3>Coming soon</h3>";
-  //return view("pronto");
-});
+Route::get('/', "IndexController@index");
 
 Route::get("/offline", function(){
 
