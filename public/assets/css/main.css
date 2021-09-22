@@ -662,9 +662,6 @@ body.offcanvas-expanded {
     opacity: 0.5;
     height: max-content;
 }
-.slick-initialized .slick-slide{
-    height: auto;
-}
 
 .slider-nav .slick-current {
     opacity: 1;
