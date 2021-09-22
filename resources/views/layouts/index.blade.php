@@ -45,7 +45,7 @@
 </head>
 
 <body>
-    <a class="ws" target="_blank" href="https://api.whatsapp.com/send?phone=+573003707531&text=%C2%A1Hola!%20,%20Quiero%20m%C3%A1s%20informaci%C3%B3n."> <img src="{{ asset('assets/img/whatsapp.png') }}" alt=""> </a>
+    <a class="ws" target="_blank" href="https://api.whatsapp.com/send?phone=+573003707533&text=%C2%A1Hola!%20,%20Quiero%20m%C3%A1s%20informaci%C3%B3n."> <img src="{{ asset('assets/img/whatsapp.png') }}" alt=""> </a>
     <div class="elipse">
         <img class="logo-f" src="{{ asset('assets/img/logo.png') }}" alt="">
     </div>
@@ -434,13 +434,13 @@
 
 
                                             <div class=" form-group mt-4 text-center">
-                                                <button class="btn btn-primary btn-custom " @click="register()">Regístrarse
+                                                <button class="btn btn-primary btn-custom " @click="register()">Registrarse
                                                 </button>
 
                                             </div>
 
                                             <div class="text-center">
-                                                <p class="inicia">ó regístrate facil </p>
+                                                <p class="inicia">ó regístrate fácil </p>
                                                 {{--<a class="btn-login btn-login2 mr-2" href="{{ url('/facebook/redirect') }}">
                                                 <i class="fa fa-facebook"></i> Facebook</a>--}}
                                                 <a class="btn-login goo" href="{{ url('/google/redirect') }}"> <i class="fa fa-google"></i> Google</a>
