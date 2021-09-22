@@ -2,6 +2,10 @@
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+    body {
+
+        overflow-x: hidden;
+    }
     .contain-cart {
         padding: 0px 2rem;
     }
@@ -197,6 +201,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        z-index: 0;
     }
 
     .main-banner {
