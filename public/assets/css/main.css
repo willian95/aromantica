@@ -657,7 +657,10 @@ body.offcanvas-expanded {
 .slider-for {
     margin-top: 50px;
 }
+.slider-for .slick-slide {
 
+    height: auto;
+}
 .slider-nav .slick-slide {
     opacity: 0.5;
     height: max-content;
