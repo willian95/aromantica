@@ -8,9 +8,15 @@
              <div class="main-top__content">
                  <div class="main">
                      <!---mini cards ---->
+                     @php
+
+                        $topProducts = App\TopProduct::with('productTypeSize', 'productTypeSize.product', 'productTypeSize.type', 'productTypeSize.size')->has("productTypeSize")->has("productTypeSize.product")->has("productTypeSize.type")->has("productTypeSize.size")->inRandomOrder()->get();
+
+                        
+                     @endphp
                      <div class="slider slider-nav">
                          <!---mini cards imagen ---->
-                         @foreach(App\TopProduct::with('productTypeSize', 'productTypeSize.product', 'productTypeSize.type', 'productTypeSize.size')->has("productTypeSize")->has("productTypeSize.product")->has("productTypeSize.type")->has("productTypeSize.size")->get() as $topProduct)
+                         @foreach($topProducts as $topProduct)
                          <div>
                              <div class="main-top__img">
                                  <img src="{{ env('CMS_URL').'/images/products/'.$topProduct->productTypeSize->product->image }}">
@@ -25,7 +31,7 @@
 
                      <!---cards detalle---->
                      <div class="slider slider-for">
-                         @foreach(App\TopProduct::with('productTypeSize', 'productTypeSize.product', 'productTypeSize.type', 'productTypeSize.size')->has("productTypeSize")->has("productTypeSize.product")->has("productTypeSize.type")->has("productTypeSize.size")->get() as $topProduct)
+                         @foreach($topProducts as $topProduct)
                          <div>
                              <div class="main-top__container">
                                  <div class="main-top__item">
