@@ -8,7 +8,7 @@
                  <div class="">
                      <div class="border p-4 rounded mb-4">
                          <h3 class="mb-3 h6 text-uppercase text-black d-block">
-                             Categorias
+                             Categorías
                          </h3>
                          <ul class="list-unstyled mb-0">
                              <li class="mb-1">
