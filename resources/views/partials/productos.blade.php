@@ -3,9 +3,13 @@
         <h2>Fragancias recomendadas</h2>
     </div>
 
+    @php
+        $products = App\ProductTypeSize::inRandomOrder()->take(12)->has("product.category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product", "size",
+        "type")->get();
+    @endphp
+
     <div class="main-productos__content ">
-        @foreach(App\ProductTypeSize::take(12)->has("product.category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product", "size",
-        "type")->get() as $product)
+        @foreach($products as $product)
         <div class="main-products__item">
             <div class="main-products__box">
                 <div class="views">
@@ -70,8 +74,7 @@
 
     </div>
 
-    @foreach(App\ProductTypeSize::take(12)->has("product.category")->has("product.brand")->has("size")->has("type")->with("product.brand", "product",
-    "size", "type")->get() as $product)
+    @foreach($products as $product)
 
     <!-- modal producto views -->
     <div class="modal fade" id="producto_modal-{{ $loop->index + 1 }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
