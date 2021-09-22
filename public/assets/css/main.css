@@ -657,9 +657,13 @@ body.offcanvas-expanded {
 .slider-for {
     margin-top: 50px;
 }
+.slider-for .slick-slide {
 
+    height: auto;
+}
 .slider-nav .slick-slide {
     opacity: 0.5;
+    height: max-content;
 }
 
 .slider-nav .slick-current {
@@ -809,6 +813,7 @@ body.offcanvas-expanded {
     margin-bottom: 10px;
     position: relative;
     overflow: hidden;
+    height: auto;
 }
 
 .main-products__box {
