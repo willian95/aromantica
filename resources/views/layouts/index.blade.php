@@ -957,32 +957,28 @@
                 },
                 methods: {
                     store(){
-
+                        
                         axios.post("{{ url('/newsletter') }}", {
-                                email: this.email,
-                            }).then(res => {
+                            email: this.email,
+                        }).then(res => {
 
-                                if (res.data.success == true) {
-                                    swal({
-                                        title: "Excelente!",
-                                        text: res.data.msg,
-                                        icon: "success"
-                                    });
+                            if (res.data.success == true) {
+                                alertify.success(res.data.msg)
 
-                                    this.email = ""
-                                    $(".newletter").modal("hide");
-                                    window.localStorage.setItem("aromantica_newsletter", 1)
+                                this.email = ""
+                                $(".newletter").modal("hide");
+                                window.localStorage.setItem("aromantica_newsletter", 1)
 
-                                } else {
-                                    alertify.error(res.data.msg)
-                                }
+                            } else {
+                                alertify.error(res.data.msg)
+                            }
 
-                            })
-                            .catch(err => {
-                                $.each(err.response.data.errors, function(key, value) {
-                                    alertify.error(value[0])
-                                });
-                            })
+                        })
+                        .catch(err => {
+                            $.each(err.response.data.errors, function(key, value) {
+                                alertify.error(value[0])
+                            });
+                        })
 
                     }
                 },
