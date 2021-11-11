@@ -2,6 +2,47 @@ $(document).ready(function () {
     setTimeout(function () {
         $(".elipse").fadeOut(300);
     }, 3000);
+
+    if($(".main-banner__content").length){
+
+        $(".main-banner__content").slick({
+            infinite: true,
+            autoplay: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false,
+            fade: true,
+            cssEase: "linear",
+            arrows: true,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        infinite: true,
+                        dots: false,
+                    },
+                },
+                {
+                    breakpoint: 900,
+                    settings: {},
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                        autoplay: true,
+                        arrows: false,
+                        autoplaySpeed: 1000,
+                    },
+                },
+            ],
+        });
+
+    }
+    
+
 });
 // Menú responsive
 $(function () {
@@ -45,52 +86,21 @@ $(function () {
 var rangeSlider = document.getElementById("rs-range-line");
 var rangeBullet = document.getElementById("rs-bullet");
 
-rangeSlider.addEventListener("input", showSliderValue, false);
+if(rangeSlider){
 
-function showSliderValue() {
-    rangeBullet.innerHTML = rangeSlider.value;
-    var bulletPosition = rangeSlider.value / rangeSlider.max;
-    rangeBullet.style.left = bulletPosition * 208 + "px";
+    rangeSlider.addEventListener("input", showSliderValue, false);
+
+    function showSliderValue() {
+        rangeBullet.innerHTML = rangeSlider.value;
+        var bulletPosition = rangeSlider.value / rangeSlider.max;
+        rangeBullet.style.left = bulletPosition * 208 + "px";
+    }
+
 }
+
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
-
-$(".main-banner__content").slick({
-    infinite: true,
-    autoplay: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    dots: false,
-    fade: true,
-    cssEase: "linear",
-    arrows: true,
-    responsive: [
-        {
-            breakpoint: 1200,
-            settings: {
-                infinite: true,
-                dots: false,
-            },
-        },
-        {
-            breakpoint: 900,
-            settings: {},
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                dots: false,
-                autoplay: true,
-                arrows: false,
-                autoplaySpeed: 1000,
-            },
-        },
-    ],
-});
-
 
 
