@@ -27,7 +27,7 @@
     <link href="{{ asset('alertify/css/themes/bootstrap.css') }}" rel='stylesheet'>
 
     <title>Aromantica </title>
-
+    <!--  -->
     @laravelPWA
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9GR52EFB78"></script>
