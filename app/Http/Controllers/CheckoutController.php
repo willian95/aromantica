@@ -118,8 +118,6 @@ class CheckoutController extends Controller
                     $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
                 }
 
-                dump($totalShippingCost);
-
                 $payment->tracking_url = $envia->data[0]->trackUrl;
                 $payment->tracking = $envia->data[0]->trackingNumber;
                 $payment->label = $envia->data[0]->label;
