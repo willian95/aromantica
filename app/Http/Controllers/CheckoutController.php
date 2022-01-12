@@ -113,12 +113,12 @@ class CheckoutController extends Controller
                 
                 $envia = json_decode($response->getBody());
                 
-                dump($envia);
-                
                 $totalShippingCost = 0;
                 foreach($envia->data as $shippingCost){
                     $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
                 }
+
+                dump($totalShippingCost);
 
                 $payment->tracking_url = $envia->data[0]->trackUrl;
                 $payment->tracking = $envia->data[0]->trackingNumber;
