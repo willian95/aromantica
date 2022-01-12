@@ -163,6 +163,7 @@
                         </div>
                     </div>
                 </div>
+               
 
 
                 <form id="frm_botonePayco" name="frm_botonePayco" method="post"
@@ -177,7 +178,7 @@
                     <input name="p_amount" id="p_amount" type="hidden" v-model="total">
                     <input name="p_tax" id="p_tax" type="hidden" value="0">
                     <input name="p_amount_base" id="p_amount_base" type="hidden" value="0">
-                    <input name="p_test_request" type="hidden" value="FALSE">
+                    <input name="p_test_request" type="hidden" value="TRUE">
                     <input name="p_email" type="hidden" value="rodriguezwillian95@gmail.com">
                     <input name="p_url_response" type="hidden" value="{{ url('checkout/response') }}">
                     <input name="p_url_confirmation" type="hidden" value="{{ url('checkout/confirmation') }}">
