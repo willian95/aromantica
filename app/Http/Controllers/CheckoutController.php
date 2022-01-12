@@ -124,6 +124,7 @@ class CheckoutController extends Controller
                 //$payment->shipping_cost = $envia->data[0]->totalPrice;
                 $payment->shipping_cost = intval($totalShippingCost)+1;
                 //dd($payment);
+
             }else{
                 $payment->status = "rechazado";
                 $payment->shipping_cost = 0;
