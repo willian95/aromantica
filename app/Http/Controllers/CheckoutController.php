@@ -113,7 +113,7 @@ class CheckoutController extends Controller
                 
                 $envia = json_decode($response->getBody());
                 
-                //dump($envia);
+                dump($envia);
                 
                 $totalShippingCost = 0;
                 foreach($envia->data as $shippingCost){
