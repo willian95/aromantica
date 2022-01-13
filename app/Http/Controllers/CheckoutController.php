@@ -95,35 +95,11 @@ class CheckoutController extends Controller
                 $shipping = $request->shippingData;
                 $shipping["origin"]["number"] = "";
                 $shipping["destination"]["number"] = "";
-
-                //$shipping = $request->shippingData;
-                //dump($shipping);
-                /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
-                $response = $client->post("https://api-test.envia.com/ship/generate", [
-                    "json" => $shipping
-                ]);*/
-
-                
-                //dump($shipping);
-                
-                $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
-                $response = $client->post("https://api.envia.com/ship/generate", [
-                    "json" => $shipping
-                ]);
-                
-                $envia = json_decode($response->getBody());
-                
-                $totalShippingCost = 0;
-                foreach($envia->data as $shippingCost){
-                    $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
-                }
-
-                $payment->tracking_url = $envia->data[0]->trackUrl;
-                $payment->tracking = $envia->data[0]->trackingNumber;
-                $payment->label = $envia->data[0]->label;
+                $payment->tracking_url = "waiting";
+                $payment->tracking = "waiting";
+                $payment->label = "waiting";
                 //$payment->shipping_cost = $envia->data[0]->totalPrice;
-                $payment->shipping_cost = intval($totalShippingCost)+1;
-                //dd($payment);
+                $payment->shipping_cost = 0;
 
             }else{
                 $payment->status = "rechazado";
@@ -266,6 +242,38 @@ class CheckoutController extends Controller
                 $message->from("ventas@aromantica.co", "Aromantica");
 
             });
+
+
+            //$shipping = $request->shippingData;
+                //dump($shipping);
+                /*$client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 2acacff444ddd328fb8b7e64c94671740218643867cb7d69489d33ca77147c0d']]);
+                $response = $client->post("https://api-test.envia.com/ship/generate", [
+                    "json" => $shipping
+                ]);*/
+
+                
+                //dump($shipping);
+                    
+            $client = new \GuzzleHttp\Client(['headers' => ['Authorization' => 'Bearer 5e0ad0d945ccc05a410561f389dd2e4c035c84ad7d4269b13fd6d54d0b8e6d8c']]);
+            $response = $client->post("https://api.envia.com/ship/generate", [
+                "json" => $shipping
+            ]);
+            
+            $envia = json_decode($response->getBody());
+            
+            $totalShippingCost = 0;
+            foreach($envia->data as $shippingCost){
+                $totalShippingCost = $totalShippingCost + $shippingCost->totalPrice;
+            }
+
+            $payment = Payment::find($payment->id);
+            $payment->tracking_url = $envia->data[0]->trackUrl;
+            $payment->tracking = $envia->data[0]->trackingNumber;
+            $payment->label = $envia->data[0]->label;
+            //$payment->shipping_cost = $envia->data[0]->totalPrice;
+            $payment->shipping_cost = intval($totalShippingCost)+1;
+            $payment->update();
+            //dd($payment);
 
             /*$to_name = "Felipe";
             $to_email = "info@myass.co";
