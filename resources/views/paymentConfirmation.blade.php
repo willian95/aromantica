@@ -19,7 +19,7 @@
             </div>
             <div class="col-12" v-if="payment.status == 'aprobado'">
                 <p><strong>Total:</strong> $
-                    @{{ parseFloat(payment.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                    @{{ parseFloat(payment.total_products + payment.shipping_cost).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                 <p><strong>Referencia ePayco:</strong> @{{ payment.epayco_reference }}</p>
                 <p><strong>Referencia de comercio:</strong> @{{ payment.order_id }}</p>
                 <p><a :href="payment.tracking_url" target="_blank">Seguimiento: @{{ payment.tracking }}</a></p>

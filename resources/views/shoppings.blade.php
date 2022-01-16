@@ -46,7 +46,7 @@
                         <td>@{{ shopping.order_id }}</td>
                         <td>@{{ shopping.created_at.toString().substr(0, 10) }}</td>
                         <td><a :href="shopping.tracking_url" target="_blank">@{{ shopping.tracking }}</a></td>
-                        <td>$ @{{ parseInt(shopping.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
+                        <td>$ @{{ parseInt(shopping.total_products + shopping.shipping_cost).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</td>
                         <td>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingModal" @click="show(shopping)">Ver</button>
                         </td>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label><strong>Total</strong></label>
-                                <p>$ @{{ parseInt(shopping.total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
+                                <p>$ @{{ parseInt(shopping.total_products + shopping.shipping_cost).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label><strong>Tracking</strong></label>

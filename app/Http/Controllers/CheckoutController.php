@@ -122,7 +122,6 @@ class CheckoutController extends Controller
                     $guest->name = $guestUser["name"];
                     $guest->email = $guestUser["email"];
                     $guest->address = $guestUser["address"];
-                    $guest->address = $guestUser["address"];
                     $guest->phone = $guestUser["phone"];
                     $guest->save();
                 }
@@ -131,7 +130,8 @@ class CheckoutController extends Controller
             }
 
             if(\Auth::check()){
-                $payment->address = \Auth::user()->address;
+                $guestUser = $request->guestUser;
+                $payment->address = $guestUser["address"];
             } 
             $payment->save();
 
